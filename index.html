@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta property="og:title" content="Muestrario de páginas">
+<meta property="og:title" content="Lazervi — Páginas, apps y servicios digitales">
 <meta property="og:description" content="Páginas web para comercios del barrio, cada una con su video de presentación.">
 <meta property="og:image" content="posters/mesa-larga-h.jpg">
-<title>Muestrario de páginas</title>
+<title>Lazervi — Páginas, apps y servicios digitales</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="description" content="Páginas web para comercios del barrio, cada una con su video de presentación.">
 <style>
 /* Editorial y silencioso: lienzo hueso, titular serif enorme y un bloque gris azulado que se desliza debajo. */
@@ -27,6 +28,10 @@ a{color:inherit}
 /* cabecera */
 .cab{height:120px;display:flex;justify-content:space-between;align-items:center;font:16px var(--sans)}
 .cab b{font-weight:700}
+.marca{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.marca .logo{width:30px;height:auto}
+.marca b{font:700 17px var(--sans);letter-spacing:.01em}
+.pie .marca .logo{width:24px}
 .cab nav{display:flex;align-items:center;gap:14px}
 .cab nav a{text-decoration:none}
 .cab nav a:hover{text-decoration:underline;text-underline-offset:4px}
@@ -155,7 +160,7 @@ a{color:inherit}
 
 <div class="progreso" data-progreso aria-hidden="true"></div>
 <header class="cab envoltura">
-  <b data-marca>Tu marca</b>
+  <a class="marca" href="#" aria-label="Lazervi, inicio"><svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="8 44 158 164" fill="none" stroke="currentColor" stroke-width="17" stroke-linejoin="miter" stroke-linecap="butt"><path d="M26 52V190H106V166"/><path d="M152 94L137 63H59V159H137L152 128"/></svg><b data-marca>Lazervi</b></a>
   <nav aria-label="Principal"><a href="#trabajos">Trabajos</a><span aria-hidden="true">—</span><a href="#servicios">Servicios</a><span aria-hidden="true">—</span><a href="#contacto">Contacto</a></nav>
 </header>
 
@@ -192,14 +197,14 @@ a{color:inherit}
 </section>
 
 <footer class="pie envoltura">
-  <b data-marca>Tu marca</b>
+  <a class="marca" href="#" aria-label="Lazervi, inicio"><svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="8 44 158 164" fill="none" stroke="currentColor" stroke-width="17" stroke-linejoin="miter" stroke-linecap="butt"><path d="M26 52V190H106V166"/><path d="M152 94L137 63H59V159H137L152 128"/></svg><b data-marca>Lazervi</b></a>
   <a href="#" data-wa-general target="_blank" rel="noopener">WhatsApp · 11 7817-5738</a>
   <span>Buenos Aires · <span data-anio></span></span>
 </footer>
 
 <script>
 // ——— Cambiá acá el nombre de tu marca ———
-const MARCA = "Tu marca";
+const MARCA = "Lazervi";
 // ——— Tu WhatsApp (con 549 adelante, sin espacios) ———
 const WHATSAPP = "5491178175738";
 const wa = t => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`;
