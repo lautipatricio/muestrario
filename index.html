@@ -185,7 +185,7 @@ a{color:inherit}
     <span class="meta">Sobre</span>
     <div>
       <p>Diseño y desarrollo digital para restaurantes, cafés, comercios, profesionales y centros de estética, hecho a medida de cada negocio.</p>
-      <p>Todo pensado primero para el celular, rápido y fácil de usar, con los precios, horarios y productos en un solo lugar para que los cambies sin tocar el diseño. Los platos y precios de las demos son de ejemplo; las propuestas para negocios reales se muestran solo en video.</p>
+      <p>Todo pensado primero para el celular, rápido y fácil de usar, con los precios, horarios y productos en un solo lugar para que los cambies sin tocar el diseño. Los platos y precios de las demos son de ejemplo; las propuestas para negocios reales son diseños de muestra, no sus páginas oficiales.</p>
     </div>
   </section>
 </main>
@@ -227,11 +227,11 @@ const DEMOS = [
     desc:"Sobria, con tinta animada de fondo. Combinados, piezas y delivery.", trae:["Pesca del día", "Carta por piezas", "Reserva de barra o mesa", "Delivery", "PedidosYa y Rappi"] },
   { id:"bruma-cosmetica", nombre:"Bruma Cosmética", rubro:"Cosmética", grupo:"Salud y belleza", link:"demos/bruma-cosmetica/",
     desc:"Suave y luminosa, con un fondo de nácar animado. Tienda de productos con carrito.", trae:["Catálogo con filtros", "Rutinas por paso", "Carrito y envío gratis", "Mercado Pago", "Pedido por WhatsApp"] },
-  { id:"salome-blanes", nombre:"Salomé Blanes", rubro:"Estética y salud", grupo:"Salud y belleza", real:true,
+  { id:"salome-blanes", nombre:"Salomé Blanes", rubro:"Estética y salud", grupo:"Salud y belleza", real:true, link:"demos/salome-blanes/",
     desc:"Propuesta para un centro de estética. Tratamientos con precio, turnos con fecha y hora, seña online y un panel para la recepción.", trae:["Buscador de tratamientos", "Turnos online", "Seña con Mercado Pago", "Panel de recepción", "Mapa y consultorio"] },
-  { id:"aluvidrio", nombre:"Aluvidrio", rubro:"Vidriería", grupo:"Comercios", real:true,
+  { id:"aluvidrio", nombre:"Aluvidrio", rubro:"Vidriería", grupo:"Comercios", real:true, link:"demos/aluvidrio/",
     desc:"Propuesta para una vidriería. Trabajos reales por categoría, fondo de espejo animado y pedido de presupuesto con medidas.", trae:["Trabajos por categoría", "Fichas por trabajo", "Clientes y opiniones", "Presupuesto numerado", "Pedido por WhatsApp"] },
-  { id:"bulonera-beccar", nombre:"Bulonera Beccar", rubro:"Bulonera", grupo:"Comercios", real:true,
+  { id:"bulonera-beccar", nombre:"Bulonera Beccar", rubro:"Bulonera", grupo:"Comercios", real:true, link:"demos/bulonera-beccar/",
     desc:"Propuesta para una bulonera. Un calibre que mide el bulón, la cajonera de medidas, pedido por lista y nota de pedido de talonario.", trae:["Calibre interactivo", "Cajonera de medidas", "Pedido por lista", "Bolsitas armadas", "Nota de pedido", "Factura A y B"] }
 ];
 
@@ -276,7 +276,7 @@ function pintar(){
           <div class="acciones">
             <a class="pedir" href="${linkInteres(d)}" target="_blank" rel="noopener">${d.real ? "Quiero una así" : "Me interesa esta página"}<span aria-hidden="true">↗</span></a>
             <div class="secund">
-              ${d.link ? `<a href="${d.link}">Ver la página</a>` : `<span class="real">Negocio real: solo en video</span>`}
+              ${d.link ? `<a href="${d.link}">${d.real ? "Ver la propuesta" : "Ver la página"}</a>` : ""}
               <a href="videos/${d.id}-h.mp4" download="${d.id}.mp4">Descargar video</a>
             </div>
           </div>
