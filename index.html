@@ -58,17 +58,32 @@ a{color:inherit}
 .num{font:400 clamp(44px,4.6vw,64px)/.9 var(--serif);letter-spacing:-.03em}
 .lado .meta{color:var(--tinta)}
 .lado .meta span{display:block;color:var(--tenue)}
-.trae{list-style:none;margin:0;padding:16px 0 0;border-top:1px solid var(--filete);display:grid;gap:6px;font:12px/1.5 var(--sans);text-transform:uppercase;letter-spacing:.02em;color:var(--tenue)}
 .proyecto h2{font:400 clamp(58px,8.4vw,124px)/.86 var(--serif);letter-spacing:-.045em;margin:0;padding-bottom:.06em}
 .visual{margin-top:34px;padding:clamp(14px,4.5%,48px);background:linear-gradient(145deg,var(--ocre),#efe2ca)}
 .proyecto:nth-child(3n+2) .visual{background:linear-gradient(145deg,var(--rosa),#442b31)}
 .proyecto:nth-child(3n+3) .visual{background:linear-gradient(145deg,#344a47,#acc1b3)}
-.detalle{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 48px;margin-top:28px;align-items:baseline}
-.detalle p{margin:0;font:clamp(19px,1.55vw,22px)/1.42 var(--serif);max-width:32em;text-wrap:pretty}
-.acciones{display:flex;flex-direction:column;align-items:flex-end;gap:12px;white-space:nowrap}
-.acciones a,.acciones button{font:14px var(--sans);color:var(--tinta);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
-.acciones a:hover,.acciones button:hover{text-decoration-thickness:2px}
-.real{font:12px/1.5 var(--sans);text-transform:uppercase;letter-spacing:.02em;color:var(--tenue);white-space:normal;text-align:right;max-width:14em}
+.detalle{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;margin-top:28px;align-items:start}
+.trae{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.trae li{font:13px/1 var(--sans);padding:9px 12px;border:1px solid var(--filete);border-radius:999px;color:var(--tinta);white-space:nowrap}
+.acciones{display:flex;flex-direction:column;align-items:flex-end;gap:14px}
+.pedir{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;background:var(--tinta);color:var(--papel)!important;font:600 15px var(--sans);text-decoration:none;white-space:nowrap;transition:transform .25s,background .25s}
+.pedir:hover{transform:translateY(-2px)}
+.pedir span{font-size:13px}
+.secund{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;justify-content:flex-end}
+.secund a{font:13px var(--sans);color:var(--tenue);text-decoration:underline;text-underline-offset:4px}
+.secund a:hover{color:var(--tinta)}
+.real{font:12px/1.5 var(--sans);text-transform:uppercase;letter-spacing:.02em;color:var(--tenue)}
+
+/* progreso de lectura */
+.progreso{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--tinta);transform-origin:0 50%;transform:scaleX(0);z-index:50}
+
+/* servicios */
+.servicios{display:grid;grid-template-columns:.35fr 1fr;gap:90px}
+.serv-lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
+.serv-lista li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 14px;padding:22px 0;border-top:1px solid var(--filete)}
+.serv-lista b{font:400 15px/1.4 var(--sans);color:var(--tenue);font-variant-numeric:tabular-nums;grid-row:1/3}
+.serv-lista strong{font:400 clamp(22px,2.2vw,30px)/1.1 var(--serif);letter-spacing:-.01em}
+.serv-lista span{font:14px/1.5 var(--sans);color:var(--tenue)}
 
 /* reproductor */
 .repro{position:relative;aspect-ratio:16/9;background:#0d0d0c;overflow:hidden;cursor:pointer;user-select:none;-webkit-user-select:none}
@@ -118,8 +133,12 @@ a{color:inherit}
   .filtros{margin-bottom:60px}
   .proyecto{margin-bottom:80px;padding-bottom:80px}
   .lado{position:static;grid-template-columns:auto 1fr;align-items:end;gap:6px 18px}
-  .lado .trae{display:none}
   .detalle{grid-template-columns:minmax(0,1fr)}
+  .acciones{align-items:stretch}
+  .pedir{justify-content:center;width:100%}
+  .secund{justify-content:flex-start}
+  .servicios{grid-template-columns:minmax(0,1fr);gap:30px}
+  .serv-lista{grid-template-columns:minmax(0,1fr)}
   .final{padding:80px 0 100px}
   .final h2{font-size:21vw}
   .mosaico{width:100%;margin-top:-24px}
@@ -135,16 +154,17 @@ a{color:inherit}
 <body>
 
 
+<div class="progreso" data-progreso aria-hidden="true"></div>
 <header class="cab envoltura">
   <b data-marca>Tu marca</b>
-  <nav aria-label="Principal"><a href="#trabajos">Trabajos</a><span aria-hidden="true">—</span><a href="#sobre">Sobre</a><span aria-hidden="true">—</span><a href="#contacto">Contacto</a></nav>
+  <nav aria-label="Principal"><a href="#trabajos">Trabajos</a><span aria-hidden="true">—</span><a href="#servicios">Servicios</a><span aria-hidden="true">—</span><a href="#contacto">Contacto</a></nav>
 </header>
 
 <main>
   <section class="portada envoltura">
     <h1>Páginas<br>hechas—</h1>
     <div class="bloque" aria-hidden="true"><video data-bloque muted loop playsinline preload="auto"></video></div>
-    <div class="bajada"><span class="meta">Muestrario<br><span data-anio></span></span><p>Páginas web para comercios del barrio. Cada una tiene un video que muestra todo lo que hace: pedidos, reservas, turnos y presupuestos por WhatsApp.</p></div>
+    <div class="bajada"><span class="meta">Muestrario<br><span data-anio></span></span><p>Páginas web, aplicaciones y servicios digitales para negocios. Diseño a medida, tiendas online, reservas, turnos y pedidos que llegan directo a tu WhatsApp. Abajo, cada trabajo con su video.</p></div>
   </section>
 
   <section class="seccion envoltura" id="trabajos">
@@ -152,11 +172,16 @@ a{color:inherit}
     <div id="lista"></div>
   </section>
 
+  <section class="seccion envoltura servicios" id="servicios">
+    <span class="meta">Qué hacemos</span>
+    <ul class="serv-lista"><li><b>01</b><strong>Páginas web a medida</strong><span>Diseño propio, pensado para el celular y para vender.</span></li><li><b>02</b><strong>Aplicaciones</strong><span>Apps web que se instalan en el celular, con avisos y cuentas de usuario.</span></li><li><b>03</b><strong>Tiendas online</strong><span>Catálogo, carrito, Mercado Pago y envíos.</span></li><li><b>04</b><strong>Reservas y turnos</strong><span>Agenda online, seña por adelantado y panel para tu equipo.</span></li><li><b>05</b><strong>Pedidos por WhatsApp</strong><span>El pedido llega armado, sin comisiones por venta.</span></li><li><b>06</b><strong>PedidosYa, Rappi y Mercado Pago</strong><span>Integrados en la página, con botones directos.</span></li><li><b>07</b><strong>Google y redes</strong><span>Perfil de Google Maps, Instagram y posicionamiento local.</span></li><li><b>08</b><strong>Videos y contenido</strong><span>Videos de presentación, reels y fotos para redes.</span></li><li><b>09</b><strong>Dominio, hosting y correo</strong><span>Tu .com.ar funcionando, con mail propio.</span></li><li><b>10</b><strong>Mantenimiento</strong><span>Cambios de precios, cartas y fotos cuando lo necesites.</span></li></ul>
+  </section>
+
   <section class="seccion envoltura sobre" id="sobre">
     <span class="meta">Sobre</span>
     <div>
-      <p>Páginas para restaurantes, cafés, vinotecas, ferreterías y centros de estética, hechas a medida del local.</p>
-      <p>Todas están pensadas para el celular, traen botones de WhatsApp, PedidosYa y Rappi, y tienen los precios, horarios y productos en un solo lugar para que el dueño los cambie sin tocar el diseño. Los platos y precios de las demos son de ejemplo; las propuestas para negocios reales se muestran solo en video.</p>
+      <p>Diseño y desarrollo digital para restaurantes, cafés, comercios, profesionales y centros de estética, hecho a medida de cada negocio.</p>
+      <p>Todo pensado primero para el celular, rápido y fácil de usar, con los precios, horarios y productos en un solo lugar para que los cambies sin tocar el diseño. Los platos y precios de las demos son de ejemplo; las propuestas para negocios reales se muestran solo en video.</p>
     </div>
   </section>
 </main>
@@ -164,42 +189,46 @@ a{color:inherit}
 <section class="final envoltura" id="contacto">
   <h2>La tuya,<br>la próxima—</h2>
   <div class="mosaico" aria-hidden="true"><div class="pista" data-pista></div><div class="pista fila2" data-pista2></div></div>
-  <div class="pie-final"><span class="meta">Contacto</span><div><p>Contame qué tiene tu negocio y armamos una página así, con tu nombre, tus fotos y tus precios.</p><a href="#trabajos">Volver a los trabajos</a></div></div>
+  <div class="pie-final"><span class="meta">Contacto</span><div><p>Contame qué tiene tu negocio y armamos una página así, con tu nombre, tus fotos y tus precios.</p><a class="pedir" style="margin-top:26px" href="#" data-wa-general target="_blank" rel="noopener">Pedir presupuesto por WhatsApp<span aria-hidden="true">↗</span></a></div></div>
 </section>
 
 <footer class="pie envoltura">
   <b data-marca>Tu marca</b>
-  <span>Escribime y armamos la tuya</span>
+  <a href="#" data-wa-general target="_blank" rel="noopener">WhatsApp · 11 7817-5738</a>
   <span>Buenos Aires · <span data-anio></span></span>
 </footer>
 
 <script>
 // ——— Cambiá acá el nombre de tu marca ———
 const MARCA = "Tu marca";
+// ——— Tu WhatsApp (con 549 adelante, sin espacios) ———
+const WHATSAPP = "5491178175738";
+const wa = t => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`;
+const linkInteres = d => wa(d.real ? `Hola! Vi la propuesta de ${d.nombre} (${d.rubro.toLowerCase()}) en tu muestrario y me gustaría una página así para mi negocio. ¿Cuánto sale?` : `Hola! Vi la página "${d.nombre}" (${d.rubro.toLowerCase()}) en tu muestrario y me interesa una así para mi negocio. ¿Cuánto sale hacerla?`);
 
 const DEMOS = [
   { id:"mesa-larga", nombre:"Mesa Larga", rubro:"Restaurante", grupo:"Gastronomía", link:"demos/mesa-larga/",
-    desc:"Crema, tomate y azafrán. Plato de la semana con vapor animado, carta con tarjetas que se dan vuelta para ver ingredientes, noches especiales y almacén para llevar.", trae:["Reservas","Carta con ingredientes","Almacén","PedidosYa y Rappi"] },
+    desc:"Crema, tomate y azafrán. Plato de la semana con vapor animado, carta con tarjetas que se dan vuelta para ver ingredientes, noches especiales y almacén para llevar.", trae:["Carta con fotos e ingredientes", "Reservas por WhatsApp", "Pedidos con retiro o envío", "Almacén para llevar", "PedidosYa y Rappi", "Abierto ahora y mapa"] },
   { id:"lo-de-tita", nombre:"Lo de Tita", rubro:"Confitería y meriendas", grupo:"Gastronomía", link:"demos/lo-de-tita/",
-    desc:"Estilo cartel pintado de barrio, con fotos tipo polaroid. Especiales del día, armá tu merienda con descuento, ticket para retirar y tortas por encargo.", trae:["Armá tu merienda","Ticket para llevar","Tortas por encargo","PedidosYa y Rappi"] },
+    desc:"Estilo cartel pintado de barrio, con fotos tipo polaroid. Especiales del día, armá tu merienda con descuento, ticket para retirar y tortas por encargo.", trae:["Especiales del día", "Armá tu merienda con descuento", "Ticket para retirar", "Tortas por encargo", "PedidosYa y Rappi", "Sin TACC y vegano marcados"] },
   { id:"shio-sushi", nombre:"Shio", rubro:"Sushi de barra", grupo:"Gastronomía", link:"demos/shio-sushi/",
-    desc:"Como una revista gastronómica, con sal animada cayendo sobre la tapa. Carta en índice, omakase, pesca del día y buscador de ingredientes y alérgenos.", trae:["Omakase y reservas","Buscador de alérgenos","Delivery","PedidosYa y Rappi"] },
+    desc:"Como una revista gastronómica, con sal animada cayendo sobre la tapa. Carta en índice, omakase, pesca del día y buscador de ingredientes y alérgenos.", trae:["Carta por secciones", "Omakase y reservas", "Pesca del día", "Buscador de alérgenos", "Delivery por WhatsApp", "PedidosYa y Rappi"] },
   { id:"fierro-parrilla", nombre:"Fierro Parrilla", rubro:"Parrilla", grupo:"Gastronomía", link:"demos/fierro-parrilla/",
-    desc:"Oscura y con fuego: chispas animadas sobre las fotos, carta por cortes y reserva de mesa con un reloj.", trae:["Reserva de mesa","Carta","PedidosYa y Rappi","WhatsApp"] },
+    desc:"Oscura y con fuego: chispas animadas sobre las fotos, carta por cortes y reserva de mesa con un reloj.", trae:["Reserva de mesa con reloj", "Carta por cortes", "Fotos animadas", "PedidosYa y Rappi", "Horarios y mapa"] },
   { id:"lacre-vinoteca", nombre:"Lacre", rubro:"Vinoteca", grupo:"Comercios", link:"demos/lacre-vinoteca/",
-    desc:"Negra, dorado y bordó, como un salón a la luz de las velas. Recomendador según la comida, cava del mes, club mensual y catas.", trae:["Tienda con caja","Recomendador","Club mensual","Reserva de catas"] },
+    desc:"Negra, dorado y bordó, como un salón a la luz de las velas. Recomendador según la comida, cava del mes, club mensual y catas.", trae:["Recomendador de vinos", "Fichas técnicas", "Tienda con caja", "Club mensual", "Reserva de catas", "Pedido por WhatsApp"] },
   { id:"almendra-cafe", nombre:"Almendra Café", rubro:"Cafetería", grupo:"Gastronomía", link:"demos/almendra-cafe/",
-    desc:"Clara y cálida, con una luz de mañana animada. Carta de café y pastelería y pedido para llevar.", trae:["Carta","Pedido para llevar","PedidosYa y Rappi","WhatsApp"] },
+    desc:"Clara y cálida, con una luz de mañana animada. Carta de café y pastelería y pedido para llevar.", trae:["Carta por momento del día", "Sin TACC marcado", "Reservas adentro o patio", "Pedidos a casa", "PedidosYa y Rappi"] },
   { id:"kumo-sushi", nombre:"Kumo Sushi Bar", rubro:"Sushi", grupo:"Gastronomía", link:"demos/kumo-sushi/",
-    desc:"Sobria, con tinta animada de fondo. Combinados, piezas y delivery.", trae:["Carta por piezas","Delivery","PedidosYa y Rappi","WhatsApp"] },
+    desc:"Sobria, con tinta animada de fondo. Combinados, piezas y delivery.", trae:["Pesca del día", "Carta por piezas", "Reserva de barra o mesa", "Delivery", "PedidosYa y Rappi"] },
   { id:"bruma-cosmetica", nombre:"Bruma Cosmética", rubro:"Cosmética", grupo:"Salud y belleza", link:"demos/bruma-cosmetica/",
-    desc:"Suave y luminosa, con un fondo de nácar animado. Tienda de productos con carrito.", trae:["Tienda","Carrito","WhatsApp"] },
+    desc:"Suave y luminosa, con un fondo de nácar animado. Tienda de productos con carrito.", trae:["Catálogo con filtros", "Rutinas por paso", "Carrito y envío gratis", "Mercado Pago", "Pedido por WhatsApp"] },
   { id:"salome-blanes", nombre:"Salomé Blanes", rubro:"Estética y salud", grupo:"Salud y belleza", real:true,
-    desc:"Propuesta para un centro de estética. Tratamientos con precio, turnos con fecha y hora, seña online y un panel para la recepción.", trae:["Turnos","Seña online","Panel de recepción","Mapa"] },
+    desc:"Propuesta para un centro de estética. Tratamientos con precio, turnos con fecha y hora, seña online y un panel para la recepción.", trae:["Buscador de tratamientos", "Turnos online", "Seña con Mercado Pago", "Panel de recepción", "Mapa y consultorio"] },
   { id:"aluvidrio", nombre:"Aluvidrio", rubro:"Vidriería", grupo:"Comercios", real:true,
-    desc:"Propuesta para una vidriería. Trabajos reales por categoría, fondo de espejo animado y pedido de presupuesto con medidas.", trae:["Muestra de trabajos","Presupuesto por WhatsApp","Clientes","Mapa"] },
+    desc:"Propuesta para una vidriería. Trabajos reales por categoría, fondo de espejo animado y pedido de presupuesto con medidas.", trae:["Trabajos por categoría", "Fichas por trabajo", "Clientes y opiniones", "Presupuesto numerado", "Pedido por WhatsApp"] },
   { id:"bulonera-beccar", nombre:"Bulonera Beccar", rubro:"Bulonera", grupo:"Comercios", real:true,
-    desc:"Propuesta para una bulonera. Un calibre que mide el bulón, la cajonera de medidas, pedido por lista y nota de pedido de talonario.", trae:["Calibre","Cajonera","Pedido por lista","Nota de pedido"] }
+    desc:"Propuesta para una bulonera. Un calibre que mide el bulón, la cajonera de medidas, pedido por lista y nota de pedido de talonario.", trae:["Calibre interactivo", "Cajonera de medidas", "Pedido por lista", "Bolsitas armadas", "Nota de pedido", "Factura A y B"] }
 ];
 
 // títulos en dos líneas, como en la referencia
@@ -208,6 +237,9 @@ const GRUPOS = ["Todas","Gastronomía","Comercios","Salud y belleza"];
 let grupo = "Todas";
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 document.querySelectorAll("[data-marca]").forEach(e => e.textContent = MARCA);
+document.querySelectorAll("[data-wa-general]").forEach(a => a.href = wa("Hola! Vi tu muestrario de páginas y quiero pedir un presupuesto."));
+// barra de progreso
+(function(){ const b=document.querySelector("[data-progreso]"); let pend=false; const act=()=>{ pend=false; const h=document.documentElement.scrollHeight-innerHeight; b.style.transform=`scaleX(${h>0?Math.min(1,scrollY/h):0})`; }; addEventListener("scroll",()=>{ if(!pend){ pend=true; requestAnimationFrame(act); } },{passive:true}); addEventListener("resize",act); act(); })();
 document.querySelectorAll("[data-anio]").forEach(e => e.textContent = new Date().getFullYear());
 
 function pintar(){
@@ -219,7 +251,6 @@ function pintar(){
       <div class="lado">
         <span class="num">${String(i+1).padStart(2,"0")}</span>
         <div class="meta">${esc(d.rubro)}<span>${d.real ? "Propuesta" : "Demo"} · ${esc(d.grupo)}</span></div>
-        <ul class="trae">${d.trae.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
       </div>
       <div>
         <h2>${TITULOS[d.id] || esc(d.nombre)}</h2>
@@ -237,10 +268,13 @@ function pintar(){
           </div>
         </div>
         <div class="detalle">
-          <p>${esc(d.desc)}</p>
+          <ul class="trae">${d.trae.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
           <div class="acciones">
-            ${d.link ? `<a href="${d.link}" >Ver la página</a>` : `<span class="real">Negocio real: solo en video</span>`}
-            <a href="videos/${d.id}-h.mp4" download="${d.id}.mp4">Descargar video</a>
+            <a class="pedir" href="${linkInteres(d)}" target="_blank" rel="noopener">${d.real ? "Quiero una así" : "Me interesa esta página"}<span aria-hidden="true">↗</span></a>
+            <div class="secund">
+              ${d.link ? `<a href="${d.link}">Ver la página</a>` : `<span class="real">Negocio real: solo en video</span>`}
+              <a href="videos/${d.id}-h.mp4" download="${d.id}.mp4">Descargar video</a>
+            </div>
           </div>
         </div>
       </div>
