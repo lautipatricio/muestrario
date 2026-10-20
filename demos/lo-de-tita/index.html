@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lo de Tita — Confitería de barrio</title>
+<meta name="description" content="Lo de Tita, confitería de barrio desde 1971. Medialunas de manteca, tortas caseras y meriendas. Pedí para llevar por WhatsApp, PedidosYa o Rappi.">
+<meta name="theme-color" content="#F2EAD8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --hueso:#F2EAD8; --hueso2:#E7DBC0; --amapola:#F0431F; --jade:#0E8F6E; --jade-osc:#0A5E49; --manteca:#F6C544; --tinta:#181613; --suave:#5B544A;
+  --display:"Bricolage Grotesque", "Arial Black", sans-serif; --texto:"Hanken Grotesk", system-ui, sans-serif; --mono:"Spline Sans Mono", ui-monospace, monospace;
+  --borde:2px solid var(--tinta); --sombra:4px 4px 0 var(--tinta); --cabecera:76px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom}
+@supports(overflow:clip){html,body{overflow-x:clip}}
+body{background:var(--hueso);color:var(--tinta);font-family:var(--texto);font-size:1.05rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+/* grano risográfico */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.28;mix-blend-mode:multiply;
+  background-image:radial-gradient(rgba(24,22,19,.32) .6px,transparent .9px),radial-gradient(rgba(240,67,31,.18) .6px,transparent .9px);background-size:5px 5px,7px 7px;background-position:0 0,2px 3px}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--jade);outline-offset:2px}
+.envoltura{width:100%;max-width:1240px;margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
+section{scroll-margin-top:calc(var(--cabecera) + 6px)}
+.kicker{font-family:var(--mono);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amapola)}
+.titular{font-family:var(--display);font-weight:800;line-height:.92;letter-spacing:-.02em;position:relative;display:inline-block;color:var(--jade-osc)}
+.titular::before{content:attr(data-t);position:absolute;left:4px;top:4px;width:100%;color:var(--amapola);z-index:-1;opacity:.85;mix-blend-mode:multiply;animation:corrido 6s steps(1) infinite}
+@keyframes corrido{0%,100%{transform:none}48%{transform:translate(-1px,1px)}50%{transform:translate(1px,-1px)}}
+h2.titular{font-size:clamp(2.8rem,8vw,6rem)}
+.bajada{font-family:var(--display);font-weight:500;font-style:italic;color:var(--jade);font-size:1.05rem}
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:50px;padding:.6em 1.3em;border:var(--borde);box-shadow:var(--sombra);font-family:var(--mono);font-weight:500;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:transform .12s,box-shadow .12s,background .2s;background:var(--hueso)}
+.boton:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--tinta)}
+.boton:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--tinta)}
+.boton-amapola{background:var(--amapola);color:#fff}
+.boton-jade{background:var(--jade);color:#fff}
+.boton-manteca{background:var(--manteca)}
+.boton svg{width:18px;height:18px}
+.tag{display:inline-block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border:1.5px solid var(--jade);color:var(--jade);border-radius:999px;margin-right:4px}
+.precio{display:inline-block;background:var(--manteca);border:1.5px solid var(--tinta);font-family:var(--mono);font-weight:500;font-size:.88rem;padding:3px 8px;white-space:nowrap}
+.sube{opacity:0;transform:translateY(24px) rotate(var(--r,0deg));transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.sube.visto{opacity:1;transform:rotate(var(--r,0deg))}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.sube{opacity:1;transform:none}}
+
+/* cabecera */
+.cabecera{position:sticky;top:0;z-index:50;background:var(--hueso);border-bottom:var(--borde)}
+.cabecera .envoltura{height:var(--cabecera);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo .disco{width:46px;height:46px;border-radius:50%;background:var(--amapola);border:var(--borde);display:grid;place-items:center;color:var(--hueso);font-family:var(--display);font-weight:800;font-size:1.5rem;box-shadow:3px 3px 0 var(--tinta);animation:bamboleo 7s ease-in-out infinite}
+@keyframes bamboleo{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.logo b{display:block;font-family:var(--display);font-weight:800;font-size:1.55rem;line-height:1;color:var(--jade-osc)}
+.logo small{white-space:nowrap;display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;margin-top:3px}
+.nav{display:flex;gap:22px;font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase}
+.nav a{white-space:nowrap;text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+.nav a:hover{border-color:var(--amapola)}
+.acc{display:flex;align-items:center;gap:12px}
+.abierto{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--jade-osc)}
+.punto{width:10px;height:10px;border-radius:50%;background:#B9AE97;border:1.5px solid var(--tinta);flex:none}
+.punto.si{background:var(--jade);animation:titila 1.6s ease-in-out infinite}
+@keyframes titila{50%{box-shadow:0 0 0 5px rgba(14,143,110,.25)}}
+.bolsa{position:relative;width:48px;height:48px;border:var(--borde);box-shadow:3px 3px 0 var(--tinta);display:grid;place-items:center;background:var(--manteca)}
+.bolsa svg{width:22px;height:22px}
+.bolsa b{position:absolute;top:-9px;right:-9px;min-width:22px;height:22px;border-radius:11px;background:var(--amapola);color:#fff;border:1.5px solid var(--tinta);font-family:var(--mono);font-size:.7rem;display:grid;place-items:center;padding:0 4px;transform:scale(0);transition:transform .3s cubic-bezier(.3,1.7,.5,1)}
+.bolsa b.hay{transform:scale(1)}
+.bolsa.salto{animation:salto .5s}
+@keyframes salto{40%{transform:translateY(-6px) rotate(-6deg)}}
+.hamb{display:none;width:48px;height:48px;border:var(--borde);place-items:center}
+.hamb span{width:20px;height:2px;background:var(--tinta);box-shadow:0 6px 0 var(--tinta),0 -6px 0 var(--tinta)}
+.menu-movil{display:none;position:fixed;top:var(--cabecera);left:0;right:0;z-index:49;background:var(--manteca);border-bottom:var(--borde);padding:8px 20px 22px;flex-direction:column}
+.menu-movil.abierto{display:flex}
+.menu-movil a{font-family:var(--display);font-weight:800;font-size:1.9rem;text-decoration:none;padding:8px 0;border-bottom:2px dashed rgba(24,22,19,.3);color:var(--jade-osc)}
+@media (max-width:1240px){.acc .abierto{display:none}}
+@media (max-width:1040px){.nav,.acc .boton{display:none}.hamb{display:grid}}
+@media (max-width:420px){.logo small{display:none}}
+
+/* hero */
+.hero{padding-block:clamp(28px,5vw,56px) clamp(48px,6vw,80px)}
+.hero .envoltura{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:start}
+.mosaico{position:relative;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(6,minmax(0,1fr));aspect-ratio:1/1.08;gap:12px}
+.polaroid{background:#fff;border:var(--borde);box-shadow:var(--sombra);padding:8px 8px 30px;position:relative;transform:rotate(var(--r));transition:transform .4s}
+.polaroid:hover{transform:rotate(0) scale(1.03);z-index:3}
+.polaroid img{width:100%;height:100%;object-fit:cover;filter:saturate(1.08) contrast(1.04)}
+.polaroid span{position:absolute;left:10px;bottom:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em}
+.p1{grid-area:1/1/5/5;--r:-3deg}.p2{grid-area:1/5/4/7;--r:4deg}.p3{grid-area:4/5/7/7;--r:-2deg}.p4{grid-area:5/1/7/5;--r:2deg}
+.sello{position:absolute;z-index:4;left:-6px;top:58%;width:118px;height:118px;border-radius:50%;background:var(--manteca);border:var(--borde);display:grid;place-items:center;text-align:center;font-family:var(--display);font-weight:800;line-height:.95;font-size:1.05rem;color:var(--jade-osc);animation:gira 18s linear infinite;box-shadow:var(--sombra)}
+.sello small{display:block;font-family:var(--mono);font-weight:400;font-size:.55rem;letter-spacing:.16em;color:var(--tinta);margin-top:4px}
+@keyframes gira{to{transform:rotate(360deg)}}
+.especiales .fecha{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-bottom:22px}
+.chip-fecha{background:var(--manteca);border:var(--borde);font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;box-shadow:3px 3px 0 var(--tinta)}
+.especiales h1{font-size:clamp(3.2rem,10.5vw,7.4rem)}
+.especiales .bajada{margin:8px 0 22px}
+.lista-esp{list-style:none;border-top:var(--borde)}
+.lista-esp li{padding:16px 0 14px;border-bottom:1.5px dashed rgba(24,22,19,.35);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px}
+.lista-esp .renglon{display:flex;align-items:baseline;gap:10px;min-width:0}
+.lista-esp .renglon strong{font-family:var(--display);font-weight:700;font-size:1.22rem;line-height:1.15}
+.lista-esp .renglon::after{content:"";flex:1;border-bottom:2px dotted rgba(24,22,19,.4);min-width:20px;transform:translateY(-4px)}
+.lista-esp p{grid-column:1;font-size:.95rem;color:var(--suave)}
+.lista-esp .der{grid-row:1/3;grid-column:2;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.sumar{width:38px;height:38px;border:var(--borde);background:var(--hueso);box-shadow:2px 2px 0 var(--tinta);font-size:1.3rem;line-height:1;display:grid;place-items:center;transition:.12s}
+.sumar:hover{background:var(--jade);color:#fff}
+.sumar:active{transform:translate(2px,2px);box-shadow:none}
+.sumar.ok{background:var(--jade);color:#fff}
+@media (max-width:860px){.hero .envoltura{grid-template-columns:minmax(0,1fr)}.mosaico{max-width:520px}}
+
+/* franja */
+.franja{background:var(--jade);color:var(--hueso);border-block:var(--borde);overflow:hidden}
+.pista{display:flex;width:max-content;animation:corre 30s linear infinite}
+.pista span{font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,2.8vw,1.9rem);padding:12px 22px;white-space:nowrap;display:flex;align-items:center;gap:22px;text-transform:lowercase}
+.pista span::after{content:"✳";color:var(--manteca);font-size:1.1em}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* pizarras */
+.pizarras{padding-block:clamp(64px,8vw,104px)}
+.cab{text-align:center;margin-bottom:34px}
+.cab .bajada{margin-top:10px}
+.leyenda{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;margin-bottom:22px}
+.solapas{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:30px}
+.solapa{min-height:44px;padding:6px 16px;border:var(--borde);font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;background:var(--hueso);box-shadow:3px 3px 0 var(--tinta)}
+.solapa[aria-pressed="true"]{background:var(--amapola);color:#fff}
+.tableros{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;align-items:start}
+@media (max-width:820px){.tableros{grid-template-columns:minmax(0,1fr)}}
+.tablero{background:#FBF6EA;border:var(--borde);box-shadow:6px 6px 0 var(--tinta);padding:22px clamp(16px,3vw,28px) 14px}
+.tablero[hidden]{display:none}
+.tablero header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-bottom:var(--borde);padding-bottom:10px;margin-bottom:4px}
+.tablero h3{font-family:var(--display);font-weight:800;font-size:2rem;color:var(--jade-osc);line-height:1}
+.tablero header span{font-family:var(--mono);font-size:.74rem;color:var(--amapola)}
+.tablero > p{font-size:.92rem;color:var(--suave);margin:8px 0 6px}
+.fila{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:10px 0;border-bottom:1.5px dotted rgba(24,22,19,.3);cursor:pointer;text-align:left;width:100%}
+.fila:last-child{border-bottom:0}
+.fila .nom{display:flex;align-items:baseline;gap:8px;min-width:0;font-weight:600}
+.fila .nom::after{content:"";flex:1;border-bottom:2px dotted rgba(24,22,19,.35);min-width:16px;transform:translateY(-4px)}
+.fila .nom em{font-style:normal;font-family:var(--mono);font-size:.6rem;color:var(--jade);border:1.2px solid var(--jade);border-radius:999px;padding:0 5px;white-space:nowrap}
+.fila .pr{font-family:var(--mono);font-size:.9rem}
+.fila .mas{width:30px;height:30px;border:1.5px solid var(--tinta);display:grid;place-items:center;font-size:1.05rem;transition:.15s}
+.fila:hover .mas{background:var(--jade);color:#fff}
+.fila.pum .mas{background:var(--amapola);color:#fff;transform:rotate(90deg)}
+
+/* habitués */
+.habitues{padding-block:clamp(64px,8vw,104px);background:var(--hueso2);border-block:var(--borde)}
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(220px,auto);gap:20px}
+.carta{background:#FBF6EA;border:var(--borde);box-shadow:var(--sombra);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.carta .foto{flex:1;min-height:170px;border-bottom:var(--borde);overflow:hidden;position:relative}
+.carta .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.carta:hover .foto img{transform:scale(1.06)}
+.carta .num{position:absolute;top:10px;left:10px;z-index:2;background:var(--hueso);border:1.5px solid var(--tinta);font-family:var(--mono);font-size:.7rem;padding:2px 7px}
+.carta .info{padding:14px 16px 16px;display:grid;gap:6px}
+.carta h3{font-family:var(--display);font-weight:800;font-size:1.45rem;line-height:1;color:var(--jade-osc)}
+.carta p{font-size:.92rem;color:var(--suave)}
+.carta .pie{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px}
+.carta .pie button{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;border:var(--borde);padding:6px 12px;background:var(--hueso);box-shadow:2px 2px 0 var(--tinta)}
+.carta .pie button:hover{background:var(--amapola);color:#fff}
+.b1{grid-column:span 2;grid-row:span 2}.b2{grid-column:span 2}.b3,.b4{grid-column:span 1}.b5{grid-column:span 2}.b6{grid-column:span 2}
+@media (max-width:900px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.b1,.b2,.b5,.b6{grid-column:span 2}.b1{grid-row:span 1}}
+@media (max-width:520px){.bento{grid-template-columns:minmax(0,1fr)}.b1,.b2,.b3,.b4,.b5,.b6{grid-column:span 1}}
+
+/* armá tu merienda */
+.armar{padding-block:clamp(64px,8vw,104px)}
+.armar .envoltura{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(24px,5vw,56px);align-items:start}
+.paso{margin-top:26px}
+.paso h3{font-family:var(--mono);font-weight:500;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.paso h3 b{width:28px;height:28px;border-radius:50%;background:var(--tinta);color:var(--hueso);display:grid;place-items:center;font-size:.8rem}
+.opciones{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.opcion{border:var(--borde);background:#FBF6EA;padding:12px 12px 10px;text-align:left;box-shadow:3px 3px 0 var(--tinta);transition:.15s;display:grid;gap:3px;min-height:86px}
+.opcion strong{font-family:var(--display);font-weight:700;font-size:1.08rem;line-height:1.1}
+.opcion small{font-family:var(--mono);font-size:.74rem;color:var(--suave)}
+.opcion[aria-pressed="true"]{background:var(--jade);color:#fff;transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--tinta)}
+.opcion[aria-pressed="true"] small{color:rgba(255,255,255,.85)}
+.bandeja{position:sticky;top:calc(var(--cabecera) + 20px);background:var(--manteca);border:var(--borde);box-shadow:8px 8px 0 var(--tinta);padding:22px}
+.bandeja h3{font-family:var(--display);font-weight:800;font-size:1.9rem;line-height:1;color:var(--jade-osc)}
+.bandeja ul{list-style:none;margin:16px 0;border-top:var(--borde)}
+.bandeja li{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1.5px dashed rgba(24,22,19,.4);font-weight:600}
+.bandeja li span:last-child{font-family:var(--mono);font-weight:400;font-size:.9rem}
+.bandeja li.vacio{color:rgba(24,22,19,.5);font-weight:400}
+.bandeja .desc{font-family:var(--mono);font-size:.8rem;color:var(--jade-osc)}
+.bandeja .tot{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--display);font-weight:800;font-size:2rem;margin:6px 0 14px}
+.bandeja .tot s{font-family:var(--mono);font-weight:400;font-size:.9rem;color:var(--suave);margin-right:8px}
+.bandeja .boton{width:100%}
+.taza{display:block;width:84px;margin:-8px 0 8px auto}
+.taza .humo path{fill:none;stroke:var(--tinta);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:4 6;animation:humo 2.4s linear infinite}
+.taza .humo path:nth-child(2){animation-delay:-.8s}
+@keyframes humo{to{stroke-dashoffset:-20}}
+@media (max-width:900px){.armar .envoltura{grid-template-columns:minmax(0,1fr)}.bandeja{position:static}}
+
+/* pedido */
+.pedido{padding-block:clamp(64px,8vw,104px);background:var(--amapola);color:#fff;border-block:var(--borde)}
+.pedido .envoltura{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,6vw,80px);align-items:start}
+.pedido .kicker{color:var(--manteca)}
+.pedido .titular{color:#fff}.pedido .titular::before{color:var(--tinta);opacity:.35}
+.pasos{list-style:none;margin-top:30px;display:grid;gap:18px;counter-reset:p}
+.pasos li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;align-items:start}
+.pasos li::before{counter-increment:p;content:counter(p);width:52px;height:52px;border-radius:50%;background:var(--hueso);color:var(--tinta);border:var(--borde);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.5rem;box-shadow:3px 3px 0 var(--tinta)}
+.pasos strong{font-family:var(--display);font-weight:700;font-size:1.25rem;display:block}
+.pasos span{opacity:.9;font-size:.98rem}
+.apps{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.app{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:6px 16px 6px 8px;background:var(--hueso);color:var(--tinta);border:var(--borde);box-shadow:var(--sombra);font-weight:700;text-decoration:none;transition:.12s}
+.app:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--tinta)}
+.app i{width:32px;height:32px;display:grid;place-items:center;color:#fff;font-style:normal;font-size:.75rem;font-weight:700;border:1.5px solid var(--tinta)}
+.app.py i{background:#EA0F42}.app.rp i{background:#FF441F}.app.wa i{background:#25D366}
+.ticket{background:var(--jade-osc);color:var(--hueso);position:relative;padding:28px 24px 30px;filter:drop-shadow(6px 6px 0 var(--tinta));
+  -webkit-mask:radial-gradient(circle 8px at 50% 0,#0000 98%,#000) top/22px 51% repeat-x,radial-gradient(circle 8px at 50% 100%,#0000 98%,#000) bottom/22px 51% repeat-x;
+  mask:radial-gradient(circle 8px at 50% 0,#0000 98%,#000) top/22px 51% repeat-x,radial-gradient(circle 8px at 50% 100%,#0000 98%,#000) bottom/22px 51% repeat-x}
+.ticket .t-cab{text-align:center;font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;border-bottom:1.5px dashed rgba(242,234,216,.45);padding-bottom:14px}
+.ticket .t-cab b{display:block;font-family:var(--display);font-weight:800;font-size:2rem;letter-spacing:-.01em;text-transform:none;color:var(--manteca);margin-bottom:4px}
+.t-lineas{min-height:90px;padding:10px 0}
+.t-linea{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;font-family:var(--mono);font-size:.86rem}
+.t-linea .q{display:inline-flex;align-items:center;border:1.5px solid rgba(242,234,216,.5)}
+.t-linea .q button{width:28px;height:28px;color:var(--hueso)}
+.t-linea .q span{min-width:20px;text-align:center}
+.t-vacio{text-align:center;font-family:var(--mono);font-size:.84rem;opacity:.75;padding:20px 0}
+.t-tot{display:flex;justify-content:space-between;border-top:1.5px dashed rgba(242,234,216,.45);padding-top:12px;font-family:var(--display);font-weight:800;font-size:1.6rem}
+.horas{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 12px}
+.hora{font-family:var(--mono);font-size:.8rem;padding:6px 10px;border:1.5px solid rgba(242,234,216,.6);color:var(--hueso);min-height:38px}
+.hora[aria-pressed="true"]{background:var(--manteca);color:var(--tinta);border-color:var(--tinta)}
+.ticket input{width:100%;min-height:46px;background:rgba(242,234,216,.1);border:1.5px solid rgba(242,234,216,.5);color:var(--hueso);padding:8px 12px;margin-bottom:12px}
+.ticket input::placeholder{color:rgba(242,234,216,.6)}
+.ticket .boton{width:100%;white-space:normal;color:var(--tinta)}
+.codigo{display:flex;justify-content:center;gap:2px;margin-top:16px;height:34px}
+.codigo i{background:var(--hueso);width:2px}
+.codigo i:nth-child(3n){width:4px}.codigo i:nth-child(5n){width:1px}
+@media (max-width:860px){.pedido .envoltura{grid-template-columns:minmax(0,1fr)}}
+
+/* encargos */
+.encargos{padding-block:clamp(64px,8vw,104px)}
+.encargos .envoltura{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.vitrina{position:relative;border:var(--borde);box-shadow:8px 8px 0 var(--tinta);aspect-ratio:4/5;overflow:hidden}
+.vitrina img{width:100%;height:100%;object-fit:cover;object-position:50% 70%}
+.envivo{position:absolute;top:14px;left:14px;background:var(--amapola);color:#fff;border:var(--borde);font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;padding:5px 10px;display:flex;align-items:center;gap:8px}
+.envivo i{width:8px;height:8px;border-radius:50%;background:#fff;animation:titila 1.2s infinite}
+.vitrina .pie-v{position:absolute;left:14px;right:14px;bottom:14px;background:var(--hueso);border:var(--borde);padding:10px 14px;font-family:var(--display);font-weight:700;font-size:1.15rem;line-height:1.2}
+.vitrina .pie-v small{display:block;font-family:var(--mono);font-weight:400;font-size:.7rem;color:var(--suave)}
+.datos-enc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}
+.datos-enc div{border:var(--borde);padding:10px 12px;background:#FBF6EA}
+.datos-enc small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.datos-enc b{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--jade-osc)}
+.form{display:grid;gap:14px;border:var(--borde);background:#FBF6EA;padding:clamp(16px,3vw,26px);box-shadow:6px 6px 0 var(--tinta)}
+.form .boton{white-space:normal}
+.dos{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:520px){.dos{grid-template-columns:minmax(0,1fr)}.datos-enc{grid-template-columns:minmax(0,1fr)}}
+.campo{min-width:0}
+.campo label,.campo .lab{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.campo input,.campo select{width:100%;min-width:0;min-height:48px;border:var(--borde);background:#fff;padding:8px 12px;font-size:1rem}
+.kilos{display:flex;flex-wrap:wrap;gap:8px}
+.kilo{min-height:42px;padding:6px 12px;border:var(--borde);background:#fff;font-family:var(--mono);font-size:.82rem}
+.kilo[aria-pressed="true"]{background:var(--manteca);box-shadow:3px 3px 0 var(--tinta)}
+.estimado{font-family:var(--mono);font-size:.85rem;background:var(--hueso2);border:1.5px dashed var(--tinta);padding:10px 12px}
+@media (max-width:860px){.encargos .envoltura{grid-template-columns:minmax(0,1fr)}.vitrina{aspect-ratio:4/3}}
+
+/* pie */
+.pie-pagina{background:var(--tinta);color:var(--hueso);padding-block:56px 30px;border-top:var(--borde)}
+.pie-pagina .envoltura{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:30px}
+.pie-pagina .grande{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,5vw,3.6rem);line-height:.9;color:var(--manteca)}
+.pie-pagina p{color:rgba(242,234,216,.7);font-size:.95rem;margin-top:10px}
+.pie-pagina h4{font-family:var(--mono);font-weight:400;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--manteca);margin-bottom:12px}
+.pie-pagina ul{list-style:none;display:grid;gap:6px;font-size:.95rem}
+.pie-pagina a{text-decoration:none}
+.pie-pagina a:hover{color:var(--manteca)}
+.legal{grid-column:1/-1;border-top:1px dashed rgba(242,234,216,.25);padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:.7rem;color:rgba(242,234,216,.5)}
+@media (max-width:820px){.pie-pagina .envoltura{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.pie-pagina .envoltura>div:first-child{grid-column:1/-1}}
+
+/* dock */
+.dock{position:fixed;left:50%;bottom:14px;z-index:60;width:min(calc(100% - 28px),560px);transform:translate(-50%,150%);transition:transform .45s cubic-bezier(.3,1.4,.5,1);visibility:hidden}
+.dock.ver{transform:translate(-50%,0);visibility:visible}
+.dock button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--manteca);border:var(--borde);box-shadow:5px 5px 0 var(--tinta);padding:8px 8px 8px 16px;min-height:60px;text-align:left}
+.dock .info{font-family:var(--mono);font-size:.78rem;line-height:1.3;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dock .info b{display:block;font-family:var(--display);font-weight:800;font-size:1.25rem}
+.dock .ir{background:var(--tinta);color:var(--hueso);font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;padding:12px 14px;white-space:nowrap}
+.toast{position:fixed;left:50%;top:calc(var(--cabecera) + 12px);z-index:80;transform:translate(-50%,-20px);opacity:0;background:var(--tinta);color:var(--hueso);font-family:var(--mono);font-size:.82rem;padding:10px 16px;border:2px solid var(--manteca);transition:.3s;pointer-events:none;max-width:calc(100% - 28px);text-align:center}
+.toast.ver{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="envoltura">
+    <a class="logo" href="#inicio" data-ir="inicio"><span class="disco">T</span><span><b>Lo de Tita</b><small>Confitería · desde 1971</small></span></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#pizarras" data-ir="pizarras">Carta</a>
+      <a href="#habitues" data-ir="habitues">Clásicos</a>
+      <a href="#armar" data-ir="armar">Armá la tuya</a>
+      <a href="#pedido" data-ir="pedido">Para llevar</a>
+      <a href="#encargos" data-ir="encargos">Encargos</a>
+    </nav>
+    <div class="acc">
+      <span class="abierto"><i class="punto" data-punto></i><span data-estado>—</span></span>
+      <a class="boton boton-amapola" href="#pedido" data-ir="pedido">Pedir para llevar</a>
+      <button class="bolsa" data-ir-boton aria-label="Ver mi pedido"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><b data-cuenta>0</b></button>
+      <button class="hamb" data-menu aria-label="Abrir menú" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="menu-movil" data-menu-movil aria-label="Menú móvil">
+  <a href="#pizarras" data-ir="pizarras">La carta</a>
+  <a href="#habitues" data-ir="habitues">Los de siempre</a>
+  <a href="#armar" data-ir="armar">Armá tu merienda</a>
+  <a href="#pedido" data-ir="pedido">Para llevar</a>
+  <a href="#encargos" data-ir="encargos">Tortas por encargo</a>
+</nav>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="envoltura">
+    <div class="mosaico">
+      <figure class="polaroid p1 sube" style="--r:-3deg"><img src="tita-fotos/tita-01.jpg" alt="Medialunas de manteca con café con leche" fetchpriority="high"><span>Nº 1 · medialunas, 7:00</span></figure>
+      <figure class="polaroid p2 sube" style="--r:4deg"><img src="tita-fotos/tita-06.jpg" alt="Lemon pie con merengue tostado"><span>Nº 2 · lemon pie</span></figure>
+      <figure class="polaroid p3 sube" style="--r:-2deg"><img src="tita-fotos/tita-03.jpg" alt="Café con leche con un corazón dibujado en la espuma"><span>Nº 3 · el cortado</span></figure>
+      <figure class="polaroid p4 sube" style="--r:2deg"><img src="tita-fotos/tita-05.jpg" alt="Pila de pancakes con miel" style="object-position:50% 40%"><span>Nº 4 · pancakes</span></figure>
+      <div class="sello" aria-hidden="true"><span>Recién<br>salido<small>DEL HORNO</small></span></div>
+    </div>
+    <div class="especiales">
+      <div class="fecha"><span class="chip-fecha" data-hoy>—</span><span class="kicker">Escrito a mano esta mañana</span></div>
+      <h1 class="titular" data-t="Especiales">Especiales</h1>
+      <p class="bajada">— lo que salió del horno hoy —</p>
+      <ul class="lista-esp" data-especiales></ul>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
+        <a class="boton boton-jade" href="#pizarras" data-ir="pizarras">Ver toda la carta</a>
+        <a class="boton" href="#armar" data-ir="armar">Armá tu merienda</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="franja" aria-hidden="true"><div class="pista" data-franja></div></div>
+
+<section class="pizarras" id="pizarras">
+  <div class="envoltura">
+    <div class="cab">
+      <span class="kicker">— Las pizarras de la barra —</span><br>
+      <h2 class="titular" data-t="La carta" style="margin-top:10px">La carta</h2>
+      <p class="bajada">tocá cualquier cosa y cae directo a tu bolsa</p>
+    </div>
+    <div class="leyenda"><span><span class="tag">STACC</span>sin TACC</span><span><span class="tag">V</span>vegano</span><span><span class="tag">FS</span>frutos secos</span><span><span class="tag">L</span>lácteos</span></div>
+    <div class="solapas" role="group" aria-label="Filtrar pizarras" data-solapas></div>
+    <div class="tableros" data-tableros></div>
+  </div>
+</section>
+
+<section class="habitues" id="habitues">
+  <div class="envoltura">
+    <div class="cab">
+      <span class="kicker">— Desde las banquetas de la barra —</span><br>
+      <h2 class="titular" data-t="Los de siempre" style="margin-top:10px">Los de siempre</h2>
+      <p class="bajada">lo que los habitués piden sin mirar la carta</p>
+    </div>
+    <div class="bento" data-bento></div>
+  </div>
+</section>
+
+<section class="armar" id="armar">
+  <div class="envoltura">
+    <div>
+      <span class="kicker">— Combo de la tarde —</span><br>
+      <h2 class="titular" data-t="Armá tu merienda" style="margin-top:10px">Armá tu merienda</h2>
+      <p class="bajada" style="margin-top:10px">elegí una bebida y algo rico: si sumás las tres cosas, va con 15% menos</p>
+      <div class="paso"><h3><b>1</b>Para tomar</h3><div class="opciones" data-paso="bebida"></div></div>
+      <div class="paso"><h3><b>2</b>Algo dulce</h3><div class="opciones" data-paso="dulce"></div></div>
+      <div class="paso"><h3><b>3</b>Algo salado <span style="text-transform:none;letter-spacing:0;color:var(--suave)">(opcional)</span></h3><div class="opciones" data-paso="salado"></div></div>
+    </div>
+    <aside class="bandeja" aria-live="polite">
+      <svg class="taza" viewBox="0 0 84 70" aria-hidden="true"><g class="humo"><path d="M30 22c-4-6 4-10 0-18"/><path d="M44 22c-4-6 4-10 0-18"/></g><path d="M14 28h50v14a20 20 0 0 1-20 20h-10a20 20 0 0 1-20-20z" fill="#F2EAD8" stroke="#181613" stroke-width="2.5"/><path d="M64 33h5a7 7 0 0 1 0 14h-6" fill="none" stroke="#181613" stroke-width="2.5"/><path d="M6 64h68" stroke="#181613" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <h3>Tu bandeja</h3>
+      <ul data-bandeja></ul>
+      <div class="desc" data-desc></div>
+      <div class="tot"><span>Total</span><span data-band-tot>$ 0</span></div>
+      <button class="boton boton-amapola" data-band-sumar>Sumar a mi bolsa</button>
+    </aside>
+  </div>
+</section>
+
+<section class="pedido" id="pedido">
+  <div class="envoltura">
+    <div>
+      <span class="kicker">— Pedí antes, pasá a buscar —</span><br>
+      <h2 class="titular" data-t="Para llevar" style="margin-top:10px">Para llevar</h2>
+      <ol class="pasos">
+        <li><span><strong>Llenás la bolsa desde la carta.</strong><span>Tocá lo que quieras: aparece abajo de la pantalla y en el ticket.</span></span></li>
+        <li><span><strong>Elegís a qué hora pasás.</strong><span>Te lo tenemos embolsado y calentito. Si es para mandar, poné la dirección.</span></span></li>
+        <li><span><strong>Mandás el ticket por WhatsApp.</strong><span>Pagás al retirar con efectivo, débito o QR. Saludás a Tita.</span></span></li>
+      </ol>
+      <p style="margin-top:28px;font-weight:600">¿Preferís pedir por app? También estamos ahí:</p>
+      <div class="apps">
+        <a class="app py" data-pedidosya href="#" target="_blank" rel="noopener"><i>PY</i>PedidosYa</a>
+        <a class="app rp" data-rappi href="#" target="_blank" rel="noopener"><i>R</i>Rappi</a>
+        <a class="app wa" data-wa-libre href="#" target="_blank" rel="noopener"><i>WA</i>Consultas</a>
+      </div>
+    </div>
+    <div class="ticket" data-ticket>
+      <div class="t-cab"><b>Lo de Tita</b>Ticket de pedido · Nº <span data-nro>0000</span><br><span data-hoy-ticket></span></div>
+      <div class="t-lineas" data-lineas></div>
+      <div class="t-tot"><span>Total</span><span data-t-tot>$ 0</span></div>
+      <div class="horas" role="group" aria-label="Hora de retiro" data-horas></div>
+      <input data-t-nombre placeholder="Tu nombre" autocomplete="name" aria-label="Tu nombre">
+      <input data-t-dir placeholder="Dirección (solo si es para mandar)" autocomplete="street-address" aria-label="Dirección">
+      <button class="boton boton-manteca" data-enviar>Mandar ticket por WhatsApp</button>
+      <div class="codigo" aria-hidden="true" data-codigo></div>
+    </div>
+  </div>
+</section>
+
+<section class="encargos" id="encargos">
+  <div class="envoltura">
+    <div class="vitrina sube">
+      <img src="tita-fotos/tita-07.jpg" alt="Vitrina de la confitería con tortas y masas" loading="lazy">
+      <span class="envivo"><i></i>HORNEANDO AHORA</span>
+      <div class="pie-v"><small>— Favorita para la oficina —</small>Tortas enteras, 12 porciones, 8 sabores que rotan.</div>
+    </div>
+    <div>
+      <span class="kicker">— Cumpleaños, oficina y fiestas —</span><br>
+      <h2 class="titular" data-t="¿Es para muchos?" style="margin-top:10px;font-size:clamp(2.6rem,6.4vw,4.8rem)">¿Es para muchos?</h2>
+      <div class="datos-enc"><div><small>Mínimo</small><b>1 kg</b></div><div><small>Anticipación</small><b>48 h</b></div><div><small>Porciones</small><b>10–60</b></div></div>
+      <form class="form" data-encargo novalidate>
+        <div class="dos">
+          <div class="campo"><label for="e-torta">Torta</label><select id="e-torta" data-e-torta></select></div>
+          <div class="campo"><label for="e-fecha">¿Para cuándo?</label><input id="e-fecha" type="date"></div>
+        </div>
+        <div class="campo"><span class="lab">Tamaño</span><div class="kilos" data-kilos></div></div>
+        <div class="dos">
+          <div class="campo"><label for="e-texto">Lo que va escrito</label><input id="e-texto" maxlength="40" placeholder="Feliz cumple, Ana"></div>
+          <div class="campo"><label for="e-nombre">Tu nombre</label><input id="e-nombre" autocomplete="name" placeholder="Nombre y apellido"></div>
+        </div>
+        <div class="estimado" data-estimado>—</div>
+        <button class="boton boton-amapola" type="submit">Pedir presupuesto por WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pie-pagina">
+  <div class="envoltura">
+    <div><div class="grande">Lo de Tita</div><p>Confitería de barrio en la esquina de Triunvirato y Monroe. Medialunas y café desde 1971.</p></div>
+    <div><h4>Vení</h4><ul><li>Av. Triunvirato 4310</li><li>Villa Urquiza, CABA</li><li><a href="#" data-wa-libre target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+    <div><h4>Horario</h4><ul data-horarios></ul></div>
+    <div><h4>Pedidos</h4><ul><li><a href="#pedido" data-ir="pedido">Para llevar</a></li><li><a href="#" data-pedidosya target="_blank" rel="noopener">PedidosYa</a></li><li><a href="#" data-rappi target="_blank" rel="noopener">Rappi</a></li><li><a href="#" data-instagram target="_blank" rel="noopener">Instagram</a></li></ul></div>
+    <div class="legal"><span>© <span data-anio></span> Lo de Tita · Confitería</span><span>Página de demostración · negocio ficticio</span></div>
+  </div>
+</footer>
+
+<div class="dock" data-dock><button data-ir-boton><span class="info"><b data-dock-tot>$ 0</b><span data-dock-txt>—</span></span><span class="ir">VER TICKET</span></button></div>
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+
+<script>
+/* ================================================================
+   DATOS DEL NEGOCIO — Tita (o quien sea) edita solo este bloque
+   ================================================================ */
+const NEGOCIO = {
+  nombre: "Lo de Tita",
+  whatsapp: "",                 // ej: "5491123456789". Vacío = WhatsApp pregunta a quién mandar.
+  pedidosya: "https://www.pedidosya.com.ar",
+  rappi: "https://www.rappi.com.ar",
+  instagram: "https://www.instagram.com",
+  horarios: { 0:["09:00","20:00"], 1:["08:00","20:00"], 2:["08:00","20:00"], 3:["08:00","20:00"], 4:["08:00","20:00"], 5:["08:00","20:30"], 6:["08:00","20:30"] },
+  descuentoCombo: 15            // % de descuento si la merienda lleva bebida + dulce + salado
+};
+
+// Especiales del día (lo que va en la pizarra de arriba)
+const ESPECIALES = [
+  { id:"esp-lemon", nombre:"Lemon pie de la abuela", desc:"Masa sablée, crema de limón y merengue italiano quemado", tags:["L"], precio:5200 },
+  { id:"esp-rogel", nombre:"Rogel de doce capas", desc:"Dulce de leche repostero y merengue. Sale los martes", tags:["L"], precio:5900 },
+  { id:"esp-tostado", nombre:"Tostado en pan de campo", desc:"Jamón cocido natural, queso de máquina, tomate", tags:["L"], precio:6400 },
+  { id:"esp-licuado", nombre:"Licuado de banana y avena", desc:"Con leche o bebida de almendras", tags:["V","FS"], precio:4300 }
+];
+
+// Las pizarras (carta completa)
+const PIZARRAS = [
+  { nombre:"Desayunos", horario:"8 a 12 h", nota:"Con el diario del día en la barra.", items:[
+    { id:"d-clasico", nombre:"Café con leche y 3 medialunas", tags:[], precio:4900 },
+    { id:"d-tostadas", nombre:"Tostadas con manteca y dulce", tags:["L"], precio:4200 },
+    { id:"d-palta", nombre:"Tostón de palta y tomate", tags:["V"], precio:6200 },
+    { id:"d-huevos", nombre:"Huevos revueltos y pan de campo", tags:["L"], precio:5800 },
+    { id:"d-yogur", nombre:"Yogur, granola y frutas", tags:["FS","L"], precio:5100 }
+  ]},
+  { nombre:"Meriendas", horario:"16 a 20 h", nota:"La hora sagrada de la casa.", items:[
+    { id:"m-submarino", nombre:"Submarino y 2 medialunas", tags:["L"], precio:5600 },
+    { id:"m-te", nombre:"Té en hebras y scon con manteca", tags:["L"], precio:4800 },
+    { id:"m-alfajor", nombre:"Alfajor de maicena casero", tags:["L"], precio:2100 },
+    { id:"m-pancakes", nombre:"Pancakes con miel o dulce de leche", tags:["L"], precio:6900 },
+    { id:"m-budin", nombre:"Porción de budín de limón", tags:["STACC"], precio:2900 }
+  ]},
+  { nombre:"Tortas y tartas", horario:"todo el día", nota:"Porción generosa, como corresponde.", items:[
+    { id:"t-chocotorta", nombre:"Chocotorta", tags:["L"], precio:5200 },
+    { id:"t-cheesecake", nombre:"Cheesecake de frutos rojos", tags:["L"], precio:5800 },
+    { id:"t-chocolate", nombre:"Torta húmeda de chocolate", tags:["L"], precio:5400 },
+    { id:"t-ricota", nombre:"Tarta de ricota", tags:["L"], precio:4800 },
+    { id:"t-carrot", nombre:"Carrot cake con nueces", tags:["FS","L"], precio:5500 }
+  ]},
+  { nombre:"Bebidas", horario:"todo el día", nota:"Café de tostadero de barrio.", items:[
+    { id:"b-cortado", nombre:"Cortado en jarrito", tags:[], precio:2400 },
+    { id:"b-lagrima", nombre:"Lágrima", tags:["L"], precio:2600 },
+    { id:"b-chocolate", nombre:"Chocolate caliente espeso", tags:["L"], precio:3900 },
+    { id:"b-limonada", nombre:"Limonada con menta y jengibre", tags:["V","STACC"], precio:3600 },
+    { id:"b-exprimido", nombre:"Jugo de naranja exprimido", tags:["V","STACC"], precio:3800 }
+  ]}
+];
+
+// "Los de siempre" (con foto)
+const HABITUES = [
+  { id:"h-lemon", nombre:"Lemon pie entero", desc:"Para 8. El que pide medio barrio los domingos.", foto:"tita-06.jpg", tags:["L"], precio:24000 },
+  { id:"h-chocolate", nombre:"Torta de chocolate", desc:"Húmeda, con ganache. Porción doble.", foto:"tita-02.jpg", tags:["L"], precio:5400 },
+  { id:"h-cheesecake", nombre:"Cheesecake", desc:"Base de galletita y coulis de cerezas.", foto:"tita-04.jpg", tags:["L"], precio:5800 },
+  { id:"h-budin", nombre:"Budín de limón", desc:"Entero, sin TACC.", foto:"tita-08.jpg", tags:["STACC"], precio:9800 },
+  { id:"h-rosca", nombre:"Rosca glaseada", desc:"Naranja y glasé. Ideal para el mate.", foto:"tita-09.jpg", tags:["L"], precio:11500 },
+  { id:"h-filtro", nombre:"Café de filtro y medialuna", desc:"Café de origen colado en el momento. El favorito de las 17 h.", foto:"tita-12.jpg", tags:["L"], precio:4200 }
+];
+
+// Armá tu merienda
+const ARMAR = {
+  bebida:[ {id:"ab-cafe",nombre:"Café con leche",precio:2900},{id:"ab-te",nombre:"Té en hebras",precio:2500},{id:"ab-sub",nombre:"Submarino",precio:3600},{id:"ab-lic",nombre:"Licuado",precio:4300} ],
+  dulce:[ {id:"ad-med",nombre:"2 medialunas",precio:1800},{id:"ad-torta",nombre:"Porción de torta",precio:5200},{id:"ad-alf",nombre:"Alfajor de maicena",precio:2100},{id:"ad-tost",nombre:"Tostadas con dulce",precio:2600} ],
+  salado:[ {id:"as-nada",nombre:"Nada, gracias",precio:0},{id:"as-tostado",nombre:"Tostado de jamón y queso",precio:5600},{id:"as-medjyq",nombre:"Medialuna de jamón y queso",precio:2800},{id:"as-chipa",nombre:"Chipá x 6",precio:3200} ]
+};
+
+const TORTAS = [ ["Chocotorta", 21000], ["Lemon pie", 24000], ["Torta de chocolate y dulce de leche", 26000], ["Cheesecake", 27000], ["Rogel", 28000], ["Carrot cake", 25000] ];  // precio por kg
+
+/* ================================================================ */
+const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const plata=n=>n.toLocaleString("es-AR");
+const waLink=t=>NEGOCIO.whatsapp?`https://wa.me/${NEGOCIO.whatsapp}?text=${encodeURIComponent(t)}`:`https://wa.me/?text=${encodeURIComponent(t)}`;
+function toast(t){ const e=$("[data-toast]"); e.textContent=t; e.classList.add("ver"); clearTimeout(toast.k); toast.k=setTimeout(()=>e.classList.remove("ver"),2000); }
+const tagsHTML=t=>t.map(x=>`<span class="tag">${x}</span>`).join("");
+
+function irA(id){ const el=document.getElementById(id); if(!el) return; window.scrollTo({top:el.getBoundingClientRect().top+scrollY-$(".cabecera").offsetHeight-4,behavior:"smooth"}); }
+document.addEventListener("click",e=>{ const a=e.target.closest("[data-ir]"); if(a){ e.preventDefault(); cerrarMenu(); irA(a.dataset.ir); } if(e.target.closest("[data-ir-boton]")) irA("pedido"); });
+const hamb=$("[data-menu]"), mm=$("[data-menu-movil]");
+function cerrarMenu(){ mm.classList.remove("abierto"); hamb.setAttribute("aria-expanded","false"); }
+hamb.addEventListener("click",()=>hamb.setAttribute("aria-expanded",mm.classList.toggle("abierto")));
+$$("[data-pedidosya]").forEach(a=>a.href=NEGOCIO.pedidosya); $$("[data-rappi]").forEach(a=>a.href=NEGOCIO.rappi); $$("[data-instagram]").forEach(a=>a.href=NEGOCIO.instagram);
+$$("[data-wa-libre]").forEach(a=>a.href=waLink(`Hola ${NEGOCIO.nombre}! Una consulta:`));
+$("[data-anio]").textContent=new Date().getFullYear();
+
+/* fecha y estado */
+const DIAS=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+const hoy=new Date();
+$("[data-hoy]").textContent=hoy.toLocaleDateString("es-AR",{weekday:"short",day:"numeric",month:"short"}).replace(/\./g,"").toUpperCase();
+$("[data-hoy-ticket]").textContent=hoy.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"});
+const aMin=h=>{const [a,b]=h.split(":").map(Number);return a*60+b};
+function estado(){ const d=new Date(), m=d.getHours()*60+d.getMinutes(), [a,c]=NEGOCIO.horarios[d.getDay()];
+  if(m>=aMin(a)&&m<aMin(c)) return {si:true,t:`Abierto · hasta ${c.replace(":00","")} h`};
+  if(m<aMin(a)) return {si:false,t:`Abre hoy ${a} h`};
+  return {si:false,t:`Abre mañana ${NEGOCIO.horarios[(d.getDay()+1)%7][0]} h`}; }
+function pintarEstado(){ const e=estado(); $$("[data-punto]").forEach(p=>p.classList.toggle("si",e.si)); $("[data-estado]").textContent=e.t; }
+pintarEstado(); setInterval(pintarEstado,60000);
+$("[data-horarios]").innerHTML=[1,2,3,4,5,6,0].map(d=>`<li${d===hoy.getDay()?' style="color:var(--manteca)"':""}>${DIAS[d].slice(0,3)} · ${NEGOCIO.horarios[d].join(" a ")}</li>`).join("");
+
+/* franja */
+const fr=["medialunas de manteca","tortas caseras","submarino","lemon pie","tostados","café de barrio","alfajores de maicena","budines sin tacc"];
+$("[data-franja]").innerHTML=[...fr,...fr].map(f=>`<span>${f}</span>`).join("");
+
+/* catálogo unificado */
+const CAT={};
+[...ESPECIALES,...HABITUES,...PIZARRAS.flatMap(p=>p.items)].forEach(i=>CAT[i.id]=i);
+
+/* especiales */
+$("[data-especiales]").innerHTML=ESPECIALES.map(e=>`<li><span class="renglon"><strong>${e.nombre}</strong></span><span class="der"><span class="precio">$ ${plata(e.precio)}</span><button class="sumar" data-sumar="${e.id}" aria-label="Sumar ${e.nombre}">+</button></span><p>${e.desc}<br>${tagsHTML(e.tags)}</p></li>`).join("");
+
+/* pizarras */
+$("[data-solapas]").innerHTML=["Todas",...PIZARRAS.map(p=>p.nombre)].map((n,i)=>`<button class="solapa" aria-pressed="${i===0}" data-solapa="${n}">${n}</button>`).join("");
+$("[data-tableros]").innerHTML=PIZARRAS.map(p=>`<article class="tablero sube" data-tablero="${p.nombre}"><header><h3>${p.nombre}</h3><span>${p.horario}</span></header><p>${p.nota}</p>${p.items.map(i=>`<button class="fila" data-sumar="${i.id}"><span class="nom">${i.nombre}${i.tags.map(t=>` <em>${t}</em>`).join("")}</span><span class="pr">${plata(i.precio)}</span><span class="mas" aria-hidden="true">+</span></button>`).join("")}</article>`).join("");
+$("[data-solapas]").addEventListener("click",e=>{ const b=e.target.closest("[data-solapa]"); if(!b) return; $$("[data-solapa]").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  $$("[data-tablero]").forEach(t=>{ t.hidden=!(b.dataset.solapa==="Todas"||t.dataset.tablero===b.dataset.solapa); t.classList.add("visto"); }); });
+
+/* habitués */
+$("[data-bento]").innerHTML=HABITUES.map((h,i)=>`<article class="carta b${i+1} sube"><div class="foto"><span class="num">Nº ${String(i+1).padStart(2,"0")}</span><img src="tita-fotos/${h.foto}" alt="${h.nombre}" loading="lazy"></div><div class="info"><h3>${h.nombre}</h3><p>${h.desc}</p><div>${tagsHTML(h.tags)}</div><div class="pie"><span class="precio">$ ${plata(h.precio)}</span><button data-sumar="${h.id}">+ SUMAR</button></div></div></article>`).join("");
+
+/* bolsa */
+let bolsa={}; try{ bolsa=JSON.parse(localStorage.getItem("tita-bolsa")||"{}"); }catch(e){}
+const guardar=()=>{ try{ localStorage.setItem("tita-bolsa",JSON.stringify(bolsa)); }catch(e){} };
+function sumar(id,n=1,item){ if(item) CAT[id]=item; if(!CAT[id]) return; bolsa[id]=(bolsa[id]||0)+n; if(bolsa[id]<=0) delete bolsa[id]; guardar(); pintar(); }
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-sumar]"); if(b){ sumar(b.dataset.sumar); toast(`+1 ${CAT[b.dataset.sumar].nombre}`);
+    b.classList.add(b.classList.contains("fila")?"pum":"ok"); setTimeout(()=>b.classList.remove("pum","ok"),450);
+    const bo=$(".bolsa"); bo.classList.remove("salto"); void bo.offsetWidth; bo.classList.add("salto"); return; }
+  const m=e.target.closest("[data-q]"); if(m) sumar(m.dataset.id,+m.dataset.q); });
+const nro=String(4500+Math.floor(Math.random()*400)).padStart(4,"0"); $("[data-nro]").textContent=nro;
+$("[data-codigo]").innerHTML=Array.from({length:44},()=>"<i></i>").join("");
+function pintar(){
+  const ids=Object.keys(bolsa).filter(i=>CAT[i]); const cant=ids.reduce((a,i)=>a+bolsa[i],0), tot=ids.reduce((a,i)=>a+bolsa[i]*CAT[i].precio,0);
+  const c=$("[data-cuenta]"); c.textContent=cant; c.classList.toggle("hay",cant>0);
+  $("[data-dock]").classList.toggle("ver",cant>0); $("[data-dock-tot]").textContent=`$ ${plata(tot)}`;
+  $("[data-dock-txt]").textContent=ids.map(i=>`${bolsa[i]}× ${CAT[i].nombre}`).join(" · ");
+  $("[data-lineas]").innerHTML=ids.length?ids.map(i=>`<div class="t-linea"><span class="q"><button data-q="-1" data-id="${i}" aria-label="Uno menos">−</button><span>${bolsa[i]}</span><button data-q="1" data-id="${i}" aria-label="Uno más">+</button></span><span>${CAT[i].nombre}</span><span>${plata(CAT[i].precio*bolsa[i])}</span></div>`).join(""):`<div class="t-vacio">— la bolsa está vacía —<br>tocá algo de la carta</div>`;
+  $("[data-t-tot]").textContent=`$ ${plata(tot)}`;
+}
+pintar();
+
+/* dock: se esconde cuando el ticket está a la vista */
+const ioT=new IntersectionObserver(es=>es.forEach(e=>$("[data-dock]").style.opacity=e.isIntersecting?0:1),{threshold:.25}); ioT.observe($("[data-ticket]"));
+
+/* horas de retiro */
+let horaElegida=null;
+function horas(){ const d=new Date(); const [a,c]=NEGOCIO.horarios[d.getDay()]; let m=Math.max(aMin(a), Math.ceil((d.getHours()*60+d.getMinutes()+30)/30)*30); const out=[];
+  while(m<=aMin(c)-30 && out.length<6){ out.push(`${String(Math.floor(m/60)).padStart(2,"0")}:${String(m%60).padStart(2,"0")}`); m+=30; }
+  $("[data-horas]").innerHTML=out.length?out.map(h=>`<button class="hora" aria-pressed="false" data-hora="${h}">${h}</button>`).join(""):`<button class="hora" aria-pressed="false" data-hora="mañana a primera hora">Mañana a primera hora</button>`; }
+horas();
+$("[data-horas]").addEventListener("click",e=>{ const b=e.target.closest("[data-hora]"); if(!b) return; horaElegida=b.dataset.hora; $$("[data-hora]").forEach(x=>x.setAttribute("aria-pressed",x===b)); });
+$("[data-enviar]").addEventListener("click",()=>{
+  const ids=Object.keys(bolsa).filter(i=>CAT[i]); if(!ids.length){ toast("La bolsa está vacía"); return; }
+  if(!horaElegida){ toast("Elegí a qué hora pasás"); return; }
+  const nom=$("[data-t-nombre]").value.trim(); if(!nom){ toast("¿A nombre de quién?"); $("[data-t-nombre]").focus(); return; }
+  const dir=$("[data-t-dir]").value.trim(); const tot=ids.reduce((a,i)=>a+bolsa[i]*CAT[i].precio,0);
+  const txt=[`Hola ${NEGOCIO.nombre}! Pedido Nº ${nro}`,"",...ids.map(i=>`• ${bolsa[i]} × ${CAT[i].nombre} — $ ${plata(CAT[i].precio*bolsa[i])}`),"",`Total: $ ${plata(tot)}`,dir?`Para mandar a: ${dir} (${horaElegida})`:`Paso a retirar: ${horaElegida}`,`A nombre de: ${nom}`].join("\n");
+  window.open(waLink(txt),"_blank","noopener");
+});
+
+/* armá tu merienda */
+const elegido={bebida:null,dulce:null,salado:null};
+Object.entries(ARMAR).forEach(([k,ops])=>{ $(`[data-paso="${k}"]`).innerHTML=ops.map(o=>`<button class="opcion" aria-pressed="false" data-op="${k}|${o.id}"><strong>${o.nombre}</strong><small>${o.precio?"$ "+plata(o.precio):"—"}</small></button>`).join(""); });
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-op]"); if(!b) return; const [k,id]=b.dataset.op.split("|"); elegido[k]=ARMAR[k].find(o=>o.id===id);
+  $$(`[data-op^="${k}|"]`).forEach(x=>x.setAttribute("aria-pressed",x===b)); bandeja(); });
+function calc(){ const items=Object.values(elegido).filter(o=>o&&o.precio); const bruto=items.reduce((a,o)=>a+o.precio,0); const combo=elegido.bebida&&elegido.dulce&&elegido.salado&&elegido.salado.precio>0;
+  const neto=combo?Math.round(bruto*(1-NEGOCIO.descuentoCombo/100)/100)*100:bruto; return {items,bruto,neto,combo}; }
+function bandeja(){ const {items,bruto,neto,combo}=calc();
+  $("[data-bandeja]").innerHTML=["bebida","dulce","salado"].map(k=>elegido[k]&&elegido[k].precio?`<li><span>${elegido[k].nombre}</span><span>${plata(elegido[k].precio)}</span></li>`:`<li class="vacio"><span>${k==="bebida"?"Elegí qué tomar":k==="dulce"?"Elegí algo dulce":"Salado (opcional)"}</span><span>—</span></li>`).join("");
+  $("[data-desc]").textContent=combo?`✳ Combo completo: ${NEGOCIO.descuentoCombo}% menos`:(elegido.bebida&&elegido.dulce?"Sumá algo salado y te hacemos el "+NEGOCIO.descuentoCombo+"% de descuento":"");
+  $("[data-band-tot]").innerHTML=combo?`<s>$ ${plata(bruto)}</s>$ ${plata(neto)}`:`$ ${plata(neto)}`; }
+bandeja();
+$("[data-band-sumar]").addEventListener("click",()=>{ const {items,neto}=calc(); if(!elegido.bebida||!elegido.dulce){ toast("Elegí al menos bebida y algo dulce"); return; }
+  const id="combo-"+items.map(o=>o.id).join("-"); sumar(id,1,{id,nombre:"Merienda: "+items.map(o=>o.nombre.toLowerCase()).join(" + "),precio:neto}); toast("Merienda armada y a la bolsa");
+  Object.keys(elegido).forEach(k=>elegido[k]=null); $$("[data-op]").forEach(x=>x.setAttribute("aria-pressed","false")); bandeja(); });
+/* combos guardados de otra visita: reconstruir si existían */
+Object.keys(bolsa).forEach(id=>{ if(id.startsWith("combo-")&&!CAT[id]){ const parts=id.slice(6).split("-a").map((p,i)=>i?"a"+p:p); const ops=Object.values(ARMAR).flat(); const its=parts.map(p=>ops.find(o=>o.id===p)).filter(Boolean);
+  if(its.length){ const bruto=its.reduce((a,o)=>a+o.precio,0); CAT[id]={id,nombre:"Merienda: "+its.map(o=>o.nombre.toLowerCase()).join(" + "),precio:its.length===3?Math.round(bruto*(1-NEGOCIO.descuentoCombo/100)/100)*100:bruto}; } else delete bolsa[id]; } }); pintar();
+
+/* encargos */
+let kilos=1;
+$("[data-e-torta]").innerHTML=TORTAS.map(([n,p],i)=>`<option value="${i}">${n} · $ ${plata(p)}/kg</option>`).join("");
+$("[data-kilos]").innerHTML=[1,1.5,2,3,4].map(k=>`<button type="button" class="kilo" aria-pressed="${k===1}" data-kilo="${k}">${String(k).replace(".",",")} kg · ${Math.round(k*12)} porc.</button>`).join("");
+const fe=$("#e-fecha"); const min=new Date(Date.now()+48*3600e3); const iso=d=>new Date(d-d.getTimezoneOffset()*60000).toISOString().slice(0,10); fe.min=iso(min); fe.value=iso(min);
+function estimado(){ const [n,p]=TORTAS[$("[data-e-torta]").value]; $("[data-estimado]").textContent=`${n} de ${String(kilos).replace(".",",")} kg (≈${Math.round(kilos*12)} porciones) · estimado $ ${plata(Math.round(p*kilos))}`; }
+$("[data-kilos]").addEventListener("click",e=>{ const b=e.target.closest("[data-kilo]"); if(!b) return; kilos=+b.dataset.kilo; $$("[data-kilo]").forEach(x=>x.setAttribute("aria-pressed",x===b)); estimado(); });
+$("[data-e-torta]").addEventListener("change",estimado); estimado();
+$("[data-encargo]").addEventListener("submit",e=>{ e.preventDefault(); const nom=$("#e-nombre").value.trim(); if(!nom){ toast("Falta tu nombre"); $("#e-nombre").focus(); return; }
+  if(fe.value<fe.min){ toast("Necesitamos 48 h de anticipación"); return; }
+  const [n,p]=TORTAS[$("[data-e-torta]").value]; const f=new Date(fe.value+"T12:00").toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"});
+  const txt=[`Hola ${NEGOCIO.nombre}! Quiero encargar una torta:`,"",`• ${n}, ${String(kilos).replace(".",",")} kg (≈${Math.round(kilos*12)} porciones)`,`• Para el ${f}`,$("#e-texto").value.trim()?`• Que diga: "${$("#e-texto").value.trim()}"`:null,`• Estimado: $ ${plata(Math.round(p*kilos))}`,`• A nombre de: ${nom}`,"","¿Me confirman? Gracias!"].filter(x=>x!==null).join("\n");
+  window.open(waLink(txt),"_blank","noopener"); });
+
+/* entradas */
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("visto"); io.unobserve(e.target); } }),{threshold:.1});
+$$(".sube").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

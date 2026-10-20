@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Almendra Café</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: mañana de ventana. Hero con luz que entra y sombra de hojas, la taza humeando a la derecha → franjas del día (desayuno, brunch, merienda) con la franja actual marcada → carta → café de la semana → reservas y delivery → datos. Alineado a la izquierda, mobile-first. Una sola apariencia, luminosa, elegida a propósito. */
+:root{
+  color-scheme: light;
+  --leche:#f1f3ee;        /* fondo: luz de mañana, apenas verdosa */
+  --leche-2:#e5e9e0;      /* superficies */
+  --espresso:#2a201a;     /* texto y botón principal */
+  --espresso-tenue:#62574e;
+  --pistacho:#7c9a5b;     /* acento */
+  --pistacho-hondo:#4b6634;
+  --durazno:#efb08b;
+  --linea:#d3d8cc;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",sans-serif;
+  --f-body:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --gl:max(16px, env(safe-area-inset-left, 0px));
+  --gr:max(16px, env(safe-area-inset-right, 0px));
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:hidden}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--leche);color:var(--espresso);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overscroll-behavior-x:none}
+img,svg,canvas{max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--espresso);outline-offset:3px;border-radius:8px}
+.envoltura{width:100%;max-width:1240px;margin-inline:auto;padding-left:var(--gl);padding-right:var(--gr)}
+@media (min-width:700px){.envoltura{--gl:max(32px, env(safe-area-inset-left, 0px));--gr:max(32px, env(safe-area-inset-right, 0px))}}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:-.02em;text-wrap:balance;margin:0}
+
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:16px;font-weight:600;font-size:16px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background-color .2s,border-color .2s,transform .15s;white-space:nowrap;max-width:100%}
+.boton:active{transform:scale(.98)}
+.boton-principal{background:var(--espresso);color:var(--leche)}
+.boton-principal:hover{background:#3d3027}
+.boton-secundario{border-color:var(--linea);background:rgba(241,243,238,.7);color:var(--espresso)}
+.boton-secundario:hover{border-color:var(--espresso)}
+.marca-app{width:10px;height:10px;border-radius:50%;flex:none}
+
+/* Cabecera */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--leche)}
+.cabecera{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:68px;border-bottom:1px solid transparent;transition:background-color .35s,border-color .35s}
+.cabecera.solida{background:rgba(241,243,238,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--linea)}
+.cabecera .envoltura{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-weight:800;font-size:24px;letter-spacing:-.03em}
+.logo svg{width:26px;height:26px}
+.nav{display:flex;align-items:center;gap:28px}
+.nav a{text-decoration:none;font-size:15px;color:var(--espresso-tenue)}
+.nav a:hover{color:var(--espresso)}
+.nav .boton{min-height:44px;font-size:15px;padding:0 18px;color:var(--leche)}
+.solo-escritorio{display:none}
+@media (min-width:860px){.solo-escritorio{display:inline-flex}}
+
+/* Hero */
+.hero{position:relative;margin-top:-68px;padding-top:68px;overflow:hidden;isolation:isolate}
+#manana{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
+.hero .envoltura{display:grid;grid-template-columns:1fr;padding-block:clamp(56px,9vw,120px) 330px}
+@media (min-width:960px){.hero .envoltura{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);padding-bottom:clamp(90px,10vw,140px);min-height:min(800px,100svh);align-items:center}}
+.estado{display:inline-flex;align-items:center;gap:10px;font-size:15px;color:var(--espresso-tenue);margin:0}
+.estado::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--pistacho);box-shadow:0 0 0 5px rgba(124,154,91,.18)}
+.estado.cerrado::before{background:var(--espresso-tenue);box-shadow:none}
+.hero h1{font-size:clamp(48px,9vw,112px);line-height:.95;font-weight:800;margin-top:22px;max-width:11ch}
+.hero .bajada{font-size:clamp(17px,2vw,20px);max-width:38ch;margin:24px 0 0;color:var(--espresso-tenue)}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+@media (max-width:520px){.acciones .boton{flex:1 1 100%}}
+@media (prefers-reduced-motion:no-preference){
+  .entra{animation:entra 1s cubic-bezier(.16,.8,.24,1) both}
+  .entra.d1{animation-delay:.1s}.entra.d2{animation-delay:.2s}.entra.d3{animation-delay:.3s}
+  @keyframes entra{from{transform:translateY(16px)}to{transform:none}}
+}
+
+/* Franjas del día */
+.franjas{padding-block:clamp(64px,9vw,120px)}
+.franjas h2,.titulo{font-size:clamp(36px,5.5vw,64px);line-height:1;max-width:16ch}
+.franjas .intro,.intro{color:var(--espresso-tenue);max-width:46ch;margin:16px 0 0;font-size:17px}
+.dia{list-style:none;padding:0;margin:44px 0 0;display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:860px){.dia{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
+.franja{position:relative;border-radius:22px;padding:24px 24px 26px;background:var(--leche-2);display:grid;gap:8px;min-width:0}
+.franja.ahora{background:var(--espresso);color:var(--leche)}
+.franja.ahora .horas,.franja.ahora p{color:#cfc6bb}
+.franja .horas{font-size:15px;font-weight:600;color:var(--espresso-tenue);font-variant-numeric:tabular-nums}
+.franja h3{font-size:30px}
+.franja p{margin:0;color:var(--espresso-tenue);font-size:15.5px}
+.franja .chip{position:absolute;top:22px;right:22px;font-size:13px;font-weight:600;background:var(--pistacho);color:#13200a;border-radius:999px;padding:3px 10px}
+
+/* Carta */
+.carta{padding-block:clamp(64px,9vw,120px);border-top:1px solid var(--linea)}
+.carta-cabeza{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px}
+.carta-cabeza p{margin:0;max-width:34ch;color:var(--espresso-tenue)}
+.pestanas{display:flex;gap:8px;overflow-x:auto;padding:28px 0 6px;scrollbar-width:none;max-width:100%}
+.pestanas::-webkit-scrollbar{display:none}
+.pestana{flex:none;min-height:44px;border:1.5px solid var(--linea);background:transparent;font-weight:600;font-size:15px;padding:0 18px;border-radius:14px;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s}
+.pestana:hover{border-color:var(--espresso)}
+.pestana[aria-selected="true"]{background:var(--espresso);color:var(--leche);border-color:var(--espresso)}
+.platos{display:grid;grid-template-columns:1fr;gap:0 64px;margin-top:12px}
+@media (min-width:860px){.platos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.plato{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 18px;padding:22px 0;border-bottom:1px solid var(--linea)}
+.plato h3{font-size:21px;line-height:1.2;letter-spacing:-.01em;font-weight:700}
+.plato .precio{font-weight:600;font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.plato p{grid-column:1 / -1;margin:0;color:var(--espresso-tenue);font-size:15.5px;max-width:52ch}
+.plato .meta{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font-size:13px;font-weight:600;border-radius:999px;padding:2px 10px;background:var(--leche-2);color:var(--pistacho-hondo)}
+.tag.sin-tacc{background:#f6dccb;color:#7a3d1d}
+.nota-carta{margin:22px 0 0;color:var(--espresso-tenue);font-size:14px}
+
+/* Café de la semana */
+.origen{display:grid;grid-template-columns:1fr;gap:32px;padding:clamp(28px,4vw,48px);border-radius:28px;background:var(--espresso);color:var(--leche);margin-block:clamp(16px,3vw,40px) clamp(64px,9vw,110px)}
+@media (min-width:900px){.origen{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}}
+.origen h2{font-size:clamp(34px,5vw,56px);line-height:1}
+.origen p{color:#cfc6bb;margin:14px 0 0;max-width:42ch}
+.ficha{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0}
+.ficha div{padding:16px 0;border-top:1px solid #4a3d33;min-width:0}
+.ficha dt{font-size:14px;color:#b8ad9f}
+.ficha dd{margin:4px 0 0;font-family:var(--f-display);font-weight:700;font-size:22px;letter-spacing:-.01em}
+.notas{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.notas span{border:1.5px solid #5a4a3e;border-radius:999px;padding:4px 12px;font-size:14px}
+
+/* Fotos */
+.grilla-fotos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-bottom:clamp(64px,9vw,110px)}
+.grilla-fotos figure{margin:0}
+.grilla-fotos .ranura:nth-child(1){grid-column:1 / -1}
+@media (min-width:860px){.grilla-fotos{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.grilla-fotos .ranura:nth-child(1){grid-column:auto}}
+.ranura{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:var(--leche-2)}
+.grilla-fotos .ranura:nth-child(1){aspect-ratio:4/3}
+@media (min-width:860px){.grilla-fotos .ranura:nth-child(1){aspect-ratio:4/5}}
+.ranura img{width:100%;height:100%;object-fit:cover;display:block}
+.ranura.vacia{background:radial-gradient(70% 60% at 70% 20%,rgba(239,176,139,.45),transparent 70%),radial-gradient(80% 70% at 15% 95%,rgba(124,154,91,.35),transparent 70%),var(--leche-2)}
+.ranura figcaption{position:absolute;left:18px;right:18px;bottom:16px;font-size:14px;font-weight:500;color:var(--espresso-tenue)}
+
+/* Reservas + delivery */
+.dos{display:grid;grid-template-columns:1fr;gap:56px;padding-block:clamp(64px,9vw,120px);border-top:1px solid var(--linea)}
+@media (min-width:960px){.dos{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:72px}}
+.dos > *{min-width:0}
+.dos .intro{margin-bottom:28px}
+.formulario{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:480px){.formulario{grid-template-columns:1fr}}
+.campo{display:grid;gap:8px;min-width:0;border:0;padding:0;margin:0}
+.campo.ancho{grid-column:1 / -1}
+.campo label,.campo legend{font-size:14px;font-weight:600;padding:0}
+.campo input,.campo select{width:100%;min-width:0;min-height:52px;background:#fff;border:1.5px solid var(--linea);border-radius:14px;padding:0 14px;font:inherit;font-size:16px;color:var(--espresso);-webkit-appearance:none;appearance:none}
+.campo select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%2362574e' stroke-width='1.6' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.campo input:focus,.campo select:focus{outline:none;border-color:var(--espresso)}
+.contador{display:flex;align-items:center;justify-content:space-between;min-height:52px;background:#fff;border:1.5px solid var(--linea);border-radius:14px;padding:0 4px}
+.contador button{width:44px;height:44px;border-radius:10px;border:0;background:transparent;font-size:22px;cursor:pointer}
+.contador button:hover{background:var(--leche-2)}
+.contador button:disabled{opacity:.35;cursor:default}
+.contador output{font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+.segmentos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:4px;background:#fff;border:1.5px solid var(--linea);border-radius:14px}
+.segmentos label{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:10px;cursor:pointer;font-weight:600;font-size:15px}
+.segmentos label{position:relative}
+.segmentos input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;pointer-events:none}
+.segmentos input:checked + span{background:var(--espresso);color:var(--leche)}
+.segmentos span{display:flex;align-items:center;justify-content:center;width:100%;min-height:44px;border-radius:10px}
+.segmentos input:focus-visible + span{outline:2px solid var(--espresso);outline-offset:2px}
+.formulario .boton{grid-column:1 / -1;margin-top:4px}
+.resultado{grid-column:1 / -1;border:1.5px dashed var(--linea);border-radius:14px;padding:16px 18px;font-size:15px;color:var(--espresso-tenue)}
+.resultado blockquote{margin:10px 0 14px;padding:12px 14px;border-radius:10px;background:#fff;color:var(--espresso);overflow-wrap:anywhere}
+.resultado .fila{display:flex;flex-wrap:wrap;gap:10px}
+.resultado .boton{min-height:44px;font-size:15px;padding:0 18px}
+.error{color:#9a3412}
+
+.delivery{background:var(--leche-2);border-radius:28px;padding:clamp(24px,4vw,40px);align-self:start}
+.delivery h2{font-size:clamp(32px,4.5vw,46px);line-height:1}
+.delivery p{color:var(--espresso-tenue);margin:12px 0 24px}
+.apps{display:grid;gap:10px}
+.app{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;min-height:64px;padding:10px 18px;border-radius:16px;text-decoration:none;background:var(--leche);border:1.5px solid transparent;transition:border-color .2s}
+.app:hover{border-color:var(--espresso)}
+.app b{font-weight:600}
+.app small{display:block;font-size:13.5px;color:var(--espresso-tenue)}
+.app svg{width:18px;height:18px;color:var(--espresso-tenue)}
+
+/* Datos y pie */
+.datos{display:grid;grid-template-columns:1fr;gap:40px;padding-block:clamp(56px,8vw,100px);border-top:1px solid var(--linea)}
+@media (min-width:860px){.datos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.datos > *{min-width:0}
+.datos h2{font-family:var(--f-body);font-size:15px;font-weight:600;color:var(--espresso-tenue);letter-spacing:0;margin-bottom:12px}
+.datos p{margin:0;font-size:18px}
+.datos .tenue{color:var(--espresso-tenue);font-size:15px;margin-top:6px}
+.horarios{list-style:none;margin:0;padding:0;font-variant-numeric:tabular-nums}
+.horarios li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--linea);font-size:15px}
+.horarios li span:last-child{color:var(--espresso-tenue);text-align:right}
+.horarios li.hoy span{color:var(--espresso);font-weight:600}
+.enlace{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-weight:600;text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--linea)}
+.enlace:hover{text-decoration-color:var(--espresso)}
+.pie{border-top:1px solid var(--linea);padding-block:44px calc(44px + 84px + env(safe-area-inset-bottom,0px))}
+@media (min-width:860px){.pie{padding-bottom:44px}}
+.pie .envoltura{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px}
+.pie .grande{font-family:var(--f-display);font-weight:800;font-size:clamp(64px,17vw,200px);line-height:.85;letter-spacing:-.05em;color:var(--leche-2)}
+.pie small{display:block;color:var(--espresso-tenue);font-size:14px}
+
+.barra-movil{position:fixed;left:0;right:0;bottom:0;z-index:55;display:flex;gap:10px;padding:10px var(--gr) calc(10px + env(safe-area-inset-bottom,0px)) var(--gl);background:rgba(241,243,238,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--linea);transform:translateY(110%);transition:transform .35s ease}
+.barra-movil.visible{transform:none}
+.barra-movil .boton{flex:1 1 0;min-width:0;padding:0 12px}
+@media (min-width:860px){.barra-movil{display:none}}
+
+/* Bloqueo del desplazamiento lateral en el celular */
+html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+body{position:relative;width:100%;margin:0}
+main,footer,section{max-width:100%;overflow-x:clip}
+.pestanas,.filtros,.chips,.dibujo,.panel-cuerpo{touch-action:pan-x pan-y pinch-zoom}
+</style>
+
+<header class="cabecera" id="cabecera">
+  <div class="envoltura">
+    <a class="logo" href="#inicio" aria-label="Almendra, ir al inicio">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c6 5 9 10 9 15a9 9 0 0 1-18 0c0-5 3-10 9-15Z" fill="#7c9a5b"/><path d="M16 9v16" stroke="#f1f3ee" stroke-width="1.6" stroke-linecap="round"/></svg>
+      almendra
+    </a>
+    <nav class="nav" aria-label="Secciones">
+      <a class="solo-escritorio" href="#carta">Carta</a>
+      <a class="solo-escritorio" href="#delivery">Delivery</a>
+      <a class="solo-escritorio" href="#llegar">Cómo llegar</a>
+      <a class="boton boton-principal solo-escritorio" href="#reservas">Reservar mesa</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero" aria-labelledby="titulo-hero">
+    <canvas id="manana" aria-hidden="true"></canvas>
+    <div class="envoltura">
+      <div>
+        <p class="estado entra" id="estado" role="status">Consultando el horario</p>
+        <h1 id="titulo-hero" class="entra d1">Café de especialidad y brunch sin apuro</h1>
+        <p class="bajada entra d2">Tostamos en Martínez cada martes. Masa madre propia, huevos de campo y un patio con sombra para quedarte.</p>
+        <div class="acciones entra d3" id="acciones-hero"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="franjas envoltura" aria-labelledby="titulo-franjas">
+    <h2 id="titulo-franjas">Una carta para cada hora del día</h2>
+    <p class="intro">El brunch se superpone con el desayuno y la merienda, así nadie llega tarde.</p>
+    <ol class="dia" id="franjas"></ol>
+  </section>
+
+  <section class="carta envoltura" id="carta" aria-labelledby="titulo-carta">
+    <div class="carta-cabeza">
+      <h2 class="titulo" id="titulo-carta">La carta</h2>
+      <p>La leche vegetal no tiene costo extra. Avisanos si sos celíaco y lo preparamos aparte.</p>
+    </div>
+    <div class="pestanas" role="tablist" id="pestanas" aria-label="Categorías de la carta"></div>
+    <div class="platos" id="platos" role="tabpanel"></div>
+    <p class="nota-carta" id="nota-carta"></p>
+  </section>
+
+  <section class="envoltura" aria-labelledby="titulo-origen">
+    <div class="origen">
+      <div>
+        <h2 id="titulo-origen" data-campo="origen.nombre"></h2>
+        <p id="origen-texto"></p>
+        <div class="notas" id="origen-notas"></div>
+      </div>
+      <dl class="ficha" id="origen-ficha"></dl>
+    </div>
+  </section>
+
+  <section class="envoltura" aria-label="Fotos de Almendra">
+    <div class="grilla-fotos" id="fotos"></div>
+  </section>
+
+  <section class="envoltura dos">
+    <div id="reservas">
+      <h2 class="titulo">Reservá tu mesa</h2>
+      <p class="intro">Los fines de semana se llena a partir de las 11. Te confirmamos por WhatsApp.</p>
+      <form class="formulario" id="form-reserva" novalidate>
+        <div class="campo"><label for="r-fecha">Día</label><input id="r-fecha" type="date" required></div>
+        <div class="campo"><label for="r-hora">Hora</label><select id="r-hora"></select></div>
+        <fieldset class="campo">
+          <legend>Personas</legend>
+          <div class="contador"><button type="button" id="menos" aria-label="Restar una persona">−</button><output id="r-personas" aria-live="polite">2</output><button type="button" id="mas" aria-label="Sumar una persona">+</button></div>
+        </fieldset>
+        <fieldset class="campo">
+          <legend>Lugar</legend>
+          <div class="segmentos">
+            <label><input type="radio" name="lugar" id="r-adentro" value="adentro" checked><span>Adentro</span></label>
+            <label><input type="radio" name="lugar" id="r-patio" value="en el patio"><span>Patio</span></label>
+          </div>
+        </fieldset>
+        <div class="campo ancho"><label for="r-nombre">A nombre de</label><input id="r-nombre" type="text" autocomplete="name" enterkeyhint="done"></div>
+        <button class="boton boton-principal" type="submit">Pedir la reserva por WhatsApp</button>
+        <div class="resultado" id="resultado" aria-live="polite" hidden></div>
+      </form>
+    </div>
+    <aside class="delivery" id="delivery" aria-labelledby="titulo-delivery">
+      <h2 id="titulo-delivery">El brunch también viaja</h2>
+      <p>Los huevos van aparte del pan para que lleguen tibios y crocantes.</p>
+      <div class="apps" id="apps"></div>
+    </aside>
+  </section>
+
+  <section class="envoltura datos" id="llegar" aria-label="Dirección, horarios y contacto">
+    <div>
+      <h2>Dónde estamos</h2>
+      <p id="d-direccion"></p>
+      <p class="tenue" id="d-zona"></p>
+      <a class="enlace" id="d-mapa" href="#" target="_blank" rel="noopener">Ver cómo llegar en Google Maps</a>
+    </div>
+    <div>
+      <h2>Horarios</h2>
+      <ul class="horarios" id="d-horarios"></ul>
+    </div>
+    <div>
+      <h2>Contacto</h2>
+      <p id="d-telefono"></p>
+      <p class="tenue" id="d-instagram"></p>
+      <p class="tenue">Wifi para clientes. Se aceptan mascotas en el patio.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="envoltura">
+    <div class="grande" aria-hidden="true">almendra</div>
+    <div><small>© 2026 Almendra Café</small><small>Sitio de demostración. Precios de referencia.</small></div>
+  </div>
+</footer>
+
+<div class="barra-movil" id="barra-movil"></div>
+
+<script>
+/* =========================================================
+   DATOS DEL LOCAL. Todo lo que el dueño cambia vive acá.
+   Dejar un link vacío ("") oculta ese botón en toda la página.
+   ========================================================= */
+const LOCAL = {
+  nombre: "Almendra",
+  direccion: "Alvear 512, Martínez",
+  zona: "A media cuadra de la plaza de Martínez",
+  mapa: "https://www.google.com/maps/search/?api=1&query=Alvear+512+Martinez",
+  telefonoVisible: "+54 9 11 4792-3310",
+  whatsapp: "5491147923310",
+  instagram: "@almendra.cafe",
+  pedidosya: "https://www.pedidosya.com.ar",
+  rappi: "https://www.rappi.com.ar",
+  zonaHoraria: "America/Argentina/Buenos_Aires",
+  maxPersonas: 12,
+  horarios: { 0:[[9,19]], 1:[[8,20]], 2:[[8,20]], 3:[[8,20]], 4:[[8,20]], 5:[[8,20]], 6:[[9,20]] },
+  franjas: [
+    { nombre:"Desayuno", desde:8, hasta:11.5, texto:"Café de filtro, tostadas de masa madre y medialunas que salen del horno a las 8." },
+    { nombre:"Brunch", desde:10, hasta:16, texto:"Huevos benedictinos, shakshuka y la palta con pomelo. Los fines de semana, hasta las 17." },
+    { nombre:"Merienda", desde:16, hasta:20, texto:"Budines del día, alfajores de maicena y el chocotorta de la casa." }
+  ],
+  origen: {
+    nombre: "Etiopía Guji, el café de la semana",
+    texto: "Llegó en septiembre y lo tostamos claro para que se sienta la fruta. Lo servimos en V60 o como espresso simple.",
+    ficha: [["Finca","Shakiso"],["Altura","2.100 m s. n. m."],["Proceso","Lavado"],["Tueste","Claro"]],
+    notas: ["Durazno","Jazmín","Té negro"]
+  },
+  fotos: [
+    { src:"", texto:"Mesa de brunch al sol" },
+    { src:"", texto:"Latte con leche de almendras" },
+    { src:"", texto:"El patio con sombra" }
+  ],
+  actualizada: "octubre de 2026",
+  carta: [
+    { categoria:"Café", platos:[
+      { nombre:"Espresso", detalle:"Doble, del café de la semana.", precio:3400 },
+      { nombre:"Flat white", detalle:"Espresso doble con leche texturizada.", precio:4600, tags:["El más pedido"] },
+      { nombre:"Filtrado en V60", detalle:"Para tomar sin leche y probar el origen.", precio:5200 },
+      { nombre:"Cold brew con tónica", detalle:"Infusión en frío de 18 horas, con naranja.", precio:5600 },
+      { nombre:"Latte de vainilla", detalle:"Con jarabe de vainilla hecho acá.", precio:5000 },
+      { nombre:"Chocolate caliente", detalle:"Cacao amargo al 70 % con leche entera.", precio:4800 }
+    ]},
+    { categoria:"Brunch", platos:[
+      { nombre:"Huevos benedictinos", detalle:"Sobre masa madre, con jamón crudo y holandesa.", precio:13800, tags:["El más pedido"] },
+      { nombre:"Palta, pomelo y huevo", detalle:"Tostada de centeno, palta, pomelo rosado y huevo poché.", precio:12400 },
+      { nombre:"Shakshuka", detalle:"Huevos en salsa de tomate especiada, con pan para mojar.", precio:12900 },
+      { nombre:"Bowl de yogur", detalle:"Yogur griego, granola de la casa y frutas de estación.", precio:8900, tags:["Sin TACC"] },
+      { nombre:"Brunch para dos", detalle:"Dos cafés, dos jugos, huevos revueltos, tostadas, palta y una porción dulce.", precio:32000, tags:["Para compartir"] }
+    ]},
+    { categoria:"Pastelería", platos:[
+      { nombre:"Medialuna de manteca", detalle:"Sale del horno a las 8 y a las 16.", precio:1900 },
+      { nombre:"Cinnamon roll", detalle:"Con glaseado de queso crema.", precio:4200 },
+      { nombre:"Budín de limón y amapola", detalle:"La porción.", precio:3600 },
+      { nombre:"Chocotorta de la casa", detalle:"La de siempre, pero con mascarpone.", precio:5800 }
+    ]},
+    { categoria:"Sin TACC", platos:[
+      { nombre:"Tostadas sin TACC", detalle:"Pan de trigo sarraceno, con manteca y mermelada.", precio:6400, tags:["Sin TACC"] },
+      { nombre:"Brownie de almendras", detalle:"Húmedo, con nueces.", precio:4600, tags:["Sin TACC"] },
+      { nombre:"Huevos revueltos", detalle:"Con pan sin TACC y palta.", precio:11200, tags:["Sin TACC"] }
+    ]}
+  ]
+};
+
+/* ---------- Utilidades ---------- */
+const $ = s => document.querySelector(s);
+const pesos = n => "$ " + new Intl.NumberFormat("es-AR").format(n);
+const DIAS = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const may = s => s.charAt(0).toUpperCase() + s.slice(1);
+const hhmm = h => { const t=h%24, hh=Math.floor(t), mm=Math.round((t-hh)*60); return String(hh).padStart(2,"0")+":"+String(mm).padStart(2,"0"); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ICONO_SALIDA = `<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4h9v9M16 4 5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+function ahoraLocal(){
+  try{
+    const p = new Intl.DateTimeFormat("en-US",{timeZone:LOCAL.zonaHoraria,weekday:"short",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());
+    const g = t => p.find(x=>x.type===t).value;
+    return { dia:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(g("weekday")), hora:(parseInt(g("hour"),10)%24)+parseInt(g("minute"),10)/60 };
+  }catch(e){ const d=new Date(); return {dia:d.getDay(), hora:d.getHours()+d.getMinutes()/60}; }
+}
+function estadoAhora(){
+  const {dia,hora} = ahoraLocal();
+  for (const [a,b] of (LOCAL.horarios[dia]||[])) if (hora>=a && hora<b) return {abierto:true, hasta:b};
+  for (let i=0;i<8;i++){ const d=(dia+i)%7; for (const [a] of (LOCAL.horarios[d]||[])) if (i>0 || a>hora) return {abierto:false, cuando:i===0?"hoy":i===1?"mañana":"el "+DIAS[d], desde:a}; }
+  return {abierto:false};
+}
+function pintarEstado(){
+  const e = estadoAhora(), el = $("#estado");
+  el.classList.toggle("cerrado", !e.abierto);
+  el.textContent = e.abierto ? `Abierto hasta las ${hhmm(e.hasta)}` : (e.desde!=null ? `Cerrado. Abrimos ${e.cuando} a las ${hhmm(e.desde)}` : "Cerrado por ahora");
+}
+
+/* ---------- Franjas del día ---------- */
+function pintarFranjas(){
+  const {hora} = ahoraLocal(), abierto = estadoAhora().abierto;
+  // la franja "actual" es la última que empezó y no terminó
+  let actual = -1; LOCAL.franjas.forEach((f,i)=>{ if (abierto && hora>=f.desde && hora<f.hasta) actual=i; });
+  $("#franjas").innerHTML = LOCAL.franjas.map((f,i)=>`
+    <li class="franja ${i===actual?"ahora":""}">
+      ${i===actual?`<span class="chip">Ahora</span>`:""}
+      <span class="horas">De ${hhmm(f.desde)} a ${hhmm(f.hasta)}</span>
+      <h3>${esc(f.nombre)}</h3>
+      <p>${esc(f.texto)}</p>
+    </li>`).join("");
+}
+
+/* ---------- Canales ---------- */
+const waLink = t => `https://wa.me/${LOCAL.whatsapp}?text=${encodeURIComponent(t)}`;
+function canales(){
+  return [
+    LOCAL.pedidosya && {id:"pedidosya", nombre:"PedidosYa", url:LOCAL.pedidosya, color:"#ea004b", nota:"Envío a domicilio"},
+    LOCAL.rappi && {id:"rappi", nombre:"Rappi", url:LOCAL.rappi, color:"#ff5a36", nota:"Envío a domicilio"},
+    LOCAL.whatsapp && {id:"whatsapp", nombre:"WhatsApp", url:waLink("Hola Almendra, quiero hacer un pedido para retirar."), color:"#3fbf6b", nota:"Retirás en el local, sin comisión"}
+  ].filter(Boolean);
+}
+function pintarBotones(){
+  const c = canales(), apps = c.filter(x=>x.id!=="whatsapp");
+  $("#acciones-hero").innerHTML = `<a class="boton boton-principal" href="#reservas">Reservar mesa</a>` +
+    apps.map(x=>`<a class="boton boton-secundario" href="${x.url}" target="_blank" rel="noopener"><span class="marca-app" style="background:${x.color}" aria-hidden="true"></span>Pedir por ${x.nombre}</a>`).join("");
+  $("#apps").innerHTML = c.map(x=>`<a class="app" href="${x.url}" target="_blank" rel="noopener"><span class="marca-app" style="background:${x.color}" aria-hidden="true"></span><span><b>${x.nombre}</b><small>${x.nota}</small></span>${ICONO_SALIDA}</a>`).join("");
+  $("#delivery").hidden = !c.length;
+  $("#barra-movil").innerHTML = `<a class="boton boton-principal" href="#reservas">Reservar mesa</a>` + (c.length?`<a class="boton boton-secundario" href="#delivery">Pedir a casa</a>`:"");
+}
+
+/* ---------- Carta ---------- */
+let catActiva = 1;
+function pintarCarta(enfocar){
+  $("#pestanas").innerHTML = LOCAL.carta.map((c,i)=>`<button class="pestana" type="button" role="tab" id="tab-${i}" aria-controls="platos" aria-selected="${i===catActiva}" tabindex="${i===catActiva?0:-1}" data-i="${i}">${esc(c.categoria)}</button>`).join("");
+  $("#platos").setAttribute("aria-labelledby","tab-"+catActiva);
+  $("#platos").innerHTML = LOCAL.carta[catActiva].platos.map(p=>`
+    <article class="plato">
+      <h3>${esc(p.nombre)}</h3><span class="precio">${pesos(p.precio)}</span>
+      <p>${esc(p.detalle)}</p>
+      ${p.tags?`<div class="meta">${p.tags.map(t=>`<span class="tag ${t==="Sin TACC"?"sin-tacc":""}">${esc(t)}</span>`).join("")}</div>`:""}
+    </article>`).join("");
+  $("#nota-carta").textContent = `Carta actualizada en ${LOCAL.actualizada}. Aceptamos efectivo, débito, crédito y Mercado Pago.`;
+  if (enfocar) document.getElementById("tab-"+catActiva).focus({preventScroll:true});
+}
+$("#pestanas").addEventListener("click", e=>{ const b=e.target.closest(".pestana"); if(!b) return; catActiva=+b.dataset.i; pintarCarta(true); });
+$("#pestanas").addEventListener("keydown", e=>{ const n=LOCAL.carta.length,k=e.key;
+  if(k==="ArrowRight")catActiva=(catActiva+1)%n; else if(k==="ArrowLeft")catActiva=(catActiva-1+n)%n; else if(k==="Home")catActiva=0; else if(k==="End")catActiva=n-1; else return;
+  e.preventDefault(); pintarCarta(true); });
+
+/* ---------- Café de la semana, fotos y datos ---------- */
+function pintarOrigen(){
+  const o = LOCAL.origen;
+  $("#titulo-origen").textContent = o.nombre; $("#origen-texto").textContent = o.texto;
+  $("#origen-notas").innerHTML = o.notas.map(n=>`<span>${esc(n)}</span>`).join("");
+  $("#origen-ficha").innerHTML = o.ficha.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
+}
+function pintarFotos(){
+  $("#fotos").innerHTML = LOCAL.fotos.map(f=> f.src
+    ? `<figure class="ranura"><img src="${f.src}" alt="${esc(f.texto)}" loading="lazy" decoding="async"></figure>`
+    : `<figure class="ranura vacia" role="img" aria-label="${esc(f.texto)}"><figcaption>${esc(f.texto)}</figcaption></figure>`).join("");
+}
+function pintarDatos(){
+  $("#d-direccion").textContent = LOCAL.direccion; $("#d-zona").textContent = LOCAL.zona; $("#d-mapa").href = LOCAL.mapa;
+  $("#d-telefono").textContent = LOCAL.telefonoVisible; $("#d-instagram").textContent = LOCAL.instagram;
+  const hoy = ahoraLocal().dia;
+  $("#d-horarios").innerHTML = [1,2,3,4,5,6,0].map(d=>{ const t=LOCAL.horarios[d]||[];
+    return `<li class="${d===hoy?"hoy":""}"><span>${may(DIAS[d])}${d===hoy?", hoy":""}</span><span>${t.length?t.map(([a,b])=>`${hhmm(a)} a ${hhmm(b)}`).join(" y "):"Cerrado"}</span></li>`; }).join("");
+}
+
+/* ---------- Reservas ---------- */
+let personas = 2;
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const diaDe = v => { const [y,m,d]=v.split("-").map(Number); return new Date(y,m-1,d); };
+function horasDisponibles(){
+  const v=$("#r-fecha").value, d=v?diaDe(v).getDay():ahoraLocal().dia, sel=$("#r-hora"), prev=sel.value, turnos=LOCAL.horarios[d]||[];
+  sel.innerHTML="";
+  if(!turnos.length){ sel.innerHTML=`<option value="">Cerrado ese día</option>`; sel.disabled=true; return; }
+  sel.disabled=false;
+  for(const [a,b] of turnos) for(let h=a; h<=b-1; h+=0.5) sel.insertAdjacentHTML("beforeend",`<option>${hhmm(h)}</option>`);
+  if([...sel.options].some(o=>o.value===prev)) sel.value=prev; else sel.value = [...sel.options].some(o=>o.value==="10:30") ? "10:30" : sel.options[0].value;
+}
+function pintarPersonas(){ $("#r-personas").textContent=personas; $("#menos").disabled=personas<=1; $("#mas").disabled=personas>=LOCAL.maxPersonas; }
+function prepararReserva(){
+  const f=$("#r-fecha"), hoy=new Date(), max=new Date(hoy); max.setDate(max.getDate()+45); f.min=iso(hoy); f.max=iso(max); f.value=iso(hoy);
+  horasDisponibles(); pintarPersonas(); f.addEventListener("change", horasDisponibles);
+  $("#menos").onclick=()=>{personas=Math.max(1,personas-1);pintarPersonas();};
+  $("#mas").onclick=()=>{personas=Math.min(LOCAL.maxPersonas,personas+1);pintarPersonas();};
+  $("#form-reserva").addEventListener("submit", e=>{
+    e.preventDefault(); const out=$("#resultado"); out.hidden=false;
+    if(!f.value){ out.innerHTML=`<span class="error">Falta el día. Elegilo en el calendario de arriba.</span>`; f.focus(); return; }
+    if(!$("#r-hora").value){ out.innerHTML=`<span class="error">Ese día estamos cerrados. Elegí otro día.</span>`; f.focus(); return; }
+    const fechaTxt=diaDe(f.value).toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"}), nombre=$("#r-nombre").value.trim(), lugar=document.querySelector('input[name="lugar"]:checked').value;
+    const msg=`Hola Almendra, quiero reservar una mesa ${lugar} para ${personas} ${personas===1?"persona":"personas"} el ${fechaTxt} a las ${$("#r-hora").value}${nombre?`, a nombre de ${nombre}`:""}.`;
+    out.innerHTML=`Este es el mensaje que vas a mandar:<blockquote>${esc(msg)}</blockquote><div class="fila"><a class="boton boton-principal" href="${waLink(msg)}" target="_blank" rel="noopener">Abrir WhatsApp</a><button type="button" class="boton boton-secundario" id="copiar">Copiar mensaje</button></div><p style="margin:12px 0 0">Si WhatsApp no se abre, escribinos al ${esc(LOCAL.telefonoVisible)}.</p>`;
+    $("#copiar").onclick=async ev=>{ try{await navigator.clipboard.writeText(msg);ev.target.textContent="Mensaje copiado";}catch(_){const r=document.createRange();r.selectNodeContents(out.querySelector("blockquote"));const s=getSelection();s.removeAllRanges();s.addRange(r);ev.target.textContent="Seleccionado, copialo";} };
+  });
+}
+
+const cab=$("#cabecera"), barra=$("#barra-movil");
+function alScroll(){ cab.classList.toggle("solida", scrollY>30); barra.classList.toggle("visible", scrollY>innerHeight*.55); }
+addEventListener("scroll", alScroll, {passive:true});
+
+/* =========================================================
+   MAÑANA: luz de ventana, sombra de hojas que se mece
+   y vapor que sube de la taza. Movimiento lento a propósito.
+   ========================================================= */
+(function manana(){
+  const cv=$("#manana"), ctx=cv.getContext("2d");
+  const reducir=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W=0,H=0,t=0,raf=0,visible=true;
+  // ruido
+  const P=new Uint8Array(512); { const p=[...Array(256).keys()]; for(let i=255;i>0;i--){const j=(Math.random()*(i+1))|0;[p[i],p[j]]=[p[j],p[i]];} for(let i=0;i<512;i++)P[i]=p[i&255]; }
+  const fade=x=>x*x*(3-2*x), rnd=(x,y)=>P[(P[x&255]+y)&511]/255;
+  function ruido(x,y){ const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,a=rnd(xi,yi),b=rnd(xi+1,yi),c=rnd(xi,yi+1),d=rnd(xi+1,yi+1),u=fade(xf),v=fade(yf); return a+(b-a)*u+(c-a)*v*(1-u)+(d-b)*u*v; }
+  const fbm=(x,y)=>ruido(x,y)*.55+ruido(x*2.1,y*2.1)*.3+ruido(x*4.3,y*4.3)*.15;
+
+  // sombra de hojas: se calcula en baja resolución y se agranda suavizada
+  const hojas=document.createElement("canvas"), hctx=hojas.getContext("2d");
+  const HW=96, HH=64; hojas.width=HW; hojas.height=HH;
+  const img=hctx.createImageData(HW,HH);
+  function pintarHojas(){
+    const vx=Math.sin(t*.004)*.35, vy=Math.cos(t*.003)*.2;
+    for(let y=0;y<HH;y++) for(let x=0;x<HW;x++){
+      const n=fbm(x*.07+vx+t*.0006, y*.07+vy);
+      let a=(n-.5)/.18; a=Math.max(0,Math.min(1,a)); a=a*a*(3-2*a);
+      const i=(y*HW+x)*4; img.data[i]=60; img.data[i+1]=78; img.data[i+2]=52; img.data[i+3]=a*44;
+    }
+    hctx.putImageData(img,0,0);
+  }
+  let taza={x:0,y:0,s:1}, vapores=[];
+  function armar(){
+    const dpr=Math.min(devicePixelRatio||1,2); W=cv.clientWidth; H=cv.clientHeight;
+    cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+    const ancho=W>=960;
+    taza = ancho ? {x:W*.74, y:H*.66, s:Math.min(1.25,W/1100)} : {x:W*.5, y:H-120, s:.8};
+    vapores=Array.from({length:4},(_,i)=>({fase:Math.random()*10, off:(i-1.5)*14, vel:.55+Math.random()*.3, anch:7+Math.random()*5}));
+  }
+  function dibujarTaza(){
+    const {x,y,s}=taza; ctx.save(); ctx.translate(x,y); ctx.scale(s,s);
+    // sombra
+    let g=ctx.createRadialGradient(18,78,10,18,78,170); g.addColorStop(0,"rgba(60,48,38,.20)"); g.addColorStop(1,"rgba(60,48,38,0)");
+    ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(18,80,170,34,0,0,Math.PI*2); ctx.fill();
+    // plato
+    ctx.fillStyle="#fbfbf8"; ctx.beginPath(); ctx.ellipse(0,64,136,28,0,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle="rgba(42,32,26,.10)"; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.fillStyle="rgba(42,32,26,.05)"; ctx.beginPath(); ctx.ellipse(0,62,92,16,0,0,Math.PI*2); ctx.fill();
+    // asa
+    ctx.strokeStyle="#f4f4ef"; ctx.lineWidth=15; ctx.beginPath(); ctx.ellipse(86,6,30,26,0,-1.25,1.25); ctx.stroke();
+    ctx.strokeStyle="rgba(42,32,26,.10)"; ctx.lineWidth=1.5; ctx.beginPath(); ctx.ellipse(86,6,37,33,0,-1.15,1.15); ctx.stroke();
+    // cuerpo
+    g=ctx.createLinearGradient(-90,0,90,0); g.addColorStop(0,"#eceee7"); g.addColorStop(.35,"#ffffff"); g.addColorStop(1,"#e1e4dc");
+    ctx.fillStyle=g; ctx.beginPath(); ctx.moveTo(-90,-34); ctx.bezierCurveTo(-88,30,-56,62,0,62); ctx.bezierCurveTo(56,62,88,30,90,-34); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle="rgba(42,32,26,.10)"; ctx.stroke();
+    // borde y café
+    ctx.fillStyle="#f7f8f4"; ctx.beginPath(); ctx.ellipse(0,-34,90,20,0,0,Math.PI*2); ctx.fill();
+    g=ctx.createRadialGradient(-10,-36,4,0,-34,80); g.addColorStop(0,"#b98a63"); g.addColorStop(.55,"#8a5c3c"); g.addColorStop(1,"#5d3a25");
+    ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(0,-33,80,15,0,0,Math.PI*2); ctx.fill();
+    // corazón de latte
+    ctx.fillStyle="rgba(246,235,220,.92)"; ctx.beginPath(); ctx.moveTo(0,-26);
+    ctx.bezierCurveTo(-30,-34,-24,-46,-8,-43); ctx.bezierCurveTo(-3,-42,0,-39,0,-37); ctx.bezierCurveTo(0,-39,3,-42,8,-43); ctx.bezierCurveTo(24,-46,30,-34,0,-26); ctx.fill();
+    ctx.restore();
+  }
+  function dibujarVapor(){
+    const {x,y,s}=taza, base=y-38*s, alto=Math.min(H*.55, 300*s);
+    ctx.save(); ctx.lineCap="round"; ctx.lineJoin="round";
+    for(const v of vapores){
+      for(let capa=0; capa<3; capa++){
+        ctx.beginPath();
+        const pasos=34;
+        for(let i=0;i<=pasos;i++){
+          const p=i/pasos, yy=base - p*alto;
+          const onda=Math.sin(p*5.2 - t*.012*v.vel + v.fase)*(4+p*26) + (ruido(p*3+v.fase, t*.004)-.5)*36*p;
+          const xx=x + v.off*s*(1-p*.4) + onda*s;
+          i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy);
+        }
+        const g=ctx.createLinearGradient(0,base,0,base-alto);
+        const a=[.10,.06,.035][capa];
+        g.addColorStop(0,`rgba(255,255,255,0)`); g.addColorStop(.12,`rgba(255,255,255,${a})`); g.addColorStop(.6,`rgba(255,255,255,${a*.6})`); g.addColorStop(1,"rgba(255,255,255,0)");
+        ctx.strokeStyle=g; ctx.lineWidth=v.anch*s*(1+capa*1.8); ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+  function cuadro(){
+    t++;
+    ctx.fillStyle="#f1f3ee"; ctx.fillRect(0,0,W,H);
+    // luz que entra en diagonal
+    ctx.save(); ctx.translate(W*.55,-H*.1); ctx.rotate(-.42);
+    const g=ctx.createLinearGradient(-W*.3,0,W*.3,0);
+    const brillo=.42+Math.sin(t*.003)*.04;
+    g.addColorStop(0,"rgba(255,236,214,0)"); g.addColorStop(.3,`rgba(255,236,214,${brillo})`); g.addColorStop(.7,`rgba(255,236,214,${brillo})`); g.addColorStop(1,"rgba(255,236,214,0)");
+    ctx.fillStyle=g; ctx.fillRect(-W*.3,0,W*.6,H*2.2); ctx.restore();
+    if(t%2===1) pintarHojas();
+    ctx.save(); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.globalCompositeOperation="multiply";
+    ctx.drawImage(hojas,-W*.05,-H*.05,W*1.1,H*1.1); ctx.restore();
+    dibujarTaza(); dibujarVapor();
+  }
+  const loop=()=>{ cuadro(); raf=requestAnimationFrame(loop); };
+  const iniciar=()=>{ if(!raf && visible && !document.hidden && !reducir) raf=requestAnimationFrame(loop); };
+  const frenar=()=>{ cancelAnimationFrame(raf); raf=0; };
+  armar(); for(let i=0;i<60;i++) t++; cuadro(); iniciar();
+  let rt, anchoPrevio=innerWidth;
+  addEventListener("resize",()=>{ if(innerWidth===anchoPrevio)return; anchoPrevio=innerWidth; clearTimeout(rt); rt=setTimeout(()=>{armar();cuadro();},150); });
+  new IntersectionObserver(([e])=>{ visible=e.isIntersecting; visible?iniciar():frenar(); }).observe(cv);
+  document.addEventListener("visibilitychange",()=>document.hidden?frenar():iniciar());
+})();
+
+pintarEstado(); setInterval(()=>{pintarEstado();pintarFranjas();},60000);
+pintarFranjas(); pintarBotones(); pintarCarta(false); pintarOrigen(); pintarFotos(); pintarDatos(); prepararReserva(); alScroll();
+</script>
+
+</body>
+</html>

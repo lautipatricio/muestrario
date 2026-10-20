@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Fierro Parrilla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+/* Layout (según Seki Forge): hero de foto a pantalla completa con FIERRO de borde a borde arriba, regla de leyenda y datos en las esquinas → reserva 3/6/3 con la parrilla en un círculo y barra de acción en brasa → carta con nombre vertical, fichas y pozo de foto → ensayo de fotos sobre nogal → delivery en papel crema con dos hojas → manifiesto con cifras → pie en columnas con marquesina. Ángulos rectos, filetes de 1 px, sin sombras. Una sola apariencia, nocturna, elegida a propósito. */
+:root{
+  color-scheme: dark;
+  --carbon:#1B1814;
+  --carbon-2:#221e19;
+  --nogal:#5A3A22;
+  --crema:#F0E9D7;
+  --brasa:#B64A2A;
+  --brasa-viva:#d9653d;
+  --acero:#8A8E92;
+  --filete:rgba(240,233,215,.10);
+  --filete-fuerte:rgba(240,233,215,.15);
+  --vidrio:rgba(240,233,215,.06);
+  --vidrio-borde:rgba(240,233,215,.12);
+  --calor:rgba(182,74,42,.25);
+  --resplandor:rgba(182,74,42,.40);
+  --f-display:"Fraunces","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --f-body:"Inter","Helvetica Neue",Arial,sans-serif;
+  --gl:max(16px, env(safe-area-inset-left, 0px));
+  --gr:max(16px, env(safe-area-inset-right, 0px));
+  --seccion:clamp(80px,11vw,128px);
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Bloqueo del desplazamiento lateral en el celular */
+html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+body{position:relative;width:100%;margin:0;background:var(--carbon);color:var(--crema);font-family:var(--f-body);font-weight:400;font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+main,footer,section{max-width:100%;overflow-x:clip}
+img,svg,canvas{max-width:100%}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:1.5px solid var(--crema);outline-offset:4px}
+.envoltura{width:100%;max-width:1280px;margin-inline:auto;padding-left:var(--gl);padding-right:var(--gr)}
+@media (min-width:760px){.envoltura{--gl:max(32px, env(safe-area-inset-left, 0px));--gr:max(32px, env(safe-area-inset-right, 0px))}}
+.etiqueta{font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--acero);line-height:1.5}
+.etiqueta.brasa{color:var(--brasa-viva)}
+h1,h2,h3,h4{margin:0;font-weight:500;text-wrap:balance}
+h2.titulo{font-family:var(--f-display);font-size:clamp(42px,6.4vw,88px);line-height:1.02;letter-spacing:-.02em;font-variation-settings:"opsz" 144}
+.dim{color:rgba(240,233,215,.7)}
+.foto{display:block;width:100%;height:100%;object-fit:cover}
+.marco{position:relative;overflow:hidden;background:var(--nogal);max-width:100%;margin:0}
+.marco .rotulo{position:absolute;left:14px;bottom:12px;z-index:1;color:var(--crema);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.marco .rotulo-arriba{position:absolute;right:14px;top:12px;z-index:1;color:var(--brasa-viva);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+@media (prefers-reduced-motion:no-preference){.sube{transition:transform 1s cubic-bezier(.2,.7,.2,1)}.js .sube.espera{transform:translateY(40px)}}
+
+/* ---------- Botones ---------- */
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 24px;border-radius:0;font-family:var(--f-display);font-size:18px;font-weight:500;letter-spacing:-.01em;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background-color .25s,box-shadow .3s,border-color .25s;white-space:nowrap;max-width:100%;position:relative;overflow:hidden}
+.boton svg{width:18px;height:18px;flex:none}
+.boton-crema{background:var(--crema);color:var(--carbon)}
+.boton-crema:hover{background:#fff8e8}
+.boton-linea{border-color:rgba(240,233,215,.35);color:var(--crema);background:rgba(27,24,20,.3)}
+.boton-linea:hover{border-color:var(--crema)}
+.onda{position:absolute;border-radius:9999px;background:rgba(240,233,215,.35);width:12px;height:12px;transform:translate(-50%,-50%);pointer-events:none;animation:onda .8s ease-out forwards}
+@keyframes onda{to{transform:translate(-50%,-50%) scale(40);opacity:0}}
+.punto{width:7px;height:7px;border-radius:9999px;flex:none;display:inline-block}
+
+/* ---------- Navegación: transparente sobre la foto, sólida al bajar ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--carbon)}
+.nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;color:var(--crema);border-bottom:1px solid transparent;transition:background-color .35s,border-color .35s}
+.nav::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);transition:opacity .35s;pointer-events:none}
+.nav.solida{background:rgba(27,24,20,.95);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--filete)}
+.nav.solida::before{opacity:0}
+.nav .envoltura{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;height:64px}
+@media (min-width:1000px){.nav .envoltura{grid-template-columns:1fr auto 1fr}}
+.marca{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:15px;font-weight:500;letter-spacing:.3em;text-decoration:none;white-space:nowrap}
+.marca svg{width:18px;height:18px;flex:none}
+.marca span{color:rgba(240,233,215,.55)}
+.nav ul{list-style:none;margin:0;padding:0;display:none;gap:32px}
+@media (min-width:1000px){.nav ul{display:flex}}
+.nav ul a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center;color:rgba(240,233,215,.8)}
+.nav ul a:hover{color:var(--crema)}
+.nav-der{display:flex;align-items:center;justify-content:flex-end;gap:20px}
+.nav-meta{display:none;color:rgba(240,233,215,.7)}
+@media (min-width:1180px){.nav-meta{display:inline}}
+.nav-reservar{display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:0 14px;border:1px solid rgba(240,233,215,.35);text-decoration:none;color:var(--crema)}
+.nav-reservar:hover{border-color:var(--crema)}
+.vivo{background:var(--brasa-viva);animation:vivo 2.4s ease-out infinite}
+@keyframes vivo{0%{box-shadow:0 0 0 0 rgba(217,101,61,.6)}100%{box-shadow:0 0 0 10px rgba(217,101,61,0)}}
+.apagado{background:var(--acero);animation:none}
+@media (prefers-reduced-motion:reduce){.vivo{animation:none}}
+@media (max-width:400px){.marca{font-size:13px;letter-spacing:.22em}.marca .sub{display:none}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;height:100svh;min-height:620px;max-height:1080px;overflow:hidden;isolation:isolate;background:#0b0a08}
+.hero-imagen{position:absolute;inset:0;z-index:-3;will-change:transform}
+@media (prefers-reduced-motion:no-preference){.hero-imagen{animation:telon 1.6s cubic-bezier(.65,0,.35,1) both}}
+@keyframes telon{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.hero-imagen img{object-position:50% 62%}
+@media (max-width:760px){.hero-imagen img{object-position:60% 70%}}
+#chispas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.1) 45%,rgba(0,0,0,.45) 100%),radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.65) 100%)}
+.hero-arriba{position:absolute;left:0;right:0;top:calc(64px + env(safe-area-inset-top,0px))}
+.palabra{display:block;font-family:var(--f-display);font-weight:500;font-size:clamp(5rem,22vw,22rem);line-height:.86;letter-spacing:-.04em;font-variation-settings:"opsz" 144;white-space:nowrap;margin:clamp(4px,1.5vw,18px) 0 0 -.03em;overflow:hidden;padding-bottom:.05em}
+.palabra span{display:inline-block}
+.palabra i{font-style:normal;color:var(--brasa-viva)}
+@media (prefers-reduced-motion:no-preference){.palabra span{animation:asoma 1.4s cubic-bezier(.2,.8,.2,1) .6s both}}
+@keyframes asoma{from{transform:translateY(80%)}to{transform:none}}
+.leyenda{display:flex;align-items:center;gap:16px;margin-top:clamp(4px,1vw,12px)}
+.leyenda i{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--brasa) 30%,var(--brasa) 70%,transparent);min-width:20px}
+.leyenda span{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(15px,1.6vw,20px);white-space:nowrap;color:rgba(240,233,215,.88)}
+.leyenda svg{width:16px;height:16px;color:var(--brasa-viva);flex:none}
+.hero-abajo{position:absolute;left:0;right:0;bottom:0;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+.hero-abajo .envoltura{display:grid;grid-template-columns:1fr auto;align-items:end;gap:16px}
+.hero-abajo .der{text-align:right}
+@media (max-width:640px){.hero-abajo .envoltura{grid-template-columns:1fr}.hero-abajo .der{display:none}}
+.hero-abajo .etiqueta{color:rgba(240,233,215,.75)}
+.hero-abajo .etiqueta b{color:var(--crema);font-weight:500}
+.acciones-hero{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;grid-column:1 / -1}
+@media (max-width:560px){.acciones-hero .boton{flex:1 1 100%}}
+.vertical-der{position:absolute;right:max(10px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);writing-mode:vertical-rl;color:rgba(240,233,215,.6);display:none}
+@media (min-width:900px){.vertical-der{display:block}}
+
+/* ---------- Reserva (Commission) ---------- */
+.reserva{position:relative;padding-block:var(--seccion);isolation:isolate}
+.reserva::before{content:"";position:absolute;left:50%;top:40%;width:min(1000px,150vw);height:min(1000px,150vw);transform:translate(-50%,-50%);background:radial-gradient(circle,var(--calor),transparent 60%);z-index:-1;pointer-events:none}
+.cabeza-centro{text-align:center;max-width:720px;margin:0 auto 64px;display:grid;gap:16px;justify-items:center}
+.cabeza-centro p{margin:0;max-width:48ch}
+.escenario{display:grid;grid-template-columns:1fr;gap:28px}
+@media (min-width:1000px){.escenario{grid-template-columns:repeat(12,minmax(0,1fr));gap:32px;align-items:start}.col-izq{grid-column:1 / span 3}.col-centro{grid-column:4 / span 6}.col-der{grid-column:10 / span 3}}
+.col-izq,.col-der{display:grid;gap:12px;min-width:0;align-content:start}
+.col-centro{order:-1;min-width:0}
+@media (min-width:1000px){.col-centro{order:0}}
+.grupo{display:grid;gap:8px;border:0;margin:0;padding:0;min-width:0}
+.grupo legend{padding:0;margin-bottom:8px}
+.lista-opciones{display:grid;gap:8px}
+.lista-opciones.dos{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:999px){.lista-opciones{grid-template-columns:repeat(2,minmax(0,1fr))}.lista-opciones.dos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.carta-op{display:grid;gap:2px;text-align:left;min-height:56px;padding:12px 16px;background:var(--vidrio);border:1px solid var(--vidrio-borde);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);cursor:pointer;transition:background-color .25s,border-color .25s;min-width:0}
+.carta-op:hover{background:rgba(240,233,215,.10);border-color:rgba(182,74,42,.5)}
+.carta-op b{font-family:var(--f-display);font-weight:400;font-size:17px;letter-spacing:-.01em;font-feature-settings:"ss01","tnum"}
+.carta-op .etiqueta{font-size:10px}
+.carta-op[aria-pressed="true"]{border-color:var(--brasa-viva);background:rgba(182,74,42,.18)}
+.carta-op.hora{min-height:48px;padding:10px 12px;place-items:center;text-align:center}
+.carta-op.hora b{font-size:16px}
+.tarjeta{padding:14px 16px;background:var(--vidrio);border:1px solid var(--vidrio-borde);display:grid;gap:10px}
+.contador{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.contador button{width:44px;height:44px;border:1px solid var(--vidrio-borde);background:transparent;font-size:20px;cursor:pointer}
+.contador button:hover:not(:disabled){border-color:var(--crema)}
+.contador button:disabled{opacity:.3;cursor:default}
+.contador output{font-family:var(--f-display);font-size:34px;font-feature-settings:"ss01","tnum";line-height:1}
+.campo-texto{width:100%;min-height:44px;border:0;border-bottom:1px solid var(--vidrio-borde);background:transparent;padding:0;font-size:16px}
+.campo-texto:focus{outline:none;border-bottom-color:var(--crema)}
+.campo-texto::placeholder{color:var(--acero)}
+.otra-fecha{width:100%;min-height:44px;border:1px solid var(--vidrio-borde);background:transparent;padding:0 12px;font-size:14px;color-scheme:dark}
+.cerrado-msg{margin:0;font-size:14px;color:rgba(240,233,215,.7);grid-column:1 / -1}
+.escena{display:grid;justify-items:center;gap:20px}
+.circulo{position:relative;width:min(100%,460px);aspect-ratio:1}
+.centro-dial{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:8px;padding-top:24px}
+.centro-dial .hora-grande{font-family:var(--f-display);font-weight:400;font-size:clamp(56px,13vw,92px);line-height:.9;letter-spacing:-.03em;font-feature-settings:"ss01","tnum";font-variation-settings:"opsz" 144}
+.centro-dial .fecha-texto{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(16px,2.6vw,20px);color:rgba(240,233,215,.85)}
+.circulo svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#aguja{transition:transform .9s cubic-bezier(.3,1.4,.4,1);transform-origin:160px 160px}
+@media (prefers-reduced-motion:reduce){#aguja{transition:none}}
+.resumen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;max-width:520px;border:1px solid var(--filete-fuerte)}
+.resumen div{padding:12px 10px;display:grid;gap:4px;text-align:center;border-left:1px solid var(--filete-fuerte);min-width:0}
+.resumen div:first-child{border-left:0}
+.resumen .etiqueta{font-size:9.5px;color:var(--brasa-viva)}
+.resumen b{font-family:var(--f-display);font-weight:400;font-size:15px;line-height:1.2;overflow-wrap:anywhere;font-feature-settings:"ss01","tnum"}
+.barra-cta{display:grid;grid-template-columns:1fr;align-items:center;gap:6px;width:100%;margin-top:48px;min-height:84px;padding:18px 28px;background:var(--brasa);color:var(--crema);border:1px solid rgba(240,233,215,.2);cursor:pointer;text-align:center;transition:box-shadow .3s;position:relative;overflow:hidden}
+.barra-cta:hover{box-shadow:0 0 60px var(--resplandor)}
+.barra-cta .grande{font-family:var(--f-display);font-weight:500;font-size:clamp(22px,3vw,34px);letter-spacing:-.01em;display:inline-flex;align-items:center;justify-content:center;gap:16px}
+.barra-cta .grande svg{width:28px;height:20px}
+.barra-cta .etiqueta{color:rgba(240,233,215,.85)}
+@media (min-width:860px){.barra-cta{grid-template-columns:1fr auto 1fr}.barra-cta .etiqueta:first-child{text-align:left}.barra-cta .etiqueta:last-child{text-align:right}}
+.resultado{margin-top:16px;border:1px solid var(--vidrio-borde);padding:20px;display:grid;gap:14px}
+.resultado blockquote{margin:0;font-family:var(--f-display);font-style:italic;font-weight:300;font-size:18px;line-height:1.5;overflow-wrap:anywhere}
+.resultado .fila{display:flex;flex-wrap:wrap;gap:10px}
+.resultado .boton{min-height:48px;font-size:17px;padding:0 20px}
+.error{color:#f0a487}
+
+/* ---------- Carta (Collection) ---------- */
+.carta{border-top:1px solid var(--filete)}
+.carta-cabeza{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px;padding-block:var(--seccion) 32px}
+.carta-cabeza p{margin:0;max-width:36ch}
+.pestanas{display:flex;gap:28px;overflow-x:auto;scrollbar-width:none;max-width:100%;border-top:1px solid var(--filete-fuerte);border-bottom:1px solid var(--filete);touch-action:pan-x pan-y pinch-zoom}
+.pestanas::-webkit-scrollbar{display:none}
+.pestana{flex:none;min-height:56px;border:0;background:transparent;padding:0;cursor:pointer;font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--acero);border-bottom:1px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}
+.pestana:hover{color:var(--crema)}
+.pestana[aria-selected="true"]{color:var(--crema);border-bottom-color:var(--brasa-viva)}
+.panel-carta{display:grid;grid-template-columns:1fr;gap:28px;padding-block:48px var(--seccion)}
+@media (min-width:1000px){.panel-carta{grid-template-columns:repeat(12,minmax(0,1fr));gap:32px;align-items:start}.nombre-cat{grid-column:1 / span 2}.platos-col{grid-column:3 / span 5}.pozo-col{grid-column:8 / span 5;position:sticky;top:96px}}
+.nombre-cat{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.nombre-cat .vertical{font-family:var(--f-display);font-weight:500;color:var(--brasa-viva);font-size:clamp(46px,12vw,96px);line-height:.88;letter-spacing:-.03em;font-variation-settings:"opsz" 144;text-transform:uppercase}
+@media (min-width:1000px){.nombre-cat{flex-direction:column}.nombre-cat .vertical{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-size:var(--fs-vertical,96px)}}
+.platos-col{display:grid;gap:18px;min-width:0}
+.platos-col .lead{display:grid;gap:8px;padding-bottom:6px}
+.platos-col .lead h3{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:-.01em}
+.platos-col .lead p{margin:0;max-width:44ch}
+.plato{display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 28px;padding:18px 0;border-top:1px solid var(--filete)}
+.plato h4{grid-column:1 / -1;display:flex;justify-content:space-between;gap:16px;align-items:baseline;font-family:var(--f-display);font-weight:400;font-size:21px;line-height:1.2;letter-spacing:-.01em}
+.plato h4 span{font-size:18px;font-feature-settings:"ss01","tnum";white-space:nowrap}
+.plato p{grid-column:1 / -1;margin:0 0 4px;font-size:14px;color:rgba(240,233,215,.7)}
+.plato dl{display:contents}
+.plato dt,.plato dd{margin:0}
+.plato dd{font-size:13px;font-variant-numeric:tabular-nums}
+.plato dd.sello{color:var(--brasa-viva)}
+.pozo-col .marco{aspect-ratio:4/5}
+@media (max-width:999px){.pozo-col{order:-1}.pozo-col .marco{aspect-ratio:16/10}}
+.coccion{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--filete-fuerte);margin-top:10px}
+.coccion div{padding:12px;display:grid;gap:6px;border-left:1px solid var(--filete-fuerte);min-width:0}
+.coccion div:first-child{border-left:0}
+.coccion .etiqueta{font-size:9.5px;color:var(--brasa-viva)}
+.coccion b{font-family:var(--f-display);font-weight:400;font-size:15px;line-height:1.2}
+.coccion i{display:block;height:2px}
+.nota-carta{margin:0;font-size:13px;color:var(--acero)}
+
+/* ---------- El fuego (Forge) sobre nogal ---------- */
+.nogal{position:relative;background-color:var(--nogal);padding-block:var(--seccion);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='600'><filter id='w'><feTurbulence type='fractalNoise' baseFrequency='.003 .11' numOctaves='3' seed='7'/><feColorMatrix values='0 0 0 0 .07  0 0 0 0 .04  0 0 0 0 .02  0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>"),repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 1px,transparent 1px 9px),linear-gradient(180deg,rgba(27,24,20,.5),rgba(27,24,20,.1) 25%,rgba(27,24,20,.1) 75%,rgba(27,24,20,.5));background-size:900px 600px,auto,100% 100%}
+.nogal .cabeza{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:56px}
+.nogal .cabeza h2{max-width:13ch}
+.nogal .palabra-brasa{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(48px,7vw,96px);line-height:.9;color:var(--brasa-viva);white-space:nowrap}
+@media (max-width:600px){.nogal .palabra-brasa{display:none}}
+.ensayo{display:grid;grid-template-columns:1fr;gap:40px}
+@media (min-width:900px){.ensayo{grid-template-columns:repeat(12,minmax(0,1fr));gap:40px}.ensayo .c1{grid-column:1 / span 4}.ensayo .c2{grid-column:5 / span 4;padding-top:48px}.ensayo .c3{grid-column:9 / span 4;padding-top:96px}}
+.ensayo > div{display:grid;gap:18px;align-content:start;min-width:0}
+.ensayo .marco{aspect-ratio:4/5}
+.ensayo .apaisada{aspect-ratio:4/3}
+.nota{display:grid;gap:8px}
+.nota p{margin:0;font-family:var(--f-display);font-style:italic;font-weight:300;font-size:19px;line-height:1.45}
+.lead-serif{font-family:var(--f-display);font-weight:400;font-size:22px;line-height:1.4;letter-spacing:-.01em;margin:0}
+.ensayo .c2 p{margin:0}
+.adorno{font-family:var(--f-display);font-style:italic;color:var(--brasa-viva);text-align:center;font-size:20px}
+.cita-brasa{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(22px,2.4vw,28px);line-height:1.35;color:var(--brasa-viva);margin:0}
+.paso-proceso{display:grid;gap:6px}
+.paso-proceso h4{font-family:var(--f-display);font-weight:500;font-size:22px}
+.paso-proceso p{margin:0;font-size:14px;color:rgba(240,233,215,.75)}
+
+/* ---------- Delivery (Care) en papel crema ---------- */
+.papel{background:var(--crema);color:var(--carbon);position:relative;isolation:isolate}
+.papel::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.55;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .28  0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>")}
+.papel .etiqueta{color:#6e6a63}
+.hojas{display:flex;flex-direction:column}
+@media (min-width:900px){.hojas{flex-direction:row}}
+.hoja{position:relative;flex:1;padding:clamp(48px,7vw,80px) clamp(20px,4vw,56px);display:grid;gap:18px;align-content:start;transition:flex .6s cubic-bezier(.2,.7,.2,1);min-width:0}
+.hoja + .hoja{border-top:1px solid rgba(27,24,20,.2)}
+@media (min-width:900px){.hoja + .hoja{border-top:0;border-left:1px solid rgba(27,24,20,.2)}.hojas:hover .hoja{flex:.6}.hojas .hoja:hover{flex:1.4}}
+@media (prefers-reduced-motion:reduce){.hoja{transition:none}}
+.hoja h3{font-family:var(--f-display);font-weight:500;font-size:clamp(36px,4vw,56px);line-height:1;letter-spacing:-.02em}
+.hoja p{margin:0;max-width:44ch;color:rgba(27,24,20,.78)}
+.hoja .marco{aspect-ratio:16/9;background:#2a1c12}
+.datos-hoja{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-top:1px solid rgba(27,24,20,.25);padding-top:14px}
+.datos-hoja span{font-family:var(--f-display);font-size:17px;display:block;color:var(--carbon);letter-spacing:-.01em;line-height:1.25}
+.datos-hoja b{display:block;font-weight:500}
+/* el sello vive en el borde de la segunda hoja: sigue al filete cuando las hojas cambian de tamaño */
+.sello-papel{position:absolute;z-index:2;left:50%;top:0;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:9999px;background:var(--crema);border:1px solid rgba(27,24,20,.35);color:var(--carbon);display:grid;place-items:center;text-align:center;font-family:var(--f-display);font-style:italic;font-size:14px;line-height:1.1;pointer-events:none}
+@media (min-width:900px){.sello-papel{left:0;top:50%}}
+.salidas{display:grid;border-top:1px solid rgba(27,24,20,.2)}
+.salida{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;min-height:60px;padding:10px 0;border-bottom:1px solid rgba(27,24,20,.2);text-decoration:none}
+.salida b{font-family:var(--f-display);font-weight:500;font-size:21px;letter-spacing:-.01em}
+.salida small{display:block;font-size:13px;color:rgba(27,24,20,.65)}
+.salida svg{width:20px;height:20px;transition:transform .25s}
+.salida:hover svg{transform:translateX(4px)}
+
+/* ---------- Manifiesto (Intro) ---------- */
+.manifiesto{position:relative;padding-block:var(--seccion);isolation:isolate}
+.fondo-palabra{position:absolute;right:-.06em;top:50%;transform:translateY(-50%);font-family:var(--f-display);font-weight:600;font-size:clamp(200px,40vw,560px);line-height:.8;color:rgba(240,233,215,.04);pointer-events:none;user-select:none;z-index:-1;white-space:nowrap}
+.manifiesto .texto{font-family:var(--f-display);font-weight:500;font-size:clamp(26px,3.6vw,48px);line-height:1.18;letter-spacing:-.02em;margin:0;max-width:26ch}
+.manifiesto .texto em{color:var(--brasa-viva);font-weight:300}
+.cifras{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 32px}
+@media (min-width:900px){.cifras{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.cifras li{display:grid;gap:6px}
+.cifras b{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,4.4vw,60px);line-height:1;letter-spacing:-.02em;font-feature-settings:"ss01","tnum"}
+.cifras b sup{color:var(--brasa-viva);font-size:.5em}
+
+/* ---------- Pie ---------- */
+.pie{border-top:1px solid var(--filete);padding-top:clamp(56px,8vw,96px)}
+.columnas{display:grid;grid-template-columns:1fr;gap:40px}
+@media (min-width:900px){.columnas{grid-template-columns:repeat(12,minmax(0,1fr));gap:32px}.columnas .k1{grid-column:1 / span 4}.columnas .k2{grid-column:5 / span 2}.columnas .k3{grid-column:7 / span 3}.columnas .k4{grid-column:10 / span 3}}
+.columnas > div{display:grid;gap:12px;align-content:start;min-width:0}
+.columnas p{margin:0}
+.columnas .marca-pie{font-family:var(--f-display);font-size:24px;font-weight:400;letter-spacing:.02em}
+.columnas ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.columnas ul a{text-decoration:none;font-family:var(--f-display);font-size:15px;color:rgba(240,233,215,.8)}
+.columnas ul a:hover{color:var(--crema)}
+.horarios{list-style:none;margin:0;padding:0;font-variant-numeric:tabular-nums}
+.horarios li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--filete);font-size:13px}
+.horarios li span:last-child{color:rgba(240,233,215,.7);text-align:right}
+.horarios li.hoy span{color:var(--crema)}
+.enlace{display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;border-bottom:1px solid var(--brasa);justify-self:start}
+.enlace svg{width:16px;height:16px}
+.marquesina{margin-top:clamp(56px,8vw,96px);border-top:1px solid var(--filete);border-bottom:1px solid var(--filete);overflow:hidden;padding-block:16px;color:rgba(240,233,215,.4)}
+.cinta{display:flex;width:max-content}
+.cinta span{padding-right:48px;white-space:nowrap}
+@media (prefers-reduced-motion:no-preference){.cinta{animation:cinta 40s linear infinite}}
+@keyframes cinta{to{transform:translateX(-50%)}}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;padding-block:24px calc(24px + 86px + env(safe-area-inset-bottom,0px))}
+@media (min-width:900px){.legal{padding-bottom:24px}}
+
+/* ---------- Barra fija en el celular ---------- */
+.barra-movil{position:fixed;left:0;right:0;bottom:0;z-index:55;display:flex;gap:8px;padding:10px var(--gr) calc(10px + env(safe-area-inset-bottom,0px)) var(--gl);background:rgba(27,24,20,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--filete-fuerte);transform:translateY(110%);transition:transform .35s ease}
+.barra-movil.visible{transform:none}
+.barra-movil .boton{flex:1 1 0;min-width:0;min-height:50px;padding:0 12px;font-size:17px}
+@media (min-width:900px){.barra-movil{display:none}}
+</style>
+
+<nav class="nav" id="nav" aria-label="Principal">
+  <div class="envoltura">
+    <a class="marca" href="#inicio" aria-label="Fierro Parrilla, ir al inicio">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 15h14M5 15l2-8h6l2 8M8 7V4m4 3V4" stroke="currentColor" stroke-width="1.1"/></svg>
+      FIERRO<span class="sub"> · PARRILLA</span></a>
+    <ul>
+      <li><a class="etiqueta" href="#carta">La carta</a></li>
+      <li><a class="etiqueta" href="#el-fuego">El fuego</a></li>
+      <li><a class="etiqueta" href="#a-casa">Delivery</a></li>
+      <li><a class="etiqueta" href="#llegar">Cómo llegar</a></li>
+    </ul>
+    <div class="nav-der">
+      <span class="etiqueta nav-meta">Desde 2009 · Beccar, AR</span>
+      <a class="nav-reservar etiqueta" href="#reservas"><span class="punto vivo" id="punto-nav" aria-hidden="true"></span>Reservar</a>
+    </div>
+  </div>
+</nav>
+
+<main id="inicio">
+  <section class="hero" aria-labelledby="palabra">
+    <div class="hero-imagen" id="hero-imagen">
+      <img class="foto" src="fierro-fotos/hero-1600.webp" srcset="fierro-fotos/hero-900.webp 900w, fierro-fotos/hero-1600.webp 1600w" sizes="100vw" alt="Cortes de carne sobre la parrilla, con humo subiendo en la oscuridad" fetchpriority="high">
+    </div>
+    <canvas id="chispas" aria-hidden="true"></canvas>
+    <div class="hero-arriba">
+      <div class="envoltura">
+        <h1 class="palabra" id="palabra"><span id="palabra-texto">FIERRO<i>.</i></span></h1>
+        <div class="leyenda"><i aria-hidden="true"></i><span>leña, sal gruesa y paciencia</span>
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5c2.5 3 4 5.2 4 7.6A4 4 0 0 1 4 9.1c0-1.5.7-2.8 1.8-4 .2 1.5.9 2.5 1.8 3 0-2.2-.1-4.1.4-6.6Z" stroke="currentColor" stroke-width="1"/></svg><i aria-hidden="true"></i></div>
+      </div>
+    </div>
+    <div class="vertical-der etiqueta" aria-hidden="true">Bajá para ver la carta</div>
+    <div class="hero-abajo">
+      <div class="envoltura">
+        <div class="acciones-hero" id="acciones-hero"></div>
+        <div class="etiqueta">N° 001 · <b id="estado" role="status">Consultando el horario</b><br>Parrilla de barrio en Beccar</div>
+        <div class="etiqueta der">A la leña de quebracho<br>Fig. 01 · La parrilla</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reserva" id="reservas" aria-labelledby="titulo-reserva">
+    <div class="envoltura">
+      <div class="cabeza-centro">
+        <span class="etiqueta brasa">Reservas</span>
+        <h2 class="titulo sube" id="titulo-reserva">Una mesa, cerca del fuego.</h2>
+        <p class="dim">Elegí el día, la hora y cuántos son. Te confirmamos por WhatsApp en el momento. No pedimos seña.</p>
+      </div>
+      <form id="form-reserva" novalidate>
+        <div class="escenario">
+          <div class="col-izq">
+            <fieldset class="grupo"><legend class="etiqueta brasa">Día</legend><div class="lista-opciones" id="dias"></div></fieldset>
+            <div class="tarjeta"><label class="etiqueta" for="r-fecha">Otra fecha</label><input class="otra-fecha" id="r-fecha" type="date"></div>
+            <fieldset class="grupo"><legend class="etiqueta brasa">Personas</legend>
+              <div class="tarjeta"><div class="contador"><button type="button" id="menos" aria-label="Restar una persona">−</button><output id="r-personas" aria-live="polite">2</output><button type="button" id="mas" aria-label="Sumar una persona">+</button></div></div></fieldset>
+          </div>
+          <div class="col-centro">
+            <div class="escena">
+              <span class="etiqueta">Tu mesa</span>
+              <div class="circulo" aria-hidden="true">
+                <svg viewBox="0 0 320 320">
+                  <circle cx="160" cy="160" r="156" fill="none" stroke="rgba(240,233,215,.18)" stroke-width="1"/>
+                  <circle cx="160" cy="160" r="118" fill="none" stroke="rgba(240,233,215,.12)" stroke-width="1" stroke-dasharray="8 8"/>
+                  <g id="numeros"></g>
+                  <g id="marcas"></g>
+                  <g id="aguja"><line x1="160" y1="60" x2="160" y2="30" stroke="#d9653d" stroke-width="1.4"/><circle cx="160" cy="30" r="5" fill="#d9653d"/><circle cx="160" cy="30" r="14" fill="rgba(182,74,42,.35)"/></g>
+                  <circle cx="160" cy="160" r="3" fill="#F0E9D7"/>
+                </svg>
+                <div class="centro-dial"><span class="etiqueta" id="dial-personas">2 personas</span><span class="hora-grande" id="dial-hora">21:00</span><span class="fecha-texto" id="dial-fecha"></span></div>
+              </div>
+              <div class="resumen" aria-live="polite">
+                <div><span class="etiqueta">Día</span><b id="s-dia">—</b></div>
+                <div><span class="etiqueta">Hora</span><b id="s-hora">—</b></div>
+                <div><span class="etiqueta">Personas</span><b id="s-personas">2</b></div>
+                <div><span class="etiqueta">Nombre</span><b id="s-nombre">—</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-der">
+            <fieldset class="grupo"><legend class="etiqueta brasa">Hora</legend><div class="lista-opciones dos" id="horas"></div></fieldset>
+            <fieldset class="grupo"><legend class="etiqueta brasa">A nombre de</legend>
+              <div class="tarjeta"><label class="etiqueta" for="r-nombre">Tu nombre</label><input class="campo-texto" id="r-nombre" type="text" autocomplete="name" enterkeyhint="done" placeholder="Por ejemplo, Laura"></div></fieldset>
+          </div>
+        </div>
+        <button class="barra-cta" type="submit">
+          <span class="etiqueta">Confirmación por WhatsApp</span>
+          <span class="grande">Pedir la reserva <svg viewBox="0 0 28 20" fill="none" aria-hidden="true"><path d="M1 10h25M18 3l8 7-8 7" stroke="currentColor" stroke-width="1.2"/></svg></span>
+          <span class="etiqueta">Sin seña</span>
+        </button>
+        <div class="resultado" id="resultado" aria-live="polite" hidden></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="carta" id="carta" aria-labelledby="titulo-carta">
+    <div class="envoltura">
+      <div class="carta-cabeza">
+        <div style="display:grid;gap:14px"><span class="etiqueta brasa">La carta</span><h2 class="titulo sube" id="titulo-carta">Lo que sale de la parrilla.</h2></div>
+        <p class="dim">Los cortes se pesan crudos. Si no sabés cuánto pedir, calculá 350 g por persona.</p>
+      </div>
+      <div class="pestanas" role="tablist" id="pestanas" aria-label="Categorías de la carta"></div>
+      <div class="panel-carta" id="panel-carta" role="tabpanel">
+        <div class="nombre-cat"><div class="vertical" id="cat-nombre" aria-hidden="true"></div><span class="etiqueta" id="cat-cuenta"></span></div>
+        <div class="platos-col">
+          <div class="lead"><h3 id="cat-titulo"></h3><p class="dim" id="cat-texto"></p></div>
+          <div id="platos"></div>
+          <div class="coccion" id="coccion">
+            <div><span class="etiqueta">Jugoso</span><b>Rojo en el centro</b><i style="background:#9e3328" aria-hidden="true"></i></div>
+            <div><span class="etiqueta">A punto</span><b>Rosado y caliente</b><i style="background:#c06a54" aria-hidden="true"></i></div>
+            <div><span class="etiqueta">Cocido</span><b>Sin rosado</b><i style="background:#86604a" aria-hidden="true"></i></div>
+          </div>
+          <p class="nota-carta" id="nota-carta"></p>
+        </div>
+        <div class="pozo-col"><div class="marco" id="pozo-carta"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nogal" id="el-fuego" aria-labelledby="titulo-fuego">
+    <div class="envoltura">
+      <div class="cabeza">
+        <div style="display:grid;gap:14px"><span class="etiqueta" style="color:rgba(240,233,215,.75)">El fuego</span><h2 class="titulo sube" id="titulo-fuego">Se prende a las cinco de la tarde.</h2></div>
+        <span class="palabra-brasa" aria-hidden="true">leña</span>
+      </div>
+      <div class="ensayo">
+        <div class="c1">
+          <figure class="marco"><img class="foto" src="fierro-fotos/chispas-900.webp" alt="Chispas saltando de un tronco encendido" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 01 · Chispas</figcaption></figure>
+          <div class="nota"><span class="etiqueta" style="color:rgba(240,233,215,.75)">Nota del parrillero · 17:04</span><p>“La leña no se apura. Si la apurás, la carne se da cuenta.”</p></div>
+          <figure class="marco apaisada"><img class="foto" src="fierro-fotos/brasas-900.webp" alt="Brasas de quebracho al rojo vivo" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 03 · La brasa</figcaption></figure>
+        </div>
+        <div class="c2">
+          <div class="adorno" aria-hidden="true">— brasa —</div>
+          <p class="lead-serif">Ramón es el parrillero de Fierro desde que abrimos. Aprendió en el campo, en Chacabuco, mirando a su abuelo.</p>
+          <p class="dim">Llega a las cuatro y media, revisa la leña del día y elige los troncos uno por uno. A las cinco prende el fuego del costado y empieza a bajar brasa con la pala.</p>
+          <p class="dim">Trabaja con tres zonas: fuego fuerte para sellar, medio para los bifes y suave para el vacío, que se hace durante tres horas.</p>
+          <p class="cita-brasa">“Tres horas de brasa para veinte minutos de fuego. Esa es la cuenta.”</p>
+          <span class="etiqueta" style="color:rgba(240,233,215,.75)">Ramón, parrillero de Fierro</span>
+        </div>
+        <div class="c3">
+          <figure class="marco"><img class="foto" src="fierro-fotos/parrillero-900.webp" alt="El parrillero acomodando la brasa debajo de la parrilla" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 02 · Ramón</figcaption></figure>
+          <div class="paso-proceso"><span class="etiqueta" style="color:rgba(240,233,215,.75)">Proceso · paso 2 de 3</span><h4>Repartir la brasa</h4><p>Cada zona lleva una pala distinta de brasa. Se repone cada cuarenta minutos.</p></div>
+          <figure class="marco"><img class="foto" src="fierro-fotos/cruz-900.webp" alt="Costillar asándose a la cruz junto al fuego" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 04 · A la cruz</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="papel" id="a-casa" aria-label="Delivery y take away">
+    <div class="hojas" id="hojas">
+      <div class="hoja" id="hoja-envio">
+        <span class="etiqueta">Envío a domicilio</span>
+        <h3>La parrilla, en tu casa.</h3>
+        <p>Los cortes viajan en caja de cartón y la achura va aparte, para que llegue crocante. Pedí por la app que uses.</p>
+        <figure class="marco"><img class="foto" src="fierro-fotos/humo2-900.webp" alt="Un corte grueso sobre la parrilla, entre el humo" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 05 · Para viajar</figcaption></figure>
+        <div class="datos-hoja"><div><span>35 a 50 min</span><b class="etiqueta">Demora</b></div><div><span>San Isidro</span><b class="etiqueta">Zona</b></div><div><span>Caja de cartón</span><b class="etiqueta">Envase</b></div></div>
+        <div class="salidas" id="salidas-envio"></div>
+      </div>
+      <div class="hoja" id="hoja-retiro">
+        <div class="sello-papel" aria-hidden="true">a casa</div>
+        <span class="etiqueta">Para retirar</span>
+        <h3>Pasás a buscarlo.</h3>
+        <p>Escribinos por WhatsApp, te avisamos cuando está listo y lo retirás por la puerta lateral.</p>
+        <figure class="marco"><img class="foto" src="fierro-fotos/humo-900.webp" alt="Bifes en la parrilla con llamas y humo" loading="lazy" decoding="async" style="object-position:50% 65%"><figcaption class="rotulo etiqueta">Pl. 06 · Recién salido</figcaption></figure>
+        <div class="datos-hoja"><div><span>20 min</span><b class="etiqueta">Demora</b></div><div><span>Sin comisión</span><b class="etiqueta">Precio</b></div><div><span>Puerta lateral</span><b class="etiqueta">Retiro</b></div></div>
+        <div class="salidas" id="salidas-retiro"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifiesto" aria-label="Fierro en números">
+    <div class="fondo-palabra" aria-hidden="true">fuego</div>
+    <div class="envoltura">
+      <p class="texto">Tres horas de fuego antes del primer corte. Cada noche empieza con un tronco de <em>quebracho colorado</em> y termina, después de cuarenta kilos de leña, con la última molleja.</p>
+      <ul class="cifras">
+        <li><b>17:00</b><span class="etiqueta">Se prende el fuego</span></li>
+        <li><b>3<sup>h</sup></b><span class="etiqueta">De brasa antes de abrir</span></li>
+        <li><b>350<sup>g</sup></b><span class="etiqueta">De carne por persona</span></li>
+        <li><b>2009</b><span class="etiqueta">Abrimos en Beccar</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="pie" id="llegar">
+  <div class="envoltura">
+    <div class="columnas">
+      <div class="k1"><p class="marca-pie">FIERRO · PARRILLA</p><p class="dim">Parrilla de barrio en Beccar, a la leña de quebracho. Mediodía y noche, de martes a domingo.</p><p class="dim" id="d-zona"></p></div>
+      <div class="k2"><span class="etiqueta brasa">La carta</span><ul id="pie-carta"></ul></div>
+      <div class="k3"><span class="etiqueta brasa">Horarios</span><ul class="horarios" id="d-horarios"></ul></div>
+      <div class="k4"><span class="etiqueta brasa">Visitanos</span>
+        <p class="etiqueta" style="color:var(--crema)" id="d-direccion"></p>
+        <p class="etiqueta" style="color:var(--crema)" id="d-telefono"></p>
+        <p class="etiqueta" id="d-instagram"></p>
+        <a class="enlace etiqueta" style="color:var(--crema)" id="d-mapa" href="#" target="_blank" rel="noopener">Cómo llegar <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M7 6h7v7" stroke="currentColor" stroke-width="1.2"/></svg></a></div>
+    </div>
+  </div>
+  <div class="marquesina etiqueta" aria-hidden="true"><div class="cinta" id="cinta"></div></div>
+  <div class="envoltura legal"><span class="etiqueta">© 2026 Fierro Parrilla · Sitio de demostración</span><span class="etiqueta">Fotos: Pexels · Precios de referencia</span></div>
+</footer>
+
+<div class="barra-movil" id="barra-movil"></div>
+
+<script>
+/* =========================================================
+   DATOS DEL LOCAL. Todo lo que el dueño cambia vive acá.
+   Dejar un link vacío ("") oculta ese botón en toda la página.
+   ========================================================= */
+const LOCAL = {
+  nombre: "Fierro",
+  direccion: "Av. Centenario 1742, Beccar",
+  zona: "A dos cuadras de la estación Beccar del Tren de la Costa",
+  mapa: "https://www.google.com/maps/search/?api=1&query=Av.+Centenario+1742+Beccar",
+  telefonoVisible: "+54 9 11 4747-0182",
+  whatsapp: "5491147470182",
+  instagram: "@fierro.parrilla",
+  pedidosya: "https://www.pedidosya.com.ar",
+  rappi: "https://www.rappi.com.ar",
+  zonaHoraria: "America/Argentina/Buenos_Aires",
+  maxPersonas: 40,
+  // 0 = domingo … 6 = sábado. Horas en formato 24 h; 24.5 = 00:30 del día siguiente.
+  horarios: {
+    0: [[12, 16]],
+    1: [],
+    2: [[12, 15.5], [20, 24]],
+    3: [[12, 15.5], [20, 24]],
+    4: [[12, 15.5], [20, 24]],
+    5: [[12, 16], [20, 24.5]],
+    6: [[12, 16], [20, 24.5]]
+  },
+  fotos: [
+    { src: "", texto: "Tira de asado sobre la brasa" },
+    { src: "", texto: "El salón un viernes a la noche" },
+    { src: "", texto: "Provoleta con orégano" }
+  ],
+  actualizada: "octubre de 2026",
+  carta: [
+    { categoria: "Para empezar", platos: [
+      { nombre: "Provoleta", detalle: "Orégano, ají molido y aceite de oliva. Sale con el borde tostado.", precio: 9800 },
+      { nombre: "Empanada de carne", detalle: "Cortada a cuchillo y frita en grasa. Precio por unidad.", precio: 2600 },
+      { nombre: "Chorizo de cerdo", detalle: "Elaboración propia, con pan casero y chimichurri.", precio: 5400 },
+      { nombre: "Morcilla vasca", detalle: "Con cebolla de verdeo y un toque de piñón.", precio: 5200 }
+    ]},
+    { categoria: "De la parrilla", platos: [
+      { nombre: "Bife de chorizo", peso: "450 g", detalle: "El corte de la casa. Alto, con su cordón de grasa.", precio: 28500, sello: "El más pedido" },
+      { nombre: "Ojo de bife", peso: "400 g", detalle: "Marmoleado parejo, tierno de punta a punta.", precio: 31000 },
+      { nombre: "Vacío", peso: "500 g", detalle: "Tres horas a fuego bajo. Crocante por fuera.", precio: 26500 },
+      { nombre: "Entraña", peso: "350 g", detalle: "Sale entera, con la membrana bien dorada.", precio: 27800 },
+      { nombre: "Tira de asado", peso: "500 g", detalle: "Corte ancho, del costillar completo.", precio: 24900 },
+      { nombre: "Parrillada para dos", detalle: "Asado, vacío, chorizo, morcilla, chinchulines y molleja.", precio: 54000, sello: "Para compartir" }
+    ]},
+    { categoria: "Achuras", platos: [
+      { nombre: "Molleja de corazón", detalle: "Con limón. Dorada por fuera y blanda por dentro.", precio: 16500 },
+      { nombre: "Chinchulines", detalle: "De cordero, bien crocantes.", precio: 11200 },
+      { nombre: "Riñón a la provenzal", detalle: "Ajo, perejil y oliva sobre la plancha.", precio: 8900 }
+    ]},
+    { categoria: "Guarniciones", platos: [
+      { nombre: "Papas fritas", detalle: "Cortadas a mano, en dos cocciones.", precio: 7200 },
+      { nombre: "Ensalada mixta", detalle: "Lechuga, tomate y cebolla morada.", precio: 6400 },
+      { nombre: "Calabaza al rescoldo", detalle: "Asada entre las brasas, con manteca y sal de mar.", precio: 6900 }
+    ]},
+    { categoria: "Postres", platos: [
+      { nombre: "Flan casero", detalle: "Con dulce de leche, crema o mixto.", precio: 6200 },
+      { nombre: "Panqueque de dulce de leche", detalle: "Caramelizado al momento con azúcar quemada.", precio: 6800 },
+      { nombre: "Queso y dulce", detalle: "Queso fresco con dulce de batata o membrillo.", precio: 5600 }
+    ]},
+    { categoria: "Vinos", platos: [
+      { nombre: "Malbec de la casa", peso: "750 ml", detalle: "Valle de Uco. Fresco, ideal con la entraña.", precio: 14500 },
+      { nombre: "Cabernet Franc", peso: "750 ml", detalle: "Gualtallary. Especiado y con buena estructura.", precio: 23800 },
+      { nombre: "Copa de la semana", detalle: "Preguntale al mozo qué botella abrimos hoy.", precio: 4900 }
+    ]}
+  ]
+};
+
+/* Texto y foto de cada categoría de la carta (opcional) */
+const CATEGORIA = {
+  "Para empezar": { titulo:"Para abrir la mesa", texto:"Mientras se hace la carne. Todo sale de la misma parrilla.", foto:"empezar" },
+  "De la parrilla": { titulo:"Novillo pesado", texto:"Cortado acá y salado con sal gruesa justo antes de ir al fuego.", foto:"parrilla", coccion:true },
+  "Achuras": { titulo:"Crocantes y a punto", texto:"Se piden al principio, como manda la costumbre.", foto:"achuras" },
+  "Guarniciones": { titulo:"Para acompañar", texto:"Sin tapar el sabor de la carne.", foto:"humo2" },
+  "Postres": { titulo:"De la casa", texto:"Clásicos hechos todas las mañanas.", foto:"brasas" },
+  "Vinos": { titulo:"Carta corta", texto:"Pensada para la parrilla. Preguntale al mozo qué abrimos hoy.", foto:"chispas" }
+};
+
+/* ---------- Utilidades ---------- */
+document.documentElement.classList.add("js");
+const $ = s => document.querySelector(s);
+const pesos = n => "$ " + new Intl.NumberFormat("es-AR").format(n);
+const DIAS = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const DIAS_CORTO = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
+const MESES = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+const may = s => s.charAt(0).toUpperCase() + s.slice(1);
+const hhmm = h => { const t = h % 24, hh = Math.floor(t), mm = Math.round((t - hh) * 60); return String(hh).padStart(2,"0") + ":" + String(mm).padStart(2,"0"); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const FLECHA = `<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.2"/></svg>`;
+const SALIDA = `<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M7 6h7v7" stroke="currentColor" stroke-width="1.2"/></svg>`;
+const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const foto = (n, alt) => `<img class="foto" src="fierro-fotos/${n}-900.webp" srcset="fierro-fotos/${n}-900.webp 900w, fierro-fotos/${n}-1600.webp 1600w" sizes="(min-width:1000px) 40vw, 100vw" alt="${esc(alt)}" loading="lazy" decoding="async">`;
+
+function ahoraLocal(){
+  try{
+    const p = new Intl.DateTimeFormat("en-US",{timeZone:LOCAL.zonaHoraria,weekday:"short",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());
+    const g = t => p.find(x=>x.type===t).value;
+    return { dia:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(g("weekday")), hora:(parseInt(g("hour"),10)%24) + parseInt(g("minute"),10)/60 };
+  }catch(e){ const d=new Date(); return {dia:d.getDay(), hora:d.getHours()+d.getMinutes()/60}; }
+}
+
+/* ---------- Abierto / cerrado ---------- */
+function estadoAhora(){
+  const {dia, hora} = ahoraLocal(), ayer = (dia + 6) % 7;
+  for (const [,b] of (LOCAL.horarios[ayer]||[])) if (b > 24 && hora < b - 24) return {abierto:true, hasta:b};
+  for (const [a,b] of (LOCAL.horarios[dia]||[])) if (hora >= a && hora < b) return {abierto:true, hasta:b};
+  for (let i=0;i<8;i++){
+    const d=(dia+i)%7;
+    for (const [a] of (LOCAL.horarios[d]||[])) if (i>0 || a>hora) return {abierto:false, cuando:i===0?"hoy":i===1?"mañana":"el "+DIAS[d], desde:a};
+  }
+  return {abierto:false};
+}
+function pintarEstado(){
+  const e = estadoAhora();
+  $("#estado").textContent = e.abierto ? `Abierto hasta las ${hhmm(e.hasta)}` : (e.desde!=null ? `Abrimos ${e.cuando} ${hhmm(e.desde)}` : "Cerrado");
+  $("#punto-nav").className = "punto " + (e.abierto ? "vivo" : "apagado");
+}
+
+/* ---------- Canales de pedido (se ocultan si no hay link) ---------- */
+const waLink = texto => `https://wa.me/${LOCAL.whatsapp}?text=${encodeURIComponent(texto)}`;
+function canales(){
+  return [
+    LOCAL.pedidosya && {id:"pedidosya", nombre:"PedidosYa", url:LOCAL.pedidosya, color:"#ea004b", nota:"Envío a domicilio"},
+    LOCAL.rappi && {id:"rappi", nombre:"Rappi", url:LOCAL.rappi, color:"#ff5a36", nota:"Envío a domicilio"},
+    LOCAL.whatsapp && {id:"whatsapp", nombre:"WhatsApp", url:waLink("Hola Fierro, quiero hacer un pedido para retirar."), color:"#3fbf6b", nota:"Pedido para retirar, sin comisión"}
+  ].filter(Boolean);
+}
+function pintarBotones(){
+  const c = canales(), apps = c.filter(x=>x.id!=="whatsapp"), wa = c.find(x=>x.id==="whatsapp");
+  $("#acciones-hero").innerHTML = `<a class="boton boton-crema" href="#reservas">Reservar mesa ${FLECHA}</a>` + (c.length ? `<a class="boton boton-linea" href="#a-casa">Pedir a casa</a>` : "");
+  const fila = x => `<a class="salida" href="${x.url}" target="_blank" rel="noopener"><span class="punto" style="background:${x.color}" aria-hidden="true"></span><span><b>${x.nombre}</b><small>${x.nota}</small></span>${SALIDA}</a>`;
+  $("#salidas-envio").innerHTML = apps.map(fila).join("");
+  $("#salidas-retiro").innerHTML = wa ? fila(wa) : "";
+  $("#hoja-envio").hidden = !apps.length; $("#hoja-retiro").hidden = !wa; $("#a-casa").hidden = !c.length;
+  $("#barra-movil").innerHTML = `<a class="boton boton-crema" href="#reservas">Reservar mesa</a>` + (c.length ? `<a class="boton boton-linea" href="#a-casa">Pedir a casa</a>` : "");
+}
+
+/* ---------- Carta ---------- */
+let catActiva = 1;
+function pintarCarta(enfocar){
+  $("#pestanas").innerHTML = LOCAL.carta.map((c,i)=>`<button class="pestana" type="button" role="tab" id="tab-${i}" aria-controls="panel-carta" aria-selected="${i===catActiva}" tabindex="${i===catActiva?0:-1}" data-i="${i}">${esc(c.categoria)}</button>`).join("");
+  const cat = LOCAL.carta[catActiva], info = CATEGORIA[cat.categoria] || {};
+  $("#panel-carta").setAttribute("aria-labelledby","tab-"+catActiva);
+  $("#cat-nombre").textContent = cat.categoria;
+  $("#cat-nombre").style.setProperty("--fs-vertical", Math.max(64, Math.min(128, Math.round(1150 / Math.max(6, cat.categoria.length)))) + "px");
+  $("#cat-cuenta").textContent = `N° ${String(catActiva+1).padStart(2,"0")} / ${String(LOCAL.carta.length).padStart(2,"0")}`;
+  $("#cat-titulo").textContent = info.titulo || cat.categoria;
+  $("#cat-texto").textContent = info.texto || "";
+  $("#coccion").hidden = !info.coccion;
+  $("#platos").innerHTML = cat.platos.map(p=>`
+    <article class="plato">
+      <h4>${esc(p.nombre)}<span>${pesos(p.precio)}</span></h4>
+      <p>${esc(p.detalle)}</p>
+      ${(p.peso||p.sello)?`<dl>${p.peso?`<dt class="etiqueta">Peso</dt><dd>${esc(p.peso)}</dd>`:""}${p.sello?`<dt class="etiqueta">Nota</dt><dd class="sello">${esc(p.sello)}</dd>`:""}</dl>`:""}
+    </article>`).join("");
+  $("#pozo-carta").innerHTML = info.foto ? `${foto(info.foto, cat.categoria+" en Fierro")}<span class="rotulo-arriba etiqueta">En vivo desde la parrilla</span><span class="rotulo etiqueta">${esc(cat.categoria)}</span>` : "";
+  $("#nota-carta").textContent = `Carta actualizada en ${LOCAL.actualizada}. Aceptamos efectivo, débito, crédito y Mercado Pago.`;
+  if (enfocar) document.getElementById("tab-"+catActiva).focus({preventScroll:true});
+}
+$("#pestanas").addEventListener("click", e=>{ const b=e.target.closest(".pestana"); if(!b) return; catActiva=+b.dataset.i; pintarCarta(true); });
+$("#pestanas").addEventListener("keydown", e=>{
+  const n = LOCAL.carta.length, k = e.key;
+  if (k==="ArrowRight") catActiva=(catActiva+1)%n; else if (k==="ArrowLeft") catActiva=(catActiva-1+n)%n;
+  else if (k==="Home") catActiva=0; else if (k==="End") catActiva=n-1; else return;
+  e.preventDefault(); pintarCarta(true);
+});
+
+/* ---------- Datos del pie ---------- */
+function pintarDatos(){
+  $("#d-direccion").textContent = LOCAL.direccion;
+  $("#d-zona").textContent = LOCAL.zona;
+  $("#d-mapa").href = LOCAL.mapa;
+  $("#d-telefono").textContent = LOCAL.telefonoVisible;
+  $("#d-instagram").textContent = LOCAL.instagram;
+  $("#pie-carta").innerHTML = LOCAL.carta.map((c,i)=>`<li><a href="#carta" data-cat="${i}">${esc(c.categoria)}</a></li>`).join("");
+  $("#pie-carta").addEventListener("click", e=>{ const a=e.target.closest("[data-cat]"); if(!a) return; catActiva=+a.dataset.cat; pintarCarta(false); });
+  const hoy = ahoraLocal().dia;
+  $("#d-horarios").innerHTML = [2,3,4,5,6,0,1].map(d=>{
+    const t = LOCAL.horarios[d]||[];
+    const txt = t.length ? t.map(([a,b])=>`${hhmm(a)}–${hhmm(b)}`).join(" · ") : "Cerrado";
+    return `<li class="${d===hoy?"hoy":""}"><span>${DIAS_CORTO[d]}</span><span>${txt}</span></li>`;
+  }).join("");
+  const palabras = ["Quebracho colorado","Sal gruesa","Bife de chorizo","Vacío","Entraña","Molleja","Provoleta","Malbec de la casa","Beccar"];
+  const tira = palabras.map(p=>`<span>${esc(p)}</span><span>·</span>`).join("");
+  $("#cinta").innerHTML = tira + tira;
+}
+
+/* ---------- Reservas ---------- */
+const res = { fecha:null, hora:null, personas:2 };
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const diaDe = v => { const [y,m,d]=v.split("-").map(Number); return new Date(y,m-1,d); };
+function horasDe(v){ const out=[]; for (const [a,b] of (LOCAL.horarios[diaDe(v).getDay()]||[])) for (let h=a; h<=b-1.5; h+=0.5) out.push(hhmm(h)); return out; }
+function proximosDias(){ const out=[], d=new Date(); for (let i=0;i<21 && out.length<4;i++){ if ((LOCAL.horarios[d.getDay()]||[]).length) out.push({v:iso(d), i}); d.setDate(d.getDate()+1); } return out; }
+function pintarDias(){
+  $("#dias").innerHTML = proximosDias().map(x=>{ const d=diaDe(x.v), rot = x.i===0?"Hoy":x.i===1?"Mañana":MESES[d.getMonth()];
+    return `<button type="button" class="carta-op" data-fecha="${x.v}" aria-pressed="${x.v===res.fecha}"><b>${may(DIAS[d.getDay()])} ${d.getDate()}</b><span class="etiqueta">${rot}</span></button>`; }).join("");
+}
+function pintarHoras(){
+  const caja = $("#horas");
+  if (!res.fecha){ caja.innerHTML=""; return; }
+  const hs = horasDe(res.fecha);
+  if (!hs.length){ res.hora=null; caja.innerHTML = `<p class="cerrado-msg">Ese día estamos cerrados. Elegí otro día.</p>`; pintarResumen(); return; }
+  if (!hs.includes(res.hora)) res.hora = hs.includes("21:00") ? "21:00" : hs.includes("13:00") ? "13:00" : hs[0];
+  caja.innerHTML = hs.map(h=>`<button type="button" class="carta-op hora" data-hora="${h}" aria-pressed="${h===res.hora}"><b>${h}</b></button>`).join("");
+  pintarResumen();
+}
+let anguloPrevio = 0;
+function pintarResumen(){
+  const d = res.fecha ? diaDe(res.fecha) : null;
+  $("#s-dia").textContent = d ? `${DIAS_CORTO[d.getDay()]} ${d.getDate()}` : "—";
+  $("#s-hora").textContent = res.hora || "—";
+  $("#s-personas").textContent = res.personas;
+  $("#s-nombre").textContent = $("#r-nombre").value.trim() || "—";
+  $("#dial-hora").textContent = res.hora || "--:--";
+  $("#dial-personas").textContent = `${res.personas} ${res.personas===1?"persona":"personas"}`;
+  $("#dial-fecha").textContent = d ? d.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"}) : "";
+  if (res.hora){
+    const [h,m] = res.hora.split(":").map(Number);
+    let ang = ((h%12) + m/60)/12*360;
+    while (ang - anguloPrevio > 180) ang -= 360; while (anguloPrevio - ang > 180) ang += 360;
+    anguloPrevio = ang; $("#aguja").style.transform = `rotate(${ang}deg)`;
+  }
+  $("#r-personas").textContent = res.personas;
+  $("#menos").disabled = res.personas<=1; $("#mas").disabled = res.personas>=LOCAL.maxPersonas;
+}
+function marcasDial(){
+  let s="";
+  for (let i=0;i<60;i++){
+    const a=i/60*Math.PI*2, largo = i%5===0 ? 14 : 8, r1=156, r2=156-largo;
+    s += `<line x1="${(160+Math.sin(a)*r1).toFixed(1)}" y1="${(160-Math.cos(a)*r1).toFixed(1)}" x2="${(160+Math.sin(a)*r2).toFixed(1)}" y2="${(160-Math.cos(a)*r2).toFixed(1)}" stroke="rgba(240,233,215,${i%5===0?.6:.25})" stroke-width="1"/>`;
+  }
+  $("#marcas").innerHTML = s;
+  $("#numeros").innerHTML = [12,3,6,9].map((n,k)=>{ const a=k*Math.PI/2, r=132; return `<text x="${(160+Math.sin(a)*r).toFixed(1)}" y="${(160-Math.cos(a)*r+4).toFixed(1)}" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" letter-spacing="2" fill="rgba(240,233,215,.45)">${n}</text>`; }).join("");
+}
+function prepararReserva(){
+  marcasDial();
+  const dias = proximosDias(); res.fecha = dias.length ? dias[0].v : iso(new Date());
+  const f = $("#r-fecha"), hoy = new Date(), max = new Date(hoy); max.setDate(max.getDate()+60);
+  f.min = iso(hoy); f.max = iso(max);
+  pintarDias(); pintarHoras();
+  $("#dias").addEventListener("click", e=>{ const b=e.target.closest("[data-fecha]"); if(!b) return; res.fecha=b.dataset.fecha; f.value=""; pintarDias(); pintarHoras(); });
+  f.addEventListener("change", ()=>{ if(!f.value) return; res.fecha=f.value; pintarDias(); pintarHoras(); });
+  $("#horas").addEventListener("click", e=>{ const b=e.target.closest("[data-hora]"); if(!b) return; res.hora=b.dataset.hora; pintarHoras(); });
+  $("#r-nombre").addEventListener("input", pintarResumen);
+  $("#menos").onclick = ()=>{ res.personas=Math.max(1,res.personas-1); pintarResumen(); };
+  $("#mas").onclick = ()=>{ res.personas=Math.min(LOCAL.maxPersonas,res.personas+1); pintarResumen(); };
+  $("#form-reserva").addEventListener("submit", e=>{
+    e.preventDefault();
+    const out = $("#resultado"); out.hidden = false;
+    if (!res.fecha || !res.hora){ out.innerHTML = `<span class="error">Ese día estamos cerrados. Elegí otro día en la columna de la izquierda.</span>`; return; }
+    const fechaTxt = diaDe(res.fecha).toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"});
+    const nombre = $("#r-nombre").value.trim();
+    const msg = `Hola Fierro, quiero reservar una mesa para ${res.personas} ${res.personas===1?"persona":"personas"} el ${fechaTxt} a las ${res.hora}${nombre?`, a nombre de ${nombre}`:""}.`;
+    out.innerHTML = `<span class="etiqueta">El mensaje que vas a mandar</span><blockquote>${esc(msg)}</blockquote><div class="fila"><a class="boton boton-crema" href="${waLink(msg)}" target="_blank" rel="noopener">Abrir WhatsApp</a><button type="button" class="boton boton-linea" id="copiar">Copiar mensaje</button></div><span class="dim" style="font-size:14px">Si WhatsApp no se abre, escribinos al ${esc(LOCAL.telefonoVisible)}.</span>`;
+    if (out.scrollIntoView) out.scrollIntoView({block:"nearest", behavior: reducir ? "auto" : "smooth"});
+    $("#copiar").onclick = async ev=>{
+      try{ await navigator.clipboard.writeText(msg); ev.target.textContent="Mensaje copiado"; }
+      catch(_){ const r=document.createRange(); r.selectNodeContents(out.querySelector("blockquote")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); ev.target.textContent="Seleccionado, copialo"; }
+    };
+  });
+}
+
+/* ---------- Ondas al tocar los botones ---------- */
+document.addEventListener("pointerdown", e=>{
+  const b = e.target.closest(".boton,.barra-cta"); if (!b || reducir) return;
+  const r = b.getBoundingClientRect(), o = document.createElement("span");
+  o.className = "onda"; o.style.left = (e.clientX - r.left) + "px"; o.style.top = (e.clientY - r.top) + "px";
+  b.appendChild(o); setTimeout(()=>o.remove(), 850);
+});
+
+/* ---------- FIERRO de borde a borde ---------- */
+function ajustarPalabra(){
+  const h = $("#palabra"), s = $("#palabra-texto");
+  h.style.fontSize = "100px";
+  const ancho = h.clientWidth, medido = s.getBoundingClientRect().width;
+  if (medido > 0) h.style.fontSize = Math.min(560, 100 * ancho / medido * 0.995) + "px";
+}
+
+/* ---------- Navegación sólida, zoom del hero y barra del celular ---------- */
+const nav = $("#nav"), barra = $("#barra-movil");
+function alScroll(){
+  nav.classList.toggle("solida", scrollY > 24);
+  barra.classList.toggle("visible", scrollY > innerHeight*0.6);
+  if (!reducir){ const p = Math.min(1, scrollY / innerHeight); $("#hero-imagen").style.transform = `scale(${1 + p*0.18})`; }
+}
+addEventListener("scroll", alScroll, {passive:true});
+if ("IntersectionObserver" in window && !reducir){
+  const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.remove("espera"); io.unobserve(en.target); } }), {rootMargin:"0px 0px -15% 0px"});
+  document.querySelectorAll(".sube").forEach(el=>{ if (el.getBoundingClientRect().top > innerHeight) { el.classList.add("espera"); io.observe(el); } });
+}
+
+/* =========================================================
+   CHISPAS sobre la foto: pocas, lentas y con mezcla aditiva,
+   para que la imagen respire sin parecer un efecto.
+   ========================================================= */
+(function chispas(){
+  if (reducir) return;
+  const cv = $("#chispas"), ctx = cv.getContext("2d");
+  let W=0,H=0,t=0,raf=0,visible=true,lista=[];
+  const P=new Uint8Array(512);{const p=[...Array(256).keys()];for(let i=255;i>0;i--){const j=(Math.random()*(i+1))|0;[p[i],p[j]]=[p[j],p[i]];}for(let i=0;i<512;i++)P[i]=p[i&255];}
+  const fade=x=>x*x*(3-2*x),rnd=(x,y)=>P[(P[x&255]+y)&511]/255;
+  function ruido(x,y){const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,a=rnd(xi,yi),b=rnd(xi+1,yi),c=rnd(xi,yi+1),d=rnd(xi+1,yi+1),u=fade(xf),v=fade(yf);return a+(b-a)*u+(c-a)*v*(1-u)+(d-b)*u*v;}
+  function armar(){ const dpr=Math.min(devicePixelRatio||1,2); W=cv.clientWidth; H=cv.clientHeight; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
+  const nueva=()=>({x:W*(.2+Math.random()*.6),y:H*(.62+Math.random()*.2),vx:(Math.random()-.5)*.3,vy:-(.3+Math.random()*.8),vida:0,max:180+Math.random()*220,r:.5+Math.random()*1.2,s:Math.random()*100});
+  function cuadro(){
+    t++; ctx.clearRect(0,0,W,H); ctx.globalCompositeOperation="lighter";
+    if (lista.length < Math.min(45,W/22) && Math.random()<.35) lista.push(nueva());
+    for (let i=lista.length-1;i>=0;i--){
+      const c=lista[i]; c.vida++;
+      const ang=(ruido(c.x*.004,c.y*.004+t*.003)-.5)*2.4; c.vx+=Math.cos(ang)*.012; c.vx*=.985; c.vy*=.997; c.x+=c.vx; c.y+=c.vy;
+      const v=c.vida/c.max; if(v>=1||c.y<-10){lista.splice(i,1);continue;}
+      const a=(v<.1?v/.1:1-v)*(.6+.4*ruido(c.vida*.15,c.s));
+      ctx.fillStyle=`rgba(255,${185-v*80|0},${100-v*60|0},${a*.85})`; ctx.beginPath(); ctx.arc(c.x,c.y,c.r,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle=`rgba(217,101,61,${a*.14})`; ctx.beginPath(); ctx.arc(c.x,c.y,c.r*5,0,Math.PI*2); ctx.fill();
+    }
+  }
+  const loop=()=>{cuadro();raf=requestAnimationFrame(loop);};
+  const iniciar=()=>{if(!raf&&visible&&!document.hidden)raf=requestAnimationFrame(loop);};
+  const frenar=()=>{cancelAnimationFrame(raf);raf=0;};
+  armar(); for(let i=0;i<120;i++) cuadro(); iniciar();
+  let rt,anchoPrevio=innerWidth;
+  addEventListener("resize",()=>{if(innerWidth===anchoPrevio)return;anchoPrevio=innerWidth;clearTimeout(rt);rt=setTimeout(armar,150);});
+  new IntersectionObserver(([e])=>{visible=e.isIntersecting;visible?iniciar():frenar();}).observe(cv);
+  document.addEventListener("visibilitychange",()=>document.hidden?frenar():iniciar());
+})();
+
+/* ---------- Arranque ---------- */
+pintarEstado(); setInterval(pintarEstado, 60000);
+pintarBotones(); pintarCarta(false); pintarDatos(); prepararReserva(); alScroll();
+ajustarPalabra(); if (document.fonts) document.fonts.ready.then(ajustarPalabra);
+let rp; addEventListener("resize", ()=>{ clearTimeout(rp); rp=setTimeout(ajustarPalabra,150); });
+</script>
+
+</body>
+</html>
