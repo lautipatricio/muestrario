@@ -1,0 +1,11 @@
+# robots.txt de Lazervi
+# Ojo: Google solo lee el robots.txt de la raíz del dominio. Mientras el sitio viva en /muestrario/,
+# este archivo sirve de referencia y se activa al pasar a un dominio propio (ej. lazervi.com.ar).
+User-agent: *
+Allow: /
+Disallow: /page/
+Disallow: /muestrario/page/
+Disallow: /pruebas/
+Disallow: /muestrario/pruebas/
+
+Sitemap: https://lautipatricio.github.io/muestrario/sitemap.xml

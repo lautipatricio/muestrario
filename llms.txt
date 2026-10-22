@@ -1,0 +1,41 @@
+# Lazervi
+
+> Diseño de páginas web, tiendas online, reservas y turnos para negocios de Buenos Aires. Pedidos y reservas que llegan a WhatsApp, sin comisión.
+
+Contacto: WhatsApp +54 9 11 7817-5738
+Sitio: https://lautipatricio.github.io/muestrario/
+
+## Servicios
+
+- Páginas web a medida pensadas para el celular
+- Tiendas online con carrito, Mercado Pago y envíos
+- Reservas y turnos online con seña
+- Pedidos por WhatsApp sin comisión
+- Google, redes, videos de presentación, dominio, hosting y mantenimiento
+
+## Trabajos
+
+### Gastronomía
+
+- [Mesa Larga](https://lautipatricio.github.io/muestrario/demos/mesa-larga/): Demo de página web para restaurante de cocina de estación: carta con fotos e ingredientes, reservas y pedidos por WhatsApp, almacén para llevar y mapa.
+- [Lo de Tita](https://lautipatricio.github.io/muestrario/demos/tita/): Demo de página web para confitería: especiales del día, armá tu merienda con descuento, ticket para retirar, tortas por encargo y pedidos por WhatsApp.
+- [Shio](https://lautipatricio.github.io/muestrario/demos/shio-sushi/): Demo de página web para sushi: carta como revista, omakase con reservas, pesca del día, buscador de alérgenos y delivery por WhatsApp, PedidosYa y Rappi.
+- [Fierro Parrilla](https://lautipatricio.github.io/muestrario/demos/fierro-parrilla/): Demo de página web para parrilla: carta por cortes, fotos con brasas animadas, reserva de mesa con reloj, horarios, mapa y pedidos por apps.
+- [Almendra](https://lautipatricio.github.io/muestrario/demos/almendra-cafe/): Demo de página web para cafetería: carta con fotos y precio, pedido para llevar con hora de retiro, café de la semana en bolsa, reservas y mapa.
+- [Kumo](https://lautipatricio.github.io/muestrario/demos/kumo-sushi/): Demo de página web para sushi bar: pesca del día con precio y pedido online, elección de asiento en la barra omakase, reservas y delivery.
+
+### Comercios
+
+- [Lacre](https://lautipatricio.github.io/muestrario/demos/lacre-vinoteca/): Demo de página web para vinoteca: recomendador de vinos según la comida, fichas técnicas, tienda con caja, club mensual, catas y pedidos por WhatsApp.
+- [Aluvidrio](https://lautipatricio.github.io/muestrario/demos/aluvidrio/): Propuesta de diseño de Lazervi para una vidriería: trabajos por categoría, fichas de cada trabajo y pedido de presupuesto con medidas.
+- [Bulonera Beccar](https://lautipatricio.github.io/muestrario/demos/bulonera-beccar/): Propuesta de diseño de Lazervi para una bulonera: calibre para medir el bulón, cajonera de medidas, pedido por lista y nota de pedido.
+
+### Salud y belleza
+
+- [Bruma](https://lautipatricio.github.io/muestrario/demos/bruma-cosmetica/): Demo de tienda online de cosmética: buscador, compra por objetivo, rutina completa en un toque, carrito con Mercado Pago, preguntas frecuentes y mapa.
+- [Salomé Blanes](https://lautipatricio.github.io/muestrario/demos/salome-blanes/): Propuesta de diseño de Lazervi para un centro de estética: tratamientos con precio, turnos online con seña y panel para la recepción.
+
+## Notas
+
+- Las demos son negocios de ejemplo con precios de muestra.
+- Salomé Blanes, Aluvidrio y Bulonera Beccar son propuestas de diseño, no sus páginas oficiales.

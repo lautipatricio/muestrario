@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mesa Larga — Cocina de estación</title>
-<meta name="description" content="Mesa Larga, cocina de estación en Palermo. Pastas amasadas en el día, fuegos y una mesa larga para compartir. Reservas y pedidos por WhatsApp.">
+
+
 <meta name="theme-color" content="#FBF4E9">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +35,7 @@ section{scroll-margin-top:calc(var(--cabecera) + 8px)}
 .ojo::before{content:"";width:22px;height:2px;background:currentColor}
 h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.01em;line-height:.98}
 h2{font-size:clamp(2.4rem,5.4vw,3.9rem)}
-h2 em,h1 em{font-style:italic;font-weight:400;color:var(--tomate)}
+h2 em,h1 em,.h1-visual em{font-style:italic;font-weight:400;color:var(--tomate)}
 .boton{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:48px;padding:.7em 1.5em;border-radius:999px;font-weight:600;font-size:1rem;text-decoration:none;transition:background .25s,color .25s,transform .2s,border-color .25s;white-space:nowrap}
 .boton:active{transform:scale(.97)}
 .boton-tomate{background:var(--tomate);color:var(--crema)}
@@ -80,8 +80,8 @@ h2 em,h1 em{font-style:italic;font-weight:400;color:var(--tomate)}
 /* ---------- hero ---------- */
 .hero{padding-block:clamp(36px,6vw,72px) clamp(56px,7vw,96px)}
 .hero .envoltura{display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
-.hero h1{font-size:clamp(3.1rem,7vw,5.6rem);margin:22px 0 22px;line-height:.95}
-.hero h1 em{display:block}
+.hero .h1-visual{font-size:clamp(3.1rem,7vw,5.6rem);margin:22px 0 22px;line-height:.95}
+.hero .h1-visual em{display:block}
 .hero p.bajada{max-width:30em;color:var(--carbon-2)}
 .meta{display:flex;flex-wrap:wrap;gap:12px 26px;margin:28px 0 32px;font-family:var(--mono);font-size:.82rem;color:var(--carbon-2)}
 .meta span{display:inline-flex;align-items:center;gap:8px}
@@ -103,7 +103,7 @@ h2 em,h1 em{font-style:italic;font-weight:400;color:var(--tomate)}
 .leyenda small{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--azafran)}
 .leyenda strong{font-family:var(--display);font-style:italic;font-weight:400;font-size:1.15rem;line-height:1.1}
 .leyenda .hora{margin-left:auto;font-family:var(--mono);font-size:.8rem;display:flex;align-items:center;gap:8px;white-space:nowrap}
-@media (max-width:860px){.hero .envoltura{grid-template-columns:minmax(0,1fr)}.marco{order:-1;aspect-ratio:5/4;max-height:62vh}.hero h1{margin-top:16px}}
+@media (max-width:860px){.hero .envoltura{grid-template-columns:minmax(0,1fr)}.marco{order:-1;aspect-ratio:5/4;max-height:62vh}.hero .h1-visual{margin-top:16px}}
 
 /* ---------- franja ---------- */
 .franja{border-block:2px solid var(--carbon);background:var(--azafran);overflow:hidden;position:relative;z-index:1}
@@ -292,7 +292,7 @@ $("[data-almacen-n]").dataset.contar = ALMACEN.length;
 .pie-pagina .envoltura{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
 .pie-pagina .marca{font-size:2rem}
 .pie-pagina p{color:rgba(251,244,233,.65);font-size:1rem;margin-top:10px;max-width:22em}
-.pie-pagina h4{font-family:var(--mono);font-weight:400;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--azafran);margin-bottom:14px}
+.pie-pagina h3{font-family:var(--mono);font-weight:400;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--azafran);margin-bottom:14px}
 .pie-pagina ul{list-style:none;display:grid;gap:8px;font-size:1rem}
 .pie-pagina a{text-decoration:none;color:rgba(251,244,233,.85)}
 .pie-pagina a:hover{color:var(--azafran)}
@@ -333,7 +333,45 @@ $("[data-almacen-n]").dataset.contar = ALMACEN.length;
 .aviso-toast{position:fixed;left:50%;top:calc(var(--cabecera) + 14px);transform:translate(-50%,-30px);opacity:0;z-index:80;background:var(--carbon);color:var(--crema);padding:10px 18px;border-radius:999px;font-size:.95rem;transition:.35s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 .aviso-toast.ver{opacity:1;transform:translate(-50%,0)}
 </style>
-<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-180.png">
+<title>Mesa Larga — Restaurante de cocina de estación en Palermo</title>
+<meta name="description" content="Demo de página web para restaurante de cocina de estación: carta con fotos e ingredientes, reservas y pedidos por WhatsApp, almacén para llevar y mapa.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://lautipatricio.github.io/muestrario/demos/mesa-larga/">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:site_name" content="Lazervi">
+<meta property="og:title" content="Mesa Larga — Restaurante de cocina de estación en Palermo"><meta property="og:description" content="Demo de página web para restaurante de cocina de estación: carta con fotos e ingredientes, reservas y pedidos por WhatsApp, almacén para llevar y mapa.">
+<meta property="og:url" content="https://lautipatricio.github.io/muestrario/demos/mesa-larga/"><meta property="og:image" content="https://lautipatricio.github.io/muestrario/posters/mesa-larga-h.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com; media-src 'self' blob:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-apple.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Lazervi", "item": "https://lautipatricio.github.io/muestrario/"}, {"@type": "ListItem", "position": 2, "name": "Gastronomía", "item": "https://lautipatricio.github.io/muestrario/#gastronomia"}, {"@type": "ListItem", "position": 3, "name": "Mesa Larga", "item": "https://lautipatricio.github.io/muestrario/demos/mesa-larga/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Restaurant", "name": "Mesa Larga", "description": "Demo de página web para restaurante de cocina de estación: carta con fotos e ingredientes, reservas y pedidos por WhatsApp, almacén para llevar y mapa.", "url": "https://lautipatricio.github.io/muestrario/demos/mesa-larga/", "image": "https://lautipatricio.github.io/muestrario/posters/mesa-larga-h.jpg", "address": {"@type": "PostalAddress", "streetAddress": "Gorriti 4870, Palermo Soho, CABA", "addressLocality": "Palermo, CABA", "addressRegion": "Buenos Aires", "addressCountry": "AR"}, "areaServed": "Palermo, CABA"}</script>
+<style>
+.lz{position:relative;z-index:1;padding:clamp(40px,7vw,72px) 0;font-size:16px;line-height:1.55}
+.lz-env{width:min(1160px,calc(100% - 32px));margin:0 auto}
+.lz h2{margin:0 0 18px;font-size:clamp(26px,3.4vw,40px);line-height:1.1}
+.lz-grid{display:grid;gap:24px}@media(min-width:860px){.lz-grid{grid-template-columns:1.1fr .9fr;align-items:start}}
+.lz ul.lz-puntos{margin:0;padding-left:1.2em;display:grid;gap:8px}
+.lz-tabla{width:100%;border-collapse:collapse;font-size:15px}
+.lz-tabla caption{text-align:left;font-weight:700;padding-bottom:8px}
+.lz-tabla th,.lz-tabla td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.lz-tabla th{font-weight:600;width:38%;opacity:.8}
+.lz-acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.lz-boton{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;font:inherit;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer}
+.lz-boton.lleno{background:#1f7a46;border-color:#1f7a46;color:#fff}
+.lz details{border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.lz summary{cursor:pointer;padding:16px 0;font-weight:700;font-size:17px}
+.lz details p{margin:0 0 16px;opacity:.85;max-width:62ch}
+.lz-rel ul{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.lz-rel li a{display:inline-flex;min-height:44px;align-items:center;padding:0 16px;border-radius:999px;border:1px solid color-mix(in srgb,currentColor 25%,transparent);color:inherit;text-decoration:none}
+.lz-rel p a{color:inherit}
+.lz-aviso{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:200;background:#11110f;color:#fff;padding:10px 16px;border-radius:999px;font:600 14px/1.3 system-ui,sans-serif;opacity:0;transition:opacity .3s;pointer-events:none}
+.lz-aviso.ver{opacity:1}
+.lz-cta-movil{position:fixed;left:12px;right:84px;bottom:max(12px,env(safe-area-inset-bottom));z-index:58;display:flex;transform:translateY(160%);transition:transform .35s ease}
+.lz-cta-movil.ver{transform:none}
+.lz-cta-movil a{flex:1;display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:999px;background:#11110f;color:#fff;font:700 15px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+@media(min-width:900px){.lz-cta-movil{display:none}}
+</style>
 </head>
 <body>
 
@@ -369,8 +407,8 @@ $("[data-almacen-n]").dataset.contar = ALMACEN.length;
 <section class="hero" id="inicio">
   <div class="envoltura">
     <div class="aparece">
-      <span class="ojo">Plato de la semana</span>
-      <h1 data-hero-titulo>Tortelli de azafrán <em>con manteca de salvia</em></h1>
+      <h1 class="ojo" style="margin:0;font-family:var(--mono);font-size:.75rem;font-weight:400;line-height:1.4;letter-spacing:.3em">Cocina de estación en Palermo · Plato de la semana</h1>
+      <h2 class="h1-visual" data-hero-titulo>Tortelli de azafrán <em>con manteca de salvia</em></h2>
       <p class="bajada" data-hero-bajada>Valentina amasa la yema con hebras de azafrán tostadas en el momento, los rellena de ricota de campo y limón, y los termina en la sartén con manteca noisette. Sale de la cocina de martes a domingo, hasta que se acaba la masa.</p>
       <div class="meta">
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>25 min</span>
@@ -385,7 +423,7 @@ $("[data-almacen-n]").dataset.contar = ALMACEN.length;
     </div>
     <div class="marco aparece">
       <span class="etiqueta-curso">Plato Nº 07</span>
-      <img src="mesa-fotos/mesa-11.jpg" alt="Tortelli en crema de azafrán, vistos desde arriba en platos blancos" fetchpriority="high">
+      <img src="mesa-fotos/tortelli-azafran.jpg" alt="Tortelli en crema de azafrán, vistos desde arriba en platos blancos" fetchpriority="high">
       <svg class="vapor" viewBox="0 0 200 200" aria-hidden="true"><path d="M60 200 C40 150 90 130 70 80 S80 20 70 0"/><path d="M110 200 C90 150 140 130 120 80 S130 20 120 0"/><path d="M150 200 C130 160 170 130 155 90 S165 30 150 0"/></svg>
       <div class="leyenda">
         <span class="avatar">VR</span>
@@ -395,6 +433,11 @@ $("[data-almacen-n]").dataset.contar = ALMACEN.length;
     </div>
   </div>
 </section>
+<section id="lz-resumen" class="lz" aria-labelledby="lz-resumen-t"><div class="lz-env lz-grid">
+<div><h2 id="lz-resumen-t">En resumen</h2><ul class="lz-puntos"><li>Carta con foto, ingredientes y precio de cada plato.</li><li>Reservas de mesa que llegan armadas por WhatsApp.</li><li>Pedidos con retiro o envío y almacén para llevar.</li><li>Horario de hoy, mapa y cómo llegar.</li></ul>
+<div class="lz-acciones"><button class="lz-boton" type="button" data-lz-compartir>Compartir esta página</button></div></div>
+<table class="lz-tabla"><caption>Datos clave</caption><tbody><tr><th scope="row">Rubro</th><td>Restaurante de cocina de estación</td></tr><tr><th scope="row">Zona</th><td>Palermo, CABA</td></tr><tr><th scope="row">Cómo se pide</th><td>WhatsApp, PedidosYa y Rappi</td></tr><tr><th scope="row">Reservas</th><td>Online, confirmadas por WhatsApp</td></tr></tbody></table>
+</div></section>
 
 <div class="franja" aria-hidden="true"><div class="franja-pista" data-franja></div></div>
 
@@ -463,19 +506,19 @@ $("[data-almacen-n]").dataset.contar = ALMACEN.length;
     </div>
     <div class="cocineros">
       <article class="cocinero aparece">
-        <figure><img src="mesa-fotos/mesa-07.jpg" alt="Manos estirando masa fresca sobre la mesada enharinada"><figcaption>Pastas · Nº 01</figcaption></figure>
+        <figure><img src="mesa-fotos/masa-fresca-mesada.jpg" alt="Manos estirando masa fresca sobre la mesada enharinada"><figcaption>Pastas · Nº 01</figcaption></figure>
         <h3>Valentina Ruiz</h3><span class="rol">Chef y fundadora</span>
         <blockquote>“La masa te dice cuándo está. Hay que tener paciencia y las manos limpias.”</blockquote>
         <p>Aprendió a amasar con su abuela piamontesa en Chivilcoy. Arma la carta cada estación con lo que trae la feria.</p>
       </article>
       <article class="cocinero aparece">
-        <figure><img src="mesa-fotos/mesa-10.jpg" alt="Cortes de carne sobre una parrilla con llamas altas"><figcaption>Fuegos · Nº 02</figcaption></figure>
+        <figure><img src="mesa-fotos/cortes-parrilla-llamas.jpg" alt="Cortes de carne sobre una parrilla con llamas altas"><figcaption>Fuegos · Nº 02</figcaption></figure>
         <h3>Tomás Ferraro</h3><span class="rol">Jefe de fuegos</span>
         <blockquote>“El fuego no se apura. Lo único que se apura es el que lo prende.”</blockquote>
         <p>Diez años de parrillas en la Patagonia. Maneja la brasa de quebracho y el horno de barro de los viernes.</p>
       </article>
       <article class="cocinero aparece">
-        <figure><img src="mesa-fotos/mesa-09.jpg" alt="Salón cálido con plantas, lámparas y mesas de madera"><figcaption>Salón · Nº 03</figcaption></figure>
+        <figure><img src="mesa-fotos/salon-plantas-lamparas.jpg" alt="Salón cálido con plantas, lámparas y mesas de madera"><figcaption>Salón · Nº 03</figcaption></figure>
         <h3>Inés Garay</h3><span class="rol">Sala y vinos</span>
         <blockquote>“Si te vas sin haber probado el postre, algo hice mal.”</blockquote>
         <p>Recibe, recomienda y arma los maridajes de los jueves con bodegas chicas de Mendoza y la Patagonia.</p>
@@ -554,12 +597,16 @@ $("[data-almacen-n]").dataset.contar = ALMACEN.length;
 </section>
 </main>
 
+<nav id="lz-relacionadas" class="lz lz-rel" aria-labelledby="lz-rel-t"><div class="lz-env"><h2 id="lz-rel-t">Más páginas de gastronomía</h2>
+<ul><li><a href="../tita/">Lo de Tita</a></li><li><a href="../shio-sushi/">Shio</a></li><li><a href="../fierro-parrilla/">Fierro Parrilla</a></li><li><a href="../almendra-cafe/">Almendra</a></li><li><a href="../kumo-sushi/">Kumo</a></li></ul>
+<p><a href="../../#gastronomia">Ver todas las páginas de gastronomía</a> · <a href="../../">Volver al muestrario de Lazervi</a></p>
+<div class="lz-acciones"><a class="lz-boton lleno" href="https://wa.me/5491178175738?text=Hola%21%20Vi%20la%20p%C3%A1gina%20%22Mesa%20Larga%22%20en%20tu%20muestrario%20y%20quiero%20una%20as%C3%AD%20para%20mi%20negocio." target="_blank" rel="noopener">Quiero una página así</a><button class="lz-boton" type="button" data-lz-compartir>Compartir</button></div></div></nav>
 <footer class="pie-pagina">
   <div class="envoltura">
     <div><a class="marca" href="#inicio" data-ir="inicio" style="color:var(--crema)">Mesa Larga</a><p>Cocina de estación, pastas amasadas en el día y fuegos lentos. Desde 2019, en Palermo.</p></div>
-    <div><h4>La casa</h4><ul><li><a href="#carta" data-ir="carta">La carta</a></li><li><a href="#noches" data-ir="noches">Noches</a></li><li><a href="#almacen" data-ir="almacen">Almacén</a></li><li><a href="#cocina" data-ir="cocina">La cocina</a></li></ul></div>
-    <div><h4>Pedidos</h4><ul><li><a href="#" data-wa-libre>WhatsApp</a></li><li><a href="#" data-pedidosya target="_blank" rel="noopener">PedidosYa</a></li><li><a href="#" data-rappi target="_blank" rel="noopener">Rappi</a></li><li><a href="#reservas" data-ir="reservas">Reservas</a></li></ul></div>
-    <div><h4>Seguinos</h4><ul><li><a href="#" data-instagram target="_blank" rel="noopener">Instagram</a></li><li><a href="#preguntas" data-ir="preguntas">Preguntas</a></li><li><a href="#visita" data-ir="visita">Cómo llegar</a></li></ul></div>
+    <div><h3>La casa</h3><ul><li><a href="#carta" data-ir="carta">La carta</a></li><li><a href="#noches" data-ir="noches">Noches</a></li><li><a href="#almacen" data-ir="almacen">Almacén</a></li><li><a href="#cocina" data-ir="cocina">La cocina</a></li></ul></div>
+    <div><h3>Pedidos</h3><ul><li><a href="#" data-wa-libre>WhatsApp</a></li><li><a href="#" data-pedidosya target="_blank" rel="noopener">PedidosYa</a></li><li><a href="#" data-rappi target="_blank" rel="noopener">Rappi</a></li><li><a href="#reservas" data-ir="reservas">Reservas</a></li></ul></div>
+    <div><h3>Seguinos</h3><ul><li><a href="#" data-instagram target="_blank" rel="noopener">Instagram</a></li><li><a href="#preguntas" data-ir="preguntas">Preguntas</a></li><li><a href="#visita" data-ir="visita">Cómo llegar</a></li></ul></div>
     <div class="legal"><span>© <span data-anio></span> Mesa Larga · Gorriti 4870, CABA</span><span>Página de demostración · negocio ficticio</span></div>
   </div>
 </footer>
@@ -606,23 +653,23 @@ const NEGOCIO = {
 };
 
 const PLATOS = [
-  { id:"tortelli", curso:"Pastas", nombre:"Tortelli de azafrán", sub:"con manteca de salvia", precio:15200, foto:"mesa-11.jpg", quien:"Valentina Ruiz", min:25, picante:1,
+  { id:"tortelli", curso:"Pastas", nombre:"Tortelli de azafrán", sub:"con manteca de salvia", precio:15200, foto:"tortelli-azafran.jpg", quien:"Valentina Ruiz", min:25, picante:1,
     ing:[["Masa de yema y azafrán","120 g"],["Ricota de campo","90 g"],["Limón y nuez moscada","—"],["Manteca noisette","30 g"],["Salvia fresca","6 hojas"]], alerg:"Gluten · huevo · lácteos" },
-  { id:"ravioles", curso:"Pastas", nombre:"Ravioles de calabaza", sub:"avellanas tostadas y aceite de hierbas", precio:14800, foto:"mesa-01.jpg", quien:"Valentina Ruiz", min:20, picante:0,
+  { id:"ravioles", curso:"Pastas", nombre:"Ravioles de calabaza", sub:"avellanas tostadas y aceite de hierbas", precio:14800, foto:"ravioles-calabaza.jpg", quien:"Valentina Ruiz", min:20, picante:0,
     ing:[["Calabaza asada","110 g"],["Queso sardo","20 g"],["Avellanas tostadas","15 g"],["Aceite de perejil y ciboulette","—"],["Masa al huevo","120 g"]], alerg:"Gluten · huevo · lácteos · frutos secos" },
-  { id:"sorrentinos", curso:"Pastas", nombre:"Sorrentinos al pesto", sub:"albahaca, piñones y lluvia de reggianito", precio:13900, foto:"mesa-04.jpg", quien:"Valentina Ruiz", min:18, picante:0,
+  { id:"sorrentinos", curso:"Pastas", nombre:"Sorrentinos al pesto", sub:"albahaca, piñones y lluvia de reggianito", precio:13900, foto:"sorrentinos-pesto.jpg", quien:"Valentina Ruiz", min:18, picante:0,
     ing:[["Jamón cocido y mozzarella","100 g"],["Pesto de albahaca","45 g"],["Piñones","10 g"],["Reggianito en lascas","15 g"]], alerg:"Gluten · huevo · lácteos · frutos secos" },
-  { id:"risotto", curso:"Arroces", nombre:"Risotto de hongos", sub:"hongos de pino, verdeo y manteca", precio:15900, foto:"mesa-02.jpg", quien:"Tomás Ferraro", min:30, picante:0,
+  { id:"risotto", curso:"Arroces", nombre:"Risotto de hongos", sub:"hongos de pino, verdeo y manteca", precio:15900, foto:"risotto-hongos.jpg", quien:"Tomás Ferraro", min:30, picante:0,
     ing:[["Arroz carnaroli","90 g"],["Hongos de pino hidratados","40 g"],["Caldo de verduras asadas","300 ml"],["Verdeo y parmesano","—"]], alerg:"Lácteos · apto sin TACC" },
-  { id:"ojo", curso:"Fuegos", nombre:"Ojo de bife a la brasa", sub:"papas en capas y jugo de cocción", precio:24500, foto:"mesa-03.jpg", quien:"Tomás Ferraro", min:35, picante:1,
+  { id:"ojo", curso:"Fuegos", nombre:"Ojo de bife a la brasa", sub:"papas en capas y jugo de cocción", precio:24500, foto:"ojo-bife-brasa.jpg", quien:"Tomás Ferraro", min:35, picante:1,
     ing:[["Ojo de bife","300 g"],["Papas en capas con crema","150 g"],["Jugo de cocción reducido","—"],["Sal de Maras y pimienta","—"]], alerg:"Lácteos · apto sin TACC" },
-  { id:"bife", curso:"Fuegos", nombre:"Bife de chorizo y hongos", sub:"con tallarines al tomate de la casa", precio:22000, foto:"mesa-05.jpg", quien:"Tomás Ferraro", min:30, picante:2,
+  { id:"bife", curso:"Fuegos", nombre:"Bife de chorizo y hongos", sub:"con tallarines al tomate de la casa", precio:22000, foto:"bife-chorizo-hongos.jpg", quien:"Tomás Ferraro", min:30, picante:2,
     ing:[["Bife de chorizo","280 g"],["Champiñones salteados","60 g"],["Tallarines al pomodoro","120 g"],["Ají molido ahumado","—"]], alerg:"Gluten · huevo" },
-  { id:"tiramisu", curso:"Postres", nombre:"Tiramisú de la casa", sub:"vainillas embebidas en café de especialidad", precio:7900, foto:"mesa-12.jpg", quien:"Inés Garay", min:5, picante:0,
+  { id:"tiramisu", curso:"Postres", nombre:"Tiramisú de la casa", sub:"vainillas embebidas en café de especialidad", precio:7900, foto:"tiramisu-casa.jpg", quien:"Inés Garay", min:5, picante:0,
     ing:[["Mascarpone","80 g"],["Vainillas caseras","4 u"],["Café espresso","40 ml"],["Cacao amargo","—"],["Marsala","un chorrito"]], alerg:"Gluten · huevo · lácteos · alcohol" },
-  { id:"tallarines", curso:"Pastas", nombre:"Tallarines al momento", sub:"se estiran cuando los pedís; pomodoro o manteca y limón", precio:12600, foto:"mesa-08.jpg", quien:"Valentina Ruiz", min:15, picante:0,
+  { id:"tallarines", curso:"Pastas", nombre:"Tallarines al momento", sub:"se estiran cuando los pedís; pomodoro o manteca y limón", precio:12600, foto:"tallarines-caseros.jpg", quien:"Valentina Ruiz", min:15, picante:0,
     ing:[["Tallarines al huevo","150 g"],["Pomodoro de tomate perita","120 ml"],["Albahaca y aceite de oliva","—"],["Reggianito rallado","20 g"]], alerg:"Gluten · huevo · lácteos" },
-  { id:"semifreddo", curso:"Postres", nombre:"Tiramisú para compartir", sub:"la fuente entera, para dos o tres", precio:13500, foto:"mesa-06.jpg", quien:"Inés Garay", min:5, picante:0,
+  { id:"semifreddo", curso:"Postres", nombre:"Tiramisú para compartir", sub:"la fuente entera, para dos o tres", precio:13500, foto:"tiramisu-compartir.jpg", quien:"Inés Garay", min:5, picante:0,
     ing:[["Mascarpone","200 g"],["Vainillas caseras","10 u"],["Café y cacao","—"],["Menta fresca","—"]], alerg:"Gluten · huevo · lácteos" }
 ];
 
@@ -835,6 +882,22 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.ta
 $$(".aparece").forEach(el=>io.observe(el));
 const ioC=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return; const el=e.target, fin=+el.dataset.contar; let t0=null; const paso=t=>{ t0=t0||t; const k=Math.min(1,(t-t0)/1200); el.textContent=Math.round(fin*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(paso); }; requestAnimationFrame(paso); ioC.unobserve(el); }));
 $$("[data-contar]").forEach(el=>ioC.observe(el));
+</script>
+<div class="lz-cta-movil"><a href="#reservas">Reservar mesa</a></div>
+<script>
+(function(){
+  var aviso=function(t){var a=document.querySelector(".lz-aviso");if(!a){a=document.createElement("div");a.className="lz-aviso";a.setAttribute("role","status");document.body.appendChild(a);}a.textContent=t;a.classList.add("ver");setTimeout(function(){a.classList.remove("ver")},1800);};
+  document.addEventListener("click",function(ev){var b=ev.target.closest("[data-lz-compartir]");if(!b)return;
+    var d={title:document.title,text:document.querySelector('meta[name="description"]').content,url:location.href.split("#")[0]};
+    if(navigator.share){navigator.share(d).catch(function(){});return;}
+    if(navigator.clipboard){navigator.clipboard.writeText(d.url).then(function(){aviso("Enlace copiado")},function(){window.open("https://wa.me/?text="+encodeURIComponent(d.title+" "+d.url),"_blank","noopener")});}
+    else window.open("https://wa.me/?text="+encodeURIComponent(d.title+" "+d.url),"_blank","noopener");});
+  var cta=document.querySelector(".lz-cta-movil");
+  if(cta){var mirar=function(){cta.classList.toggle("ver",scrollY>innerHeight*.5)};addEventListener("scroll",mirar,{passive:true});mirar();}
+  addEventListener("load",function(){if(document.getElementById("lz-faq-ld"))return;
+    var qs=[].slice.call(document.querySelectorAll("#preguntas details, #lz-faq details")).map(function(d){var s=d.querySelector("summary");if(!s)return null;var c=d.cloneNode(true);c.querySelector("summary").remove();return{"@type":"Question",name:s.textContent.trim(),acceptedAnswer:{"@type":"Answer",text:c.textContent.trim()}}}).filter(Boolean);
+    if(!qs.length)return;var j=document.createElement("script");j.type="application/ld+json";j.id="lz-faq-ld";j.textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage",mainEntity:qs});document.head.appendChild(j);});
+})();
 </script>
 </body>
 </html>

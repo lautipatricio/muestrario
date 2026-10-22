@@ -3,10 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-180.png">
+<title>Fierro — Parrilla a leña en Beccar</title>
+<meta name="description" content="Demo de página web para parrilla: carta por cortes, fotos con brasas animadas, reserva de mesa con reloj, horarios, mapa y pedidos por apps.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://lautipatricio.github.io/muestrario/demos/fierro-parrilla/">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:site_name" content="Lazervi">
+<meta property="og:title" content="Fierro — Parrilla a leña en Beccar"><meta property="og:description" content="Demo de página web para parrilla: carta por cortes, fotos con brasas animadas, reserva de mesa con reloj, horarios, mapa y pedidos por apps.">
+<meta property="og:url" content="https://lautipatricio.github.io/muestrario/demos/fierro-parrilla/"><meta property="og:image" content="https://lautipatricio.github.io/muestrario/posters/fierro-parrilla-h.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com; media-src 'self' blob:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-apple.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Lazervi", "item": "https://lautipatricio.github.io/muestrario/"}, {"@type": "ListItem", "position": 2, "name": "Gastronomía", "item": "https://lautipatricio.github.io/muestrario/#gastronomia"}, {"@type": "ListItem", "position": 3, "name": "Fierro Parrilla", "item": "https://lautipatricio.github.io/muestrario/demos/fierro-parrilla/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SteakHouse", "name": "Fierro Parrilla", "description": "Demo de página web para parrilla: carta por cortes, fotos con brasas animadas, reserva de mesa con reloj, horarios, mapa y pedidos por apps.", "url": "https://lautipatricio.github.io/muestrario/demos/fierro-parrilla/", "image": "https://lautipatricio.github.io/muestrario/posters/fierro-parrilla-h.jpg", "address": {"@type": "PostalAddress", "streetAddress": "Av. Centenario 1742, Beccar", "addressLocality": "Beccar, San Isidro", "addressRegion": "Buenos Aires", "addressCountry": "AR"}, "areaServed": "Beccar, San Isidro"}</script>
+<script type="application/ld+json" id="lz-faq-ld">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cómo reservo?", "acceptedAnswer": {"@type": "Answer", "text": "Elegís día, hora en el reloj y cantidad de personas; el pedido de reserva sale por WhatsApp."}}, {"@type": "Question", "name": "¿Se ve el precio de cada corte?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, la carta está ordenada por cortes con su precio."}}, {"@type": "Question", "name": "¿Hacen envíos?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, con botones directos a PedidosYa y Rappi."}}]}</script>
+<style>
+.lz{position:relative;z-index:1;padding:clamp(40px,7vw,72px) 0;font-size:16px;line-height:1.55}
+.lz-env{width:min(1160px,calc(100% - 32px));margin:0 auto}
+.lz h2{margin:0 0 18px;font-size:clamp(26px,3.4vw,40px);line-height:1.1}
+.lz-grid{display:grid;gap:24px}@media(min-width:860px){.lz-grid{grid-template-columns:1.1fr .9fr;align-items:start}}
+.lz ul.lz-puntos{margin:0;padding-left:1.2em;display:grid;gap:8px}
+.lz-tabla{width:100%;border-collapse:collapse;font-size:15px}
+.lz-tabla caption{text-align:left;font-weight:700;padding-bottom:8px}
+.lz-tabla th,.lz-tabla td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.lz-tabla th{font-weight:600;width:38%;opacity:.8}
+.lz-acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.lz-boton{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;font:inherit;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer}
+.lz-boton.lleno{background:#1f7a46;border-color:#1f7a46;color:#fff}
+.lz details{border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.lz summary{cursor:pointer;padding:16px 0;font-weight:700;font-size:17px}
+.lz details p{margin:0 0 16px;opacity:.85;max-width:62ch}
+.lz-rel ul{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.lz-rel li a{display:inline-flex;min-height:44px;align-items:center;padding:0 16px;border-radius:999px;border:1px solid color-mix(in srgb,currentColor 25%,transparent);color:inherit;text-decoration:none}
+.lz-rel p a{color:inherit}
+.lz-aviso{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:200;background:#11110f;color:#fff;padding:10px 16px;border-radius:999px;font:600 14px/1.3 system-ui,sans-serif;opacity:0;transition:opacity .3s;pointer-events:none}
+.lz-aviso.ver{opacity:1}
+.lz-cta-movil{position:fixed;left:12px;right:84px;bottom:max(12px,env(safe-area-inset-bottom));z-index:58;display:flex;transform:translateY(160%);transition:transform .35s ease}
+.lz-cta-movil.ver{transform:none}
+.lz-cta-movil a{flex:1;display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:999px;background:#11110f;color:#fff;font:700 15px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+@media(min-width:900px){.lz-cta-movil{display:none}}
+</style>
 </head>
 <body>
-<title>Fierro Parrilla</title>
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap">
@@ -121,6 +161,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media (max-width:640px){.hero-abajo .envoltura{grid-template-columns:1fr}.hero-abajo .der{display:none}}
 .hero-abajo .etiqueta{color:rgba(240,233,215,.75)}
 .hero-abajo .etiqueta b{color:var(--crema);font-weight:500}
+.intro-hero{grid-column:1 / -1;margin:0 0 14px;max-width:46ch;font-size:clamp(15px,1.6vw,18px);line-height:1.5;color:rgba(240,233,215,.85)}
 .acciones-hero{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;grid-column:1 / -1}
 @media (max-width:560px){.acciones-hero .boton{flex:1 1 100%}}
 .vertical-der{position:absolute;right:max(10px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);writing-mode:vertical-rl;color:rgba(240,233,215,.6);display:none}
@@ -203,8 +244,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .platos-col .lead h3{font-family:var(--f-display);font-weight:400;font-size:26px;letter-spacing:-.01em}
 .platos-col .lead p{margin:0;max-width:44ch}
 .plato{display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 28px;padding:18px 0;border-top:1px solid var(--filete)}
-.plato h4{grid-column:1 / -1;display:flex;justify-content:space-between;gap:16px;align-items:baseline;font-family:var(--f-display);font-weight:400;font-size:21px;line-height:1.2;letter-spacing:-.01em}
-.plato h4 span{font-size:18px;font-feature-settings:"ss01","tnum";white-space:nowrap}
+.plato h3{grid-column:1 / -1;display:flex;justify-content:space-between;gap:16px;align-items:baseline;font-family:var(--f-display);font-weight:400;font-size:21px;line-height:1.2;letter-spacing:-.01em}
+.plato h3 span{font-size:18px;font-feature-settings:"ss01","tnum";white-space:nowrap}
 .plato p{grid-column:1 / -1;margin:0 0 4px;font-size:14px;color:rgba(240,233,215,.7)}
 .plato dl{display:contents}
 .plato dt,.plato dd{margin:0}
@@ -239,7 +280,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .adorno{font-family:var(--f-display);font-style:italic;color:var(--brasa-viva);text-align:center;font-size:20px}
 .cita-brasa{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(22px,2.4vw,28px);line-height:1.35;color:var(--brasa-viva);margin:0}
 .paso-proceso{display:grid;gap:6px}
-.paso-proceso h4{font-family:var(--f-display);font-weight:500;font-size:22px}
+.paso-proceso h3{font-family:var(--f-display);font-weight:500;font-size:22px}
 .paso-proceso p{margin:0;font-size:14px;color:rgba(240,233,215,.75)}
 
 /* ---------- Delivery (Care) en papel crema ---------- */
@@ -331,25 +372,31 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <main id="inicio">
   <section class="hero" aria-labelledby="palabra">
     <div class="hero-imagen" id="hero-imagen">
-      <img class="foto" src="fierro-fotos/hero-1600.webp" srcset="fierro-fotos/hero-900.webp 900w, fierro-fotos/hero-1600.webp 1600w" sizes="100vw" alt="Cortes de carne sobre la parrilla, con humo subiendo en la oscuridad" fetchpriority="high">
+      <img class="foto" src="fierro-fotos/cortes-parrilla-humo-grande.webp" srcset="fierro-fotos/cortes-parrilla-humo-chica.webp 900w, fierro-fotos/cortes-parrilla-humo-grande.webp 1600w" sizes="100vw" alt="Cortes de carne sobre la parrilla, con humo subiendo en la oscuridad" fetchpriority="high">
     </div>
     <canvas id="chispas" aria-hidden="true"></canvas>
     <div class="hero-arriba">
       <div class="envoltura">
-        <h1 class="palabra" id="palabra"><span id="palabra-texto">FIERRO<i>.</i></span></h1>
-        <div class="leyenda"><i aria-hidden="true"></i><span>leña, sal gruesa y paciencia</span>
+        <div class="palabra" id="palabra" role="presentation"><span id="palabra-texto">FIERRO<i>.</i></span></div>
+        <div class="leyenda"><i aria-hidden="true"></i><h1 style="margin:0;font:inherit"><span>Parrilla a leña en Beccar</span></h1>
           <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5c2.5 3 4 5.2 4 7.6A4 4 0 0 1 4 9.1c0-1.5.7-2.8 1.8-4 .2 1.5.9 2.5 1.8 3 0-2.2-.1-4.1.4-6.6Z" stroke="currentColor" stroke-width="1"/></svg><i aria-hidden="true"></i></div>
       </div>
     </div>
     <div class="vertical-der etiqueta" aria-hidden="true">Bajá para ver la carta</div>
     <div class="hero-abajo">
       <div class="envoltura">
+        <p class="intro-hero">Cortes a la leña de quebracho, achuras y vino de la casa, en una parrilla de barrio. Reservá tu mesa o pedí a casa.</p>
         <div class="acciones-hero" id="acciones-hero"></div>
         <div class="etiqueta">N° 001 · <b id="estado" role="status">Consultando el horario</b><br>Parrilla de barrio en Beccar</div>
         <div class="etiqueta der">A la leña de quebracho<br>Fig. 01 · La parrilla</div>
       </div>
     </div>
   </section>
+<section id="lz-resumen" class="lz" aria-labelledby="lz-resumen-t"><div class="lz-env lz-grid">
+<div><h2 id="lz-resumen-t">En resumen</h2><ul class="lz-puntos"><li>Carta por cortes, con precio y punto.</li><li>Reserva de mesa eligiendo el horario en un reloj.</li><li>Fotos con brasas animadas.</li><li>Horarios, mapa y apps de delivery.</li></ul>
+<div class="lz-acciones"><button class="lz-boton" type="button" data-lz-compartir>Compartir esta página</button></div></div>
+<table class="lz-tabla"><caption>Datos clave</caption><tbody><tr><th scope="row">Rubro</th><td>Parrilla a leña</td></tr><tr><th scope="row">Zona</th><td>Beccar, San Isidro</td></tr><tr><th scope="row">Reservas</th><td>Online, por WhatsApp</td></tr><tr><th scope="row">Delivery</th><td>PedidosYa y Rappi</td></tr></tbody></table>
+</div></section>
 
   <section class="reserva" id="reservas" aria-labelledby="titulo-reserva">
     <div class="envoltura">
@@ -436,9 +483,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       </div>
       <div class="ensayo">
         <div class="c1">
-          <figure class="marco"><img class="foto" src="fierro-fotos/chispas-900.webp" alt="Chispas saltando de un tronco encendido" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 01 · Chispas</figcaption></figure>
+          <figure class="marco"><img class="foto" src="fierro-fotos/chispas-tronco-chica.webp" alt="Chispas saltando de un tronco encendido" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 01 · Chispas</figcaption></figure>
           <div class="nota"><span class="etiqueta" style="color:rgba(240,233,215,.75)">Nota del parrillero · 17:04</span><p>“La leña no se apura. Si la apurás, la carne se da cuenta.”</p></div>
-          <figure class="marco apaisada"><img class="foto" src="fierro-fotos/brasas-900.webp" alt="Brasas de quebracho al rojo vivo" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 03 · La brasa</figcaption></figure>
+          <figure class="marco apaisada"><img class="foto" src="fierro-fotos/brasas-quebracho-chica.webp" alt="Brasas de quebracho al rojo vivo" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 03 · La brasa</figcaption></figure>
         </div>
         <div class="c2">
           <div class="adorno" aria-hidden="true">— brasa —</div>
@@ -449,9 +496,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
           <span class="etiqueta" style="color:rgba(240,233,215,.75)">Ramón, parrillero de Fierro</span>
         </div>
         <div class="c3">
-          <figure class="marco"><img class="foto" src="fierro-fotos/parrillero-900.webp" alt="El parrillero acomodando la brasa debajo de la parrilla" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 02 · Ramón</figcaption></figure>
-          <div class="paso-proceso"><span class="etiqueta" style="color:rgba(240,233,215,.75)">Proceso · paso 2 de 3</span><h4>Repartir la brasa</h4><p>Cada zona lleva una pala distinta de brasa. Se repone cada cuarenta minutos.</p></div>
-          <figure class="marco"><img class="foto" src="fierro-fotos/cruz-900.webp" alt="Costillar asándose a la cruz junto al fuego" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 04 · A la cruz</figcaption></figure>
+          <figure class="marco"><img class="foto" src="fierro-fotos/parrillero-brasa-chica.webp" alt="El parrillero acomodando la brasa debajo de la parrilla" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 02 · Ramón</figcaption></figure>
+          <div class="paso-proceso"><span class="etiqueta" style="color:rgba(240,233,215,.75)">Proceso · paso 2 de 3</span><h3>Repartir la brasa</h3><p>Cada zona lleva una pala distinta de brasa. Se repone cada cuarenta minutos.</p></div>
+          <figure class="marco"><img class="foto" src="fierro-fotos/costillar-cruz-chica.webp" alt="Costillar asándose a la cruz junto al fuego" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 04 · A la cruz</figcaption></figure>
         </div>
       </div>
     </div>
@@ -463,7 +510,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <span class="etiqueta">Envío a domicilio</span>
         <h3>La parrilla, en tu casa.</h3>
         <p>Los cortes viajan en caja de cartón y la achura va aparte, para que llegue crocante. Pedí por la app que uses.</p>
-        <figure class="marco"><img class="foto" src="fierro-fotos/humo2-900.webp" alt="Un corte grueso sobre la parrilla, entre el humo" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 05 · Para viajar</figcaption></figure>
+        <figure class="marco"><img class="foto" src="fierro-fotos/corte-grueso-humo-chica.webp" alt="Un corte grueso sobre la parrilla, entre el humo" loading="lazy" decoding="async"><figcaption class="rotulo etiqueta">Pl. 05 · Para viajar</figcaption></figure>
         <div class="datos-hoja"><div><span>35 a 50 min</span><b class="etiqueta">Demora</b></div><div><span>San Isidro</span><b class="etiqueta">Zona</b></div><div><span>Caja de cartón</span><b class="etiqueta">Envase</b></div></div>
         <div class="salidas" id="salidas-envio"></div>
       </div>
@@ -472,7 +519,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
         <span class="etiqueta">Para retirar</span>
         <h3>Pasás a buscarlo.</h3>
         <p>Escribinos por WhatsApp, te avisamos cuando está listo y lo retirás por la puerta lateral.</p>
-        <figure class="marco"><img class="foto" src="fierro-fotos/humo-900.webp" alt="Bifes en la parrilla con llamas y humo" loading="lazy" decoding="async" style="object-position:50% 65%"><figcaption class="rotulo etiqueta">Pl. 06 · Recién salido</figcaption></figure>
+        <figure class="marco"><img class="foto" src="fierro-fotos/bifes-llamas-humo-chica.webp" alt="Bifes en la parrilla con llamas y humo" loading="lazy" decoding="async" style="object-position:50% 65%"><figcaption class="rotulo etiqueta">Pl. 06 · Recién salido</figcaption></figure>
         <div class="datos-hoja"><div><span>20 min</span><b class="etiqueta">Demora</b></div><div><span>Sin comisión</span><b class="etiqueta">Precio</b></div><div><span>Puerta lateral</span><b class="etiqueta">Retiro</b></div></div>
         <div class="salidas" id="salidas-retiro"></div>
       </div>
@@ -493,12 +540,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </section>
 </main>
 
-<section id="lz-mapa" aria-label="Cómo llegar" style="position:relative;z-index:1;padding:72px 0;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)">
-<div style="width:min(1160px,calc(100% - 32px));margin:0 auto">
-<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;margin-bottom:22px"><div><p style="margin:0 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.65">Cómo llegar</p><h2 style="margin:0;font-size:clamp(26px,3.4vw,40px);line-height:1.1">Av. Centenario 1742, Beccar</h2></div>
+<section id="lz-faq" class="lz" aria-labelledby="lz-faq-t"><div class="lz-env"><h2 id="lz-faq-t">Preguntas frecuentes</h2>
+<details><summary>¿Cómo reservo?</summary><p>Elegís día, hora en el reloj y cantidad de personas; el pedido de reserva sale por WhatsApp.</p></details><details><summary>¿Se ve el precio de cada corte?</summary><p>Sí, la carta está ordenada por cortes con su precio.</p></details><details><summary>¿Hacen envíos?</summary><p>Sí, con botones directos a PedidosYa y Rappi.</p></details></div></section><nav id="lz-relacionadas" class="lz lz-rel" aria-labelledby="lz-rel-t"><div class="lz-env"><h2 id="lz-rel-t">Más páginas de gastronomía</h2>
+<ul><li><a href="../mesa-larga/">Mesa Larga</a></li><li><a href="../tita/">Lo de Tita</a></li><li><a href="../shio-sushi/">Shio</a></li><li><a href="../almendra-cafe/">Almendra</a></li><li><a href="../kumo-sushi/">Kumo</a></li></ul>
+<p><a href="../../#gastronomia">Ver todas las páginas de gastronomía</a> · <a href="../../">Volver al muestrario de Lazervi</a></p>
+<div class="lz-acciones"><a class="lz-boton lleno" href="https://wa.me/5491178175738?text=Hola%21%20Vi%20la%20p%C3%A1gina%20%22Fierro%20Parrilla%22%20en%20tu%20muestrario%20y%20quiero%20una%20as%C3%AD%20para%20mi%20negocio." target="_blank" rel="noopener">Quiero una página así</a><button class="lz-boton" type="button" data-lz-compartir>Compartir</button></div></div></nav><section id="lz-mapa" class="lz" aria-labelledby="lz-mapa-t" style="border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)"><div class="lz-env">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;margin-bottom:22px"><div><p style="margin:0 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.65">Cómo llegar</p><h2 id="lz-mapa-t" style="margin:0">Av. Centenario 1742, Beccar</h2></div>
 <a href="https://www.google.com/maps/search/?api=1&query=Av.%20Centenario%201742%2C%20Beccar%2C%20Buenos%20Aires" target="_blank" rel="noopener" style="color:inherit;font-size:15px;text-decoration:underline;text-underline-offset:4px">Abrir en Google Maps ↗</a></div>
-<iframe title="Mapa: Av. Centenario 1742, Beccar" src="https://www.google.com/maps?q=Av.%20Centenario%201742%2C%20Beccar%2C%20Buenos%20Aires&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="display:block;width:100%;height:clamp(280px,42vw,420px);border:0;border-radius:16px;background:#e8e8e4"></iframe>
-</div></section>
+<iframe title="Mapa: Av. Centenario 1742, Beccar" src="https://www.google.com/maps?q=Av.%20Centenario%201742%2C%20Beccar%2C%20Buenos%20Aires&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="display:block;width:100%;height:clamp(280px,42vw,420px);border:0;border-radius:16px;background:#e8e8e4"></iframe></div></section>
+
 <footer class="pie" id="llegar">
   <div class="envoltura">
     <div class="columnas">
@@ -591,12 +641,12 @@ const LOCAL = {
 
 /* Texto y foto de cada categoría de la carta (opcional) */
 const CATEGORIA = {
-  "Para empezar": { titulo:"Para abrir la mesa", texto:"Mientras se hace la carne. Todo sale de la misma parrilla.", foto:"empezar" },
-  "De la parrilla": { titulo:"Novillo pesado", texto:"Cortado acá y salado con sal gruesa justo antes de ir al fuego.", foto:"parrilla", coccion:true },
-  "Achuras": { titulo:"Crocantes y a punto", texto:"Se piden al principio, como manda la costumbre.", foto:"achuras" },
-  "Guarniciones": { titulo:"Para acompañar", texto:"Sin tapar el sabor de la carne.", foto:"humo2" },
-  "Postres": { titulo:"De la casa", texto:"Clásicos hechos todas las mañanas.", foto:"brasas" },
-  "Vinos": { titulo:"Carta corta", texto:"Pensada para la parrilla. Preguntale al mozo qué abrimos hoy.", foto:"chispas" }
+  "Para empezar": { titulo:"Para abrir la mesa", texto:"Mientras se hace la carne. Todo sale de la misma parrilla.", foto:"entradas-parrilla" },
+  "De la parrilla": { titulo:"Novillo pesado", texto:"Cortado acá y salado con sal gruesa justo antes de ir al fuego.", foto:"parrilla-cortes", coccion:true },
+  "Achuras": { titulo:"Crocantes y a punto", texto:"Se piden al principio, como manda la costumbre.", foto:"achuras-parrilla" },
+  "Guarniciones": { titulo:"Para acompañar", texto:"Sin tapar el sabor de la carne.", foto:"corte-grueso-humo" },
+  "Postres": { titulo:"De la casa", texto:"Clásicos hechos todas las mañanas.", foto:"brasas-quebracho" },
+  "Vinos": { titulo:"Carta corta", texto:"Pensada para la parrilla. Preguntale al mozo qué abrimos hoy.", foto:"chispas-tronco" }
 };
 
 /* ---------- Utilidades ---------- */
@@ -612,7 +662,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
 const FLECHA = `<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.2"/></svg>`;
 const SALIDA = `<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14 14 6M7 6h7v7" stroke="currentColor" stroke-width="1.2"/></svg>`;
 const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const foto = (n, alt) => `<img class="foto" src="fierro-fotos/${n}-900.webp" srcset="fierro-fotos/${n}-900.webp 900w, fierro-fotos/${n}-1600.webp 1600w" sizes="(min-width:1000px) 40vw, 100vw" alt="${esc(alt)}" loading="lazy" decoding="async">`;
+const foto = (n, alt) => `<img class="foto" src="fierro-fotos/${n}-chica.webp" srcset="fierro-fotos/${n}-chica.webp 900w, fierro-fotos/${n}-grande.webp 1600w" sizes="(min-width:1000px) 40vw, 100vw" alt="${esc(alt)}" loading="lazy" decoding="async">`;
 
 function ahoraLocal(){
   try{
@@ -672,7 +722,7 @@ function pintarCarta(enfocar){
   $("#coccion").hidden = !info.coccion;
   $("#platos").innerHTML = cat.platos.map(p=>`
     <article class="plato">
-      <h4>${esc(p.nombre)}<span>${pesos(p.precio)}</span></h4>
+      <h3>${esc(p.nombre)}<span>${pesos(p.precio)}</span></h3>
       <p>${esc(p.detalle)}</p>
       ${(p.peso||p.sello)?`<dl>${p.peso?`<dt class="etiqueta">Peso</dt><dd>${esc(p.peso)}</dd>`:""}${p.sello?`<dt class="etiqueta">Nota</dt><dd class="sello">${esc(p.sello)}</dd>`:""}</dl>`:""}
     </article>`).join("");
@@ -854,5 +904,20 @@ ajustarPalabra(); if (document.fonts) document.fonts.ready.then(ajustarPalabra);
 let rp; addEventListener("resize", ()=>{ clearTimeout(rp); rp=setTimeout(ajustarPalabra,150); });
 </script>
 
+<script>
+(function(){
+  var aviso=function(t){var a=document.querySelector(".lz-aviso");if(!a){a=document.createElement("div");a.className="lz-aviso";a.setAttribute("role","status");document.body.appendChild(a);}a.textContent=t;a.classList.add("ver");setTimeout(function(){a.classList.remove("ver")},1800);};
+  document.addEventListener("click",function(ev){var b=ev.target.closest("[data-lz-compartir]");if(!b)return;
+    var d={title:document.title,text:document.querySelector('meta[name="description"]').content,url:location.href.split("#")[0]};
+    if(navigator.share){navigator.share(d).catch(function(){});return;}
+    if(navigator.clipboard){navigator.clipboard.writeText(d.url).then(function(){aviso("Enlace copiado")},function(){window.open("https://wa.me/?text="+encodeURIComponent(d.title+" "+d.url),"_blank","noopener")});}
+    else window.open("https://wa.me/?text="+encodeURIComponent(d.title+" "+d.url),"_blank","noopener");});
+  var cta=document.querySelector(".lz-cta-movil");
+  if(cta){var mirar=function(){cta.classList.toggle("ver",scrollY>innerHeight*.5)};addEventListener("scroll",mirar,{passive:true});mirar();}
+  addEventListener("load",function(){if(document.getElementById("lz-faq-ld"))return;
+    var qs=[].slice.call(document.querySelectorAll("#preguntas details, #lz-faq details")).map(function(d){var s=d.querySelector("summary");if(!s)return null;var c=d.cloneNode(true);c.querySelector("summary").remove();return{"@type":"Question",name:s.textContent.trim(),acceptedAnswer:{"@type":"Answer",text:c.textContent.trim()}}}).filter(Boolean);
+    if(!qs.length)return;var j=document.createElement("script");j.type="application/ld+json";j.id="lz-faq-ld";j.textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage",mainEntity:qs});document.head.appendChild(j);});
+})();
+</script>
 </body>
 </html>

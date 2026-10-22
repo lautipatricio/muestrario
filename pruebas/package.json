@@ -1,0 +1,7 @@
+{
+  "name": "pruebas-muestrario",
+  "private": true,
+  "description": "Pruebas automáticas de SEO y seguridad del muestrario de Lazervi",
+  "scripts": { "test": "node correr.js" },
+  "devDependencies": { "playwright-core": "1.47.2" }
+}

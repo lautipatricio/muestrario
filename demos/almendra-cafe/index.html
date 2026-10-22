@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Almendra — Café de especialidad y brunch en Martínez</title>
-<meta name="description" content="Almendra, café de especialidad y brunch en Martínez. Carta con precios para pedir y retirar, café de la semana, reservas de mesa en el patio por WhatsApp.">
+
+
 <meta name="theme-color" content="#F6F1E7">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -242,7 +242,46 @@ h2{font-size:clamp(2.2rem,5.6vw,3.8rem)}
 .aviso{position:fixed;left:50%;bottom:92px;z-index:95;transform:translate(-50%,20px);opacity:0;background:var(--cafe);color:var(--crema);padding:11px 18px;border-radius:999px;font-weight:600;font-size:.9rem;box-shadow:0 10px 30px rgba(43,33,24,.3);transition:opacity .3s,transform .3s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
 .aviso.ver{opacity:1;transform:translate(-50%,0)}
 </style>
-<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-180.png">
+<title>Almendra — Café de especialidad y brunch en Martínez</title>
+<meta name="description" content="Demo de página web para cafetería: carta con fotos y precio, pedido para llevar con hora de retiro, café de la semana en bolsa, reservas y mapa.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://lautipatricio.github.io/muestrario/demos/almendra-cafe/">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:site_name" content="Lazervi">
+<meta property="og:title" content="Almendra — Café de especialidad y brunch en Martínez"><meta property="og:description" content="Demo de página web para cafetería: carta con fotos y precio, pedido para llevar con hora de retiro, café de la semana en bolsa, reservas y mapa.">
+<meta property="og:url" content="https://lautipatricio.github.io/muestrario/demos/almendra-cafe/"><meta property="og:image" content="https://lautipatricio.github.io/muestrario/posters/almendra-cafe-h.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com; media-src 'self' blob:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-apple.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Lazervi", "item": "https://lautipatricio.github.io/muestrario/"}, {"@type": "ListItem", "position": 2, "name": "Gastronomía", "item": "https://lautipatricio.github.io/muestrario/#gastronomia"}, {"@type": "ListItem", "position": 3, "name": "Almendra", "item": "https://lautipatricio.github.io/muestrario/demos/almendra-cafe/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CafeOrCoffeeShop", "name": "Almendra", "description": "Demo de página web para cafetería: carta con fotos y precio, pedido para llevar con hora de retiro, café de la semana en bolsa, reservas y mapa.", "url": "https://lautipatricio.github.io/muestrario/demos/almendra-cafe/", "image": "https://lautipatricio.github.io/muestrario/posters/almendra-cafe-h.jpg", "address": {"@type": "PostalAddress", "streetAddress": "Alvear 512, Martínez", "addressLocality": "Martínez, San Isidro", "addressRegion": "Buenos Aires", "addressCountry": "AR"}, "areaServed": "Martínez, San Isidro"}</script>
+<script type="application/ld+json" id="lz-faq-ld">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Puedo pedir para llevar?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Sumás lo que quieras con +, elegís a qué hora pasás y el pedido llega por WhatsApp."}}, {"@type": "Question", "name": "¿Venden el café en grano?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, el café de la semana se vende en bolsas de 250 y 500 g."}}, {"@type": "Question", "name": "¿Hay opciones sin TACC?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, la carta tiene una sección sin TACC."}}]}</script>
+<style>
+.lz{position:relative;z-index:1;padding:clamp(40px,7vw,72px) 0;font-size:16px;line-height:1.55}
+.lz-env{width:min(1160px,calc(100% - 32px));margin:0 auto}
+.lz h2{margin:0 0 18px;font-size:clamp(26px,3.4vw,40px);line-height:1.1}
+.lz-grid{display:grid;gap:24px}@media(min-width:860px){.lz-grid{grid-template-columns:1.1fr .9fr;align-items:start}}
+.lz ul.lz-puntos{margin:0;padding-left:1.2em;display:grid;gap:8px}
+.lz-tabla{width:100%;border-collapse:collapse;font-size:15px}
+.lz-tabla caption{text-align:left;font-weight:700;padding-bottom:8px}
+.lz-tabla th,.lz-tabla td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.lz-tabla th{font-weight:600;width:38%;opacity:.8}
+.lz-acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.lz-boton{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;font:inherit;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer}
+.lz-boton.lleno{background:#1f7a46;border-color:#1f7a46;color:#fff}
+.lz details{border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.lz summary{cursor:pointer;padding:16px 0;font-weight:700;font-size:17px}
+.lz details p{margin:0 0 16px;opacity:.85;max-width:62ch}
+.lz-rel ul{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.lz-rel li a{display:inline-flex;min-height:44px;align-items:center;padding:0 16px;border-radius:999px;border:1px solid color-mix(in srgb,currentColor 25%,transparent);color:inherit;text-decoration:none}
+.lz-rel p a{color:inherit}
+.lz-aviso{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:200;background:#11110f;color:#fff;padding:10px 16px;border-radius:999px;font:600 14px/1.3 system-ui,sans-serif;opacity:0;transition:opacity .3s;pointer-events:none}
+.lz-aviso.ver{opacity:1}
+.lz-cta-movil{position:fixed;left:12px;right:84px;bottom:max(12px,env(safe-area-inset-bottom));z-index:58;display:flex;transform:translateY(160%);transition:transform .35s ease}
+.lz-cta-movil.ver{transform:none}
+.lz-cta-movil a{flex:1;display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:999px;background:#11110f;color:#fff;font:700 15px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+@media(min-width:900px){.lz-cta-movil{display:none}}
+</style>
 </head>
 <body>
 
@@ -271,13 +310,18 @@ h2{font-size:clamp(2.2rem,5.6vw,3.8rem)}
           <a class="boton b-linea" href="#carta">Pedir para llevar</a>
         </div>
       </div>
-      <div class="collage" aria-hidden="true">
-        <div class="grande foto"><img src="almendra-fotos/almendra-01.jpg" alt="" fetchpriority="high" onerror="this.parentNode.classList.add('sin')"></div>
-        <div class="chica foto"><img src="almendra-fotos/almendra-02.jpg" alt="" onerror="this.parentNode.classList.add('sin')"></div>
+      <div class="collage">
+        <div class="grande foto"><img src="almendra-fotos/desayuno-sol-medialunas.jpg" alt="Mesa de desayuno al sol con medialunas, frutillas y café en Almendra" fetchpriority="high" onerror="this.parentNode.classList.add('sin')"></div>
+        <div class="chica foto"><img src="almendra-fotos/flat-white-latte-art.jpg" alt="Flat white con dibujo en la espuma" onerror="this.parentNode.classList.add('sin')"></div>
         <div class="chapita" id="chapita"><span><small>Ahora</small>Brunch</span></div>
       </div>
     </div>
   </section>
+<section id="lz-resumen" class="lz" aria-labelledby="lz-resumen-t"><div class="lz-env lz-grid">
+<div><h2 id="lz-resumen-t">En resumen</h2><ul class="lz-puntos"><li>Carta con foto, precio y un + en cada plato.</li><li>Pedido para llevar eligiendo la hora de retiro.</li><li>Café de la semana en bolsa de 250 o 500 g.</li><li>Reservas adentro o en el patio.</li></ul>
+<div class="lz-acciones"><button class="lz-boton" type="button" data-lz-compartir>Compartir esta página</button></div></div>
+<table class="lz-tabla"><caption>Datos clave</caption><tbody><tr><th scope="row">Rubro</th><td>Cafetería de especialidad y brunch</td></tr><tr><th scope="row">Zona</th><td>Martínez, San Isidro</td></tr><tr><th scope="row">Para llevar</th><td>Sin comisión, por WhatsApp</td></tr><tr><th scope="row">Reservas</th><td>Adentro o patio</td></tr></tbody></table>
+</div></section>
 
   <section class="momentos env" id="momentos" aria-labelledby="titulo-momentos">
     <div class="sube"><p class="sobre">Todo el día</p><h2 id="titulo-momentos" style="margin-top:10px">Una carta para cada hora</h2></div>
@@ -298,7 +342,7 @@ h2{font-size:clamp(2.2rem,5.6vw,3.8rem)}
 
   <section class="origen env" id="origen" aria-labelledby="titulo-origen">
     <div class="origen-caja sube">
-      <div class="foto"><img src="almendra-fotos/almendra-11.jpg" alt="Café filtrado en V60" loading="lazy" onerror="this.parentNode.classList.add('sin')"></div>
+      <div class="foto"><img src="almendra-fotos/cafe-filtrado-metodo.jpg" alt="Café filtrado en V60" loading="lazy" onerror="this.parentNode.classList.add('sin')"></div>
       <div class="cuerpo">
         <p class="sobre">Café de la semana</p>
         <h2 id="titulo-origen"></h2>
@@ -380,7 +424,12 @@ h2{font-size:clamp(2.2rem,5.6vw,3.8rem)}
 <aside class="cajon" id="cajon" aria-label="Tu pedido para llevar" aria-hidden="true">
   <header><h2>Para llevar</h2><button class="cerrar" type="button" id="cerrar-carrito" aria-label="Cerrar">✕</button></header>
   <div class="lista" id="lista-carrito"></div>
-  <footer id="pie-carrito">
+  <section id="lz-faq" class="lz" aria-labelledby="lz-faq-t"><div class="lz-env"><h2 id="lz-faq-t">Preguntas frecuentes</h2>
+<details><summary>¿Puedo pedir para llevar?</summary><p>Sí. Sumás lo que quieras con +, elegís a qué hora pasás y el pedido llega por WhatsApp.</p></details><details><summary>¿Venden el café en grano?</summary><p>Sí, el café de la semana se vende en bolsas de 250 y 500 g.</p></details><details><summary>¿Hay opciones sin TACC?</summary><p>Sí, la carta tiene una sección sin TACC.</p></details></div></section><nav id="lz-relacionadas" class="lz lz-rel" aria-labelledby="lz-rel-t"><div class="lz-env"><h2 id="lz-rel-t">Más páginas de gastronomía</h2>
+<ul><li><a href="../mesa-larga/">Mesa Larga</a></li><li><a href="../tita/">Lo de Tita</a></li><li><a href="../shio-sushi/">Shio</a></li><li><a href="../fierro-parrilla/">Fierro Parrilla</a></li><li><a href="../kumo-sushi/">Kumo</a></li></ul>
+<p><a href="../../#gastronomia">Ver todas las páginas de gastronomía</a> · <a href="../../">Volver al muestrario de Lazervi</a></p>
+<div class="lz-acciones"><a class="lz-boton lleno" href="https://wa.me/5491178175738?text=Hola%21%20Vi%20la%20p%C3%A1gina%20%22Almendra%22%20en%20tu%20muestrario%20y%20quiero%20una%20as%C3%AD%20para%20mi%20negocio." target="_blank" rel="noopener">Quiero una página así</a><button class="lz-boton" type="button" data-lz-compartir>Compartir</button></div></div></nav>
+<footer id="pie-carrito">
     <div class="fila2">
       <input type="text" id="c-nombre" placeholder="Tu nombre" autocomplete="name" aria-label="Tu nombre">
       <select id="c-hora" aria-label="A qué hora pasás"></select>
@@ -410,9 +459,9 @@ const LOCAL = {
   maxPersonas: 12,
   horarios: { 0:[[9,19]], 1:[[8,20]], 2:[[8,20]], 3:[[8,20]], 4:[[8,20]], 5:[[8,20]], 6:[[9,20]] },
   franjas: [
-    { nombre:"Desayuno", desde:8, hasta:11.5, foto:"almendra-fotos/almendra-07.jpg", texto:"Café de filtro, tostadas de masa madre y medialunas que salen del horno a las 8.", carta:2 },
-    { nombre:"Brunch", desde:10, hasta:16, foto:"almendra-fotos/almendra-03.jpg", texto:"Huevos benedictinos, shakshuka y la palta con pomelo. Los fines de semana, hasta las 17.", carta:1 },
-    { nombre:"Merienda", desde:16, hasta:20, foto:"almendra-fotos/almendra-08.jpg", texto:"Budines del día, cinnamon rolls y la chocotorta de la casa.", carta:2 }
+    { nombre:"Desayuno", desde:8, hasta:11.5, foto:"almendra-fotos/medialunas-recien-horneadas.jpg", texto:"Café de filtro, tostadas de masa madre y medialunas que salen del horno a las 8.", carta:2 },
+    { nombre:"Brunch", desde:10, hasta:16, foto:"almendra-fotos/huevos-benedictinos.jpg", texto:"Huevos benedictinos, shakshuka y la palta con pomelo. Los fines de semana, hasta las 17.", carta:1 },
+    { nombre:"Merienda", desde:16, hasta:20, foto:"almendra-fotos/cinnamon-rolls.jpg", texto:"Budines del día, cinnamon rolls y la chocotorta de la casa.", carta:2 }
   ],
   origen: {
     nombre: "Etiopía Guji",
@@ -422,36 +471,36 @@ const LOCAL = {
     bolsas: [{ peso:"250 g", precio:14500 },{ peso:"500 g", precio:26800 }]
   },
   galeria: [
-    { src:"almendra-fotos/almendra-13.jpg", texto:"El patio con sombra" },
-    { src:"almendra-fotos/almendra-02.jpg", texto:"Flat white" },
-    { src:"almendra-fotos/almendra-04.jpg", texto:"Palta, pomelo y huevo" },
-    { src:"almendra-fotos/almendra-07.jpg", texto:"Medialunas de las 8" },
-    { src:"almendra-fotos/almendra-14.jpg", texto:"Tostamos cada martes" }
+    { src:"almendra-fotos/patio-cafe-plantas.jpg", texto:"El patio con sombra" },
+    { src:"almendra-fotos/flat-white-latte-art.jpg", texto:"Flat white" },
+    { src:"almendra-fotos/tostada-palta-huevo.jpg", texto:"Palta, pomelo y huevo" },
+    { src:"almendra-fotos/medialunas-recien-horneadas.jpg", texto:"Medialunas de las 8" },
+    { src:"almendra-fotos/bolsa-cafe-grano.jpg", texto:"Tostamos cada martes" }
   ],
   actualizada: "octubre de 2026",
   carta: [
     { categoria:"Café", platos:[
-      { id:"c1", nombre:"Espresso", detalle:"Doble, del café de la semana.", precio:3400, foto:"almendra-fotos/almendra-02.jpg" },
-      { id:"c2", nombre:"Flat white", detalle:"Espresso doble con leche texturizada.", precio:4600, tags:["El más pedido"], foto:"almendra-fotos/almendra-02.jpg" },
-      { id:"c3", nombre:"Filtrado en V60", detalle:"Para tomar sin leche y probar el origen.", precio:5200, foto:"almendra-fotos/almendra-11.jpg" },
-      { id:"c4", nombre:"Cold brew con tónica", detalle:"Infusión en frío de 18 horas, con naranja.", precio:5600, foto:"almendra-fotos/almendra-12.jpg" }
+      { id:"c1", nombre:"Espresso", detalle:"Doble, del café de la semana.", precio:3400, foto:"almendra-fotos/flat-white-latte-art.jpg" },
+      { id:"c2", nombre:"Flat white", detalle:"Espresso doble con leche texturizada.", precio:4600, tags:["El más pedido"], foto:"almendra-fotos/flat-white-latte-art.jpg" },
+      { id:"c3", nombre:"Filtrado en V60", detalle:"Para tomar sin leche y probar el origen.", precio:5200, foto:"almendra-fotos/cafe-filtrado-metodo.jpg" },
+      { id:"c4", nombre:"Cold brew con tónica", detalle:"Infusión en frío de 18 horas, con naranja.", precio:5600, foto:"almendra-fotos/cold-brew-tonica.jpg" }
     ]},
     { categoria:"Brunch", platos:[
-      { id:"b1", nombre:"Huevos benedictinos", detalle:"Sobre masa madre, con jamón crudo y holandesa.", precio:13800, tags:["El más pedido"], foto:"almendra-fotos/almendra-03.jpg" },
-      { id:"b2", nombre:"Palta, pomelo y huevo", detalle:"Tostada de centeno, palta, pomelo rosado y huevo poché.", precio:12400, foto:"almendra-fotos/almendra-04.jpg" },
-      { id:"b3", nombre:"Shakshuka", detalle:"Huevos en salsa de tomate especiada, con pan para mojar.", precio:12900, foto:"almendra-fotos/almendra-05.jpg" },
-      { id:"b4", nombre:"Bowl de yogur", detalle:"Yogur griego, granola de la casa y frutas de estación.", precio:8900, tags:["Sin TACC"], foto:"almendra-fotos/almendra-06.jpg" }
+      { id:"b1", nombre:"Huevos benedictinos", detalle:"Sobre masa madre, con jamón crudo y holandesa.", precio:13800, tags:["El más pedido"], foto:"almendra-fotos/huevos-benedictinos.jpg" },
+      { id:"b2", nombre:"Palta, pomelo y huevo", detalle:"Tostada de centeno, palta, pomelo rosado y huevo poché.", precio:12400, foto:"almendra-fotos/tostada-palta-huevo.jpg" },
+      { id:"b3", nombre:"Shakshuka", detalle:"Huevos en salsa de tomate especiada, con pan para mojar.", precio:12900, foto:"almendra-fotos/shakshuka-sarten.jpg" },
+      { id:"b4", nombre:"Bowl de yogur", detalle:"Yogur griego, granola de la casa y frutas de estación.", precio:8900, tags:["Sin TACC"], foto:"almendra-fotos/bowl-yogur-granola.jpg" }
     ]},
     { categoria:"Pastelería", platos:[
-      { id:"p1", nombre:"Medialuna de manteca", detalle:"Sale del horno a las 8 y a las 16.", precio:1900, foto:"almendra-fotos/almendra-07.jpg" },
-      { id:"p2", nombre:"Cinnamon roll", detalle:"Con glaseado de queso crema.", precio:4200, foto:"almendra-fotos/almendra-08.jpg" },
-      { id:"p3", nombre:"Budín de limón y amapola", detalle:"La porción.", precio:3600, foto:"almendra-fotos/almendra-09.jpg" },
-      { id:"p4", nombre:"Chocotorta de la casa", detalle:"La de siempre, pero con mascarpone.", precio:5800, foto:"almendra-fotos/almendra-10.jpg" }
+      { id:"p1", nombre:"Medialuna de manteca", detalle:"Sale del horno a las 8 y a las 16.", precio:1900, foto:"almendra-fotos/medialunas-recien-horneadas.jpg" },
+      { id:"p2", nombre:"Cinnamon roll", detalle:"Con glaseado de queso crema.", precio:4200, foto:"almendra-fotos/cinnamon-rolls.jpg" },
+      { id:"p3", nombre:"Budín de limón y amapola", detalle:"La porción.", precio:3600, foto:"almendra-fotos/budin-limon-amapola.jpg" },
+      { id:"p4", nombre:"Chocotorta de la casa", detalle:"La de siempre, pero con mascarpone.", precio:5800, foto:"almendra-fotos/torta-chocolate.jpg" }
     ]},
     { categoria:"Sin TACC", platos:[
-      { id:"s1", nombre:"Tostadas sin TACC", detalle:"Pan de trigo sarraceno, con manteca y mermelada.", precio:6400, tags:["Sin TACC"], foto:"almendra-fotos/almendra-04.jpg" },
-      { id:"s2", nombre:"Bowl de yogur", detalle:"Yogur griego, granola sin TACC y frutas.", precio:8900, tags:["Sin TACC"], foto:"almendra-fotos/almendra-06.jpg" },
-      { id:"s3", nombre:"Brownie de almendras", detalle:"Húmedo, con nueces.", precio:4600, tags:["Sin TACC"], foto:"almendra-fotos/almendra-10.jpg" }
+      { id:"s1", nombre:"Tostadas sin TACC", detalle:"Pan de trigo sarraceno, con manteca y mermelada.", precio:6400, tags:["Sin TACC"], foto:"almendra-fotos/tostada-palta-huevo.jpg" },
+      { id:"s2", nombre:"Bowl de yogur", detalle:"Yogur griego, granola sin TACC y frutas.", precio:8900, tags:["Sin TACC"], foto:"almendra-fotos/bowl-yogur-granola.jpg" },
+      { id:"s3", nombre:"Brownie de almendras", detalle:"Húmedo, con nueces.", precio:4600, tags:["Sin TACC"], foto:"almendra-fotos/torta-chocolate.jpg" }
     ]}
   ]
 };
@@ -498,7 +547,7 @@ document.addEventListener("click",e=>{const a=e.target.closest("[data-ir-cat]");
 /* ---------- Pedido para llevar ---------- */
 const CATALOGO={};
 LOCAL.carta.forEach(c=>c.platos.forEach(p=>CATALOGO[p.id]={nombre:p.nombre,precio:p.precio,foto:p.foto,detalle:c.categoria}));
-LOCAL.origen.bolsas.forEach((b,i)=>CATALOGO["bolsa"+i]={nombre:`Café ${LOCAL.origen.nombre}`,precio:b.precio,foto:"almendra-fotos/almendra-14.jpg",detalle:`Bolsa de ${b.peso}`});
+LOCAL.origen.bolsas.forEach((b,i)=>CATALOGO["bolsa"+i]={nombre:`Café ${LOCAL.origen.nombre}`,precio:b.precio,foto:"almendra-fotos/bolsa-cafe-grano.jpg",detalle:`Bolsa de ${b.peso}`});
 let pedido=leer("almendra-pedido",{}); for(const k in pedido) if(!CATALOGO[k]) delete pedido[k];
 const cantidad=()=>Object.values(pedido).reduce((a,b)=>a+b,0);
 const total=()=>Object.entries(pedido).reduce((a,[k,n])=>a+CATALOGO[k].precio*n,0);
@@ -514,7 +563,7 @@ function horasRetiro(){
 function pintarPedido(){
   const n=cantidad(); $("#n-carrito").textContent=n; $("#n-barra").textContent=n;
   const ids=Object.keys(pedido);
-  $("#lista-carrito").innerHTML=ids.length?ids.map(id=>{const p=CATALOGO[id];return `<div class="item">${img(p.foto)}<div><b>${esc(p.nombre)}</b><small>${esc(p.detalle)} · ${pesos(p.precio*pedido[id])}</small></div>${controlHTML(id).replace('class="mas"','class="mas" style="box-shadow:none"')}</div>`}).join("")
+  $("#lista-carrito").innerHTML=ids.length?ids.map(id=>{const p=CATALOGO[id];return `<div class="item">${img(p.foto,p.nombre)}<div><b>${esc(p.nombre)}</b><small>${esc(p.detalle)} · ${pesos(p.precio*pedido[id])}</small></div>${controlHTML(id).replace('class="mas"','class="mas" style="box-shadow:none"')}</div>`}).join("")
     :`<div class="vacio-cajon"><b>Tu bolsa está vacía</b>Sumá algo de la carta con “+”.</div>`;
   $("#pie-carrito").hidden=!ids.length;
   $("#total").textContent=pesos(total());
@@ -625,6 +674,21 @@ function observarAparicion(){
 
 pintarEstado();setInterval(()=>{pintarEstado();},60000);
 pintarFranjas();pintarCarta(false);pintarOrigen();pintarCanales();pintarGaleria();pintarDatos();prepararReserva();pintarPedido();alScroll();observarAparicion();
+</script>
+<script>
+(function(){
+  var aviso=function(t){var a=document.querySelector(".lz-aviso");if(!a){a=document.createElement("div");a.className="lz-aviso";a.setAttribute("role","status");document.body.appendChild(a);}a.textContent=t;a.classList.add("ver");setTimeout(function(){a.classList.remove("ver")},1800);};
+  document.addEventListener("click",function(ev){var b=ev.target.closest("[data-lz-compartir]");if(!b)return;
+    var d={title:document.title,text:document.querySelector('meta[name="description"]').content,url:location.href.split("#")[0]};
+    if(navigator.share){navigator.share(d).catch(function(){});return;}
+    if(navigator.clipboard){navigator.clipboard.writeText(d.url).then(function(){aviso("Enlace copiado")},function(){window.open("https://wa.me/?text="+encodeURIComponent(d.title+" "+d.url),"_blank","noopener")});}
+    else window.open("https://wa.me/?text="+encodeURIComponent(d.title+" "+d.url),"_blank","noopener");});
+  var cta=document.querySelector(".lz-cta-movil");
+  if(cta){var mirar=function(){cta.classList.toggle("ver",scrollY>innerHeight*.5)};addEventListener("scroll",mirar,{passive:true});mirar();}
+  addEventListener("load",function(){if(document.getElementById("lz-faq-ld"))return;
+    var qs=[].slice.call(document.querySelectorAll("#preguntas details, #lz-faq details")).map(function(d){var s=d.querySelector("summary");if(!s)return null;var c=d.cloneNode(true);c.querySelector("summary").remove();return{"@type":"Question",name:s.textContent.trim(),acceptedAnswer:{"@type":"Answer",text:c.textContent.trim()}}}).filter(Boolean);
+    if(!qs.length)return;var j=document.createElement("script");j.type="application/ld+json";j.id="lz-faq-ld";j.textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage",mainEntity:qs});document.head.appendChild(j);});
+})();
 </script>
 </body>
 </html>

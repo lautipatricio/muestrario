@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lacre · Vinoteca de autor</title>
-<meta name="description" content="Vinoteca de autor. Selección de vinos argentinos, catas guiadas y envíos en el día. Pedí por WhatsApp, PedidosYa o Rappi.">
+
+
 <meta name="theme-color" content="#100D0A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,7 +93,7 @@ p{margin:0}
 #velas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 .leyenda{position:absolute;left:var(--gl);bottom:28px;z-index:2;max-width:min(380px,80%)}
 @media (min-width:640px){.leyenda{left:32px;bottom:32px}}
-.leyenda p{font-family:var(--display);font-style:italic;font-size:clamp(1.125rem,2.2vw,1.6rem);line-height:1.3;color:var(--pergamino);margin-top:8px}
+.leyenda p,.leyenda .leyenda-texto{display:block;font-family:var(--display);font-style:italic;font-size:clamp(1.125rem,2.2vw,1.6rem);line-height:1.3;color:var(--pergamino);margin-top:8px}
 .celda-marca{display:grid;place-content:center;justify-items:center;text-align:center;gap:18px;padding:56px var(--gr) 48px var(--gl);border-bottom:1px solid var(--linea)}
 @media (min-width:640px){.celda-marca{padding:40px 24px}}
 .marca{font-size:clamp(3.4rem,7vw,5.6rem);line-height:.85;color:var(--dorado);font-weight:500}
@@ -110,6 +110,7 @@ p{margin:0}
 .celda-intro{display:grid;align-content:center;padding:28px var(--gr) 40px var(--gl)}
 @media (min-width:640px){.celda-intro{padding:20px 32px}}
 .celda-intro p{font-family:var(--display);font-style:italic;font-size:clamp(1.05rem,1.4vw,1.25rem);line-height:1.55;color:var(--p70)}
+.intro-cta{display:inline-block;margin-top:12px;color:var(--pergamino);font-family:var(--display);font-style:italic;text-underline-offset:4px}
 .celda-intro .envios{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
 .mini{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid var(--linea-suave);font-family:var(--display);text-transform:uppercase;letter-spacing:.24em;font-size:.6rem;text-decoration:none;color:var(--p82);transition:border-color .3s,color .3s}
 .mini:hover{border-color:var(--dorado);color:var(--dorado)}
@@ -231,7 +232,7 @@ p{margin:0}
 .pie{position:relative;z-index:1;padding:64px 0 calc(110px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--linea)}
 .pie-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:36px}
 @media (min-width:760px){.pie-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.pie h4{margin:0 0 12px}
+.pie h3{margin:0 0 12px}
 .pie p,.pie a{font-family:var(--display);font-size:1.25rem;line-height:1.45;color:var(--p70);text-decoration:none}
 .pie a:hover{color:var(--dorado)}
 .completar{font-family:var(--cuerpo);font-size:.7rem;font-style:normal;color:var(--espresso);background:var(--dorado);padding:1px 6px;margin-left:6px;vertical-align:middle;letter-spacing:0}
@@ -252,7 +253,7 @@ p{margin:0}
 .cajon-cuerpo{overflow-y:auto;padding:12px 24px 24px}
 .linea{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;padding:16px 0;border-bottom:1px solid var(--linea-tenue)}
 .linea img{width:64px;height:80px;object-fit:cover;border:1px solid var(--linea-suave)}
-.linea h4{margin:0;font-family:var(--display);font-size:1.35rem;font-weight:500;line-height:1.05}
+.linea h3{margin:0;font-family:var(--display);font-size:1.35rem;font-weight:500;line-height:1.05}
 .linea small{display:block;font-family:var(--display);font-style:italic;color:var(--p55);font-size:1rem;line-height:1.3}
 .linea-acc{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
 .cant{display:flex;align-items:center;border:1px solid var(--linea-suave)}
@@ -402,7 +403,7 @@ p{margin:0}
 .fecha-cata .dia{text-align:center;border:1px solid var(--linea-suave);padding:6px 0;line-height:1}
 .fecha-cata .dia b{display:block;font-family:var(--display);font-size:1.9rem;font-weight:500;font-variant-numeric:lining-nums}
 .fecha-cata .dia small{font-family:var(--display);text-transform:uppercase;letter-spacing:.24em;font-size:.55rem;color:var(--dorado)}
-.fecha-cata h4{margin:0;font-family:var(--display);font-size:1.35rem;font-weight:500;line-height:1.15}
+.fecha-cata h3{margin:0;font-family:var(--display);font-size:1.35rem;font-weight:500;line-height:1.15}
 .fecha-cata p{font-size:.85rem;color:var(--p55);line-height:1.5}
 .cupos{font-family:var(--display);font-style:italic;color:var(--dorado)}
 .cupos.pocos{color:#E3A08D}
@@ -483,7 +484,45 @@ p{margin:0}
 .aviso{position:fixed;left:50%;top:80px;z-index:99;transform:translate(-50%,-14px);opacity:0;transition:.4s;background:var(--vino);border:1px solid var(--dorado);padding:10px 20px;font-family:var(--display);font-style:italic;font-size:1.1rem;pointer-events:none;max-width:calc(100% - 32px);text-align:center;line-height:1.3}
 .aviso.visible{transform:translate(-50%,0);opacity:1}
 </style>
-<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-180.png">
+<title>Lacre — Vinoteca de autor en Buenos Aires</title>
+<meta name="description" content="Demo de página web para vinoteca: recomendador de vinos según la comida, fichas técnicas, tienda con caja, club mensual, catas y pedidos por WhatsApp.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://lautipatricio.github.io/muestrario/demos/lacre-vinoteca/">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:site_name" content="Lazervi">
+<meta property="og:title" content="Lacre — Vinoteca de autor en Buenos Aires"><meta property="og:description" content="Demo de página web para vinoteca: recomendador de vinos según la comida, fichas técnicas, tienda con caja, club mensual, catas y pedidos por WhatsApp.">
+<meta property="og:url" content="https://lautipatricio.github.io/muestrario/demos/lacre-vinoteca/"><meta property="og:image" content="https://lautipatricio.github.io/muestrario/posters/lacre-vinoteca-h.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com; media-src 'self' blob:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-apple.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Lazervi", "item": "https://lautipatricio.github.io/muestrario/"}, {"@type": "ListItem", "position": 2, "name": "Comercios", "item": "https://lautipatricio.github.io/muestrario/#comercios"}, {"@type": "ListItem", "position": 3, "name": "Lacre", "item": "https://lautipatricio.github.io/muestrario/demos/lacre-vinoteca/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LiquorStore", "name": "Lacre", "description": "Demo de página web para vinoteca: recomendador de vinos según la comida, fichas técnicas, tienda con caja, club mensual, catas y pedidos por WhatsApp.", "url": "https://lautipatricio.github.io/muestrario/demos/lacre-vinoteca/", "image": "https://lautipatricio.github.io/muestrario/posters/lacre-vinoteca-h.jpg", "address": {"@type": "PostalAddress", "streetAddress": "Microcentro, Buenos Aires", "addressLocality": "Microcentro, Buenos Aires", "addressRegion": "Buenos Aires", "addressCountry": "AR"}, "areaServed": "Microcentro, Buenos Aires"}</script>
+<style>
+.lz{position:relative;z-index:1;padding:clamp(40px,7vw,72px) 0;font-size:16px;line-height:1.55}
+.lz-env{width:min(1160px,calc(100% - 32px));margin:0 auto}
+.lz h2{margin:0 0 18px;font-size:clamp(26px,3.4vw,40px);line-height:1.1}
+.lz-grid{display:grid;gap:24px}@media(min-width:860px){.lz-grid{grid-template-columns:1.1fr .9fr;align-items:start}}
+.lz ul.lz-puntos{margin:0;padding-left:1.2em;display:grid;gap:8px}
+.lz-tabla{width:100%;border-collapse:collapse;font-size:15px}
+.lz-tabla caption{text-align:left;font-weight:700;padding-bottom:8px}
+.lz-tabla th,.lz-tabla td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.lz-tabla th{font-weight:600;width:38%;opacity:.8}
+.lz-acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.lz-boton{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;font:inherit;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer}
+.lz-boton.lleno{background:#1f7a46;border-color:#1f7a46;color:#fff}
+.lz details{border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.lz summary{cursor:pointer;padding:16px 0;font-weight:700;font-size:17px}
+.lz details p{margin:0 0 16px;opacity:.85;max-width:62ch}
+.lz-rel ul{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.lz-rel li a{display:inline-flex;min-height:44px;align-items:center;padding:0 16px;border-radius:999px;border:1px solid color-mix(in srgb,currentColor 25%,transparent);color:inherit;text-decoration:none}
+.lz-rel p a{color:inherit}
+.lz-aviso{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:200;background:#11110f;color:#fff;padding:10px 16px;border-radius:999px;font:600 14px/1.3 system-ui,sans-serif;opacity:0;transition:opacity .3s;pointer-events:none}
+.lz-aviso.ver{opacity:1}
+.lz-cta-movil{position:fixed;left:12px;right:84px;bottom:max(12px,env(safe-area-inset-bottom));z-index:58;display:flex;transform:translateY(160%);transition:transform .35s ease}
+.lz-cta-movil.ver{transform:none}
+.lz-cta-movil a{flex:1;display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:999px;background:#11110f;color:#fff;font:700 15px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+@media(min-width:900px){.lz-cta-movil{display:none}}
+</style>
 </head>
 <body>
 <div class="grano" aria-hidden="true"></div>
@@ -504,11 +543,11 @@ p{margin:0}
 <main id="arriba">
   <section class="portada" aria-label="Lacre, vinoteca de autor">
     <div class="celda celda-foto">
-      <img src="lacre-fotos/pour-botella.webp" alt="Vino tinto sirviéndose en una copa, sobre fondo oscuro" fetchpriority="high">
+      <img src="lacre-fotos/sirviendo-vino-botella.webp" alt="Vino tinto sirviéndose en una copa, sobre fondo oscuro" fetchpriority="high">
       <canvas id="velas" aria-hidden="true"></canvas>
       <div class="leyenda hero-entra" style="animation-delay:.6s">
         <span class="versalitas">N.º I — El descorche</span>
-        <p>Un solo malbec de altura, decantado en la penumbra.</p>
+        <span class="leyenda-texto">Un solo malbec de altura, decantado en la penumbra.</span>
       </div>
     </div>
     <div class="celda celda-marca">
@@ -523,9 +562,15 @@ p{margin:0}
     </div>
     <div class="celda celda-intro">
       <p class="hero-entra" style="animation-delay:.8s" id="intro"></p>
+      <a class="hero-entra intro-cta" style="animation-delay:.9s" href="#elegir">Encontrá tu vino en tres preguntas →</a>
       <div class="envios hero-entra" style="animation-delay:.95s" id="envios"></div>
     </div>
   </section>
+<section id="lz-resumen" class="lz" aria-labelledby="lz-resumen-t"><div class="lz-env lz-grid">
+<div><h2 id="lz-resumen-t">En resumen</h2><ul class="lz-puntos"><li>Recomendador de vinos según la comida y la ocasión.</li><li>Ficha técnica de cada botella.</li><li>Tienda con caja y club mensual.</li><li>Reserva de catas guiadas.</li></ul>
+<div class="lz-acciones"><button class="lz-boton" type="button" data-lz-compartir>Compartir esta página</button></div></div>
+<table class="lz-tabla"><caption>Datos clave</caption><tbody><tr><th scope="row">Rubro</th><td>Vinoteca</td></tr><tr><th scope="row">Zona</th><td>Buenos Aires</td></tr><tr><th scope="row">Compra</th><td>Tienda online con pedido por WhatsApp</td></tr><tr><th scope="row">Extras</th><td>Club mensual y catas</td></tr></tbody></table>
+</div></section>
 
 
   <div class="cinta" aria-hidden="true"><div class="cinta-pista versalitas" id="cinta"></div></div>
@@ -713,18 +758,20 @@ p{margin:0}
   </section>
 </main>
 
-<section id="lz-mapa" aria-label="Cómo llegar" style="position:relative;z-index:1;padding:72px 0;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)">
-<div style="width:min(1160px,calc(100% - 32px));margin:0 auto">
-<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;margin-bottom:22px"><div><p style="margin:0 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.65">Cómo llegar</p><h2 style="margin:0;font-size:clamp(26px,3.4vw,40px);line-height:1.1">Microcentro, Buenos Aires</h2></div>
+<nav id="lz-relacionadas" class="lz lz-rel" aria-labelledby="lz-rel-t"><div class="lz-env"><h2 id="lz-rel-t">Más páginas de comercios</h2>
+<ul><li><a href="../aluvidrio/">Aluvidrio</a></li><li><a href="../bulonera-beccar/">Bulonera Beccar</a></li></ul>
+<p><a href="../../#comercios">Ver todas las páginas de comercios</a> · <a href="../../">Volver al muestrario de Lazervi</a></p>
+<div class="lz-acciones"><a class="lz-boton lleno" href="https://wa.me/5491178175738?text=Hola%21%20Vi%20la%20p%C3%A1gina%20%22Lacre%22%20en%20tu%20muestrario%20y%20quiero%20una%20as%C3%AD%20para%20mi%20negocio." target="_blank" rel="noopener">Quiero una página así</a><button class="lz-boton" type="button" data-lz-compartir>Compartir</button></div></div></nav><section id="lz-mapa" class="lz" aria-labelledby="lz-mapa-t" style="border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)"><div class="lz-env">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;margin-bottom:22px"><div><p style="margin:0 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.65">Cómo llegar</p><h2 id="lz-mapa-t" style="margin:0">Microcentro, Buenos Aires</h2></div>
 <a href="https://www.google.com/maps/search/?api=1&query=Microcentro%2C%20Buenos%20Aires" target="_blank" rel="noopener" style="color:inherit;font-size:15px;text-decoration:underline;text-underline-offset:4px">Abrir en Google Maps ↗</a></div>
-<iframe title="Mapa: Microcentro, Buenos Aires" src="https://www.google.com/maps?q=Microcentro%2C%20Buenos%20Aires&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="display:block;width:100%;height:clamp(280px,42vw,420px);border:0;border-radius:16px;background:#e8e8e4"></iframe>
-</div></section>
+<iframe title="Mapa: Microcentro, Buenos Aires" src="https://www.google.com/maps?q=Microcentro%2C%20Buenos%20Aires&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="display:block;width:100%;height:clamp(280px,42vw,420px);border:0;border-radius:16px;background:#e8e8e4"></iframe></div></section>
+
 <footer class="pie" id="contacto">
   <div class="envoltura">
     <div class="pie-grid">
-      <div><h4 class="versalitas">Dirección</h4><p id="p-dir"></p></div>
-      <div><h4 class="versalitas">Horario</h4><p id="p-horario"></p></div>
-      <div><h4 class="versalitas">Consultas</h4><p id="p-consultas"></p></div>
+      <div><h3 class="versalitas">Dirección</h3><p id="p-dir"></p></div>
+      <div><h3 class="versalitas">Horario</h3><p id="p-horario"></p></div>
+      <div><h3 class="versalitas">Consultas</h3><p id="p-consultas"></p></div>
     </div>
     <div class="legal">
       <span class="versalitas ley">Beber con moderación. Prohibida su venta a menores de 18 años.</span>
@@ -807,7 +854,7 @@ const CAVA = [
   { id:"rosado-criolla", n:"IV", tipo:"Rosado", nombre:"Rosado de Criolla", anio:2023, bodega:"Viñas del Cerro · Cafayate, Salta", foto:"rosado",
     desc:"Uvas criollas de parrales viejos, prensado directo y nada de madera. Frutilla, pomelo rosado y una acidez que se toma sola al atardecer.",
     maridaje:"Empanadas salteñas", precio:16400 },
-  { id:"tardio-torrontes", n:"V", tipo:"Dulce", nombre:"Torrontés Tardío", anio:2021, bodega:"Viñas del Cerro · Cafayate, Salta", foto:"vela-copa",
+  { id:"tardio-torrontes", n:"V", tipo:"Dulce", nombre:"Torrontés Tardío", anio:2021, bodega:"Viñas del Cerro · Cafayate, Salta", foto:"copa-luz-vela",
     desc:"Cosecha tardía, apenas la uva empieza a pasificarse. Miel de azahar, damasco y una dulzura que nunca empalaga: la última vela, apagada.",
     maridaje:"Queso azul y nueces", precio:21200 }
 ];
@@ -817,12 +864,12 @@ const VINOS = [
   { id:"malbec-altura", tipo:"Tintos", nombre:"Malbec de Altura 2020", bodega:"Finca Las Tunas · Valle de Uco", notas:"Violetas, ciruela, roble francés.", precio:28500, foto:"botella-sola" },
   { id:"cabernet-franc", tipo:"Tintos", nombre:"Cabernet Franc 2019", bodega:"Finca Las Tunas · Valle de Uco", notas:"Pimiento asado, grafito, taninos finos.", precio:33900, foto:"botella-copa" },
   { id:"blend-gran", tipo:"Tintos", nombre:"Gran Corte 2018", bodega:"Bodega Aldaba · Luján de Cuyo", notas:"Malbec, cabernet y petit verdot. 24 meses en barrica.", precio:46500, foto:"barricas" },
-  { id:"pinot-noir", tipo:"Tintos", nombre:"Pinot Noir 2021", bodega:"Bodega Viento Sur · Río Negro", notas:"Cereza, sotobosque, cuerpo liviano.", precio:27200, foto:"pour-rojo" },
+  { id:"pinot-noir", tipo:"Tintos", nombre:"Pinot Noir 2021", bodega:"Bodega Viento Sur · Río Negro", notas:"Cereza, sotobosque, cuerpo liviano.", precio:27200, foto:"vino-rojo-copa" },
   { id:"chardonnay-patagonia", tipo:"Blancos", nombre:"Chardonnay Patagónico 2022", bodega:"Bodega Viento Sur · Río Negro", notas:"Manteca, pera, final salino.", precio:24900, foto:"blanco-rosado" },
   { id:"torrontes", tipo:"Blancos", nombre:"Torrontés de Altura 2023", bodega:"Viñas del Cerro · Cafayate", notas:"Azahar, durazno blanco, muy seco.", precio:14800, foto:"vino-quesos" },
   { id:"rosado-criolla", tipo:"Rosados", nombre:"Rosado de Criolla 2023", bodega:"Viñas del Cerro · Cafayate", notas:"Frutilla, pomelo rosado, sin madera.", precio:16400, foto:"rosado" },
   { id:"extra-brut", tipo:"Espumantes", nombre:"Extra Brut 2019", bodega:"Casa Aldaba · Tupungato", notas:"Método tradicional, 30 meses en levaduras.", precio:31800, foto:"flautas" },
-  { id:"tardio-torrontes", tipo:"Blancos", nombre:"Torrontés Tardío 2021", bodega:"Viñas del Cerro · Cafayate", notas:"Miel de azahar, damasco. Botella de 500 ml.", precio:21200, foto:"vela-copa" },
+  { id:"tardio-torrontes", tipo:"Blancos", nombre:"Torrontés Tardío 2021", bodega:"Viñas del Cerro · Cafayate", notas:"Miel de azahar, damasco. Botella de 500 ml.", precio:21200, foto:"copa-luz-vela" },
   { id:"caja-malbec", tipo:"Cajas", nombre:"Caja Tres Alturas", bodega:"Selección del sommelier · 3 botellas", notas:"Tres malbecs de 900, 1.200 y 1.400 metros para comparar.", precio:69900, foto:"botellas-trio" },
   { id:"caja-maridaje", tipo:"Cajas", nombre:"Caja Maridaje", bodega:"2 botellas + quesos de la casa", notas:"Un tinto, un blanco y una tabla de quesos para dos.", precio:58500, foto:"quesos" },
   { id:"caja-regalo", tipo:"Cajas", nombre:"Caja de Regalo Lacre", bodega:"Estuche de madera · grabado a pedido", notas:"Elegí dos botellas; la caja y la tarjeta van por nuestra cuenta.", precio:12000, foto:"corchos", nota:"+ las botellas" }
@@ -872,7 +919,7 @@ function pintarCava(){
   $("#recorrido").insertAdjacentHTML("beforeend", CAVA.map(c=>`
     <article class="etiqueta">
       <span class="punto" aria-hidden="true"></span>
-      <div class="etiqueta-foto"><img class="vela" src="${foto(c.foto)}" alt="" loading="lazy" decoding="async"></div>
+      <div class="etiqueta-foto"><img class="vela" src="${foto(c.foto)}" alt="${esc(c.nombre||c.titulo||"Vino de la cava del mes")}" loading="lazy" decoding="async"></div>
       <div class="etiqueta-texto sube">
         <span class="versalitas">Etiqueta ${c.n} — ${esc(c.tipo)}</span>
         <h3>${esc(c.nombre)}, ${c.anio}</h3>
@@ -893,7 +940,7 @@ function pintarVitrina(){
   if (!vs.length){ $("#vitrina").innerHTML = `<p class="sin-vinos">No encontramos esa botella en la web. Escribinos: en el local hay muchas más.</p>`; return; }
   $("#vitrina").innerHTML = vs.map(v=>{ const n = cantDe(v.id); return `
     <article class="botella">
-      <button class="abrir-ficha" type="button" data-ficha="${v.id}" aria-label="Ver la ficha de ${esc(v.nombre)}"><div class="botella-foto"><img class="vela" src="${foto(v.foto)}" alt="" loading="lazy" decoding="async"><span class="versalitas tipo">${esc(v.tipo.replace(/s$/,""))}</span></div>
+      <button class="abrir-ficha" type="button" data-ficha="${v.id}" aria-label="Ver la ficha de ${esc(v.nombre)}"><div class="botella-foto"><img class="vela" src="${foto(v.foto)}" alt="${esc(v.nombre)}" loading="lazy" decoding="async"><span class="versalitas tipo">${esc(v.tipo.replace(/s$/,""))}</span></div>
       <h3>${esc(v.nombre)}</h3></button>
       <p class="bodega">${esc(v.bodega)}</p>
       <p class="notas">${esc(v.notas)}</p>
@@ -936,8 +983,8 @@ function pintarCaja(){
     pie.innerHTML = `<a class="boton" href="${waLink("Hola Lacre! ¿Me arman una caja? Les cuento qué voy a comer:")}" target="_blank" rel="noopener">Pedirle una caja al sommelier</a>`; return;
   }
   cu.innerHTML = caja.map(l=>{ const v = vino(l.id); return `<div class="linea" data-id="${v.id}">
-      <img src="${foto(v.foto)}" alt="">
-      <div><h4>${esc(v.nombre)}</h4><small>${esc(v.bodega)}</small>
+      <img src="${foto(v.foto)}" alt="${esc(v.nombre)}">
+      <div><h3>${esc(v.nombre)}</h3><small>${esc(v.bodega)}</small>
         <div class="linea-acc"><div class="cant"><button type="button" data-d="-1" aria-label="Uno menos">−</button><span>${l.cant}</span><button type="button" data-d="1" aria-label="Uno más">+</button></div>
         <span class="importe">${pesos(v.precio*l.cant)}</span></div></div></div>`; }).join("") + `
     <div class="gratis">${datos.entrega==="Envío a domicilio" ? (subtotal() >= EXTRA.envioGratisDesde ? `<p><b>Tu envío es sin cargo.</b> Lo llevamos hoy si pedís antes de las ${EXTRA.corteEnvioHoy} h.</p>` : `<p>Te faltan <b>${pesos(EXTRA.envioGratisDesde - subtotal())}</b> para el envío sin cargo.</p>`) : `<p>Retirás en el local: te avisamos por WhatsApp cuando esté lista.</p>`}
@@ -1101,7 +1148,7 @@ const FICHAS = {
   "caja-regalo":         { cepa:"Elegís vos", region:"Varias", altitud:"—", crianza:"—", alcohol:"—", temp:"—", guarda:"—", maridaje:"Tarjeta escrita a mano", comidas:[], ocasiones:["regalo"] }
 };
 const REGIONES = [
-  { id:"Valle de Uco", provincia:"Mendoza", altura:"900–1.500 m", foto:"vinedo-andes", texto:"Al pie de la cordillera: noches frías, mucha luz y suelos pedregosos. De acá salen malbecs frescos, cabernet franc y los espumantes de Tupungato." },
+  { id:"Valle de Uco", provincia:"Mendoza", altura:"900–1.500 m", foto:"vinedo-cordillera", texto:"Al pie de la cordillera: noches frías, mucha luz y suelos pedregosos. De acá salen malbecs frescos, cabernet franc y los espumantes de Tupungato." },
   { id:"Luján de Cuyo", provincia:"Mendoza", altura:"900–1.100 m", foto:"barricas", texto:"La cuna del malbec argentino. Viñedos viejos, vinos de cuerpo y cortes de guarda que piden tiempo y una buena carne." },
   { id:"Cafayate", provincia:"Salta", altura:"1.700–2.000 m", foto:"vinedo", texto:"Valles Calchaquíes: sol fuerte y amplitud térmica enorme. El hogar del torrontés y de tintos intensos con mucho color." },
   { id:"Patagonia", provincia:"Río Negro y Neuquén", altura:"200–400 m", foto:"cava-pared", texto:"Viento, río y estaciones marcadas. Pinot noir elegante y blancos con acidez y un final casi salino." }
@@ -1123,11 +1170,11 @@ const PLANES = [
 ];
 const TEMAS_CATA = ["Malbecs de altura","Blancos patagónicos","Burbujas de método tradicional","Vinos del norte: Salta y Catamarca"];
 const NOTAS = [
-  { id:"temperatura", titulo:"La temperatura justa", bajada:"El error más común no es el vino: es servirlo tibio.", foto:"vela-copa",
+  { id:"temperatura", titulo:"La temperatura justa", bajada:"El error más común no es el vino: es servirlo tibio.", foto:"copa-luz-vela",
     cuerpo:`<p>Un tinto “a temperatura ambiente” pensado para una bodega francesa no es lo mismo que un living porteño en enero. Si el vino está caliente, el alcohol tapa la fruta; si está demasiado frío, se cierra y no tiene aroma.</p>
       <div class="tabla-temp"><div>Espumantes<b>6–8 °C</b></div><div>Blancos y rosados jóvenes<b>8–10 °C</b></div><div>Blancos con crianza<b>10–12 °C</b></div><div>Tintos livianos<b>14–15 °C</b></div><div>Tintos con crianza<b>16–18 °C</b></div></div>
       <p>Truco de mostrador: en verano, veinte minutos de heladera también le hacen bien a un tinto.</p>` },
-  { id:"decantar", titulo:"¿Decantar o no?", bajada:"Depende de si el vino necesita aire o necesita calma.", foto:"pour-rojo",
+  { id:"decantar", titulo:"¿Decantar o no?", bajada:"Depende de si el vino necesita aire o necesita calma.", foto:"vino-rojo-copa",
     cuerpo:`<p><b>Tintos jóvenes y potentes:</b> media hora a una hora en el decantador los abre y suaviza los taninos. Un malbec de altura o un corte con barrica lo agradecen.</p>
       <p><b>Vinos viejos:</b> se decantan solo para separar el sedimento, con la botella parada desde el día anterior. Se sirven enseguida: el aire, a esta edad, apura su final.</p>
       <p><b>Blancos con crianza y espumantes:</b> casi nunca. Si un chardonnay con barrica está cerrado, alcanza con servirlo en una copa amplia y esperar unos minutos.</p>` },
@@ -1176,7 +1223,7 @@ function recomendar(){
     return { v, puntos, por, extra };
   }).filter(x=>x.puntos>=3).sort((a,b)=>b.puntos-a.puntos || a.v.precio-b.v.precio).slice(0,3);
   $("#sugerencias").innerHTML = lista.length ? lista.map((x,i)=>`<article class="sug" style="animation-delay:${reducir?0:i*110}ms">
-      <img src="${foto(x.v.foto)}" alt="" loading="lazy">
+      <img src="${foto(x.v.foto)}" alt="${esc(x.v.nombre)}" loading="lazy">
       <div><h3>${esc(x.v.nombre)}</h3><p class="bodega" style="font-family:var(--display);font-style:italic;color:var(--p70);font-size:1.05rem;line-height:1.3">${esc(x.v.bodega)}</p>
         <p class="porque">Porque ${esc(x.por.join(" y ") + x.extra)}.</p>
         <div class="linea-sug"><span class="precio">${pesos(x.v.precio)}</span><button class="boton" type="button" data-sumar="${x.v.id}">Sumar a la caja</button><button class="leer" type="button" data-ficha="${x.v.id}">Ficha</button></div></div>
@@ -1253,7 +1300,7 @@ function pintarClub(){
 }
 function pintarRegiones(){
   $("#regiones-grid").innerHTML = REGIONES.map(r=>{ const n = VINOS.filter(v=>(FICHAS[v.id]||{}).region===r.id).length; return `<article class="region sube">
-    <div class="region-foto"><img class="vela" src="${foto(r.foto)}" alt="" loading="lazy"><div class="altura"><b>${esc(r.altura)}</b><span class="versalitas">${esc(r.provincia)}</span></div></div>
+    <div class="region-foto"><img class="vela" src="${foto(r.foto)}" alt="Viñedos de ${esc(r.id)}, ${esc(r.provincia)}" loading="lazy"><div class="altura"><b>${esc(r.altura)}</b><span class="versalitas">${esc(r.provincia)}</span></div></div>
     <h3>${esc(r.id)}</h3><p>${esc(r.texto)}</p>
     <button class="ver-region" type="button" data-region-ir="${esc(r.id)}">Ver ${n} ${n===1?"vino":"vinos"}</button></article>`; }).join("");
 }
@@ -1264,7 +1311,7 @@ function pintarAgenda(){
   $("#agenda").innerHTML = fechas.map((d,i)=>{ const tema = TEMAS_CATA[(d.getDate()+i) % TEMAS_CATA.length], cupos = 2 + ((d.getDate()*7 + i*3) % 7);
     const dia = d.toLocaleDateString("es-AR",{weekday:"short"}).replace(".","");
     return `<div class="fecha-cata"><div class="dia"><small>${esc(dia)}</small><b>${d.getDate()}</b></div>
-      <div><h4>${esc(tema)}</h4><p>${esc(fechaTxt(d))} · 19:30 · <span class="cupos${cupos<=3?" pocos":""}">${cupos<=3?`¡Quedan ${cupos} lugares!`:`Quedan ${cupos} lugares`}</span></p></div>
+      <div><h3>${esc(tema)}</h3><p>${esc(fechaTxt(d))} · 19:30 · <span class="cupos${cupos<=3?" pocos":""}">${cupos<=3?`¡Quedan ${cupos} lugares!`:`Quedan ${cupos} lugares`}</span></p></div>
       <button class="boton" type="button" data-cata="${i}|${esc(tema)}">Elegir</button></div>`; }).join("");
 }
 document.addEventListener("click", e=>{ const b = e.target.closest("[data-cata]"); if(!b) return; const [i,tema] = b.dataset.cata.split("|");
@@ -1273,7 +1320,7 @@ document.addEventListener("click", e=>{ const b = e.target.closest("[data-cata]"
 
 /* ---------- Diario y preguntas ---------- */
 function pintarDiario(){
-  $("#notas").innerHTML = NOTAS.map(n=>`<article class="nota-diario sube"><div class="foto-nota"><img class="vela" src="${foto(n.foto)}" alt="" loading="lazy"></div>
+  $("#notas").innerHTML = NOTAS.map(n=>`<article class="nota-diario sube"><div class="foto-nota"><img class="vela" src="${foto(n.foto)}" alt="${esc(n.titulo||"Nota del diario de Lacre")}" loading="lazy"></div>
     <span class="versalitas">Diario</span><h3>${esc(n.titulo)}</h3><p class="bajada">${esc(n.bajada)}</p>
     <div class="cuerpo-nota" id="nota-${n.id}" hidden>${n.cuerpo}</div>
     <button class="leer" type="button" data-leer="${n.id}" aria-expanded="false" aria-controls="nota-${n.id}">Leer la nota</button></article>`).join("");
@@ -1291,6 +1338,22 @@ $("#wa-sommelier").href = waLink("Hola Lacre! Quiero que el sommelier me recomie
 $("#wa-empresas").href = waLink("Hola Lacre! Quiero una propuesta de regalos para mi empresa: cantidad de cajas ___, presupuesto por caja ___, fecha ___.");
 observarVelas();
 if ("IntersectionObserver" in window){ const io2 = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("visto"); io2.unobserve(en.target); } }), {rootMargin:"0px 0px -18% 0px"}); $$(".sube:not(.visto)").forEach(el=>io2.observe(el)); } else $$(".sube").forEach(el=>el.classList.add("visto"));
+</script>
+<div class="lz-cta-movil"><a href="#tienda">Ver la tienda</a></div>
+<script>
+(function(){
+  var aviso=function(t){var a=document.querySelector(".lz-aviso");if(!a){a=document.createElement("div");a.className="lz-aviso";a.setAttribute("role","status");document.body.appendChild(a);}a.textContent=t;a.classList.add("ver");setTimeout(function(){a.classList.remove("ver")},1800);};
+  document.addEventListener("click",function(ev){var b=ev.target.closest("[data-lz-compartir]");if(!b)return;
+    var d={title:document.title,text:document.querySelector('meta[name="description"]').content,url:location.href.split("#")[0]};
+    if(navigator.share){navigator.share(d).catch(function(){});return;}
+    if(navigator.clipboard){navigator.clipboard.writeText(d.url).then(function(){aviso("Enlace copiado")},function(){window.open("https://wa.me/?text="+encodeURIComponent(d.title+" "+d.url),"_blank","noopener")});}
+    else window.open("https://wa.me/?text="+encodeURIComponent(d.title+" "+d.url),"_blank","noopener");});
+  var cta=document.querySelector(".lz-cta-movil");
+  if(cta){var mirar=function(){cta.classList.toggle("ver",scrollY>innerHeight*.5)};addEventListener("scroll",mirar,{passive:true});mirar();}
+  addEventListener("load",function(){if(document.getElementById("lz-faq-ld"))return;
+    var qs=[].slice.call(document.querySelectorAll("#preguntas details, #lz-faq details")).map(function(d){var s=d.querySelector("summary");if(!s)return null;var c=d.cloneNode(true);c.querySelector("summary").remove();return{"@type":"Question",name:s.textContent.trim(),acceptedAnswer:{"@type":"Answer",text:c.textContent.trim()}}}).filter(Boolean);
+    if(!qs.length)return;var j=document.createElement("script");j.type="application/ld+json";j.id="lz-faq-ld";j.textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage",mainEntity:qs});document.head.appendChild(j);});
+})();
 </script>
 </body>
 </html>
