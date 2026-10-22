@@ -675,7 +675,7 @@ let ponerCalibre = null;
 (function calibre(){
   const svg = $("#calibre"), PX = 17, X0 = 132, MAXMM = 40;     // 17 px por milímetro
   const PRUEBAS = [8, 12, 6, 9.53, 10, 12.7];
-  let iPrueba = 0, abierto = 0, arrastrando = false;
+  let iPrueba = 1, abierto = 0, arrastrando = false;
   let escala = ""; for (let mm=0; mm<=MAXMM; mm++){ const x = X0 + mm*PX, largo = mm%10===0 ? 22 : mm%5===0 ? 15 : 9;
     escala += `<line x1="${x}" y1="96" x2="${x}" y2="${96-largo}" stroke="#1D2125" stroke-width="${mm%10===0?1.6:1}"/>`;
     if (mm%10===0) escala += `<text x="${x}" y="58" text-anchor="middle" font-family="Archivo,Arial" font-size="15" font-weight="700" fill="#1D2125">${mm}</text>`; }
