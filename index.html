@@ -2,15 +2,19 @@
 <html lang="es-AR">
 <head>
 <meta charset="utf-8">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="only light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta property="og:title" content="Lazervi — Páginas, apps y servicios digitales">
 <meta property="og:description" content="Páginas web para comercios del barrio, cada una con su video de presentación.">
 <meta property="og:image" content="posters/mesa-larga-h.jpg">
 <title>Lazervi — Páginas, apps y servicios digitales</title>
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon-180.png">
 <meta name="description" content="Páginas web para comercios del barrio, cada una con su video de presentación.">
 <style>
+:root{color-scheme:only light}
+html{background:#f5f4f0}
+.logo{forced-color-adjust:none}
 /* Editorial y silencioso: lienzo hueso, titular serif enorme y un bloque gris azulado que se desliza debajo. */
 :root{
   --papel:#f5f4f0; --tinta:#11110f; --hielo:#d6dce2; --ocre:#c8984a; --rosa:#d7a0a1; --tenue:#6a6862; --filete:#cecdc7;
@@ -38,8 +42,8 @@ a{color:inherit}
 
 /* portada */
 .portada{padding-top:55px;padding-bottom:120px}
-.portada h1{white-space:nowrap;font:clamp(84px,20vw,300px)/.76 var(--serif);letter-spacing:-.08em;margin:0;position:relative;z-index:2;font-weight:400}
-.bloque{position:relative;height:clamp(300px,36vw,420px);background:var(--hielo);width:72%;margin:-60px 0 0 auto;overflow:hidden;
+.portada h1{white-space:nowrap;font:clamp(52px,8.4vw,124px)/.86 var(--serif);letter-spacing:-.05em;margin:0;position:relative;z-index:2;font-weight:400}
+.bloque{position:relative;height:clamp(260px,32vw,400px);background:var(--hielo);width:72%;margin:-26px 0 0 auto;overflow:hidden;
   animation:desliza 1.4s cubic-bezier(.2,.75,.15,1) both .15s}
 @keyframes desliza{from{transform:translateX(18%);opacity:0}to{transform:none;opacity:1}}
 .bloque video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s}
@@ -62,7 +66,7 @@ a{color:inherit}
 .num{font:400 clamp(44px,4.6vw,64px)/.9 var(--serif);letter-spacing:-.03em}
 .lado .meta{color:var(--tinta)}
 .lado .meta span{display:block;color:var(--tenue)}
-.proyecto h2{font:400 clamp(58px,8.4vw,124px)/.86 var(--serif);letter-spacing:-.045em;margin:0;padding-bottom:.06em}
+.proyecto h2{font:400 clamp(50px,7vw,104px)/.9 var(--serif);letter-spacing:-.045em;margin:0;padding-bottom:.06em}
 .visual{margin-top:34px;padding:clamp(14px,4.5%,48px);background:linear-gradient(145deg,var(--ocre),#efe2ca)}
 .proyecto:nth-child(3n+2) .visual{background:linear-gradient(145deg,var(--rosa),#442b31)}
 .proyecto:nth-child(3n+3) .visual{background:linear-gradient(145deg,#344a47,#acc1b3)}
@@ -109,18 +113,42 @@ a{color:inherit}
 
 /* cierre */
 .final{padding:120px 0 140px;border-top:1px solid var(--filete);overflow:hidden}
-.final h2{font:400 clamp(72px,14vw,220px)/.76 var(--serif);letter-spacing:-.07em;margin:0;position:relative;z-index:2;white-space:nowrap}
-.mosaico{margin:-48px 0 0 auto;width:82%;background:var(--hielo);padding:clamp(14px,2.4vw,32px);overflow:hidden}
+.final h2{font:400 clamp(48px,7vw,104px)/.88 var(--serif);letter-spacing:-.045em;margin:0;position:relative;z-index:2;white-space:nowrap}
+.mosaico{margin:-20px 0 0 auto;width:82%;background:var(--hielo);padding:clamp(14px,2.4vw,32px);overflow:hidden}
 .mosaico .pista{display:flex;gap:clamp(10px,1.4vw,18px);width:max-content;animation:corre 70s linear infinite}
 .mosaico img{width:clamp(220px,24vw,340px);aspect-ratio:16/9;object-fit:cover;display:block;filter:saturate(.92)}
 .mosaico .fila2{margin-top:clamp(10px,1.4vw,18px);animation-direction:reverse;animation-duration:85s}
 @keyframes corre{to{transform:translateX(-50%)}}
 .final .pie-final{display:grid;grid-template-columns:.35fr 1fr;gap:90px;margin-top:56px}
 .final .pie-final p{margin:0;font:clamp(22px,2.4vw,32px)/1.2 var(--serif);max-width:22em}
-.final .pie-final a{font:14px var(--sans);text-decoration:underline;text-underline-offset:5px;display:inline-block;margin-top:22px}
+.final .pie-final a:not(.canal){font:14px var(--sans);text-decoration:underline;text-underline-offset:5px;display:inline-block;margin-top:22px}
+
+/* contacto */
+.contacto p{margin:0}
+.canales{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:30px;max-width:640px}
+.canal{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 14px;border-radius:14px;border:1px solid var(--filete);background:#fff;color:var(--tinta);font:600 15px var(--sans);text-decoration:none;transition:transform .25s,border-color .25s,background .25s}
+.canal svg{width:20px;height:20px;flex:none}
+.canal:hover{transform:translateY(-2px);border-color:var(--tinta)}
+.canal.wa{grid-column:1/-1;background:#25D366;border-color:#25D366;color:#fff;min-height:62px;font-size:17px}
+.canal.wa svg{width:24px;height:24px}
+.canal.wa:hover{background:#1ebe5b;border-color:#1ebe5b}
+.canal.proximo{opacity:.55;pointer-events:none}
+.final .pie-final p.beneficio{margin-top:26px;font:15px/1.5 var(--sans);color:var(--tenue);max-width:40em;padding:16px 18px;border-left:2px solid var(--tinta);background:rgba(17,17,15,.03)}
+.beneficio b{color:var(--tinta)}
 
 /* sobre */
-.sobre{display:grid;grid-template-columns:1fr 1fr;gap:100px}
+.sobre-logo{aspect-ratio:1/1;background:var(--hielo);display:grid;place-items:center;position:relative;overflow:hidden}
+.sobre-logo svg{width:42%;height:auto;color:var(--tinta)}
+.sobre-logo span{position:absolute;left:22px;bottom:18px;font:12px/1.4 var(--sans);text-transform:uppercase;letter-spacing:.02em}
+
+/* aparición al bajar */
+.aparece{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.aparece.visto{opacity:1;transform:none}
+.visual.aparece{transform:translateY(40px) scale(.97);clip-path:inset(12% 6% 12% 6%);transition:opacity 1s,transform 1.2s cubic-bezier(.2,.7,.2,1),clip-path 1.3s cubic-bezier(.2,.7,.2,1)}
+.visual.aparece.visto{transform:none;clip-path:inset(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){.aparece,.visual.aparece{opacity:1;transform:none;clip-path:none;transition:none}}
+
+.sobre{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:90px;align-items:center}
 .sobre p{font:clamp(28px,3.4vw,48px)/1.08 var(--serif);margin:0}
 .sobre p + p{font:clamp(18px,1.6vw,22px)/1.4 var(--serif);margin-top:30px;color:var(--tenue)}
 .pie{padding:65px 0;font:13px var(--sans);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--filete)}
@@ -128,7 +156,7 @@ a{color:inherit}
 @media(max-width:700px){
   .envoltura{width:calc(100% - 32px)}
   .cab{height:80px;font-size:15px}
-  .portada h1{font-size:25vw}
+  .portada h1{font-size:15vw}
   .portada{padding-top:30px;padding-bottom:80px}
   .bloque{width:90%;height:300px;margin-top:-30px}
   .bajada,.proyecto,.sobre{grid-template-columns:minmax(0,1fr);gap:30px}
@@ -144,9 +172,12 @@ a{color:inherit}
   .servicios{grid-template-columns:minmax(0,1fr);gap:30px}
   .serv-lista{grid-template-columns:minmax(0,1fr)}
   .final{padding:80px 0 100px}
-  .final h2{font-size:21vw}
+  .final h2{font-size:13vw}
   .mosaico{width:100%;margin-top:-24px}
   .final .pie-final{grid-template-columns:minmax(0,1fr);gap:20px;margin-top:40px}
+  .canales{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .canal span{font-size:14px}
+  .sobre-logo{aspect-ratio:16/10}
   .repro.empezado .barra{opacity:1;transform:none}
   .repro .play{width:62px;height:62px;margin:-31px 0 0 -31px}
   .acciones{align-items:flex-start}
@@ -168,7 +199,7 @@ a{color:inherit}
   <section class="portada envoltura">
     <h1>Páginas<br>hechas—</h1>
     <div class="bloque" aria-hidden="true"><video data-bloque muted loop playsinline preload="auto"></video></div>
-    <div class="bajada"><span class="meta">Muestrario<br><span data-anio></span></span><p>Páginas web, aplicaciones y servicios digitales para negocios. Diseño a medida, tiendas online, reservas, turnos y pedidos que llegan directo a tu WhatsApp. Abajo, cada trabajo con su video.</p></div>
+    <div class="bajada aparece"><span class="meta">Muestrario<br><span data-anio></span></span><p>Páginas web, aplicaciones y servicios digitales para negocios. Diseño a medida, tiendas online, reservas, turnos y pedidos que llegan directo a tu WhatsApp. Abajo, cada trabajo con su video.</p></div>
   </section>
 
   <section class="seccion envoltura" id="trabajos">
@@ -178,12 +209,12 @@ a{color:inherit}
 
   <section class="seccion envoltura servicios" id="servicios">
     <span class="meta">Qué hacemos</span>
-    <ul class="serv-lista"><li><b>01</b><strong>Páginas web a medida</strong><span>Diseño propio, pensado para el celular y para vender.</span></li><li><b>02</b><strong>Aplicaciones</strong><span>Apps web que se instalan en el celular, con avisos y cuentas de usuario.</span></li><li><b>03</b><strong>Tiendas online</strong><span>Catálogo, carrito, Mercado Pago y envíos.</span></li><li><b>04</b><strong>Reservas y turnos</strong><span>Agenda online, seña por adelantado y panel para tu equipo.</span></li><li><b>05</b><strong>Pedidos por WhatsApp</strong><span>El pedido llega armado, sin comisiones por venta.</span></li><li><b>06</b><strong>PedidosYa, Rappi y Mercado Pago</strong><span>Integrados en la página, con botones directos.</span></li><li><b>07</b><strong>Google y redes</strong><span>Perfil de Google Maps, Instagram y posicionamiento local.</span></li><li><b>08</b><strong>Videos y contenido</strong><span>Videos de presentación, reels y fotos para redes.</span></li><li><b>09</b><strong>Dominio, hosting y correo</strong><span>Tu .com.ar funcionando, con mail propio.</span></li><li><b>10</b><strong>Mantenimiento</strong><span>Cambios de precios, cartas y fotos cuando lo necesites.</span></li></ul>
+    <ul class="serv-lista"><li class="aparece"><b>01</b><strong>Páginas web a medida</strong><span>Diseño propio, pensado para el celular y para vender.</span></li><li class="aparece"><b>02</b><strong>Aplicaciones</strong><span>Apps web que se instalan en el celular, con avisos y cuentas de usuario.</span></li><li class="aparece"><b>03</b><strong>Tiendas online</strong><span>Catálogo, carrito, Mercado Pago y envíos.</span></li><li class="aparece"><b>04</b><strong>Reservas y turnos</strong><span>Agenda online, seña por adelantado y panel para tu equipo.</span></li><li class="aparece"><b>05</b><strong>Pedidos por WhatsApp</strong><span>El pedido llega armado, sin comisiones por venta.</span></li><li class="aparece"><b>06</b><strong>PedidosYa, Rappi y Mercado Pago</strong><span>Integrados en la página, con botones directos.</span></li><li class="aparece"><b>07</b><strong>Google y redes</strong><span>Perfil de Google Maps, Instagram y posicionamiento local.</span></li><li class="aparece"><b>08</b><strong>Videos y contenido</strong><span>Videos de presentación, reels y fotos para redes.</span></li><li class="aparece"><b>09</b><strong>Dominio, hosting y correo</strong><span>Tu .com.ar funcionando, con mail propio.</span></li><li class="aparece"><b>10</b><strong>Mantenimiento</strong><span>Cambios de precios, cartas y fotos cuando lo necesites.</span></li></ul>
   </section>
 
   <section class="seccion envoltura sobre" id="sobre">
-    <span class="meta">Sobre</span>
-    <div>
+    <div class="sobre-logo aparece" aria-hidden="true"><svg viewBox="8 44 158 164" fill="none" stroke="currentColor" stroke-width="17" stroke-linejoin="miter" stroke-linecap="butt"><path d="M26 52V190H106V166"/><path d="M152 94L137 63H59V159H137L152 128"/></svg><span>Lazervi · Sobre nosotros</span></div>
+    <div class="aparece">
       <p>Diseño y desarrollo digital para restaurantes, cafés, comercios, profesionales y centros de estética, hecho a medida de cada negocio.</p>
       <p>Todo pensado primero para el celular, rápido y fácil de usar, con los precios, horarios y productos en un solo lugar para que los cambies sin tocar el diseño. Los platos y precios de las demos son de ejemplo; las propuestas para negocios reales son diseños de muestra, no sus páginas oficiales.</p>
     </div>
@@ -191,14 +222,22 @@ a{color:inherit}
 </main>
 
 <section class="final envoltura" id="contacto">
-  <h2>La tuya,<br>la próxima—</h2>
-  <div class="mosaico" aria-hidden="true"><div class="pista" data-pista></div><div class="pista fila2" data-pista2></div></div>
-  <div class="pie-final"><span class="meta">Contacto</span><div><p>Contame qué tiene tu negocio y armamos una página así, con tu nombre, tus fotos y tus precios.</p><a class="pedir" style="margin-top:26px" href="#" data-wa-general target="_blank" rel="noopener">Pedir presupuesto por WhatsApp<span aria-hidden="true">↗</span></a></div></div>
+  <h2 class="aparece">La tuya,<br>la próxima—</h2>
+  <div class="mosaico aparece" aria-hidden="true"><div class="pista" data-pista></div><div class="pista fila2" data-pista2></div></div>
+  <div class="pie-final aparece"><span class="meta">Contacto</span><div class="contacto">
+    <p>Contame qué tiene tu negocio y armamos una página así, con tu nombre, tus fotos y tus precios.</p>
+    <div class="canales">
+      <a class="canal wa" href="#" data-wa-general target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.2-.7-2.7-1.1-4.4-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.5z"/></svg><span>WhatsApp</span></a>
+      <a class="canal ig" href="#" data-red="instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+      <a class="canal fb" href="#" data-red="facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v7h4v-7h3l.5-4h-3.5V9c0-.6.4-1 1-1z"/></svg><span>Facebook</span></a>
+      <a class="canal tt" href="#" data-red="tiktok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.4 2.3 1.9 3.8 4.2 4v3.4c-1.6 0-3-.5-4.2-1.3v6.2a6.1 6.1 0 1 1-6.1-6.1c.3 0 .6 0 .9.1v3.5a2.7 2.7 0 1 0 1.8 2.5V3z"/></svg><span>TikTok</span></a>
+    </div>
+    <p class="beneficio"><b>¿Ya sos cliente de Lazervi?</b> Tenés descuento en los próximos desarrollos de software que hagamos para locales: apps, sistemas de pedidos, turnos y más.</p>
+  </div></div>
 </section>
 
 <footer class="pie envoltura">
   <a class="marca" href="#" aria-label="Lazervi, inicio"><svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="8 44 158 164" fill="none" stroke="currentColor" stroke-width="17" stroke-linejoin="miter" stroke-linecap="butt"><path d="M26 52V190H106V166"/><path d="M152 94L137 63H59V159H137L152 128"/></svg><b data-marca>Lazervi</b></a>
-  <a href="#" data-wa-general target="_blank" rel="noopener">WhatsApp · 11 7817-5738</a>
   <span>Buenos Aires · <span data-anio></span></span>
 </footer>
 
@@ -207,6 +246,8 @@ a{color:inherit}
 const MARCA = "Lazervi";
 // ——— Tu WhatsApp (con 549 adelante, sin espacios) ———
 const WHATSAPP = "5491178175738";
+// ——— Tus redes (pegá el link completo de cada perfil) ———
+const REDES = { instagram:"", facebook:"", tiktok:"" };
 const wa = t => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`;
 const linkInteres = d => wa(d.real ? `Hola! Vi la propuesta de ${d.nombre} (${d.rubro.toLowerCase()}) en tu muestrario y me gustaría una página así para mi negocio. ¿Cuánto sale?` : `Hola! Vi la página "${d.nombre}" (${d.rubro.toLowerCase()}) en tu muestrario y me interesa una así para mi negocio. ¿Cuánto sale hacerla?`);
 
@@ -236,12 +277,21 @@ const DEMOS = [
 ];
 
 // títulos en dos líneas, como en la referencia
-const TITULOS = { "mesa-larga":"Mesa<br>Larga", "lo-de-tita":"Lo de<br>Tita", "shio-sushi":"Shio", "fierro-parrilla":"Fierro<br>Parrilla", "lacre-vinoteca":"Lacre", "almendra-cafe":"Almendra<br>Café", "kumo-sushi":"Kumo<br>Sushi Bar", "bruma-cosmetica":"Bruma<br>Cosmética", "salome-blanes":"Salomé<br>Blanes", "aluvidrio":"Alu—<br>vidrio", "bulonera-beccar":"Bulonera<br>Beccar" };
+const TITULOS = { "mesa-larga":"Restaurante", "lo-de-tita":"Confitería<br>y meriendas", "shio-sushi":"Sushi<br>de autor", "fierro-parrilla":"Parrilla", "lacre-vinoteca":"Vinoteca", "almendra-cafe":"Cafetería", "kumo-sushi":"Sushi<br>bar", "bruma-cosmetica":"Cosmética", "salome-blanes":"Estética<br>y salud", "aluvidrio":"Vidriería", "bulonera-beccar":"Bulonera" };
 const GRUPOS = ["Todas","Gastronomía","Comercios","Salud y belleza"];
 let grupo = "Todas";
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 document.querySelectorAll("[data-marca]").forEach(e => e.textContent = MARCA);
 document.querySelectorAll("[data-wa-general]").forEach(a => a.href = wa("Hola! Vi tu muestrario de páginas y quiero pedir un presupuesto."));
+document.querySelectorAll("[data-red]").forEach(a => { const u = REDES[a.dataset.red]; if (u) a.href = u; else { a.classList.add("proximo"); a.removeAttribute("href"); a.setAttribute("aria-disabled","true"); a.title = "Próximamente"; } });
+// aparición al bajar
+const ioAp = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("visto"); ioAp.unobserve(e.target); } }), {threshold:.12, rootMargin:"0px 0px -60px 0px"});
+function observarAparicion(){ document.querySelectorAll(".aparece:not(.visto)").forEach(el => ioAp.observe(el)); }
+// desplazamiento suave a las secciones
+function irSuave(destY){ const y0=scrollY, d=destY-y0, dur=Math.min(1400, 600+Math.abs(d)*.12), t0=performance.now();
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches){ scrollTo(0,destY); return; }
+  const paso=t=>{ const k=Math.min(1,(t-t0)/dur), e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2; scrollTo(0,y0+d*e); if(k<1) requestAnimationFrame(paso); }; requestAnimationFrame(paso); }
+document.addEventListener("click", e => { const a = e.target.closest('a[href^="#"]'); if (!a) return; const id = a.getAttribute("href").slice(1); const el = id ? document.getElementById(id) : document.body; if (!el && id) return; e.preventDefault(); irSuave(id ? el.getBoundingClientRect().top + scrollY - 24 : 0); });
 // barra de progreso
 (function(){ const b=document.querySelector("[data-progreso]"); let pend=false; const act=()=>{ pend=false; const h=document.documentElement.scrollHeight-innerHeight; b.style.transform=`scaleX(${h>0?Math.min(1,scrollY/h):0})`; }; addEventListener("scroll",()=>{ if(!pend){ pend=true; requestAnimationFrame(act); } },{passive:true}); addEventListener("resize",act); act(); })();
 document.querySelectorAll("[data-anio]").forEach(e => e.textContent = new Date().getFullYear());
@@ -252,13 +302,13 @@ function pintar(){
   const ds = DEMOS.filter(d => grupo==="Todas" || d.grupo===grupo);
   document.getElementById("lista").innerHTML = ds.map((d,i) => `
     <article class="proyecto" id="${d.id}">
-      <div class="lado">
+      <div class="lado aparece">
         <span class="num">${String(i+1).padStart(2,"0")}</span>
-        <div class="meta">${esc(d.rubro)}<span>${d.real ? "Propuesta" : "Demo"} · ${esc(d.grupo)}</span></div>
+        <div class="meta">${esc(d.nombre)}<span>${d.real ? "Propuesta" : "Demo"} · ${esc(d.grupo)}</span></div>
       </div>
       <div>
-        <h2>${TITULOS[d.id] || esc(d.nombre)}</h2>
-        <div class="visual">
+        <h2 class="aparece">${TITULOS[d.id] || esc(d.rubro)}</h2>
+        <div class="visual aparece">
           <div class="repro pausado" data-repro>
             <video playsinline preload="none" poster="posters/${d.id}-h.jpg" src="videos/${d.id}-h.mp4" aria-label="Video de presentación de ${esc(d.nombre)}"></video>
             <button type="button" class="play" aria-label="Reproducir el video de ${esc(d.nombre)}"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l12.5-7.5z"/></svg></button>
@@ -271,7 +321,7 @@ function pintar(){
             </div>
           </div>
         </div>
-        <div class="detalle">
+        <div class="detalle aparece">
           <ul class="trae">${d.trae.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
           <div class="acciones">
             <a class="pedir" href="${linkInteres(d)}" target="_blank" rel="noopener">${d.real ? "Quiero una así" : "Me interesa esta página"}<span aria-hidden="true">↗</span></a>
@@ -313,8 +363,8 @@ function prepararRepro(r){
 }
 function prepararTodos(){ document.querySelectorAll("[data-repro]").forEach(prepararRepro); }
 const pintarOriginal = pintar;
-pintar = function(){ pintarOriginal(); prepararTodos(); };
-prepararTodos();
+pintar = function(){ pintarOriginal(); prepararTodos(); observarAparicion(); };
+prepararTodos(); observarAparicion();
 
 // ——— mosaico del final con los cuadros de cada video ———
 (function(){ const ids=DEMOS.map(d=>d.id); const mitad=Math.ceil(ids.length/2);
