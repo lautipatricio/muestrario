@@ -3,285 +3,347 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kumo — Sushi bar en San Isidro</title>
+<meta name="description" content="Kumo, barra de sushi en San Isidro. Pesca del día con precio, carta para pedir online, omakase de 14 pasos en la barra y reservas por WhatsApp.">
+<meta name="theme-color" content="#0E1320">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Idea: una barra de sushi de noche. Fondo índigo como tinta, papel washi para la pizarra,
+   un sello bermellón (hanko) para lo importante. Las fotos mandan; el resto acompaña. */
+:root{
+  --noche:#0E1320; --noche2:#151C2E; --noche3:#1E2740; --washi:#F2ECE0; --washi2:#E6DECD; --sumi:#16181D;
+  --bermellon:#D2462D; --bermellon2:#B23A24; --salmon:#F08A6C; --oro:#C9A35B; --niebla:rgba(242,236,224,.68); --linea:rgba(242,236,224,.14);
+  --display:"Shippori Mincho", "Hiragino Mincho ProN", Georgia, serif; --texto:"Zen Kaku Gothic New", system-ui, sans-serif; --mono:"DM Mono", ui-monospace, monospace;
+  --cab:62px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{max-width:100%;overflow-x:hidden}
+@supports(overflow:clip){html,body{overflow-x:clip}}
+body{background:var(--noche);color:var(--washi);font-family:var(--texto);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--salmon);outline-offset:3px}
+.env{width:100%;max-width:1240px;margin:0 auto;padding-inline:clamp(16px,4.5vw,44px)}
+section{scroll-margin-top:calc(var(--cab) + 8px)}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.01em;line-height:1.08}
+h2{font-size:clamp(2.1rem,5.4vw,3.6rem)}
+.sobre{font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--salmon);display:flex;align-items:center;gap:10px}
+.sobre::before{content:"";width:22px;height:1px;background:currentColor}
+.bajada{color:var(--niebla);max-width:52ch}
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;border-radius:999px;font-weight:700;font-size:.95rem;text-decoration:none;border:1px solid transparent;transition:transform .2s,background .2s,color .2s;white-space:nowrap}
+.boton:active{transform:scale(.97)}
+.b-sello{background:var(--bermellon);color:#fff}
+.b-sello:hover{background:var(--bermellon2)}
+.b-washi{background:var(--washi);color:var(--sumi)}
+.b-linea{border-color:rgba(242,236,224,.4);color:var(--washi)}
+.b-linea:hover{background:rgba(242,236,224,.08)}
+.sube{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.sube.visto{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.sube{opacity:1;transform:none}.portada .titulo-linea span,.portada .fondo img{transform:none}}
+/* foto con respaldo: si la imagen no carga queda una placa con el kanji */
+.foto{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 30% 20%,#2A3452,#121829)}
+.foto img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.foto.sin img{display:none}
+.foto.sin::after{content:"雲";position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:3rem;color:rgba(242,236,224,.12)}
+
+/* cabecera */
+.cab{position:fixed;inset:0 0 auto;z-index:60;height:var(--cab);transition:background .35s,border-color .35s;border-bottom:1px solid transparent}
+.cab.solida{background:rgba(14,19,32,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--linea)}
+.cab .env{height:100%;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo .hanko{width:34px;height:34px;border-radius:7px;background:var(--bermellon);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.15rem;color:#fff;transform:rotate(-4deg)}
+.logo b{font-family:var(--display);font-size:1.3rem;letter-spacing:.32em;font-weight:700}
+.nav{display:flex;align-items:center;gap:22px;font-size:.9rem}
+.nav a{text-decoration:none;color:var(--niebla)}
+.nav a:hover{color:var(--washi)}
+.carrito-btn{position:relative;display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 14px 0 12px;border-radius:999px;background:rgba(242,236,224,.1);border:1px solid var(--linea);font-weight:700;font-size:.9rem}
+.carrito-btn svg{width:19px;height:19px}
+.carrito-btn .n{min-width:22px;height:22px;border-radius:11px;background:var(--bermellon);color:#fff;font-family:var(--mono);font-size:.75rem;display:grid;place-items:center;padding:0 6px}
+.carrito-btn.salta{animation:salta .5s}
+@keyframes salta{40%{transform:scale(1.12)}}
+@media (max-width:820px){.nav a:not(.carrito-btn){display:none}}
+
+/* portada */
+.portada{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:calc(var(--cab) + 40px) 0 clamp(28px,6vh,64px);isolation:isolate;overflow:hidden}
+.portada .fondo{position:absolute;inset:0;z-index:-2}
+.portada .fondo img{transform:scale(1.08);animation:acerca 14s cubic-bezier(.2,.6,.2,1) forwards}
+@keyframes acerca{to{transform:scale(1)}}
+.portada::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,19,32,.55) 0%,rgba(14,19,32,.15) 30%,rgba(14,19,32,.55) 62%,var(--noche) 100%)}
+.estado{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(14,19,32,.6);border:1px solid var(--linea);font-size:.82rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.estado i{width:8px;height:8px;border-radius:50%;background:#5BD08A;box-shadow:0 0 0 0 rgba(91,208,138,.6);animation:late 2s infinite}
+.estado.cerrado i{background:var(--salmon);animation:none}
+@keyframes late{70%{box-shadow:0 0 0 8px rgba(91,208,138,0)}}
+.portada h1{font-size:clamp(2.7rem,9vw,6.4rem);margin:18px 0 16px;max-width:12ch;text-wrap:balance}
+.portada h1 em{font-style:normal;color:var(--salmon)}
+.portada .bajada{font-size:1.06rem;color:rgba(242,236,224,.85)}
+.portada .acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hechos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:clamp(28px,5vh,48px);border:1px solid var(--linea);border-radius:14px;overflow:hidden;background:var(--linea);max-width:640px}
+.hechos div{background:rgba(14,19,32,.72);padding:12px 14px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.hechos b{display:block;font-family:var(--display);font-size:1.45rem;line-height:1.1}
+.hechos span{font-size:.78rem;color:var(--niebla)}
+.portada .titulo-linea{display:block;overflow:hidden}
+.portada .titulo-linea span{display:inline-block;transform:translateY(105%);animation:sube-linea 1s cubic-bezier(.2,.7,.2,1) forwards}
+.portada .titulo-linea:nth-child(2) span{animation-delay:.12s}
+.portada .titulo-linea:nth-child(3) span{animation-delay:.24s}
+@keyframes sube-linea{to{transform:none}}
+
+/* pizarra: lo que llegó hoy */
+.pizarra{padding:clamp(64px,10vw,120px) 0}
+.cabeza{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:28px}
+.cabeza h2{margin-top:12px}
+.fecha{font-family:var(--mono);font-size:.78rem;color:var(--niebla);letter-spacing:.06em}
+.peces{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:16px}
+.pez{background:var(--washi);color:var(--sumi);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.pez .foto{aspect-ratio:4/3}
+.pez:hover .foto img{transform:scale(1.04)}
+.pez .jp{position:absolute;top:12px;left:12px;font-family:var(--display);font-size:.95rem;font-weight:700;background:rgba(242,236,224,.92);color:var(--sumi);padding:4px 10px;border-radius:999px}
+.pez .marca{position:absolute;top:12px;right:12px;font-size:.72rem;font-weight:700;background:var(--bermellon);color:#fff;padding:4px 10px;border-radius:999px}
+.pez .cuerpo{padding:16px 16px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pez h3{font-size:1.45rem}
+.pez p{font-size:.88rem;color:#5B5A57}
+.cortes{display:grid;gap:8px;margin-top:auto;padding-top:10px}
+.corte{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:8px 8px 8px 12px;border:1px solid rgba(22,24,29,.14);border-radius:12px}
+.corte span{font-size:.86rem;line-height:1.25}
+.corte span small{display:block;color:#7A7770;font-size:.76rem}
+.corte b{font-family:var(--mono);font-size:.92rem;font-weight:500;white-space:nowrap}
+.mas{width:38px;height:38px;border-radius:50%;background:var(--sumi);color:var(--washi);display:grid;place-items:center;font-size:1.3rem;line-height:1;transition:background .2s,transform .2s}
+.mas:hover{background:var(--bermellon)}
+.mas.ok{background:var(--bermellon);transform:rotate(90deg) scale(1.05)}
+.pez.agotado .foto img{filter:grayscale(1) brightness(.75)}
+.pez.agotado h3{text-decoration:line-through;text-decoration-color:var(--bermellon);text-decoration-thickness:3px}
+.pez.agotado .cortes{opacity:.45;pointer-events:none}
+.agotado-sello{position:absolute;top:34%;left:50%;transform:translate(-50%,-50%) rotate(-8deg);border:3px solid var(--bermellon);color:var(--bermellon);background:rgba(242,236,224,.92);font-family:var(--display);font-weight:800;font-size:1.2rem;padding:6px 16px;border-radius:8px;letter-spacing:.06em}
+
+/* omakase */
+.omakase{padding:clamp(56px,9vw,110px) 0;background:var(--noche2);border-block:1px solid var(--linea)}
+.omakase .env{display:grid;gap:36px}
+@media (min-width:900px){.omakase .env{grid-template-columns:1.05fr .95fr;align-items:center;gap:64px}}
+.omakase .foto{aspect-ratio:4/5;border-radius:18px}
+@media (max-width:899px){.omakase .foto{aspect-ratio:16/11}}
+.numeros{display:flex;flex-wrap:wrap;gap:22px 34px;margin:26px 0}
+.numeros b{display:block;font-family:var(--display);font-size:2.2rem;line-height:1}
+.numeros span{font-size:.82rem;color:var(--niebla)}
+.barra-sillas{margin:8px 0 6px}
+.barra-sillas p{font-size:.86rem;color:var(--niebla);margin-bottom:12px}
+.sillas{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px;max-width:420px}
+.silla{aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(242,236,224,.5);display:grid;place-items:center;font-family:var(--mono);font-size:.8rem;transition:background .2s,color .2s,transform .2s}
+.silla:disabled{border-style:dashed;opacity:.35;cursor:not-allowed}
+.silla[aria-pressed="true"]{background:var(--bermellon);border-color:var(--bermellon);color:#fff;transform:translateY(-3px)}
+.mostrador{height:10px;max-width:420px;border-radius:3px;margin-top:10px;background:linear-gradient(90deg,#6B4B2E,#8C6640 50%,#6B4B2E)}
+.turnos{display:flex;gap:8px;margin:18px 0 22px;flex-wrap:wrap}
+.turno{padding:9px 16px;border-radius:999px;border:1px solid var(--linea);font-size:.9rem}
+.turno[aria-pressed="true"]{background:var(--washi);color:var(--sumi);border-color:var(--washi)}
+
+/* carta */
+.carta{padding:clamp(64px,10vw,120px) 0}
+.pestanas{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:22px;position:sticky;top:var(--cab);z-index:5;background:var(--noche);padding-top:10px;margin-inline:calc(-1*clamp(16px,4.5vw,44px));padding-inline:clamp(16px,4.5vw,44px)}
+.pestanas::-webkit-scrollbar{display:none}
+.pestana{flex:none;padding:10px 18px;border-radius:999px;border:1px solid var(--linea);font-size:.92rem;color:var(--niebla)}
+.pestana[aria-selected="true"]{background:var(--washi);color:var(--sumi);border-color:var(--washi);font-weight:700}
+.platos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:12px}
+.plato{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;padding:10px;border-radius:16px;background:var(--noche2);border:1px solid var(--linea);animation:aparece .5s both}
+@keyframes aparece{from{opacity:0;transform:translateY(10px)}}
+.plato .foto{width:96px;height:96px;border-radius:12px}
+.plato .info{display:flex;flex-direction:column;min-width:0;padding:2px 2px 0 0}
+.plato h3{font-size:1.15rem}
+.plato .piezas{font-family:var(--mono);font-size:.72rem;color:var(--salmon);letter-spacing:.06em}
+.plato p{font-size:.84rem;color:var(--niebla);line-height:1.45;margin-top:2px}
+.plato .pie{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:8px}
+.plato .precio{font-family:var(--mono);font-size:.98rem}
+.paso{display:inline-flex;align-items:center;border-radius:999px;background:var(--washi);color:var(--sumi);height:36px}
+.paso button{width:36px;height:36px;display:grid;place-items:center;font-size:1.15rem;font-weight:700}
+.paso output{min-width:18px;text-align:center;font-family:var(--mono);font-size:.9rem}
+.plato .mas{width:36px;height:36px;background:var(--washi);color:var(--sumi)}
+.plato .mas:hover{background:var(--salmon)}
+.nota-carta{margin-top:20px;font-size:.84rem;color:var(--niebla)}
+
+/* galería */
+.galeria{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;padding-bottom:clamp(56px,9vw,110px)}
+.galeria figure{border-radius:14px;grid-column:span 3;aspect-ratio:1}
+.galeria figure:first-child{grid-column:span 6;aspect-ratio:16/9}
+@media (min-width:900px){.galeria figure{grid-column:span 2}.galeria figure:first-child{grid-column:span 4;grid-row:span 2;aspect-ratio:auto}}
+.galeria figcaption{position:absolute;left:10px;bottom:10px;font-size:.76rem;background:rgba(14,19,32,.72);padding:4px 10px;border-radius:999px;backdrop-filter:blur(4px)}
+
+/* reservas + llevar */
+.dos{display:grid;gap:22px;padding-bottom:clamp(56px,9vw,110px)}
+@media (min-width:960px){.dos{grid-template-columns:1.2fr .8fr;align-items:start}}
+.tarjeta{background:var(--noche2);border:1px solid var(--linea);border-radius:22px;padding:clamp(20px,4vw,36px)}
+.tarjeta h2{font-size:clamp(1.9rem,4.4vw,2.8rem);margin:10px 0 8px}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.campo{display:flex;flex-direction:column;gap:6px;min-width:0;border:0}
+.campo.ancho{grid-column:1/-1}
+.campo label,.campo legend{font-size:.82rem;color:var(--niebla)}
+.campo input,.campo select{height:50px;border-radius:12px;background:var(--noche);border:1px solid var(--linea);padding:0 14px;width:100%;color-scheme:dark}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--noche);border:1px solid var(--linea);border-radius:14px;padding:4px}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0}
+.seg span{display:grid;place-items:center;height:44px;border-radius:10px;font-weight:700;font-size:.92rem;cursor:pointer}
+.seg input:checked+span{background:var(--washi);color:var(--sumi)}
+.seg input:focus-visible+span{outline:2px solid var(--salmon)}
+.contador{display:flex;align-items:center;justify-content:space-between;height:50px;border-radius:12px;background:var(--noche);border:1px solid var(--linea);padding:0 4px}
+.contador button{width:42px;height:42px;border-radius:10px;font-size:1.3rem}
+.contador button:disabled{opacity:.3}
+.ayuda{grid-column:1/-1;font-size:.82rem;color:var(--niebla)}
+.form .boton{grid-column:1/-1}
+.resultado{grid-column:1/-1;background:var(--noche);border:1px solid var(--linea);border-radius:14px;padding:16px;font-size:.92rem}
+.resultado blockquote{margin:10px 0 14px;padding-left:12px;border-left:3px solid var(--bermellon);color:var(--washi)}
+.resultado .fila{display:flex;flex-wrap:wrap;gap:8px}
+.error{color:var(--salmon)}
+.apps{display:grid;gap:10px;margin-top:18px}
+.app{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:14px;border-radius:14px;border:1px solid var(--linea);text-decoration:none;transition:background .2s}
+.app:hover{background:rgba(242,236,224,.05)}
+.app i{width:10px;height:10px;border-radius:50%}
+.app small{display:block;color:var(--niebla);font-size:.78rem}
+.app svg{width:18px;height:18px;color:var(--niebla)}
+.app.propio{background:var(--washi);color:var(--sumi);border-color:var(--washi)}
+.app.propio small,.app.propio svg{color:#5B5A57}
+
+/* datos y mapa */
+.llegar{padding-bottom:clamp(56px,9vw,110px)}
+.llegar .env{display:grid;gap:22px}
+@media (min-width:960px){.llegar .env{grid-template-columns:.9fr 1.1fr}}
+.datos{display:grid;gap:26px}
+.datos h3{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--salmon);margin-bottom:8px}
+.datos p{color:var(--niebla)}
+.datos .grande{font-family:var(--display);font-size:1.6rem;color:var(--washi);line-height:1.2}
+.horarios{list-style:none}
+.horarios li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--linea);font-size:.92rem;color:var(--niebla)}
+.horarios li.hoy{color:var(--washi);font-weight:700}
+.mapa{position:relative;min-height:360px;border-radius:22px;overflow:hidden;border:1px solid var(--linea);background:var(--noche3)}
+.mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.3) contrast(1.05)}
+.mapa .ir{position:absolute;left:12px;bottom:12px}
+
+.pie-pagina{border-top:1px solid var(--linea);padding:36px 0 120px}
+.pie-pagina .env{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.pie-pagina .kanji{font-family:var(--display);font-size:4rem;line-height:1;color:rgba(242,236,224,.14)}
+.pie-pagina small{display:block;color:var(--niebla);font-size:.78rem}
+
+/* barra móvil y cajón del pedido */
+.barra-movil{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:55;display:flex;gap:8px;transform:translateY(140%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.barra-movil.visible{transform:none}
+.barra-movil .boton{flex:1;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+@media (min-width:900px){.barra-movil{display:none}}
+.velo{position:fixed;inset:0;z-index:80;background:rgba(5,8,14,.6);opacity:0;pointer-events:none;transition:opacity .3s}
+.velo.abierto{opacity:1;pointer-events:auto}
+.cajon{position:fixed;z-index:90;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--washi);color:var(--sumi);display:flex;flex-direction:column;transform:translateX(102%);transition:transform .45s cubic-bezier(.2,.7,.2,1);visibility:hidden}
+.cajon.abierto{transform:none;visibility:visible}
+.cajon header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid rgba(22,24,29,.12)}
+.cajon header h2{font-size:1.6rem}
+.cerrar{width:40px;height:40px;border-radius:50%;border:1px solid rgba(22,24,29,.2);font-size:1.2rem}
+.cajon .lista{flex:1;overflow:auto;padding:8px 20px}
+.item{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(22,24,29,.1)}
+.item .foto{width:56px;height:56px;border-radius:10px}
+.item b{display:block;font-size:.95rem;line-height:1.25}
+.item small{color:#6B6964;font-size:.8rem}
+.item .paso{background:#fff;border:1px solid rgba(22,24,29,.14)}
+.vacio-cajon{padding:48px 0;text-align:center;color:#6B6964}
+.vacio-cajon b{display:block;font-family:var(--display);font-size:1.4rem;color:var(--sumi);margin-bottom:6px}
+.cajon footer{padding:16px 20px max(18px,env(safe-area-inset-bottom));border-top:1px solid rgba(22,24,29,.12);display:grid;gap:12px;background:var(--washi2)}
+.cajon .seg{background:#fff;border-color:rgba(22,24,29,.14)}
+.cajon .seg input:checked+span{background:var(--sumi);color:var(--washi)}
+.cajon input[type=text]{height:48px;border-radius:12px;border:1px solid rgba(22,24,29,.18);padding:0 14px;background:#fff;width:100%}
+.total{display:flex;justify-content:space-between;align-items:baseline;font-size:.92rem}
+.total b{font-family:var(--display);font-size:1.6rem}
+.aviso{position:fixed;left:50%;bottom:90px;z-index:95;transform:translate(-50%,20px);opacity:0;background:var(--washi);color:var(--sumi);padding:10px 16px;border-radius:999px;font-weight:700;font-size:.88rem;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:opacity .3s,transform .3s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.aviso.ver{opacity:1;transform:translate(-50%,0)}
+</style>
 <link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-180.png">
 </head>
 <body>
-<title>Kumo Sushi Bar</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-<style>
-/* Layout: noche y tinta. Hero con tinta que se disuelve en agua → la pesca del día como pizarra → la barra omakase → carta → reservas (barra o mesa) y delivery → datos. Alineado a la izquierda con mucho aire. Una sola apariencia, nocturna, elegida a propósito. */
-:root{
-  color-scheme: dark;
-  --indigo:#111829;       /* fondo: agua de noche */
-  --indigo-2:#182136;     /* superficies */
-  --linea:#2b3654;
-  --washi:#ece6da;        /* texto y botón principal */
-  --washi-tenue:#a9adbb;
-  --salmon:#ee8b6a;       /* acento: el color del salmón */
-  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
-  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Helvetica Neue",Arial,sans-serif;
-  --gl:max(16px, env(safe-area-inset-left, 0px));
-  --gr:max(16px, env(safe-area-inset-right, 0px));
-}
-*,*::before,*::after{box-sizing:border-box}
-html,body{overflow-x:hidden}
-@supports (overflow:clip){html,body{overflow-x:clip}}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--indigo);color:var(--washi);font-family:var(--f-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overscroll-behavior-x:none}
-img,svg,canvas{max-width:100%}
-a{color:inherit}
-button{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--washi);outline-offset:3px;border-radius:4px}
-.envoltura{width:100%;max-width:1240px;margin-inline:auto;padding-left:var(--gl);padding-right:var(--gr)}
-@media (min-width:700px){.envoltura{--gl:max(32px, env(safe-area-inset-left, 0px));--gr:max(32px, env(safe-area-inset-right, 0px))}}
-h1,h2,h3{font-family:var(--f-display);font-weight:600;margin:0;text-wrap:balance;letter-spacing:.005em}
 
-.boton{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:4px;font-weight:500;font-size:16px;letter-spacing:.02em;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background-color .25s,border-color .25s,transform .15s;white-space:nowrap;max-width:100%}
-.boton:active{transform:scale(.98)}
-.boton-principal{background:var(--washi);color:var(--indigo)}
-.boton-principal:hover{background:#fffaf0}
-.boton-secundario{border-color:rgba(236,230,218,.4);color:var(--washi);background:rgba(17,24,41,.4)}
-.boton-secundario:hover{border-color:var(--washi)}
-.marca-app{width:9px;height:9px;border-radius:50%;flex:none}
-
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--indigo)}
-.cabecera{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:68px;border-bottom:1px solid transparent;transition:background-color .35s,border-color .35s}
-.cabecera.solida{background:rgba(17,24,41,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--linea)}
-.cabecera .envoltura{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo .kanji{font-family:var(--f-display);font-weight:700;font-size:26px;line-height:1;color:var(--salmon)}
-.logo b{font-family:var(--f-display);font-weight:700;font-size:22px;letter-spacing:.18em}
-.nav{display:flex;align-items:center;gap:30px}
-.nav a{text-decoration:none;font-size:15px;color:var(--washi-tenue)}
-.nav a:hover{color:var(--washi)}
-.nav .boton{min-height:44px;font-size:15px;padding:0 20px;color:var(--indigo)}
-.solo-escritorio{display:none}
-@media (min-width:860px){.solo-escritorio{display:inline-flex}}
-
-/* Hero */
-.hero{position:relative;margin-top:-68px;padding-top:68px;overflow:hidden;isolation:isolate;min-height:min(840px,100svh);display:flex;align-items:flex-end}
-#tinta{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(17,24,41,.55) 0%,rgba(17,24,41,0) 30%,rgba(17,24,41,0) 50%,rgba(17,24,41,.85) 100%)}
-.hero .envoltura{padding-block:120px clamp(64px,9vw,120px)}
-.estado{display:inline-flex;align-items:center;gap:10px;font-size:15px;color:var(--washi-tenue);margin:0}
-.estado::before{content:"";width:8px;height:8px;border-radius:50%;background:#8fd0a8;box-shadow:0 0 0 5px rgba(143,208,168,.14)}
-.estado.cerrado::before{background:var(--washi-tenue);box-shadow:none}
-.hero h1{font-size:clamp(46px,8.4vw,112px);line-height:1.04;font-weight:600;margin-top:20px;max-width:13ch}
-.hero .bajada{font-size:clamp(16px,1.9vw,19px);max-width:42ch;margin:24px 0 0;color:var(--washi-tenue)}
-.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-@media (max-width:520px){.acciones .boton{flex:1 1 100%}}
-@media (prefers-reduced-motion:no-preference){
-  .entra{animation:entra 1.4s cubic-bezier(.16,.8,.24,1) both}
-  .entra.d1{animation-delay:.15s}.entra.d2{animation-delay:.3s}.entra.d3{animation-delay:.45s}
-  @keyframes entra{from{transform:translateY(14px)}to{transform:none}}
-}
-
-/* Pesca del día */
-.pesca{padding-block:clamp(72px,10vw,130px)}
-.cabeza{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 48px}
-.titulo{font-size:clamp(34px,5vw,62px);line-height:1.1;max-width:16ch}
-.cabeza p,.intro{margin:0;max-width:40ch;color:var(--washi-tenue)}
-.intro{margin-top:16px}
-.tabla-pesca{list-style:none;margin:44px 0 0;padding:0;display:grid;grid-template-columns:1fr;border-top:1px solid var(--linea)}
-@media (min-width:860px){.tabla-pesca{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px}}
-.pez{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:4px 16px;padding:22px 0;border-bottom:1px solid var(--linea)}
-.pez h3{font-size:26px}
-.pez .jp{font-size:15px;color:var(--salmon);font-family:var(--f-display)}
-.pez p{grid-column:1 / -1;margin:0;font-size:15px;color:var(--washi-tenue)}
-.pez.agotado h3,.pez.agotado .jp{opacity:.45;text-decoration:line-through;text-decoration-thickness:1px}
-.pez .marca{font-size:13px;border:1px solid var(--linea);border-radius:3px;padding:1px 8px;color:var(--washi-tenue)}
-
-/* Barra omakase */
-.barra{display:grid;grid-template-columns:1fr;gap:40px;padding:clamp(28px,5vw,64px);border:1px solid var(--linea);background:var(--indigo-2);margin-bottom:clamp(72px,10vw,130px)}
-@media (min-width:960px){.barra{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}}
-.barra h2{font-size:clamp(32px,4.5vw,52px);line-height:1.12}
-.barra p{color:var(--washi-tenue);margin:16px 0 0;max-width:44ch}
-.asientos{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;margin-top:8px}
-.asiento{aspect-ratio:1;border-radius:50%;border:1px solid var(--washi-tenue);display:grid;place-items:center;font-size:12px;color:var(--washi-tenue)}
-.asiento.libre{background:var(--washi);color:var(--indigo);border-color:var(--washi)}
-.mostrador{height:10px;border-radius:2px;background:linear-gradient(90deg,#6b4a32,#8a6446,#6b4a32);margin-top:12px}
-.leyenda{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font-size:14px;color:var(--washi-tenue)}
-.leyenda span{display:flex;align-items:center;gap:8px}
-.leyenda i{width:12px;height:12px;border-radius:50%;border:1px solid var(--washi-tenue);display:inline-block}
-.leyenda i.l{background:var(--washi);border-color:var(--washi)}
-.pasos-omakase{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:22px;font-size:15px}
-.pasos-omakase b{font-family:var(--f-display);font-weight:700;font-size:28px;display:block;color:var(--washi)}
-.pasos-omakase span{color:var(--washi-tenue)}
-
-/* Carta */
-.carta{padding-bottom:clamp(72px,10vw,130px)}
-.pestanas{display:flex;gap:4px;overflow-x:auto;padding:30px 0 0;scrollbar-width:none;max-width:100%;border-bottom:1px solid var(--linea)}
-.pestanas::-webkit-scrollbar{display:none}
-.pestana{flex:none;min-height:48px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--washi-tenue);font-weight:500;font-size:16px;padding:0 16px;cursor:pointer;transition:color .2s,border-color .2s;margin-bottom:-1px}
-.pestana:hover{color:var(--washi)}
-.pestana[aria-selected="true"]{color:var(--washi);border-bottom-color:var(--salmon)}
-.platos{display:grid;grid-template-columns:1fr;gap:0 64px;margin-top:8px}
-@media (min-width:860px){.platos{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.plato{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 18px;padding:24px 0;border-bottom:1px solid var(--linea)}
-.plato h3{font-size:22px;line-height:1.3}
-.plato .precio{font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
-.plato .piezas{grid-column:1 / -1;font-size:14px;color:var(--salmon)}
-.plato p{grid-column:1 / -1;margin:0;color:var(--washi-tenue);font-size:15px;max-width:52ch}
-.nota-carta{margin:22px 0 0;color:var(--washi-tenue);font-size:14px}
-
-/* Fotos */
-.grilla-fotos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-bottom:clamp(72px,10vw,130px)}
-.grilla-fotos figure{margin:0}
-.grilla-fotos .ranura:nth-child(1){grid-column:1 / -1;aspect-ratio:16/9}
-@media (min-width:860px){.grilla-fotos{grid-template-columns:2fr 1fr 1fr}.grilla-fotos .ranura:nth-child(1){grid-column:auto;aspect-ratio:auto}}
-.ranura{position:relative;overflow:hidden;aspect-ratio:3/4;max-width:100%;background:var(--indigo-2)}
-.ranura img{width:100%;height:100%;object-fit:cover;display:block}
-.ranura.vacia{background:radial-gradient(70% 55% at 30% 80%,rgba(238,139,106,.20),transparent 70%),radial-gradient(60% 50% at 80% 20%,rgba(120,140,190,.18),transparent 70%),linear-gradient(170deg,#1b2540,#0d1220)}
-.ranura figcaption{position:absolute;left:18px;right:18px;bottom:16px;font-size:14px;color:var(--washi-tenue)}
-
-/* Reservas + delivery */
-.dos{display:grid;grid-template-columns:1fr;gap:56px;padding-block:clamp(64px,9vw,120px);border-top:1px solid var(--linea)}
-@media (min-width:960px){.dos{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:72px}}
-.dos > *{min-width:0}
-.dos .intro{margin-bottom:28px}
-.formulario{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-@media (max-width:480px){.formulario{grid-template-columns:1fr}}
-.campo{display:grid;gap:8px;min-width:0;border:0;padding:0;margin:0}
-.campo.ancho{grid-column:1 / -1}
-.campo label,.campo legend{font-size:14px;font-weight:500;padding:0}
-.campo input,.campo select{width:100%;min-width:0;min-height:52px;background:var(--indigo-2);border:1px solid var(--linea);border-radius:4px;padding:0 14px;font:inherit;font-size:16px;color:var(--washi);-webkit-appearance:none;appearance:none}
-.campo select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23a9adbb' stroke-width='1.6' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
-.campo input:focus,.campo select:focus{outline:none;border-color:var(--washi)}
-.contador{display:flex;align-items:center;justify-content:space-between;min-height:52px;background:var(--indigo-2);border:1px solid var(--linea);border-radius:4px;padding:0 4px}
-.contador button{width:44px;height:44px;border-radius:3px;border:0;background:transparent;font-size:22px;cursor:pointer}
-.contador button:hover{background:var(--linea)}
-.contador button:disabled{opacity:.35;cursor:default}
-.contador output{font-size:17px;font-variant-numeric:tabular-nums}
-.segmentos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:4px;background:var(--indigo-2);border:1px solid var(--linea);border-radius:4px}
-.segmentos label{display:flex;cursor:pointer;min-width:0}
-.segmentos label{position:relative}
-.segmentos input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;pointer-events:none}
-.segmentos span{display:flex;align-items:center;justify-content:center;width:100%;min-height:44px;border-radius:3px;font-size:15px}
-.segmentos input:checked + span{background:var(--washi);color:var(--indigo)}
-.segmentos input:focus-visible + span{outline:2px solid var(--washi);outline-offset:2px}
-.ayuda{grid-column:1 / -1;margin:0;font-size:14px;color:var(--washi-tenue)}
-.formulario .boton{grid-column:1 / -1;margin-top:4px}
-.resultado{grid-column:1 / -1;border:1px dashed var(--linea);padding:16px 18px;font-size:15px;color:var(--washi-tenue)}
-.resultado blockquote{margin:10px 0 14px;padding:12px 14px;background:var(--indigo-2);color:var(--washi);overflow-wrap:anywhere}
-.resultado .fila{display:flex;flex-wrap:wrap;gap:10px}
-.resultado .boton{min-height:44px;font-size:15px;padding:0 18px}
-.error{color:#f4b39c}
-.delivery{border:1px solid var(--linea);padding:clamp(24px,4vw,40px);align-self:start}
-.delivery h2{font-size:clamp(30px,4vw,44px);line-height:1.15}
-.delivery p{color:var(--washi-tenue);margin:12px 0 24px}
-.apps{display:grid;gap:10px}
-.app{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;min-height:64px;padding:10px 18px;border:1px solid var(--linea);text-decoration:none;transition:border-color .2s}
-.app:hover{border-color:var(--washi-tenue)}
-.app small{display:block;font-size:13.5px;color:var(--washi-tenue)}
-.app svg{width:18px;height:18px;color:var(--washi-tenue)}
-
-/* Datos y pie */
-.datos{display:grid;grid-template-columns:1fr;gap:40px;padding-block:clamp(56px,8vw,100px);border-top:1px solid var(--linea)}
-@media (min-width:860px){.datos{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.datos > *{min-width:0}
-.datos h2{font-family:var(--f-body);font-size:15px;font-weight:500;color:var(--washi-tenue);margin-bottom:12px}
-.datos p{margin:0;font-size:18px}
-.datos .tenue{color:var(--washi-tenue);font-size:15px;margin-top:6px}
-.horarios{list-style:none;margin:0;padding:0;font-variant-numeric:tabular-nums}
-.horarios li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--linea);font-size:15px}
-.horarios li span:last-child{color:var(--washi-tenue);text-align:right}
-.horarios li.hoy span{color:var(--washi);font-weight:700}
-.enlace{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--linea)}
-.enlace:hover{text-decoration-color:var(--washi)}
-.pie{border-top:1px solid var(--linea);padding-block:44px calc(44px + 84px + env(safe-area-inset-bottom,0px))}
-@media (min-width:860px){.pie{padding-bottom:44px}}
-.pie .envoltura{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px}
-.pie .grande{font-family:var(--f-display);font-weight:700;font-size:clamp(90px,26vw,260px);line-height:.9;color:var(--indigo-2)}
-.pie small{display:block;color:var(--washi-tenue);font-size:14px}
-
-.barra-movil{position:fixed;left:0;right:0;bottom:0;z-index:55;display:flex;gap:10px;padding:10px var(--gr) calc(10px + env(safe-area-inset-bottom,0px)) var(--gl);background:rgba(17,24,41,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--linea);transform:translateY(110%);transition:transform .35s ease}
-.barra-movil.visible{transform:none}
-.barra-movil .boton{flex:1 1 0;min-width:0;padding:0 12px}
-@media (min-width:860px){.barra-movil{display:none}}
-
-/* Bloqueo del desplazamiento lateral en el celular */
-html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom}
-@supports (overflow:clip){html,body{overflow-x:clip}}
-body{position:relative;width:100%;margin:0}
-main,footer,section{max-width:100%;overflow-x:clip}
-.pestanas,.filtros,.chips,.dibujo,.panel-cuerpo{touch-action:pan-x pan-y pinch-zoom}
-</style>
-
-<header class="cabecera" id="cabecera">
-  <div class="envoltura">
-    <a class="logo" href="#inicio" aria-label="Kumo, ir al inicio"><span class="kanji" aria-hidden="true">雲</span><b>KUMO</b></a>
+<header class="cab" id="cab">
+  <div class="env">
+    <a class="logo" href="#inicio" aria-label="Kumo, ir al inicio"><span class="hanko" aria-hidden="true">雲</span><b>KUMO</b></a>
     <nav class="nav" aria-label="Secciones">
-      <a class="solo-escritorio" href="#pesca">Pesca del día</a>
-      <a class="solo-escritorio" href="#carta">Carta</a>
-      <a class="solo-escritorio" href="#delivery">Delivery</a>
-      <a class="boton boton-principal solo-escritorio" href="#reservas">Reservar</a>
+      <a href="#pizarra">Llegó hoy</a>
+      <a href="#omakase">Omakase</a>
+      <a href="#carta">Carta</a>
+      <a href="#reservas">Reservar</a>
+      <button class="carrito-btn" type="button" id="abrir-carrito" aria-label="Ver tu pedido"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z" stroke="currentColor" stroke-width="1.7"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" stroke="currentColor" stroke-width="1.7"/></svg><span class="n" id="n-carrito">0</span></button>
     </nav>
   </div>
 </header>
 
 <main id="inicio">
-  <section class="hero" aria-labelledby="titulo-hero">
-    <canvas id="tinta" aria-hidden="true"></canvas>
-    <div class="envoltura">
-      <p class="estado entra" id="estado" role="status">Consultando el horario</p>
-      <h1 id="titulo-hero" class="entra d1">Pescado del día, cortado frente a vos</h1>
-      <p class="bajada entra d2">Barra de sushi en San Isidro. Ocho asientos frente al itamae, mesas para compartir y una carta corta que cambia con lo que llega del mar.</p>
-      <div class="acciones entra d3" id="acciones-hero"></div>
+  <section class="portada" aria-labelledby="titulo-portada">
+    <div class="fondo foto"><img src="kumo-fotos/kumo-01.jpg" alt="" fetchpriority="high" onerror="this.parentNode.classList.add('sin')"></div>
+    <div class="env">
+      <p class="estado" id="estado" role="status"><i aria-hidden="true"></i><span>Consultando el horario</span></p>
+      <h1 id="titulo-portada"><span class="titulo-linea"><span>Pescado del día,</span></span> <span class="titulo-linea"><span>cortado</span></span> <span class="titulo-linea"><span><em>frente a vos</em></span></span></h1>
+      <p class="bajada">Barra de sushi en San Isidro. Ocho asientos frente al itamae, mesas para compartir y una carta corta que cambia con lo que llega del mar.</p>
+      <div class="acciones">
+        <a class="boton b-sello" href="#reservas">Reservar barra o mesa</a>
+        <a class="boton b-linea" href="#carta">Pedir para llevar</a>
+      </div>
+      <div class="hechos" aria-label="Kumo en números">
+        <div><b>8</b><span>asientos en la barra</span></div>
+        <div><b id="h-pesca">6</b><span>pescados hoy</span></div>
+        <div><b>14</b><span>pasos de omakase</span></div>
+      </div>
     </div>
   </section>
 
-  <section class="pesca envoltura" id="pesca" aria-labelledby="titulo-pesca">
-    <div class="cabeza">
-      <h2 class="titulo" id="titulo-pesca">Lo que llegó hoy</h2>
-      <p id="pesca-fecha"></p>
+  <section class="pizarra" id="pizarra" aria-labelledby="titulo-pizarra">
+    <div class="env">
+      <div class="cabeza sube">
+        <div><p class="sobre">La pizarra</p><h2 id="titulo-pizarra">Lo que llegó hoy</h2></div>
+        <p class="fecha" id="pizarra-fecha"></p>
+      </div>
+      <div class="peces" id="peces"></div>
     </div>
-    <ul class="tabla-pesca" id="tabla-pesca"></ul>
   </section>
 
-  <section class="envoltura" aria-labelledby="titulo-barra">
-    <div class="barra">
-      <div>
-        <h2 id="titulo-barra">Omakase en la barra</h2>
-        <p>Dejás que el itamae elija. Catorce pasos servidos de a uno, al ritmo en que los comés. Solo de martes a sábado, a las 20:00 y a las 22:00.</p>
-        <div class="pasos-omakase">
+  <section class="omakase" id="omakase" aria-labelledby="titulo-omakase">
+    <div class="env">
+      <div class="foto sube"><img src="kumo-fotos/kumo-02.jpg" alt="El itamae trabajando con fuego frente a la barra" loading="lazy" onerror="this.parentNode.classList.add('sin')"></div>
+      <div class="sube">
+        <p class="sobre">En la barra</p>
+        <h2 id="titulo-omakase">Omakase: que elija el itamae</h2>
+        <p class="bajada" style="margin-top:14px">Catorce pasos servidos de a uno, al ritmo en que los comés. Solo de martes a sábado, en dos turnos.</p>
+        <div class="numeros">
           <div><b>14</b><span>pasos</span></div>
           <div><b>2 h</b><span>de duración</span></div>
           <div><b id="omakase-precio"></b><span>por persona</span></div>
         </div>
-      </div>
-      <div>
-        <div class="asientos" id="asientos" role="img"></div>
-        <div class="mostrador" aria-hidden="true"></div>
-        <div class="leyenda"><span><i class="l"></i>Libre hoy a las 20:00</span><span><i></i>Reservado</span></div>
+        <div class="barra-sillas">
+          <p id="sillas-texto">Elegí tu asiento para hoy</p>
+          <div class="turnos" id="turnos" role="group" aria-label="Turno"></div>
+          <div class="sillas" id="sillas" role="group" aria-label="Asientos de la barra"></div>
+          <div class="mostrador" aria-hidden="true"></div>
+        </div>
+        <a class="boton b-sello" href="#reservas" id="ir-omakase" style="margin-top:22px">Reservar la barra</a>
       </div>
     </div>
   </section>
 
-  <section class="carta envoltura" id="carta" aria-labelledby="titulo-carta">
-    <div class="cabeza">
-      <h2 class="titulo" id="titulo-carta">La carta</h2>
-      <p>El arroz se condimenta con vinagre de arroz y se sirve tibio, como debe ser.</p>
+  <section class="carta" id="carta" aria-labelledby="titulo-carta">
+    <div class="env">
+      <div class="cabeza sube">
+        <div><p class="sobre">Para comer acá o llevar</p><h2 id="titulo-carta">La carta</h2></div>
+        <p class="bajada">Sumá lo que quieras con “+” y mandanos el pedido por WhatsApp. Lo retirás en el local, sin comisión.</p>
+      </div>
+      <div class="pestanas" role="tablist" id="pestanas" aria-label="Categorías de la carta"></div>
+      <div class="platos" id="platos" role="tabpanel"></div>
+      <p class="nota-carta" id="nota-carta"></p>
     </div>
-    <div class="pestanas" role="tablist" id="pestanas" aria-label="Categorías de la carta"></div>
-    <div class="platos" id="platos" role="tabpanel"></div>
-    <p class="nota-carta" id="nota-carta"></p>
   </section>
 
-  <section class="envoltura" aria-label="Fotos de Kumo">
-    <div class="grilla-fotos" id="fotos"></div>
-  </section>
+  <section class="env galeria" aria-label="Fotos de Kumo" id="galeria"></section>
 
-  <section class="envoltura dos">
-    <div id="reservas">
-      <h2 class="titulo">Reservá barra o mesa</h2>
-      <p class="intro">La barra tiene ocho lugares y se reserva por turno. Te confirmamos por WhatsApp.</p>
-      <form class="formulario" id="form-reserva" novalidate>
+  <section class="env dos">
+    <div class="tarjeta sube" id="reservas">
+      <p class="sobre">Reservas</p>
+      <h2>Reservá barra o mesa</h2>
+      <p class="bajada">La barra tiene ocho lugares y se reserva por turno. Te confirmamos por WhatsApp.</p>
+      <form class="form" id="form-reserva" novalidate>
         <fieldset class="campo ancho">
           <legend>Dónde</legend>
-          <div class="segmentos">
+          <div class="seg">
             <label><input type="radio" name="lugar" value="mesa" checked><span>Mesa</span></label>
             <label><input type="radio" name="lugar" value="barra omakase"><span>Barra omakase</span></label>
           </div>
@@ -294,51 +356,62 @@ main,footer,section{max-width:100%;overflow-x:clip}
         </fieldset>
         <div class="campo"><label for="r-nombre">A nombre de</label><input id="r-nombre" type="text" autocomplete="name" enterkeyhint="done"></div>
         <p class="ayuda" id="ayuda-reserva"></p>
-        <button class="boton boton-principal" type="submit">Pedir la reserva por WhatsApp</button>
+        <button class="boton b-sello" type="submit">Pedir la reserva por WhatsApp</button>
         <div class="resultado" id="resultado" aria-live="polite" hidden></div>
       </form>
     </div>
-    <aside class="delivery" id="delivery" aria-labelledby="titulo-delivery">
+    <aside class="tarjeta sube" id="delivery" aria-labelledby="titulo-delivery">
+      <p class="sobre">Delivery</p>
       <h2 id="titulo-delivery">Kumo en tu casa</h2>
-      <p>El arroz viaja aparte del pescado y la salsa de soja va en frasco cerrado.</p>
+      <p class="bajada">El arroz viaja aparte del pescado y la salsa de soja va en frasco cerrado.</p>
       <div class="apps" id="apps"></div>
     </aside>
   </section>
 
-  <section class="envoltura datos" id="llegar" aria-label="Dirección, horarios y contacto">
-    <div>
-      <h2>Dónde estamos</h2>
-      <p id="d-direccion"></p>
-      <p class="tenue" id="d-zona"></p>
-      <a class="enlace" id="d-mapa" href="#" target="_blank" rel="noopener">Ver cómo llegar en Google Maps</a>
-    </div>
-    <div>
-      <h2>Horarios</h2>
-      <ul class="horarios" id="d-horarios"></ul>
-    </div>
-    <div>
-      <h2>Contacto</h2>
-      <p id="d-telefono"></p>
-      <p class="tenue" id="d-instagram"></p>
-      <p class="tenue">Opciones sin TACC y veganas. Avisá al reservar.</p>
+  <section class="llegar" id="llegar" aria-labelledby="titulo-llegar">
+    <div class="env">
+      <div class="datos sube">
+        <div><p class="sobre">Cómo llegar</p><h2 id="titulo-llegar" style="margin-top:10px">Te esperamos</h2></div>
+        <div><h3>Dirección</h3><p class="grande" id="d-direccion"></p><p id="d-zona"></p></div>
+        <div><h3>Horarios</h3><ul class="horarios" id="d-horarios"></ul></div>
+        <div><h3>Contacto</h3><p id="d-telefono"></p><p id="d-instagram"></p><p>Opciones sin TACC y veganas. Avisá al reservar.</p></div>
+      </div>
+      <div class="mapa sube" data-mapa-google>
+        <iframe id="mapa-frame" title="Mapa de Kumo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="boton b-washi ir" id="d-mapa" href="#" target="_blank" rel="noopener">Abrir en Google Maps ↗</a>
+      </div>
     </div>
   </section>
 </main>
 
-<section id="lz-mapa" aria-label="Cómo llegar" style="position:relative;z-index:1;padding:72px 0;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)">
-<div style="width:min(1160px,calc(100% - 32px));margin:0 auto">
-<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;margin-bottom:22px"><div><p style="margin:0 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.65">Cómo llegar</p><h2 style="margin:0;font-size:clamp(26px,3.4vw,40px);line-height:1.1">Belgrano 340, San Isidro</h2></div>
-<a href="https://www.google.com/maps/search/?api=1&query=Belgrano%20340%2C%20San%20Isidro%2C%20Buenos%20Aires" target="_blank" rel="noopener" style="color:inherit;font-size:15px;text-decoration:underline;text-underline-offset:4px">Abrir en Google Maps ↗</a></div>
-<iframe title="Mapa: Belgrano 340, San Isidro" src="https://www.google.com/maps?q=Belgrano%20340%2C%20San%20Isidro%2C%20Buenos%20Aires&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="display:block;width:100%;height:clamp(280px,42vw,420px);border:0;border-radius:16px;background:#e8e8e4"></iframe>
-</div></section>
-<footer class="pie">
-  <div class="envoltura">
-    <div class="grande" aria-hidden="true">雲</div>
+<footer class="pie-pagina">
+  <div class="env">
+    <div class="kanji" aria-hidden="true">雲</div>
     <div><small>© 2026 Kumo Sushi Bar</small><small>Sitio de demostración. Precios de referencia.</small></div>
   </div>
 </footer>
 
-<div class="barra-movil" id="barra-movil"></div>
+<div class="barra-movil" id="barra-movil">
+  <a class="boton b-washi" href="#reservas">Reservar</a>
+  <button class="boton b-sello" type="button" data-abrir-carrito>Tu pedido · <span id="n-barra">0</span></button>
+</div>
+
+<div class="velo" id="velo"></div>
+<aside class="cajon" id="cajon" aria-label="Tu pedido" aria-hidden="true">
+  <header><h2>Tu pedido</h2><button class="cerrar" type="button" id="cerrar-carrito" aria-label="Cerrar">✕</button></header>
+  <div class="lista" id="lista-carrito"></div>
+  <footer id="pie-carrito">
+    <div class="seg" role="group" aria-label="Cómo lo recibís">
+      <label><input type="radio" name="entrega" value="retiro" checked><span>Retiro en el local</span></label>
+      <label><input type="radio" name="entrega" value="envio"><span>Envío</span></label>
+    </div>
+    <input type="text" id="c-nombre" placeholder="Tu nombre" autocomplete="name" aria-label="Tu nombre">
+    <input type="text" id="c-direccion" placeholder="Dirección de entrega" autocomplete="street-address" aria-label="Dirección de entrega" hidden>
+    <div class="total"><span id="total-texto">Total</span><b id="total">$ 0</b></div>
+    <button class="boton b-sello" type="button" id="enviar-pedido">Mandar el pedido por WhatsApp</button>
+  </footer>
+</aside>
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
 <script>
 /* =========================================================
@@ -349,71 +422,81 @@ const LOCAL = {
   nombre: "Kumo",
   direccion: "Belgrano 340, San Isidro",
   zona: "Frente a la Catedral, a tres cuadras de la estación",
-  mapa: "https://www.google.com/maps/search/?api=1&query=Belgrano+340+San+Isidro",
+  mapaBusqueda: "Belgrano 340, San Isidro, Buenos Aires",
   telefonoVisible: "+54 9 11 4743-5088",
   whatsapp: "5491147435088",
   instagram: "@kumo.sushibar",
   pedidosya: "https://www.pedidosya.com.ar",
   rappi: "https://www.rappi.com.ar",
+  envio: 3500,                      // costo de envío propio; 0 = gratis
   zonaHoraria: "America/Argentina/Buenos_Aires",
   maxPersonas: 10,
   horarios: { 0:[[20,23.5]], 1:[], 2:[[20,24]], 3:[[20,24]], 4:[[20,24]], 5:[[20,24.5]], 6:[[12.5,15.5],[20,24.5]] },
-  omakase: { precio: 68000, turnos: ["20:00","22:00"], dias:[2,3,4,5,6], asientosLibres: [1,2,5,6,7] },
+  omakase: { precio: 68000, turnos: ["20:00","22:00"], dias:[2,3,4,5,6], ocupados: { "20:00":[0,3,4], "22:00":[1,2,6,7] } },
+  // La pizarra del día: cada pescado con sus cortes y precio. agotado:true lo tacha.
   pesca: [
-    { nombre:"Salmón rosado", jp:"sake", origen:"Patagonia chilena, entra lunes y jueves" },
-    { nombre:"Pesca blanca", jp:"shiromi", origen:"Lenguado de Mar del Plata" },
-    { nombre:"Langostino", jp:"ebi", origen:"Rawson, Chubut. Pelado acá" },
-    { nombre:"Atún rojo", jp:"maguro", origen:"Llega los viernes", marca:"Solo fin de semana" },
-    { nombre:"Pulpo", jp:"tako", origen:"Cocido a baja temperatura por seis horas" },
-    { nombre:"Vieyra", jp:"hotate", origen:"Golfo San José", agotado:true }
-  ],
-  fotos: [
-    { src:"", texto:"El itamae cortando en la barra" },
-    { src:"", texto:"Nigiri de salmón" },
-    { src:"", texto:"Sake frío en masu" }
+    { id:"sake", nombre:"Salmón rosado", jp:"鮭 sake", origen:"Patagonia chilena, entra lunes y jueves", foto:"kumo-fotos/kumo-04.jpg",
+      cortes:[{ nombre:"Nigiri", detalle:"2 piezas", precio:6800 },{ nombre:"Sashimi", detalle:"5 cortes", precio:9200 }] },
+    { id:"shiromi", nombre:"Pesca blanca", jp:"白身 shiromi", origen:"Lenguado de Mar del Plata", foto:"kumo-fotos/kumo-03.jpg",
+      cortes:[{ nombre:"Nigiri", detalle:"2 piezas", precio:6600 },{ nombre:"Usuzukuri", detalle:"cortado finito con ponzu", precio:9800 }] },
+    { id:"ebi", nombre:"Langostino", jp:"海老 ebi", origen:"Rawson, Chubut. Pelado acá", foto:"kumo-fotos/kumo-05.jpg",
+      cortes:[{ nombre:"Nigiri", detalle:"2 piezas", precio:7200 },{ nombre:"Tempura", detalle:"6 unidades", precio:12800 }] },
+    { id:"maguro", nombre:"Atún rojo", jp:"鮪 maguro", origen:"Llega los viernes", marca:"Solo fin de semana", foto:"kumo-fotos/kumo-06.jpg",
+      cortes:[{ nombre:"Nigiri", detalle:"2 piezas", precio:9800 },{ nombre:"Sashimi", detalle:"5 cortes", precio:14500 }] },
+    { id:"tako", nombre:"Pulpo", jp:"蛸 tako", origen:"Cocido a baja temperatura por seis horas", foto:"kumo-fotos/kumo-07.jpg",
+      cortes:[{ nombre:"Nigiri", detalle:"2 piezas", precio:7000 },{ nombre:"Tataki", detalle:"con aceite de sésamo", precio:10400 }] },
+    { id:"hotate", nombre:"Vieyra", jp:"帆立 hotate", origen:"Golfo San José", agotado:true, foto:"kumo-fotos/kumo-08.jpg",
+      cortes:[{ nombre:"Nigiri", detalle:"2 piezas", precio:8400 }] }
   ],
   actualizada: "octubre de 2026",
   carta: [
-    { categoria:"Nigiri", platos:[
-      { nombre:"Salmón", piezas:"2 piezas", detalle:"Con una gota de lima y sal de Maldon.", precio:6800 },
-      { nombre:"Salmón flambeado", piezas:"2 piezas", detalle:"Sopleteado al momento con salsa de miso dulce.", precio:7400 },
-      { nombre:"Pesca blanca", piezas:"2 piezas", detalle:"Con ralladura de yuzu y aceite de sésamo.", precio:6600 },
-      { nombre:"Langostino", piezas:"2 piezas", detalle:"Apenas cocido, con salsa ponzu.", precio:7200 },
-      { nombre:"Atún rojo", piezas:"2 piezas", detalle:"Solo fines de semana, hasta agotar.", precio:9800 }
-    ]},
     { categoria:"Rolls", platos:[
-      { nombre:"Kumo roll", piezas:"8 piezas", detalle:"Langostino tempura, palta y salmón flambeado por fuera.", precio:14800 },
-      { nombre:"Philadelphia", piezas:"8 piezas", detalle:"Salmón, queso crema y verdeo.", precio:12900 },
-      { nombre:"Spicy tuna", piezas:"8 piezas", detalle:"Atún picante, pepino y sésamo tostado.", precio:15600 },
-      { nombre:"Vegetariano", piezas:"8 piezas", detalle:"Palta, mango, pepino y batata crocante.", precio:10400 }
+      { id:"r1", nombre:"Kumo roll", piezas:"8 piezas", detalle:"Langostino tempura, palta y salmón flambeado por fuera.", precio:14800, foto:"kumo-fotos/kumo-09.jpg" },
+      { id:"r2", nombre:"Philadelphia", piezas:"8 piezas", detalle:"Salmón, queso crema y verdeo.", precio:12900, foto:"kumo-fotos/kumo-10.jpg" },
+      { id:"r3", nombre:"Spicy tuna", piezas:"8 piezas", detalle:"Atún picante, pepino y sésamo tostado.", precio:15600, foto:"kumo-fotos/kumo-06.jpg" },
+      { id:"r4", nombre:"Vegetariano", piezas:"8 piezas", detalle:"Palta, mango, pepino y batata crocante.", precio:10400, foto:"kumo-fotos/kumo-09.jpg" }
     ]},
     { categoria:"Combinados", platos:[
-      { nombre:"Para uno", piezas:"15 piezas", detalle:"Seis nigiri, un roll a elección y tres sashimi.", precio:24500 },
-      { nombre:"Para dos", piezas:"30 piezas", detalle:"La selección del itamae con la pesca del día.", precio:46000 },
-      { nombre:"Sashimi moriawase", piezas:"18 cortes", detalle:"Tres pescados del día cortados a cuchillo.", precio:29800 }
+      { id:"c1", nombre:"Para uno", piezas:"15 piezas", detalle:"Seis nigiri, un roll a elección y tres sashimi.", precio:24500, foto:"kumo-fotos/kumo-11.jpg" },
+      { id:"c2", nombre:"Para dos", piezas:"30 piezas", detalle:"La selección del itamae con la pesca del día.", precio:46000, foto:"kumo-fotos/kumo-11.jpg" },
+      { id:"c3", nombre:"Sashimi moriawase", piezas:"18 cortes", detalle:"Tres pescados del día cortados a cuchillo.", precio:29800, foto:"kumo-fotos/kumo-03.jpg" }
     ]},
     { categoria:"Calientes", platos:[
-      { nombre:"Gyozas de cerdo", piezas:"5 unidades", detalle:"A la plancha, con salsa de soja y vinagre.", precio:8600 },
-      { nombre:"Tempura de langostinos", piezas:"6 unidades", detalle:"Rebozado liviano, con salsa tentsuyu.", precio:12800 },
-      { nombre:"Ramen de miso", detalle:"Caldo de cerdo de doce horas, huevo marinado y chashu.", precio:15900 }
+      { id:"k1", nombre:"Gyozas de cerdo", piezas:"5 unidades", detalle:"A la plancha, con salsa de soja y vinagre.", precio:8600, foto:"kumo-fotos/kumo-12.jpg" },
+      { id:"k2", nombre:"Tempura de langostinos", piezas:"6 unidades", detalle:"Rebozado liviano, con salsa tentsuyu.", precio:12800, foto:"kumo-fotos/kumo-05.jpg" },
+      { id:"k3", nombre:"Ramen de miso", piezas:"1 bowl", detalle:"Caldo de cerdo de doce horas, huevo marinado y chashu.", precio:15900, foto:"kumo-fotos/kumo-13.jpg" }
     ]},
     { categoria:"Barra", platos:[
-      { nombre:"Sake junmai, frío", piezas:"180 ml", detalle:"Seco y limpio, para acompañar el nigiri.", precio:9500 },
-      { nombre:"Highball de whisky japonés", detalle:"Con soda y piel de limón.", precio:8900 },
-      { nombre:"Cerveza Asahi", piezas:"500 ml", detalle:"Bien fría.", precio:6200 },
-      { nombre:"Té verde sencha", detalle:"En tetera, se repone gratis.", precio:3200 }
+      { id:"b1", nombre:"Sake junmai, frío", piezas:"180 ml", detalle:"Seco y limpio, para acompañar el nigiri.", precio:9500, foto:"kumo-fotos/kumo-14.jpg" },
+      { id:"b2", nombre:"Highball de whisky japonés", piezas:"vaso", detalle:"Con soda y piel de limón.", precio:8900, foto:"kumo-fotos/kumo-14.jpg" },
+      { id:"b3", nombre:"Cerveza Asahi", piezas:"500 ml", detalle:"Bien fría.", precio:6200, foto:"kumo-fotos/kumo-14.jpg" },
+      { id:"b4", nombre:"Té verde sencha", piezas:"tetera", detalle:"Se repone gratis.", precio:3200, foto:"kumo-fotos/kumo-14.jpg" }
     ]}
+  ],
+  galeria: [
+    { src:"kumo-fotos/kumo-02.jpg", texto:"La barra" },
+    { src:"kumo-fotos/kumo-11.jpg", texto:"Combinado para dos" },
+    { src:"kumo-fotos/kumo-13.jpg", texto:"Ramen de miso" },
+    { src:"kumo-fotos/kumo-07.jpg", texto:"Pulpo con pepino" },
+    { src:"kumo-fotos/kumo-14.jpg", texto:"Sakes que servimos" }
   ]
 };
 
 /* ---------- Utilidades ---------- */
-const $=s=>document.querySelector(s);
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const pesos=n=>"$ "+new Intl.NumberFormat("es-AR").format(n);
 const DIAS=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 const may=s=>s.charAt(0).toUpperCase()+s.slice(1);
 const hhmm=h=>{const t=h%24,hh=Math.floor(t),mm=Math.round((t-hh)*60);return String(hh).padStart(2,"0")+":"+String(mm).padStart(2,"0");};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const ICONO_SALIDA=`<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4h9v9M16 4 5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const reducir=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const img=(src,alt="")=>`<div class="foto"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('sin')"></div>`;
+const waLink=t=>`https://wa.me/${LOCAL.whatsapp}?text=${encodeURIComponent(t)}`;
+const SALIDA=`<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4h9v9M16 4 5 15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+let tAviso=0; function avisar(t){const a=$("#aviso");a.textContent=t;a.classList.add("ver");clearTimeout(tAviso);tAviso=setTimeout(()=>a.classList.remove("ver"),1800);}
+const leer=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(_){return d}};
+const guardar=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(_){}};
+
 function ahoraLocal(){
   try{const p=new Intl.DateTimeFormat("en-US",{timeZone:LOCAL.zonaHoraria,weekday:"short",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());const g=t=>p.find(x=>x.type===t).value;
     return {dia:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(g("weekday")),hora:(parseInt(g("hour"),10)%24)+parseInt(g("minute"),10)/60};}
@@ -427,84 +510,137 @@ function estadoAhora(){
   return {abierto:false};
 }
 function pintarEstado(){const e=estadoAhora(),el=$("#estado");el.classList.toggle("cerrado",!e.abierto);
-  el.textContent=e.abierto?`Abierto hasta las ${hhmm(e.hasta)}`:(e.desde!=null?`Cerrado. Abrimos ${e.cuando} a las ${hhmm(e.desde)}`:"Cerrado por ahora");}
+  el.querySelector("span").textContent=e.abierto?`Abierto hasta las ${hhmm(e.hasta)}`:(e.desde!=null?`Cerrado. Abrimos ${e.cuando} a las ${hhmm(e.desde)}`:"Cerrado por ahora");}
 
-/* ---------- Pesca del día y barra ---------- */
-function pintarPesca(){
-  $("#pesca-fecha").textContent = "Pizarra del " + new Date().toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"}) + ". Lo tachado ya se terminó.";
-  $("#tabla-pesca").innerHTML = LOCAL.pesca.map(p=>`
-    <li class="pez ${p.agotado?"agotado":""}">
-      <h3>${esc(p.nombre)}</h3><span class="jp">${esc(p.jp)}</span>
-      <p>${esc(p.origen)}${p.agotado?". Agotado por hoy":""}</p>
-      ${p.marca?`<span class="marca">${esc(p.marca)}</span>`:""}
-    </li>`).join("");
-  $("#omakase-precio").textContent = pesos(LOCAL.omakase.precio);
-  const libres = LOCAL.omakase.asientosLibres;
-  $("#asientos").innerHTML = Array.from({length:8},(_,i)=>`<span class="asiento ${libres.includes(i)?"libre":""}" aria-hidden="true">${i+1}</span>`).join("");
-  $("#asientos").setAttribute("aria-label",`Barra de 8 asientos: ${libres.length} libres hoy a las 20:00`);
+/* ---------- Pedido (carrito) ---------- */
+const CATALOGO={};
+LOCAL.pesca.forEach(p=>p.cortes.forEach((c,i)=>CATALOGO[`${p.id}-${i}`]={nombre:`${c.nombre} de ${p.nombre.toLowerCase()}`,detalle:c.detalle,precio:c.precio,foto:p.foto}));
+LOCAL.carta.forEach(c=>c.platos.forEach(p=>CATALOGO[p.id]={nombre:p.nombre,detalle:p.piezas,precio:p.precio,foto:p.foto}));
+let pedido=leer("kumo-pedido",{}); for(const k in pedido) if(!CATALOGO[k]) delete pedido[k];
+const cantidad=()=>Object.values(pedido).reduce((a,b)=>a+b,0);
+const subtotal=()=>Object.entries(pedido).reduce((a,[k,n])=>a+CATALOGO[k].precio*n,0);
+const entrega=()=>document.querySelector('input[name="entrega"]:checked').value;
+function cambiar(id,d){pedido[id]=Math.max(0,(pedido[id]||0)+d);if(!pedido[id])delete pedido[id];guardar("kumo-pedido",pedido);pintarPedido();
+  if(d>0){avisar(`Sumado: ${CATALOGO[id].nombre}`);const b=$("#abrir-carrito");b.classList.remove("salta");void b.offsetWidth;b.classList.add("salta");}}
+function pintarPedido(){
+  const n=cantidad(); $("#n-carrito").textContent=n; $("#n-barra").textContent=n;
+  const ids=Object.keys(pedido);
+  $("#lista-carrito").innerHTML=ids.length?ids.map(id=>{const p=CATALOGO[id];return `<div class="item">${img(p.foto)}<div><b>${esc(p.nombre)}</b><small>${esc(p.detalle)} · ${pesos(p.precio*pedido[id])}</small></div>
+      <div class="paso"><button type="button" data-cambiar="${id}" data-d="-1" aria-label="Uno menos">−</button><output>${pedido[id]}</output><button type="button" data-cambiar="${id}" data-d="1" aria-label="Uno más">+</button></div></div>`}).join("")
+    :`<div class="vacio-cajon"><b>Todavía no sumaste nada</b>Elegí de la pizarra o de la carta con “+”.</div>`;
+  $("#pie-carrito").hidden=!ids.length;
+  const envio=entrega()==="envio"?LOCAL.envio:0;
+  $("#total").textContent=pesos(subtotal()+envio);
+  $("#total-texto").textContent=envio?`Total con envío (${pesos(envio)})`:"Total";
+  // los "+" de la carta muestran cuántos llevás
+  $$("[data-paso-plato]").forEach(el=>{const id=el.dataset.pasoPlato,c=pedido[id]||0;el.innerHTML=c?`<div class="paso"><button type="button" data-cambiar="${id}" data-d="-1" aria-label="Uno menos">−</button><output>${c}</output><button type="button" data-cambiar="${id}" data-d="1" aria-label="Uno más">+</button></div>`:`<button class="mas" type="button" data-cambiar="${id}" data-d="1" aria-label="Sumar ${esc(CATALOGO[id].nombre)}">+</button>`;});
+}
+function abrirCarrito(){$("#cajon").classList.add("abierto");$("#cajon").setAttribute("aria-hidden","false");$("#velo").classList.add("abierto");setTimeout(()=>$("#cerrar-carrito").focus(),50);}
+function cerrarCarrito(){$("#cajon").classList.remove("abierto");$("#cajon").setAttribute("aria-hidden","true");$("#velo").classList.remove("abierto");}
+document.addEventListener("click",e=>{
+  const c=e.target.closest("[data-cambiar]"); if(c){const d=+c.dataset.d;cambiar(c.dataset.cambiar,d);if(c.classList.contains("mas")){c.classList.add("ok");}return;}
+  if(e.target.closest("#abrir-carrito,[data-abrir-carrito]")){abrirCarrito();return;}
+  if(e.target.closest("#cerrar-carrito,#velo")) cerrarCarrito();
+});
+addEventListener("keydown",e=>{if(e.key==="Escape")cerrarCarrito();});
+$$('input[name="entrega"]').forEach(r=>r.addEventListener("change",()=>{$("#c-direccion").hidden=entrega()!=="envio";pintarPedido();}));
+$("#enviar-pedido").addEventListener("click",()=>{
+  const nombre=$("#c-nombre").value.trim(), dir=$("#c-direccion").value.trim();
+  if(!nombre){$("#c-nombre").focus();avisar("Poné tu nombre así sabemos de quién es");return;}
+  if(entrega()==="envio"&&!dir){$("#c-direccion").focus();avisar("Falta la dirección de entrega");return;}
+  const lineas=Object.entries(pedido).map(([k,n])=>`• ${n} × ${CATALOGO[k].nombre} (${CATALOGO[k].detalle}) — ${pesos(CATALOGO[k].precio*n)}`);
+  const envio=entrega()==="envio"?LOCAL.envio:0;
+  const msg=`Hola Kumo, soy ${nombre}. Quiero hacer este pedido:\n${lineas.join("\n")}\n${entrega()==="envio"?`Envío a ${dir} (${pesos(envio)})`:"Lo retiro en el local"}.\nTotal: ${pesos(subtotal()+envio)}`;
+  window.open(waLink(msg),"_blank","noopener");
+});
+
+/* ---------- Pizarra ---------- */
+function pintarPizarra(){
+  $("#pizarra-fecha").textContent="Pizarra del "+new Date().toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"})+". Lo tachado ya se terminó.";
+  $("#h-pesca").textContent=LOCAL.pesca.filter(p=>!p.agotado).length;
+  $("#peces").innerHTML=LOCAL.pesca.map((p,i)=>`<article class="pez sube ${p.agotado?"agotado":""}" style="transition-delay:${(i%3)*90}ms">
+      ${img(p.foto,p.nombre)}<span class="jp">${esc(p.jp)}</span>${p.marca?`<span class="marca">${esc(p.marca)}</span>`:""}${p.agotado?`<span class="agotado-sello">Agotado hoy</span>`:""}
+      <div class="cuerpo"><h3>${esc(p.nombre)}</h3><p>${esc(p.origen)}</p>
+        <div class="cortes">${p.cortes.map((c,k)=>`<div class="corte"><span>${esc(c.nombre)}<small>${esc(c.detalle)}</small></span><b>${pesos(c.precio)}</b>
+          <button class="mas" type="button" data-cambiar="${p.id}-${k}" data-d="1" aria-label="Sumar ${esc(c.nombre)} de ${esc(p.nombre)}"${p.agotado?" disabled":""}>+</button></div>`).join("")}</div>
+      </div></article>`).join("");
 }
 
-/* ---------- Canales ---------- */
-const waLink=t=>`https://wa.me/${LOCAL.whatsapp}?text=${encodeURIComponent(t)}`;
-function canales(){return [
-  LOCAL.pedidosya&&{id:"pedidosya",nombre:"PedidosYa",url:LOCAL.pedidosya,color:"#ea004b",nota:"Envío a domicilio"},
-  LOCAL.rappi&&{id:"rappi",nombre:"Rappi",url:LOCAL.rappi,color:"#ff5a36",nota:"Envío a domicilio"},
-  LOCAL.whatsapp&&{id:"whatsapp",nombre:"WhatsApp",url:waLink("Hola Kumo, quiero hacer un pedido para retirar."),color:"#3fbf6b",nota:"Retirás en el local, sin comisión"}
-].filter(Boolean);}
-function pintarBotones(){
-  const c=canales(), apps=c.filter(x=>x.id!=="whatsapp");
-  $("#acciones-hero").innerHTML=`<a class="boton boton-principal" href="#reservas">Reservar barra o mesa</a>`+apps.map(x=>`<a class="boton boton-secundario" href="${x.url}" target="_blank" rel="noopener"><span class="marca-app" style="background:${x.color}" aria-hidden="true"></span>Pedir por ${x.nombre}</a>`).join("");
-  $("#apps").innerHTML=c.map(x=>`<a class="app" href="${x.url}" target="_blank" rel="noopener"><span class="marca-app" style="background:${x.color}" aria-hidden="true"></span><span>${x.nombre}<small>${x.nota}</small></span>${ICONO_SALIDA}</a>`).join("");
-  $("#delivery").hidden=!c.length;
-  $("#barra-movil").innerHTML=`<a class="boton boton-principal" href="#reservas">Reservar</a>`+(c.length?`<a class="boton boton-secundario" href="#delivery">Pedir a casa</a>`:"");
+/* ---------- Omakase: turnos y asientos ---------- */
+let turnoSel=LOCAL.omakase.turnos[0], sillaSel=null;
+function pintarOmakase(){
+  $("#omakase-precio").textContent=pesos(LOCAL.omakase.precio);
+  $("#turnos").innerHTML=LOCAL.omakase.turnos.map(t=>`<button class="turno" type="button" data-turno="${t}" aria-pressed="${t===turnoSel}">Hoy ${t}</button>`).join("");
+  const oc=LOCAL.omakase.ocupados[turnoSel]||[];
+  if(oc.includes(sillaSel)) sillaSel=null;
+  $("#sillas").innerHTML=Array.from({length:8},(_,i)=>`<button class="silla" type="button" data-silla="${i}" aria-pressed="${i===sillaSel}" ${oc.includes(i)?"disabled aria-label='Asiento "+(i+1)+" ocupado'":"aria-label='Asiento "+(i+1)+" libre'"}>${i+1}</button>`).join("");
+  const libres=8-oc.length;
+  $("#sillas-texto").textContent=sillaSel!=null?`Asiento ${sillaSel+1}, hoy a las ${turnoSel}. ${libres-1} lugares más libres.`:`Quedan ${libres} lugares hoy a las ${turnoSel}. Tocá uno para elegirlo.`;
 }
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-turno]"); if(t){turnoSel=t.dataset.turno;pintarOmakase();return;}
+  const s=e.target.closest("[data-silla]"); if(s){sillaSel=+s.dataset.silla===sillaSel?null:+s.dataset.silla;pintarOmakase();}
+});
+$("#ir-omakase").addEventListener("click",()=>{document.querySelector('input[name="lugar"][value="barra omakase"]').checked=true;$("#r-fecha").value=iso(new Date());horasDisponibles();if(turnoSel)$("#r-hora").value=turnoSel;});
 
 /* ---------- Carta ---------- */
 let catActiva=0;
 function pintarCarta(enfocar){
   $("#pestanas").innerHTML=LOCAL.carta.map((c,i)=>`<button class="pestana" type="button" role="tab" id="tab-${i}" aria-controls="platos" aria-selected="${i===catActiva}" tabindex="${i===catActiva?0:-1}" data-i="${i}">${esc(c.categoria)}</button>`).join("");
   $("#platos").setAttribute("aria-labelledby","tab-"+catActiva);
-  $("#platos").innerHTML=LOCAL.carta[catActiva].platos.map(p=>`<article class="plato"><h3>${esc(p.nombre)}</h3><span class="precio">${pesos(p.precio)}</span>${p.piezas?`<span class="piezas">${esc(p.piezas)}</span>`:""}<p>${esc(p.detalle)}</p></article>`).join("");
+  $("#platos").innerHTML=LOCAL.carta[catActiva].platos.map((p,i)=>`<article class="plato" style="animation-delay:${i*60}ms">${img(p.foto,p.nombre)}
+      <div class="info"><span class="piezas">${esc(p.piezas||"")}</span><h3>${esc(p.nombre)}</h3><p>${esc(p.detalle)}</p>
+      <div class="pie"><span class="precio">${pesos(p.precio)}</span><span data-paso-plato="${p.id}"></span></div></div></article>`).join("");
   $("#nota-carta").textContent=`Carta actualizada en ${LOCAL.actualizada}. Aceptamos efectivo, débito, crédito y Mercado Pago.`;
+  pintarPedido();
   if(enfocar) document.getElementById("tab-"+catActiva).focus({preventScroll:true});
 }
 $("#pestanas").addEventListener("click",e=>{const b=e.target.closest(".pestana");if(!b)return;catActiva=+b.dataset.i;pintarCarta(true);});
 $("#pestanas").addEventListener("keydown",e=>{const n=LOCAL.carta.length,k=e.key;
-  if(k==="ArrowRight")catActiva=(catActiva+1)%n;else if(k==="ArrowLeft")catActiva=(catActiva-1+n)%n;else if(k==="Home")catActiva=0;else if(k==="End")catActiva=n-1;else return;
+  if(k==="ArrowRight")catActiva=(catActiva+1)%n;else if(k==="ArrowLeft")catActiva=(catActiva-1+n)%n;else return;
   e.preventDefault();pintarCarta(true);});
 
-function pintarFotos(){$("#fotos").innerHTML=LOCAL.fotos.map(f=>f.src?`<figure class="ranura"><img src="${f.src}" alt="${esc(f.texto)}" loading="lazy" decoding="async"></figure>`:`<figure class="ranura vacia" role="img" aria-label="${esc(f.texto)}"><figcaption>${esc(f.texto)}</figcaption></figure>`).join("");}
+/* ---------- Canales, galería y datos ---------- */
+function pintarCanales(){
+  const c=[
+    {nombre:"Pedido propio",nota:"Armalo en la carta y retiralo sin comisión",href:"#carta",propio:true,color:"var(--bermellon)"},
+    LOCAL.pedidosya&&{nombre:"PedidosYa",nota:"Envío a domicilio",href:LOCAL.pedidosya,color:"#ea004b"},
+    LOCAL.rappi&&{nombre:"Rappi",nota:"Envío a domicilio",href:LOCAL.rappi,color:"#ff5a36"}
+  ].filter(Boolean);
+  $("#apps").innerHTML=c.map(x=>`<a class="app ${x.propio?"propio":""}" href="${x.href}" ${x.propio?"":'target="_blank" rel="noopener"'}><i style="background:${x.color}"></i><span><b>${x.nombre}</b><small>${x.nota}</small></span>${SALIDA}</a>`).join("");
+}
+function pintarGaleria(){$("#galeria").innerHTML=LOCAL.galeria.map(f=>`<figure class="foto sube"><img src="${esc(f.src)}" alt="${esc(f.texto)}" loading="lazy" onerror="this.parentNode.classList.add('sin')"><figcaption>${esc(f.texto)}</figcaption></figure>`).join("");}
 function pintarDatos(){
-  $("#d-direccion").textContent=LOCAL.direccion;$("#d-zona").textContent=LOCAL.zona;$("#d-mapa").href=LOCAL.mapa;
+  $("#d-direccion").textContent=LOCAL.direccion;$("#d-zona").textContent=LOCAL.zona;
+  const q=encodeURIComponent(LOCAL.mapaBusqueda);
+  $("#d-mapa").href=`https://www.google.com/maps/search/?api=1&query=${q}`;
+  $("#mapa-frame").src=`https://www.google.com/maps?q=${q}&output=embed`;
   $("#d-telefono").textContent=LOCAL.telefonoVisible;$("#d-instagram").textContent=LOCAL.instagram;
   const hoy=ahoraLocal().dia;
   $("#d-horarios").innerHTML=[2,3,4,5,6,0,1].map(d=>{const t=LOCAL.horarios[d]||[];return `<li class="${d===hoy?"hoy":""}"><span>${may(DIAS[d])}${d===hoy?", hoy":""}</span><span>${t.length?t.map(([a,b])=>`${hhmm(a)} a ${hhmm(b)}`).join(" y "):"Cerrado"}</span></li>`;}).join("");
 }
 
-/* ---------- Reservas: la barra solo tiene turnos fijos ---------- */
+/* ---------- Reservas ---------- */
 let personas=2;
 const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 const diaDe=v=>{const [y,m,d]=v.split("-").map(Number);return new Date(y,m-1,d);};
 const lugar=()=>document.querySelector('input[name="lugar"]:checked').value;
 function horasDisponibles(){
   const v=$("#r-fecha").value, d=v?diaDe(v).getDay():ahoraLocal().dia, sel=$("#r-hora"), prev=sel.value;
-  sel.innerHTML="";
-  const esBarra = lugar()!=="mesa";
-  let opciones=[];
-  if(esBarra){ if(LOCAL.omakase.dias.includes(d)) opciones=LOCAL.omakase.turnos.slice(); }
-  else for(const [a,b] of (LOCAL.horarios[d]||[])) for(let h=a;h<=b-1.5;h+=0.5) opciones.push(hhmm(h));
-  if(!opciones.length){ sel.innerHTML=`<option value="">${esBarra?"Sin omakase ese día":"Cerrado ese día"}</option>`; sel.disabled=true; }
-  else { sel.disabled=false; opciones.forEach(o=>sel.insertAdjacentHTML("beforeend",`<option>${o}</option>`)); sel.value=opciones.includes(prev)?prev:(opciones.includes("21:00")?"21:00":opciones[0]); }
-  const maxP = esBarra?8:LOCAL.maxPersonas; if(personas>maxP){personas=maxP;}
-  pintarPersonas();
-  $("#ayuda-reserva").textContent = esBarra ? `Omakase de 14 pasos, ${pesos(LOCAL.omakase.precio)} por persona. Martes a sábado, a las 20:00 o a las 22:00.` : "Para grupos de más de 10 personas, escribinos directamente.";
+  sel.innerHTML=""; const esBarra=lugar()!=="mesa"; let op=[];
+  if(esBarra){ if(LOCAL.omakase.dias.includes(d)) op=LOCAL.omakase.turnos.slice(); }
+  else for(const [a,b] of (LOCAL.horarios[d]||[])) for(let h=a;h<=b-1.5;h+=0.5) op.push(hhmm(h));
+  if(!op.length){sel.innerHTML=`<option value="">${esBarra?"Sin omakase ese día":"Cerrado ese día"}</option>`;sel.disabled=true;}
+  else{sel.disabled=false;op.forEach(o=>sel.insertAdjacentHTML("beforeend",`<option>${o}</option>`));sel.value=op.includes(prev)?prev:(op.includes("21:00")?"21:00":op[0]);}
+  const maxP=esBarra?8:LOCAL.maxPersonas; if(personas>maxP)personas=maxP; pintarPersonas();
+  $("#ayuda-reserva").textContent=esBarra?`Omakase de 14 pasos, ${pesos(LOCAL.omakase.precio)} por persona.${sillaSel!=null?` Pedimos el asiento ${sillaSel+1}.`:""}`:"Para grupos de más de 10 personas, escribinos directamente.";
 }
 function pintarPersonas(){const maxP=lugar()!=="mesa"?8:LOCAL.maxPersonas;$("#r-personas").textContent=personas;$("#menos").disabled=personas<=1;$("#mas").disabled=personas>=maxP;}
 function prepararReserva(){
   const f=$("#r-fecha"),hoy=new Date(),max=new Date(hoy);max.setDate(max.getDate()+45);f.min=iso(hoy);f.max=iso(max);
   const d=new Date(hoy);for(let i=0;i<7;i++){if((LOCAL.horarios[d.getDay()]||[]).length)break;d.setDate(d.getDate()+1);} f.value=iso(d);
   horasDisponibles(); f.addEventListener("change",horasDisponibles);
-  document.querySelectorAll('input[name="lugar"]').forEach(r=>r.addEventListener("change",horasDisponibles));
+  $$('input[name="lugar"]').forEach(r=>r.addEventListener("change",horasDisponibles));
   $("#menos").onclick=()=>{personas=Math.max(1,personas-1);pintarPersonas();};
   $("#mas").onclick=()=>{const maxP=lugar()!=="mesa"?8:LOCAL.maxPersonas;personas=Math.min(maxP,personas+1);pintarPersonas();};
   $("#form-reserva").addEventListener("submit",e=>{
@@ -512,83 +648,24 @@ function prepararReserva(){
     if(!f.value){out.innerHTML=`<span class="error">Falta el día. Elegilo en el calendario de arriba.</span>`;f.focus();return;}
     if(!$("#r-hora").value){out.innerHTML=`<span class="error">${lugar()==="mesa"?"Ese día estamos cerrados.":"Ese día no hay omakase."} Elegí otro día.</span>`;f.focus();return;}
     const fechaTxt=diaDe(f.value).toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"}),nombre=$("#r-nombre").value.trim();
-    const msg=`Hola Kumo, quiero reservar ${lugar()==="mesa"?"una mesa":"en la barra omakase"} para ${personas} ${personas===1?"persona":"personas"} el ${fechaTxt} a las ${$("#r-hora").value}${nombre?`, a nombre de ${nombre}`:""}.`;
-    out.innerHTML=`Este es el mensaje que vas a mandar:<blockquote>${esc(msg)}</blockquote><div class="fila"><a class="boton boton-principal" href="${waLink(msg)}" target="_blank" rel="noopener">Abrir WhatsApp</a><button type="button" class="boton boton-secundario" id="copiar">Copiar mensaje</button></div><p style="margin:12px 0 0">Si WhatsApp no se abre, escribinos al ${esc(LOCAL.telefonoVisible)}.</p>`;
-    $("#copiar").onclick=async ev=>{try{await navigator.clipboard.writeText(msg);ev.target.textContent="Mensaje copiado";}catch(_){const r=document.createRange();r.selectNodeContents(out.querySelector("blockquote"));const s=getSelection();s.removeAllRanges();s.addRange(r);ev.target.textContent="Seleccionado, copialo";}};
+    const msg=`Hola Kumo, quiero reservar ${lugar()==="mesa"?"una mesa":"en la barra omakase"} para ${personas} ${personas===1?"persona":"personas"} el ${fechaTxt} a las ${$("#r-hora").value}${lugar()!=="mesa"&&sillaSel!=null?` (si se puede, desde el asiento ${sillaSel+1})`:""}${nombre?`, a nombre de ${nombre}`:""}.`;
+    out.innerHTML=`Este es el mensaje que vas a mandar:<blockquote>${esc(msg)}</blockquote><div class="fila"><a class="boton b-sello" href="${waLink(msg)}" target="_blank" rel="noopener">Abrir WhatsApp</a><button type="button" class="boton b-linea" id="copiar">Copiar mensaje</button></div>`;
+    $("#copiar").onclick=async ev=>{try{await navigator.clipboard.writeText(msg);ev.target.textContent="Mensaje copiado";}catch(_){ev.target.textContent="No se pudo copiar";}};
   });
 }
 
-const cab=$("#cabecera"),barra=$("#barra-movil");
-function alScroll(){cab.classList.toggle("solida",scrollY>30);barra.classList.toggle("visible",scrollY>innerHeight*.55);}
+/* ---------- Scroll: cabecera, barra y aparición ---------- */
+const cab=$("#cab"),barra=$("#barra-movil");
+function alScroll(){cab.classList.toggle("solida",scrollY>30);barra.classList.toggle("visible",scrollY>innerHeight*.6);}
 addEventListener("scroll",alScroll,{passive:true});
-
-/* =========================================================
-   TINTA EN AGUA: campo de ruido con distorsión de dominio,
-   calculado en baja resolución y agrandado suavizado.
-   De vez en cuando cae una gota y abre un anillo.
-   ========================================================= */
-(function tinta(){
-  const cv=$("#tinta"),ctx=cv.getContext("2d");
-  const reducir=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let W=0,H=0,t=0,raf=0,visible=true;
-  const P=new Uint8Array(512);{const p=[...Array(256).keys()];for(let i=255;i>0;i--){const j=(Math.random()*(i+1))|0;[p[i],p[j]]=[p[j],p[i]];}for(let i=0;i<512;i++)P[i]=p[i&255];}
-  const fade=x=>x*x*(3-2*x),rnd=(x,y)=>P[(P[x&255]+y)&511]/255;
-  function ruido(x,y){const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,a=rnd(xi,yi),b=rnd(xi+1,yi),c=rnd(xi,yi+1),d=rnd(xi+1,yi+1),u=fade(xf),v=fade(yf);return a+(b-a)*u+(c-a)*v*(1-u)+(d-b)*u*v;}
-  const fbm=(x,y)=>ruido(x,y)*.5+ruido(x*2.03+5.2,y*2.03+1.3)*.3+ruido(x*4.1+1.7,y*4.1+9.2)*.2;
-
-  const off=document.createElement("canvas"),octx=off.getContext("2d");
-  let LW=0,LH=0,img=null,anillos=[],proxGota=90;
-  function armar(){
-    const dpr=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;
-    cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
-    LW=Math.max(64,Math.min(130,Math.round(W/9)));LH=Math.max(60,Math.round(LW*H/W));
-    off.width=LW;off.height=LH;img=octx.createImageData(LW,LH);
-  }
-  function campo(){
-    const s=3.2/LW, tt=t*.0016, d=img.data;
-    for(let y=0;y<LH;y++)for(let x=0;x<LW;x++){
-      const px=x*s, py=y*s*1.1;
-      const qx=fbm(px+tt,py), qy=fbm(px+5.2,py+1.3-tt*.7);
-      const rx=fbm(px+3.5*qx+1.7+tt*.5,py+3.5*qy+9.2), ry=fbm(px+3.5*qx+8.3,py+3.5*qy+2.8+tt*.4);
-      const f=fbm(px+3.2*rx,py+3.2*ry);
-      // tinta pálida sobre agua índigo, con un hilo de salmón donde el campo se tuerce
-      let k=(f-.42)/.32; k=k<0?0:k>1?1:k; k=k*k*(3-2*k);
-      const sal=Math.max(0,(rx-.58)/.2)*k*.55;
-      const i=(y*LW+x)*4;
-      d[i]  =17 + k*92 + sal*120;
-      d[i+1]=24 + k*98 + sal*40;
-      d[i+2]=41 + k*118 + sal*10;
-      d[i+3]=255;
-    }
-    octx.putImageData(img,0,0);
-  }
-  function cuadro(){
-    t++;
-    if(t%3===1 || reducir) campo();
-    ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";
-    ctx.drawImage(off,0,0,W,H);
-    // gotas
-    if(--proxGota<=0){anillos.push({x:W*(.45+Math.random()*.45),y:H*(.2+Math.random()*.45),r:0,v:0});proxGota=360+Math.random()*300;}
-    for(let i=anillos.length-1;i>=0;i--){
-      const a=anillos[i];a.v++;a.r=a.v*.55;const vida=1-a.v/320;if(vida<=0){anillos.splice(i,1);continue;}
-      for(let k=0;k<3;k++){const r=a.r-k*16;if(r<=0)continue;
-        ctx.strokeStyle=`rgba(236,230,218,${.10*vida*(1-k*.3)})`;ctx.lineWidth=1;
-        ctx.beginPath();ctx.ellipse(a.x,a.y,r,r*.42,0,0,Math.PI*2);ctx.stroke();}
-    }
-  }
-  const loop=()=>{cuadro();raf=requestAnimationFrame(loop);};
-  const iniciar=()=>{if(!raf&&visible&&!document.hidden&&!reducir)raf=requestAnimationFrame(loop);};
-  const frenar=()=>{cancelAnimationFrame(raf);raf=0;};
-  armar();t=400;cuadro();iniciar();
-  let rt,anchoPrevio=innerWidth;
-  addEventListener("resize",()=>{if(innerWidth===anchoPrevio)return;anchoPrevio=innerWidth;clearTimeout(rt);rt=setTimeout(()=>{armar();campo();cuadro();},150);});
-  new IntersectionObserver(([e])=>{visible=e.isIntersecting;visible?iniciar():frenar();}).observe(cv);
-  document.addEventListener("visibilitychange",()=>document.hidden?frenar():iniciar());
-})();
+function observarAparicion(){
+  if(!("IntersectionObserver" in window)||reducir){$$(".sube").forEach(el=>el.classList.add("visto"));return;}
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("visto");io.unobserve(en.target);}}),{rootMargin:"0px 0px -8% 0px"});
+  $$(".sube:not(.visto)").forEach(el=>io.observe(el));
+}
 
 pintarEstado();setInterval(pintarEstado,60000);
-pintarPesca();pintarBotones();pintarCarta(false);pintarFotos();pintarDatos();prepararReserva();alScroll();
+pintarPizarra();pintarOmakase();pintarCarta(false);pintarCanales();pintarGaleria();pintarDatos();prepararReserva();pintarPedido();alScroll();observarAparicion();
 </script>
-
 </body>
 </html>

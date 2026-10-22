@@ -3,10 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-180.png">
-</head>
-<body>
-<title>Bruma Cosmética</title>
+<title>Bruma — Cosmética en Vicente López</title>
+<meta name="description" content="Bruma, cosmética elegida a mano en Vicente López. Comprá online con envío en el día o retiro en el local, armá tu rutina y consultá gratis por WhatsApp.">
+<meta name="theme-color" content="#f6f1f3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700&display=swap">
@@ -211,7 +210,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .panel-cuerpo{flex:1;overflow-y:auto;padding:8px 20px 20px;overscroll-behavior:contain}
 .linea-carrito{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--linea)}
 .mini-vitrina{width:56px;height:56px;border-radius:14px;background:var(--porcelana-2);position:relative;overflow:hidden}
-.mini-vitrina::after{content:"";position:absolute;left:50%;bottom:10px;width:16px;height:30px;transform:translateX(-50%);border-radius:5px;background:var(--tono)}
+.mini-vitrina-x::after{content:"";position:absolute;left:50%;bottom:10px;width:16px;height:30px;transform:translateX(-50%);border-radius:5px;background:var(--tono)}
 .linea-carrito h3{font-family:var(--f-body);font-size:15px;font-weight:700;letter-spacing:0;line-height:1.3}
 .linea-carrito small{display:block;color:var(--ciruela-tenue);font-size:13.5px}
 .linea-carrito .derecha{display:grid;justify-items:end;gap:6px}
@@ -247,6 +246,97 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .toast.visible{opacity:1;transform:translate(-50%,0)}
 @media (min-width:860px){.toast{bottom:32px}}
 
+
+/* ===== Peso nuevo: buscador, fotos, objetivos, rutina con productos, asesoría, preguntas, mapa ===== */
+.foto{position:relative;overflow:hidden;background:linear-gradient(135deg,#efdde4,#e6e0f0)}
+.foto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.foto.sin img{display:none}
+.foto.sin::after{content:"";position:absolute;left:50%;top:50%;width:28px;height:44px;transform:translate(-50%,-50%);border-radius:10px 10px 14px 14px;background:rgba(162,78,106,.22)}
+.buscador{position:relative;flex:1;max-width:420px;margin-inline:auto}
+.buscador input{width:100%;height:44px;border-radius:999px;border:1.5px solid var(--linea);background:var(--blanco);padding:0 16px 0 42px;font:inherit;font-size:15px;color:var(--ciruela)}
+.buscador input:focus{outline:none;border-color:var(--ciruela)}
+.buscador svg{position:absolute;left:14px;top:50%;width:18px;height:18px;transform:translateY(-50%);color:var(--ciruela-tenue)}
+.buscador-movil{display:block;padding:0 var(--gr) 10px var(--gl);position:sticky;top:68px;z-index:49;background:rgba(246,241,243,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.buscador-movil .buscador{max-width:none}
+.cabecera .buscador{display:none}
+@media (min-width:860px){.cabecera .buscador{display:block}.buscador-movil{display:none}}
+.cabecera{background:rgba(246,241,243,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.hero{margin-top:0;padding-top:0;background:radial-gradient(80% 60% at 85% 10%,#f3dde5 0%,transparent 60%),radial-gradient(60% 50% at 0% 100%,#e8e2f3 0%,transparent 70%)}
+.hero .envoltura{display:grid;gap:32px;padding-block:clamp(20px,4vw,56px) clamp(56px,8vw,110px)}
+@media (min-width:960px){.hero .envoltura{grid-template-columns:1fr 1fr;align-items:center;gap:56px}}
+.hero h1{font-size:clamp(44px,7.4vw,96px)}
+.collage{position:relative;aspect-ratio:4/4.6;width:100%;max-height:76svh}
+.collage .grande{position:absolute;inset:0 0 8% 10%;border-radius:200px 200px 28px 28px}
+.collage .grande img{object-position:28% center;transform:scale(1.06);animation:acerca 12s cubic-bezier(.2,.6,.2,1) forwards}
+@keyframes acerca{to{transform:none}}
+.tarjeta-flota{position:absolute;left:0;bottom:0;width:min(250px,64%);background:var(--blanco);border-radius:22px;padding:12px;display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center;box-shadow:0 20px 50px rgba(58,34,50,.18)}
+@media (prefers-reduced-motion:no-preference){.tarjeta-flota{animation:flota 5s ease-in-out infinite}@keyframes flota{50%{transform:translateY(-8px)}}}
+.tarjeta-flota .mini{width:64px;height:64px;border-radius:14px;background:var(--porcelana-2);display:grid;place-items:end center;padding-bottom:6px;overflow:hidden}
+.tarjeta-flota .mini{position:relative}.tarjeta-flota .mini .envase{position:absolute;left:50%;bottom:5px;transform:translateX(-50%) scale(.42);transform-origin:bottom center}
+.tarjeta-flota small{display:block;font-size:12px;font-weight:600;color:var(--rosa-hondo)}
+.tarjeta-flota b{display:block;font-size:14px;line-height:1.25}
+.tarjeta-flota .fila{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:4px;font-weight:700;font-size:14px}
+.mas-redondo{width:40px;height:40px;border-radius:50%;border:0;background:var(--ciruela);color:var(--blanco);font-size:22px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:transform .2s,background .2s;flex:none}
+.mas-redondo:hover{background:var(--rosa-hondo);transform:scale(1.06)}
+.mas-redondo:disabled{background:var(--porcelana-2);color:var(--ciruela-tenue);cursor:not-allowed}
+.sube{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.sube.visto{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.sube{opacity:1;transform:none}.collage .grande img{animation:none;transform:none}}
+.objetivos{padding-block:clamp(56px,8vw,100px) 0}
+.objetivos .cab-sec{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 40px}
+.tiras{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr);gap:12px;overflow-x:auto;scrollbar-width:none;margin-top:24px;padding-bottom:6px;scroll-snap-type:x mandatory;touch-action:pan-x pan-y pinch-zoom}
+.tiras::-webkit-scrollbar{display:none}
+@media (max-width:700px){.tiras{grid-auto-columns:62%}}
+.tira{position:relative;aspect-ratio:3/4;border-radius:24px;overflow:hidden;border:0;padding:0;cursor:pointer;scroll-snap-align:start;text-align:left;color:var(--blanco)}
+.tira .foto{position:absolute;inset:0}
+.tira:hover .foto img{transform:scale(1.05)}
+.tira::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(40,22,34,.72))}
+.tira span{position:absolute;left:16px;right:16px;bottom:16px;z-index:1}
+.tira b{display:block;font-family:var(--f-display);font-size:26px;line-height:1.05}
+.tira small{font-size:13.5px;opacity:.85}
+.paso{padding:0;overflow:hidden}
+.paso .foto{aspect-ratio:16/10}
+.paso .txt{padding:22px 22px 0;display:grid;gap:8px}
+.paso::before{position:absolute;margin:14px 0 0 14px;z-index:1;background:var(--blanco);padding:4px 12px;border-radius:999px}
+.paso{position:relative}
+.recomendado{margin:16px 22px 22px;display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px;border-radius:16px;background:var(--porcelana)}
+.recomendado .mini{width:52px;height:52px;border-radius:12px;background:var(--porcelana-2);display:grid;place-items:end center;overflow:hidden;padding-bottom:4px}
+.recomendado .mini{position:relative}.recomendado .mini .envase{position:absolute;left:50%;bottom:4px;transform:translateX(-50%) scale(.36);transform-origin:bottom center}
+.paso .mas-redondo{background:var(--ciruela);color:var(--blanco);text-decoration:none;padding:0;min-height:0;margin:0;justify-self:auto}
+.recomendado b{display:block;font-size:14px;line-height:1.25}
+.recomendado small{font-size:13px;color:var(--ciruela-tenue)}
+.rutina-total{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-top:16px;padding:18px 22px;border-radius:22px;background:var(--blanco)}
+.rutina-total p{margin:0;font-size:15px;color:var(--ciruela-tenue)}
+.rutina-total b{color:var(--ciruela);font-size:18px}
+.vitrina .precio-chip{position:absolute;left:10px;bottom:10px;background:var(--blanco);font-weight:700;font-size:14px;padding:5px 11px;border-radius:999px;font-variant-numeric:tabular-nums}
+.vitrina .control-foto{position:absolute;right:10px;bottom:10px}
+.vitrina .control-foto .paso-cant{background:var(--blanco);border-color:var(--blanco);height:40px}
+.vitrina .control-foto .paso-cant button{width:36px;height:36px}
+.producto:hover .envase{transform:translateY(-4px) rotate(-2deg)}
+.envase{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.resultado-busqueda{margin:14px 0 0;font-size:14.5px;color:var(--ciruela-tenue)}
+.nada{grid-column:1/-1;padding:32px;border-radius:22px;background:var(--blanco);color:var(--ciruela-tenue)}
+.asesoria{display:grid;border-radius:28px;overflow:hidden;background:var(--blanco);margin-bottom:clamp(64px,9vw,120px)}
+@media (min-width:900px){.asesoria{grid-template-columns:1fr 1fr}}
+.asesoria .foto{min-height:280px}
+.asesoria .txt{padding:clamp(24px,5vw,52px);display:grid;gap:14px;align-content:center}
+.asesoria h2{font-size:clamp(32px,4.4vw,52px);line-height:1.04}
+.asesoria p{margin:0;color:var(--ciruela-tenue)}
+.asesoria ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px}
+.asesoria li{display:flex;gap:10px;align-items:flex-start}
+.asesoria li::before{content:"";flex:none;width:8px;height:8px;margin-top:8px;border-radius:50%;background:var(--rosa)}
+.preguntas{padding-bottom:clamp(64px,9vw,120px);display:grid;gap:28px}
+@media (min-width:900px){.preguntas{grid-template-columns:.8fr 1.2fr}}
+.preguntas details{border-bottom:1px solid var(--linea)}
+.preguntas summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 0;font-weight:600;font-size:17px}
+.preguntas summary::-webkit-details-marker{display:none}
+.preguntas summary::after{content:"+";font-size:24px;font-weight:400;transition:transform .3s;color:var(--rosa-hondo)}
+.preguntas details[open] summary::after{transform:rotate(45deg)}
+.preguntas details p{margin:0 0 18px;color:var(--ciruela-tenue);max-width:60ch}
+.mapa-bloque{grid-column:1/-1;position:relative;min-height:340px;border-radius:28px;overflow:hidden;background:var(--porcelana-2)}
+.mapa-bloque iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.mapa-bloque .boton{position:absolute;left:12px;bottom:12px;background:var(--blanco)}
+
 /* Bloqueo del desplazamiento lateral en el celular */
 html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom}
 @supports (overflow:clip){html,body{overflow-x:clip}}
@@ -254,10 +344,14 @@ body{position:relative;width:100%;margin:0}
 main,footer,section{max-width:100%;overflow-x:clip}
 .pestanas,.filtros,.chips,.dibujo,.panel-cuerpo{touch-action:pan-x pan-y pinch-zoom}
 </style>
+<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-180.png">
+</head>
+<body>
 
 <header class="cabecera" id="cabecera">
   <div class="envoltura">
     <a class="logo" href="#inicio" aria-label="Bruma, ir al inicio">Bruma</a>
+    <label class="buscador"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.7"/><path d="m13.5 13.5 3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input type="search" data-buscar placeholder="Buscá un producto, por ejemplo sérum" aria-label="Buscar productos"></label>
     <nav class="nav" aria-label="Secciones">
       <a class="solo-escritorio" href="#rutina">Rutina</a>
       <a class="solo-escritorio" href="#catalogo">Productos</a>
@@ -269,33 +363,41 @@ main,footer,section{max-width:100%;overflow-x:clip}
     </nav>
   </div>
 </header>
+<div class="buscador-movil"><label class="buscador"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.7"/><path d="m13.5 13.5 3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input type="search" data-buscar placeholder="Buscá un producto, por ejemplo sérum" aria-label="Buscar productos"></label></div>
 
 <main id="inicio">
   <section class="hero" aria-labelledby="titulo-hero">
-    <canvas id="nacar" aria-hidden="true"></canvas>
     <div class="envoltura">
-      <h1 id="titulo-hero" class="entra">La piel, con calma y sin promesas raras</h1>
-      <p class="bajada entra d1">Cosmética elegida a mano en Vicente López. Te ayudamos a armar una rutina corta que funcione, y te la mandamos a casa.</p>
-      <div class="acciones entra d2">
-        <a class="boton boton-principal" href="#catalogo">Ver productos</a>
-        <a class="boton boton-secundario" id="consulta-wa" href="#" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+      <div>
+        <h1 id="titulo-hero" class="entra">La piel, con calma y sin promesas raras</h1>
+        <p class="bajada entra d1">Cosmética elegida a mano en Vicente López. Te ayudamos a armar una rutina corta que funcione, y te la mandamos a casa.</p>
+        <div class="acciones entra d2">
+          <a class="boton boton-principal" href="#catalogo">Ver productos</a>
+          <a class="boton boton-secundario" id="consulta-wa" href="#" target="_blank" rel="noopener">Asesoría gratis por WhatsApp</a>
+        </div>
+        <ul class="beneficios entra d3">
+          <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5 8 14l8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="ben-envio"></span></li>
+          <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5 8 14l8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Retiro en el local sin costo</li>
+          <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5 8 14l8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Hasta 3 cuotas sin interés</li>
+        </ul>
       </div>
-      <ul class="beneficios entra d3">
-        <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5 8 14l8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="ben-envio"></span></li>
-        <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5 8 14l8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Retiro en el local sin costo</li>
-        <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5 8 14l8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Hasta 3 cuotas sin interés</li>
-      </ul>
+      <div class="collage">
+        <div class="grande foto"><img src="bruma-fotos/bruma-01.jpg" alt="Rutina de cuidado de la piel" fetchpriority="high" onerror="this.parentNode.classList.add('sin')"></div>
+        <div class="tarjeta-flota" id="destacado"></div>
+      </div>
     </div>
+  </section>
+
+  <section class="objetivos envoltura" id="objetivos" aria-labelledby="titulo-objetivos">
+    <div class="cab-sec sube"><h2 class="titulo" id="titulo-objetivos">¿Qué querés mejorar?</h2><p class="intro">Elegí un objetivo y te mostramos solo lo que sirve para eso.</p></div>
+    <div class="tiras" id="tiras"></div>
   </section>
 
   <section class="rutina envoltura" id="rutina" aria-labelledby="titulo-rutina">
     <h2 class="titulo" id="titulo-rutina">Una rutina en tres pasos</h2>
     <p class="intro">Si recién empezás, no necesitás diez productos. Con estos tres, todas las mañanas, alcanza.</p>
-    <ol class="pasos">
-      <li class="paso"><h3>Limpiar</h3><p>Un limpiador suave que saque la grasa sin tirantez. Mañana y noche.</p><button type="button" data-filtro="Limpieza">Ver limpiadores</button></li>
-      <li class="paso"><h3>Tratar</h3><p>Un sérum según lo que quieras mejorar: manchas, poros o hidratación.</p><button type="button" data-filtro="Sérums">Ver sérums</button></li>
-      <li class="paso"><h3>Proteger</h3><p>Protector solar todos los días, aunque esté nublado. Es el paso que más rinde.</p><button type="button" data-filtro="Protección">Ver protectores</button></li>
-    </ol>
+    <ol class="pasos" id="pasos"></ol>
+    <div class="rutina-total sube" id="rutina-total"></div>
   </section>
 
   <section class="catalogo envoltura" id="catalogo" aria-labelledby="titulo-catalogo">
@@ -304,6 +406,7 @@ main,footer,section{max-width:100%;overflow-x:clip}
       <p>Todos los precios son por unidad. Si dudás, escribinos y te asesoramos.</p>
     </div>
     <div class="filtros" id="filtros" role="group" aria-label="Filtrar por categoría"></div>
+    <p class="resultado-busqueda" id="resultado-busqueda" aria-live="polite" hidden></p>
     <div class="productos" id="productos" aria-live="polite"></div>
   </section>
 
@@ -316,6 +419,23 @@ main,footer,section{max-width:100%;overflow-x:clip}
       </div>
       <div class="opciones" id="opciones-entrega"></div>
     </div>
+  </section>
+
+  <section class="envoltura" aria-labelledby="titulo-asesoria">
+    <div class="asesoria sube">
+      <div class="foto"><img src="bruma-fotos/bruma-08.jpg" alt="Asesora de Bruma mostrando productos" loading="lazy" onerror="this.parentNode.classList.add('sin')"></div>
+      <div class="txt">
+        <h2 id="titulo-asesoria">¿No sabés qué elegir? Te asesoramos gratis</h2>
+        <p>Mandanos por WhatsApp cómo es tu piel y qué te gustaría mejorar. Te respondemos con una rutina de tres productos, con precio, en el día.</p>
+        <ul><li>Sin vueltas: te recomendamos lo justo</li><li>Si ya usás algo, te decimos si combina</li><li>También en el local, sin turno</li></ul>
+        <div><a class="boton boton-principal" id="asesoria-wa" href="#" target="_blank" rel="noopener">Quiero que me asesoren</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="envoltura preguntas" id="preguntas" aria-labelledby="titulo-preguntas">
+    <h2 class="titulo sube" id="titulo-preguntas">Preguntas frecuentes</h2>
+    <div class="sube" id="lista-preguntas"></div>
   </section>
 
   <section class="envoltura datos" id="llegar" aria-label="Dirección, horarios y contacto">
@@ -335,15 +455,13 @@ main,footer,section{max-width:100%;overflow-x:clip}
       <p class="tenue" id="d-instagram"></p>
       <p class="tenue">Cambios dentro de los 10 días con el producto cerrado.</p>
     </div>
+    <div class="mapa-bloque" data-mapa-google>
+      <iframe id="mapa-frame" title="Mapa de Bruma" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <a class="boton boton-secundario" id="d-mapa-2" href="#" target="_blank" rel="noopener">Abrir en Google Maps ↗</a>
+    </div>
   </section>
 </main>
 
-<section id="lz-mapa" aria-label="Cómo llegar" style="position:relative;z-index:1;padding:72px 0;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)">
-<div style="width:min(1160px,calc(100% - 32px));margin:0 auto">
-<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;margin-bottom:22px"><div><p style="margin:0 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.65">Cómo llegar</p><h2 style="margin:0;font-size:clamp(26px,3.4vw,40px);line-height:1.1">Av. Maipú 1965, Vicente López</h2></div>
-<a href="https://www.google.com/maps/search/?api=1&query=Av.%20Maip%C3%BA%201965%2C%20Vicente%20L%C3%B3pez%2C%20Buenos%20Aires" target="_blank" rel="noopener" style="color:inherit;font-size:15px;text-decoration:underline;text-underline-offset:4px">Abrir en Google Maps ↗</a></div>
-<iframe title="Mapa: Av. Maipú 1965, Vicente López" src="https://www.google.com/maps?q=Av.%20Maip%C3%BA%201965%2C%20Vicente%20L%C3%B3pez%2C%20Buenos%20Aires&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="display:block;width:100%;height:clamp(280px,42vw,420px);border:0;border-radius:16px;background:#e8e8e4"></iframe>
-</div></section>
 <footer class="pie">
   <div class="envoltura">
     <div class="grande" aria-hidden="true">Bruma</div>
@@ -385,7 +503,29 @@ const TIENDA = {
   zonaHoraria: "America/Argentina/Buenos_Aires",
   horarios: { 0:[], 1:[[10,20]], 2:[[10,20]], 3:[[10,20]], 4:[[10,20]], 5:[[10,20]], 6:[[10,14]] },
   envio: { costo: 4500, gratisDesde: 60000, zona: "Vicente López, Olivos y Martínez" },
+  mapaBusqueda: "Av. Maipú 1965, Vicente López, Buenos Aires",
   categorias: ["Todos","Limpieza","Sérums","Hidratación","Protección","Maquillaje"],
+  destacado: "protector-50",
+  // "¿Qué querés mejorar?": cada objetivo filtra el catálogo por productos
+  objetivos: [
+    { nombre:"Manchas", texto:"Vitamina C y protección", foto:"bruma-fotos/bruma-02.jpg", productos:["vitamina-c","protector-50","protector-color"] },
+    { nombre:"Poros y brillo", texto:"Niacinamida y limpieza", foto:"bruma-fotos/bruma-03.jpg", productos:["niacinamida","gel-limpiador","agua-micelar"] },
+    { nombre:"Hidratación", texto:"Para piel tirante", foto:"bruma-fotos/bruma-04.jpg", productos:["acido-hialuronico","crema-hidratante","contorno-ojos","balsamo-desmaquillante"] },
+    { nombre:"Protección diaria", texto:"El paso que más rinde", foto:"bruma-fotos/bruma-05.jpg", productos:["protector-50","protector-color"] },
+    { nombre:"Maquillaje", texto:"Labiales satinados", foto:"bruma-fotos/bruma-06.jpg", productos:["labial-rosa","labial-terracota","protector-color"] }
+  ],
+  rutina: [
+    { paso:"Limpiar", texto:"Un limpiador suave que saque la grasa sin tirantez. Mañana y noche.", foto:"bruma-fotos/bruma-03.jpg", producto:"gel-limpiador" },
+    { paso:"Tratar", texto:"Un sérum según lo que quieras mejorar: manchas, poros o hidratación.", foto:"bruma-fotos/bruma-02.jpg", producto:"niacinamida" },
+    { paso:"Proteger", texto:"Protector solar todos los días, aunque esté nublado. Es el paso que más rinde.", foto:"bruma-fotos/bruma-05.jpg", producto:"protector-50" }
+  ],
+  preguntas: [
+    ["¿Cuánto tarda el envío?", "Si comprás antes de las 14, lo recibís en el día en Vicente López, Olivos y Martínez. Al resto del país lo mandamos por correo, de 3 a 6 días hábiles."],
+    ["¿Puedo cambiar un producto?", "Sí, dentro de los 10 días y con el producto cerrado. Lo cambiás en el local o lo coordinamos por WhatsApp."],
+    ["¿Cómo pago?", "Con Mercado Pago (hasta 3 cuotas sin interés), transferencia o efectivo al retirar."],
+    ["Tengo piel sensible, ¿qué uso?", "Escribinos antes de comprar. Te recomendamos fórmulas sin perfume y te decimos cómo empezar de a poco."],
+    ["¿Los productos son originales?", "Sí. Trabajamos con distribuidores oficiales y cada producto tiene su lote y vencimiento a la vista."]
+  ],
   // tipo de envase: gotero, bomba, pote, tubo, labial. "tono" es el color del envase.
   productos: [
     { id:"gel-limpiador", nombre:"Gel limpiador suave", detalle:"150 ml. Piel mixta a grasa", categoria:"Limpieza", precio:14900, stock:12, tipo:"bomba", tono:"#cfe0dc", rotulo:"GEL" },
@@ -449,26 +589,43 @@ function envase(p){
 }
 
 /* ---------- Catálogo ---------- */
-let filtro="Todos";
+let filtro="Todos", busqueda="", objetivoSel=null;
+const norm=t=>t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 function pintarFiltros(){
   $("#filtros").innerHTML=TIENDA.categorias.map(c=>`<button class="filtro" type="button" aria-pressed="${c===filtro}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
 }
 function pintarProductos(){
-  const lista=TIENDA.productos.filter(p=>filtro==="Todos"||p.categoria===filtro);
+  const q=norm(busqueda.trim());
+  const obj=objetivoSel!=null?TIENDA.objetivos[objetivoSel]:null;
+  const lista=TIENDA.productos.filter(p=>(obj?obj.productos.includes(p.id):(filtro==="Todos"||p.categoria===filtro)) && (!q||norm(p.nombre+" "+p.categoria).includes(q)));
+  const rb=$("#resultado-busqueda"); rb.hidden=!(q||obj);
+  rb.innerHTML=obj?`Para <b>${esc(obj.nombre.toLowerCase())}</b>: ${lista.length} productos. <button class="volver" type="button" data-limpiar style="min-height:auto">Ver todos</button>`:q?`${lista.length} ${lista.length===1?"resultado":"resultados"} para “${esc(busqueda.trim())}”. <button class="volver" type="button" data-limpiar style="min-height:auto">Limpiar</button>`:"";
+  if(!lista.length){$("#productos").innerHTML=`<p class="nada">No encontramos “${esc(busqueda.trim())}”. Escribinos por WhatsApp y te decimos si lo conseguimos.</p>`;return;}
   $("#productos").innerHTML=lista.map(p=>{
     const c=carrito[p.id]||0, sin=p.stock===0;
     const etiqueta = sin?`<span class="etiqueta-prod">Sin stock</span>`:p.stock<=3?`<span class="etiqueta-prod poco">Quedan ${p.stock}</span>`:p.nuevo?`<span class="etiqueta-prod">Nuevo</span>`:"";
-    const control = sin ? `<button class="agregar" type="button" disabled>Sin stock</button>`
+    const control = sin ? `<button class="mas-redondo" type="button" disabled aria-label="Sin stock">+</button>`
       : c ? `<div class="paso-cant" role="group" aria-label="Cantidad de ${esc(p.nombre)}"><button type="button" data-menos="${p.id}" aria-label="Quitar uno">−</button><output>${c}</output><button type="button" data-mas="${p.id}" aria-label="Sumar uno" ${c>=p.stock?"disabled":""}>+</button></div>`
-      : `<button class="agregar" type="button" data-mas="${p.id}" aria-label="Agregar ${esc(p.nombre)} al carrito">Agregar</button>`;
+      : `<button class="mas-redondo" type="button" data-mas="${p.id}" aria-label="Agregar ${esc(p.nombre)} al carrito">+</button>`;
     return `<article class="producto" style="--tono:${p.tono}">
-      <div class="vitrina">${p.foto?`<img src="${p.foto}" alt="${esc(p.nombre)}" loading="lazy">`:envase(p)}${etiqueta}</div>
-      <div class="info"><h3>${esc(p.nombre)}</h3><span class="detalle">${esc(p.detalle)}</span>
-        <div class="pie-prod"><span class="precio">${pesos(p.precio)}</span>${control}</div></div>
+      <div class="vitrina">${p.foto?`<img src="${p.foto}" alt="${esc(p.nombre)}" loading="lazy">`:envase(p)}${etiqueta}<span class="precio-chip">${pesos(p.precio)}</span><span class="control-foto">${control}</span></div>
+      <div class="info"><h3>${esc(p.nombre)}</h3><span class="detalle">${esc(p.detalle)}</span></div>
     </article>`;
   }).join("");
 }
-$("#filtros").addEventListener("click",e=>{const b=e.target.closest(".filtro");if(!b)return;filtro=b.dataset.c;pintarFiltros();pintarProductos();});
+$("#filtros").addEventListener("click",e=>{const b=e.target.closest(".filtro");if(!b)return;filtro=b.dataset.c;objetivoSel=null;pintarFiltros();pintarProductos();});
+document.querySelectorAll("[data-buscar]").forEach(inp=>{
+  inp.addEventListener("input",()=>{busqueda=inp.value;objetivoSel=null;document.querySelectorAll("[data-buscar]").forEach(o=>{if(o!==inp)o.value=inp.value;});if(busqueda){filtro="Todos";pintarFiltros();}pintarProductos();});
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();irCatalogo();}});
+  inp.addEventListener("focus",()=>{if(innerWidth<860)setTimeout(irCatalogo,250);});
+});
+function irCatalogo(){const y=$("#catalogo").getBoundingClientRect().top+scrollY-130;scrollTo({top:y,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}
+document.addEventListener("click",e=>{
+  if(e.target.closest("[data-limpiar]")){busqueda="";objetivoSel=null;filtro="Todos";document.querySelectorAll("[data-buscar]").forEach(o=>o.value="");pintarFiltros();pintarProductos();return;}
+  const t=e.target.closest("[data-objetivo]"); if(t){objetivoSel=+t.dataset.objetivo;busqueda="";filtro="Todos";pintarFiltros();pintarProductos();irCatalogo();return;}
+  const r=e.target.closest("[data-sumar-rutina]"); if(r){TIENDA.rutina.forEach(x=>{if(!(carrito[x.producto]>0))cambiar(x.producto,1);});avisar("Sumaste la rutina completa");return;}
+  const m=e.target.closest("[data-mas-fuera]"); if(m){cambiar(m.dataset.masFuera,1);}
+});
 $("#productos").addEventListener("click",e=>{const m=e.target.closest("[data-mas]"),n=e.target.closest("[data-menos]");if(m)cambiar(m.dataset.mas,1);if(n)cambiar(n.dataset.menos,-1);});
 document.querySelectorAll("[data-filtro]").forEach(b=>b.addEventListener("click",()=>{filtro=b.dataset.filtro;pintarFiltros();pintarProductos();$("#catalogo").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}));
 
@@ -507,7 +664,7 @@ function pintarCarrito(){
   const st=subtotal(), falta=Math.max(0,TIENDA.envio.gratisDesde-st);
   cuerpo.innerHTML=ids.map(id=>{const p=porId[id],c=carrito[id];return `
     <div class="linea-carrito" style="--tono:${p.tono}">
-      <div class="mini-vitrina" aria-hidden="true"></div>
+      <div class="mini-vitrina" aria-hidden="true"><div style="position:absolute;left:50%;bottom:4px;transform:translateX(-50%) scale(.36);transform-origin:bottom center">${envase(p)}</div></div>
       <div><h3>${esc(p.nombre)}</h3><small>${pesos(p.precio)} c/u${c>=p.stock?". No hay más stock":""}</small>
         <div class="paso-cant" style="margin-top:8px" role="group" aria-label="Cantidad de ${esc(p.nombre)}"><button type="button" data-menos="${id}" aria-label="Quitar uno">−</button><output>${c}</output><button type="button" data-mas="${id}" aria-label="Sumar uno" ${c>=p.stock?"disabled":""}>+</button></div></div>
       <div class="derecha"><span class="monto">${pesos(p.precio*c)}</span><button class="quitar" type="button" data-quitar="${id}">Quitar</button></div>
@@ -578,6 +735,24 @@ function pintarConfirmacion(nombre,direccion){
   $("#copiar").onclick=async ev=>{try{await navigator.clipboard.writeText(msg);ev.target.textContent="Mensaje copiado";}catch(_){const r=document.createRange();r.selectNodeContents($("#panel-cuerpo blockquote"));const s=getSelection();s.removeAllRanges();s.addRange(r);ev.target.textContent="Seleccionado, copialo";}};
 }
 
+/* ---------- Objetivos, rutina, destacado y preguntas ---------- */
+const img=(src,alt="")=>`<div class="foto"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" onerror="this.parentNode.classList.add('sin')"></div>`;
+function pintarExtras(){
+  $("#tiras").innerHTML=TIENDA.objetivos.map((o,i)=>`<button class="tira sube" type="button" data-objetivo="${i}" style="transition-delay:${i*70}ms">${img(o.foto)}<span><b>${esc(o.nombre)}</b><small>${esc(o.texto)} · ${o.productos.length} productos</small></span></button>`).join("");
+  $("#pasos").innerHTML=TIENDA.rutina.map((r,i)=>{const p=porId[r.producto];return `<li class="paso sube" style="transition-delay:${i*90}ms">${img(r.foto,r.paso)}<div class="txt"><h3>${esc(r.paso)}</h3><p>${esc(r.texto)}</p></div>
+    <div class="recomendado" style="--tono:${p.tono}"><div class="mini" aria-hidden="true">${envase(p)}</div><div><b>${esc(p.nombre)}</b><small>${pesos(p.precio)}</small></div><button class="mas-redondo" type="button" data-mas-fuera="${p.id}" aria-label="Agregar ${esc(p.nombre)}">+</button></div></li>`;}).join("");
+  const tot=TIENDA.rutina.reduce((a,r)=>a+porId[r.producto].precio,0);
+  $("#rutina-total").innerHTML=`<p>Los tres pasos juntos: <b>${pesos(tot)}</b>. ${tot>=TIENDA.envio.gratisDesde?"Con envío gratis.":`Te faltan ${pesos(TIENDA.envio.gratisDesde-tot)} para el envío gratis.`}</p><button class="boton boton-principal" type="button" data-sumar-rutina>Sumar la rutina completa</button>`;
+  const d=porId[TIENDA.destacado];
+  $("#destacado").innerHTML=`<div class="mini" style="--tono:${d.tono}" aria-hidden="true">${envase(d)}</div><div><small>El más vendido</small><b>${esc(d.nombre)}</b><div class="fila"><span>${pesos(d.precio)}</span><button class="mas-redondo" type="button" data-mas-fuera="${d.id}" aria-label="Agregar ${esc(d.nombre)}" style="width:34px;height:34px;font-size:19px">+</button></div></div>`;
+  $("#lista-preguntas").innerHTML=TIENDA.preguntas.map(([q,a],i)=>`<details ${i===0?"open":""}><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("");
+  $("#asesoria-wa").href=waLink("Hola Bruma, quiero que me asesoren. Mi piel es… y me gustaría mejorar…");
+  const q=encodeURIComponent(TIENDA.mapaBusqueda);
+  $("#mapa-frame").src=`https://www.google.com/maps?q=${q}&output=embed`; $("#d-mapa-2").href=`https://www.google.com/maps/search/?api=1&query=${q}`;
+  if("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("visto");io.unobserve(en.target);}}),{rootMargin:"0px 0px -8% 0px"});document.querySelectorAll(".sube").forEach(el=>io.observe(el));}
+  else document.querySelectorAll(".sube").forEach(el=>el.classList.add("visto"));
+}
+
 /* ---------- Entrega, datos ---------- */
 function pintarEntrega(){
   $("#ben-envio").textContent=`Envío gratis desde ${pesos(TIENDA.envio.gratisDesde)}`;
@@ -598,67 +773,10 @@ const cab=$("#cabecera"),barra=$("#barra-movil");
 function alScroll(){cab.classList.toggle("solida",scrollY>30);barra.classList.toggle("visible",scrollY>innerHeight*.5);}
 addEventListener("scroll",alScroll,{passive:true});
 
-/* =========================================================
-   NÁCAR: brillo perlado que cambia de tono muy despacio
-   y gotas de sérum que suben con un reflejo de luz.
-   ========================================================= */
-(function nacar(){
-  const cv=$("#nacar"),ctx=cv.getContext("2d");
-  const reducir=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let W=0,H=0,t=0,raf=0,visible=true;
-  const P=new Uint8Array(512);{const p=[...Array(256).keys()];for(let i=255;i>0;i--){const j=(Math.random()*(i+1))|0;[p[i],p[j]]=[p[j],p[i]];}for(let i=0;i<512;i++)P[i]=p[i&255];}
-  const fade=x=>x*x*(3-2*x),rnd=(x,y)=>P[(P[x&255]+y)&511]/255;
-  function ruido(x,y){const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,a=rnd(xi,yi),b=rnd(xi+1,yi),c=rnd(xi,yi+1),d=rnd(xi+1,yi+1),u=fade(xf),v=fade(yf);return a+(b-a)*u+(c-a)*v*(1-u)+(d-b)*u*v;}
-  const off=document.createElement("canvas"),octx=off.getContext("2d"),LW=64,LH=40; off.width=LW;off.height=LH; const img=octx.createImageData(LW,LH);
-  // paleta perlada: porcelana, rosa, durazno, lavanda, menta suave
-  const pal=[[246,241,243],[240,214,222],[244,222,206],[226,218,240],[220,236,230],[246,241,243]];
-  function colorDe(v){v=Math.max(0,Math.min(.9999,v))*(pal.length-1);const i=Math.floor(v),f=v-i,a=pal[i],b=pal[i+1];return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f];}
-  function campo(){
-    const tt=t*.0012,d=img.data;
-    for(let y=0;y<LH;y++)for(let x=0;x<LW;x++){
-      const px=x/LW*2.2,py=y/LH*1.6;
-      const q=ruido(px*1.3+tt,py*1.3-tt*.6);
-      const v=ruido(px+q*1.8+tt*.4,py+q*1.4)*.8+ .1;
-      const c=colorDe(v), i=(y*LW+x)*4;
-      // se desvanece hacia la izquierda, donde va el texto
-      const m=Math.min(1,Math.max(.25,x/LW*1.5));
-      d[i]=246+(c[0]-246)*m; d[i+1]=241+(c[1]-241)*m; d[i+2]=243+(c[2]-243)*m; d[i+3]=255;
-    }
-    octx.putImageData(img,0,0);
-  }
-  let gotas=[];
-  function nuevaGota(ini){const r=6+Math.random()*Math.random()*30;return {x:W*(.35+Math.random()*.65),y:ini?Math.random()*H:H+r*2,r,v:.12+Math.random()*.22,s:Math.random()*100};}
-  function armar(){const dpr=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
-    gotas=Array.from({length:Math.round(Math.min(26,W/40))},()=>nuevaGota(true));}
-  function gota(g){
-    const {x,y,r}=g;
-    let gr=ctx.createRadialGradient(x-r*.3,y-r*.35,r*.1,x,y,r);
-    gr.addColorStop(0,"rgba(255,255,255,.55)");gr.addColorStop(.55,"rgba(255,240,246,.16)");gr.addColorStop(1,"rgba(214,138,160,.20)");
-    ctx.fillStyle=gr;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
-    ctx.strokeStyle="rgba(162,78,106,.14)";ctx.lineWidth=1;ctx.stroke();
-    ctx.fillStyle="rgba(255,255,255,.85)";ctx.beginPath();ctx.ellipse(x-r*.38,y-r*.42,r*.22,r*.12,-.6,0,Math.PI*2);ctx.fill();
-    // sombra suave debajo, como si la gota estuviera sobre vidrio
-    ctx.fillStyle="rgba(58,34,50,.04)";ctx.beginPath();ctx.ellipse(x+r*.15,y+r*1.05,r*.8,r*.18,0,0,Math.PI*2);ctx.fill();
-  }
-  function cuadro(){
-    t++;
-    if(t%3===1||reducir) campo();
-    ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";ctx.drawImage(off,0,0,W,H);
-    for(const g of gotas){g.y-=g.v;g.x+=Math.sin((t+g.s*80)*.006)*.18;if(g.y<-g.r*2)Object.assign(g,nuevaGota(false));gota(g);}
-  }
-  const loop=()=>{cuadro();raf=requestAnimationFrame(loop);};
-  const iniciar=()=>{if(!raf&&visible&&!document.hidden&&!reducir)raf=requestAnimationFrame(loop);};
-  const frenar=()=>{cancelAnimationFrame(raf);raf=0;};
-  armar();t=300;cuadro();iniciar();
-  let rt,anchoPrevio=innerWidth;
-  addEventListener("resize",()=>{if(innerWidth===anchoPrevio)return;anchoPrevio=innerWidth;clearTimeout(rt);rt=setTimeout(()=>{armar();campo();cuadro();},150);});
-  new IntersectionObserver(([e])=>{visible=e.isIntersecting;visible?iniciar():frenar();}).observe(cv);
-  document.addEventListener("visibilitychange",()=>document.hidden?frenar():iniciar());
-})();
 
-pintarFiltros();pintarProductos();pintarEntrega();alScroll();
+
+pintarFiltros();pintarProductos();pintarEntrega();pintarExtras();alScroll();
 $("#cuenta").textContent=unidades();$("#cuenta").dataset.n=unidades();$("#cuenta-2").textContent=unidades();
 </script>
-
 </body>
 </html>
