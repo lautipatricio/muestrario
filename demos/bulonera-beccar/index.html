@@ -94,6 +94,7 @@ p{margin:0}
 .lectura-acc{display:flex;flex-wrap:wrap;gap:8px}
 .medi{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--acero);font-size:14.5px;color:var(--gris);flex-wrap:wrap}
 .medi input{width:84px;height:40px;border-radius:6px;border:1px solid var(--acero);background:#fff;padding:0 10px;font-size:16px;font-variant-numeric:tabular-nums}
+.mm-aviso{color:var(--rojo);font-weight:600}
 .medi input:focus{outline:none;border-color:var(--azul);box-shadow:0 0 0 2px rgba(44,90,160,.2)}
 
 /* ---------- Botones ---------- */
@@ -176,6 +177,17 @@ p{margin:0}
 .nada b{color:var(--tinta)}
 
 /* ---------- Pedido por lista ---------- */
+.grupo-op{padding:12px 0;border-bottom:1px dashed var(--acero)}
+.grupo-op:last-child{border-bottom:0}
+.grupo-cab{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:6px;font-size:14px}
+.grupo-cab span{color:var(--gris);font-size:13px;white-space:nowrap}
+.op{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 10px;margin-top:6px;background:#fff;border:1px solid var(--chapa-2);border-radius:6px}
+.op b{display:block;font-size:14.5px;line-height:1.25}
+.op small{display:block;color:var(--gris);font-size:13px;margin-top:2px}
+.op small em{font-style:normal;color:var(--azul);font-weight:700}
+.op.no{background:#FFF8E1}
+.mas-op{width:40px;height:40px;border-radius:8px;border:2px solid var(--tinta);background:var(--amarillo);font:800 22px/1 var(--display);cursor:pointer;color:var(--tinta)}
+.mas-op.ok{background:var(--azul);color:#fff;border-color:var(--azul);font-size:18px}
 .lista-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
 @media (min-width:1000px){.lista-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 .lista-area{display:grid;gap:10px}
@@ -296,6 +308,7 @@ p{margin:0}
 .aviso{position:fixed;left:50%;top:76px;z-index:99;transform:translate(-50%,-12px);opacity:0;transition:.25s;background:var(--tinta);color:#fff;font-weight:600;font-size:14.5px;border-radius:6px;padding:10px 16px;pointer-events:none;max-width:calc(100% - 32px);text-align:center;border-left:6px solid var(--amarillo)}
 .aviso.visible{transform:translate(-50%,0);opacity:1}
 </style>
+<link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="../../favicon-180.png">
 </head>
 <body>
 <div id="lz-propuesta" style="position:relative;z-index:60;display:block;padding:8px 16px;background:#11110f;color:#f5f4f0;font:500 13px/1.35 'Helvetica Neue',Arial,sans-serif;text-align:center">Propuesta de diseño de <b style="font-weight:700">Lazervi</b> para Bulonera Beccar. No es la página oficial del negocio. <a href="../../" style="margin-left:8px;white-space:nowrap;color:#f5f4f0;text-decoration:underline;text-underline-offset:3px">Volver al muestrario</a></div>
@@ -335,7 +348,7 @@ p{margin:0}
             <button class="boton azul" type="button" id="ir-medida" hidden></button>
           </div>
         </div>
-        <label class="medi" for="mm"><span>¿Ya lo mediste? Diámetro de la rosca en mm:</span><input id="mm" type="number" inputmode="decimal" min="2" max="40" step="0.1" placeholder="7,9"><span id="mm-res"></span></label>
+        <label class="medi" for="mm"><span>¿Ya lo mediste? Diámetro de la rosca en mm:</span><input id="mm" type="number" inputmode="decimal" min="3" max="30" step="0.1" placeholder="7,9"><span id="mm-res"></span></label>
       </div>
     </div>
   </section>
@@ -355,16 +368,16 @@ p{margin:0}
     <div class="envoltura">
       <div class="seccion-cab">
         <h2 id="t-lista">Pedido por lista</h2>
-        <p>Para el que ya sabe lo que necesita: pegá la lista como la anotaste en la obra y la pasamos a la nota de pedido.</p>
+        <p>Escribí lo que necesitás como lo anotaste en la obra. Te mostramos todo lo que coincide, con precio, y vos elegís qué sumar a la nota.</p>
       </div>
       <div class="lista-grid">
         <div class="lista-area">
           <label for="txt-lista">Tu lista, un artículo por renglón</label>
-          <textarea id="txt-lista" spellcheck="false" placeholder="20 bulones M8x40&#10;1 caja tuercas M8&#10;40 arandelas M8&#10;10 tacos del 8&#10;2 varillas 3/8"></textarea>
-          <p class="ayuda">Cantidad, qué es y la medida. Si dice “caja”, va por caja. Lo que no encontremos te lo cotizamos igual.</p>
-          <div><button class="boton" type="button" id="leer-lista">Leer la lista</button> <button class="boton borde" type="button" id="ejemplo-lista">Probar con un ejemplo</button></div>
+          <textarea id="txt-lista" spellcheck="false" placeholder="tornillos&#10;20 bulones M8x40&#10;1 caja tuercas M8&#10;10 tacos del 8"></textarea>
+          <p class="ayuda">Escribí lo que buscás, un artículo por renglón: “tornillos”, “tuercas M10” o “20 bulones M8x40”. A la derecha aparecen las opciones y sumás las que quieras con “+”.</p>
+          <div><button class="boton borde" type="button" id="ejemplo-lista">Probar con un ejemplo</button></div>
         </div>
-        <div class="lista-res" id="lista-res" aria-live="polite"><p class="vacio">Acá aparece lo que encontramos de tu lista, con precio.</p></div>
+        <div class="lista-res" id="lista-res" aria-live="polite"><p class="vacio">Escribí lo que buscás, por ejemplo “tornillos” o “20 bulones M8x40”, y acá te mostramos las opciones para sumar.</p></div>
       </div>
     </div>
   </section>
@@ -426,6 +439,12 @@ p{margin:0}
     </div>
   </section>
 </main>
+<section id="lz-mapa" aria-label="Cómo llegar" style="position:relative;z-index:1;padding:72px 0;border-top:1px solid color-mix(in srgb,currentColor 15%,transparent)">
+<div style="width:min(1160px,calc(100% - 32px));margin:0 auto">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;margin-bottom:22px"><div><p style="margin:0 0 6px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.65">Cómo llegar</p><h2 style="margin:0;font-size:clamp(26px,3.4vw,40px);line-height:1.1">Beccar, San Isidro</h2></div>
+<a href="https://www.google.com/maps/search/?api=1&query=Bulonera%20Beccar%2C%20Beccar%2C%20Buenos%20Aires" target="_blank" rel="noopener" style="color:inherit;font-size:15px;text-decoration:underline;text-underline-offset:4px">Abrir en Google Maps ↗</a></div>
+<iframe title="Mapa: Beccar, San Isidro" src="https://www.google.com/maps?q=Bulonera%20Beccar%2C%20Beccar%2C%20Buenos%20Aires&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="display:block;width:100%;height:clamp(280px,42vw,420px);border:0;border-radius:16px;background:#e8e8e4"></iframe>
+</div></section>
 <footer class="pie"><div class="envoltura"><span id="copy"></span><span id="aviso-precios"></span><span>Fotos de producto: Pexels</span></div></footer>
 
 <a class="wa-flotante" id="wa-flotante" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3.2A12.7 12.7 0 0 0 5.1 22.4L3.4 28.6l6.4-1.7A12.7 12.7 0 1 0 16 3.2Zm0 23.2c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.8 1 1-3.7-.3-.4A10.5 10.5 0 1 1 16 26.4Zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.6 8.6 0 0 1-4.3-3.7c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.3Z"/></svg></a>
@@ -644,11 +663,19 @@ function nombreDiametro(d){
 }
 
 /* ---------- Calibre ---------- */
+// Medidas de rosca que existen (para no inventar un bulón de 21,32 mm)
+const METRICAS = [3,4,5,6,8,10,12,14,16,18,20,22,24,27,30];
+const RANGO = { min: 3, max: 30 };
+function medidaCercana(d){
+  const cands = [...METRICAS.map(m=>({ d:m, txt:`M${m}`, clave:`M${m}`, rosca:"metrica" })), ...Object.entries(PULGADAS).map(([k,v])=>({ d:v, txt:`${k}" Whitworth`, clave:`${k}"`, rosca:"pulgadas" }))];
+  return cands.reduce((a,c)=>Math.abs(c.d-d)<Math.abs(a.d-d)?c:a);
+}
+const enCatalogo = clave => PRODUCTOS.some(p=>p.medida.startsWith(clave+" ") || p.medida===clave || p.medida.startsWith(clave+" ×"));
+let ponerCalibre = null;
 (function calibre(){
   const svg = $("#calibre"), PX = 17, X0 = 132, MAXMM = 40;     // 17 px por milímetro
   const PRUEBAS = [8, 12, 6, 9.53, 10, 12.7];
-  let iPrueba = 0, D = PRUEBAS[0], abierto = 0, arrastrando = false;
-  const ns = "http://www.w3.org/2000/svg";
+  let iPrueba = 0, abierto = 0, arrastrando = false;
   let escala = ""; for (let mm=0; mm<=MAXMM; mm++){ const x = X0 + mm*PX, largo = mm%10===0 ? 22 : mm%5===0 ? 15 : 9;
     escala += `<line x1="${x}" y1="96" x2="${x}" y2="${96-largo}" stroke="#1D2125" stroke-width="${mm%10===0?1.6:1}"/>`;
     if (mm%10===0) escala += `<text x="${x}" y="58" text-anchor="middle" font-family="Archivo,Arial" font-size="15" font-weight="700" fill="#1D2125">${mm}</text>`; }
@@ -660,6 +687,7 @@ function nombreDiametro(d){
     <text x="60" y="82" font-family="Archivo,Arial" font-size="13" font-weight="700" fill="#5A6168">mm</text>
     <path d="M40 100 H${X0} V300 L${X0-38} 300 L40 160 Z" fill="url(#acero)" stroke="#1D2125" stroke-width="2" stroke-linejoin="round"/>
     <g id="bulon"></g>
+    <text id="pista" x="${X0+24}" y="220" font-family="Archivo,Arial" font-size="17" font-weight="600" fill="#5A6168">Arrastrá la mordaza azul hasta el ancho de tu bulón →</text>
     <g id="cursor" class="cursor" tabindex="0" role="slider" aria-label="Abrir o cerrar el calibre" aria-valuemin="0" aria-valuemax="${MAXMM}">
       <rect x="-14" y="26" width="132" height="82" rx="5" fill="#2C5AA0" stroke="#1D2125" stroke-width="2"/>
       <rect x="10" y="40" width="96" height="40" rx="3" fill="#DDE8D6" stroke="#1D2125" stroke-width="1.5"/>
@@ -668,48 +696,64 @@ function nombreDiametro(d){
       <path d="M0 108 V300 L38 300 L0 160 Z" fill="url(#acero)" stroke="#1D2125" stroke-width="2" stroke-linejoin="round"/>
       <circle cx="96" cy="118" r="11" fill="#1D2125"/><circle cx="96" cy="118" r="4" fill="#C9CED1"/>
     </g>`;
-  const gB = svg.querySelector("#bulon"), cur = svg.querySelector("#cursor"), pant = svg.querySelector("#pantalla");
-  function dibujarBulon(){
-    const w = D*PX, x = X0, cabezaW = w*1.75, cx = x + w/2;
+  const gB = svg.querySelector("#bulon"), cur = svg.querySelector("#cursor"), pant = svg.querySelector("#pantalla"), pista = svg.querySelector("#pista");
+  // el bulón se dibuja del mismo ancho que la abertura: crece o se achica con la mordaza
+  function dibujarBulon(D, etiqueta){
+    if (D < .6){ gB.innerHTML = ""; return; }
+    const w = D*PX, x = X0, cabezaW = Math.min(w*1.75, 760 - x), cx = x + w/2;
     let filetes = ""; for (let y=118; y<300; y+=Math.max(7, D*1.15)) filetes += `<path d="M${x} ${y}l${w} ${Math.max(3,D*.5)}" stroke="#4E575D" stroke-width="1.3"/>`;
+    const fs = Math.max(13, Math.min(46, w*.34));
+    const chapa = etiqueta && w > 34
+      ? `<g><rect x="${cx - Math.max(fs*1.4, etiqueta.length*fs*.36)}" y="${196 - fs*.75}" width="${Math.max(fs*2.8, etiqueta.length*fs*.72)}" height="${fs*1.3}" rx="${fs*.2}" fill="#F2C230" stroke="#1D2125" stroke-width="2"/>
+         <text x="${cx}" y="${196 + fs*.32}" text-anchor="middle" font-family="'Big Shoulders Display',Arial Narrow,Arial" font-size="${fs}" font-weight="800" fill="#1D2125">${etiqueta}</text></g>`
+      : (etiqueta ? `<g><rect x="${x + w + 10}" y="176" width="${etiqueta.length*15+20}" height="38" rx="5" fill="#F2C230" stroke="#1D2125" stroke-width="2"/><text x="${x + w + 20}" y="203" font-family="'Big Shoulders Display',Arial Narrow,Arial" font-size="26" font-weight="800" fill="#1D2125">${etiqueta}</text></g>` : "");
     gB.innerHTML = `<rect x="${x}" y="112" width="${w}" height="196" fill="url(#zinc)" stroke="#1D2125" stroke-width="2"/>${filetes}
       <path d="M${cx-cabezaW/2} 308 h${cabezaW} l-6 40 h${-(cabezaW-12)} Z" fill="url(#zinc)" stroke="#1D2125" stroke-width="2" stroke-linejoin="round"/>
-      <path d="M${cx-cabezaW/6} 308 v40 M${cx+cabezaW/6} 308 v40" stroke="#4E575D" stroke-width="1.2"/>`;
+      <path d="M${cx-cabezaW/6} 308 v40 M${cx+cabezaW/6} 308 v40" stroke="#4E575D" stroke-width="1.2"/>${chapa}`;
   }
   function poner(mm){
     abierto = Math.max(0, Math.min(MAXMM, mm));
-    const efectivo = Math.max(abierto, 0);
-    cur.setAttribute("transform", `translate(${X0 + efectivo*PX} 0)`);
-    cur.setAttribute("aria-valuenow", efectivo.toFixed(2));
-    pant.textContent = efectivo.toFixed(2).replace(".",",");
-    const toca = Math.abs(efectivo - D) < .12;
-    const n = toca ? nombreDiametro(D) : null;
+    cur.setAttribute("transform", `translate(${X0 + abierto*PX} 0)`);
+    cur.setAttribute("aria-valuenow", abierto.toFixed(2));
+    pant.textContent = abierto.toFixed(2).replace(".",",");
+    pista.style.display = abierto < 1 ? "" : "none";
     const btn = $("#ir-medida");
-    if (n){ $("#lectura").innerHTML = `<b>${esc(n.txt)}</b>Diámetro ${D.toFixed(2).replace(".",",")} mm.`; btn.hidden = false; btn.textContent = `Abrir los cajones ${n.clave}`; btn.dataset.clave = n.clave; }
-    else { $("#lectura").textContent = efectivo < D ? "Arrastrá la mordaza hasta que toque el bulón." : "Cerrá la mordaza contra el bulón."; btn.hidden = true; }
+    if (abierto < RANGO.min - .3){ dibujarBulon(abierto, ""); $("#lectura").textContent = abierto < .6 ? "Abrí el calibre: arrastrá la mordaza azul hasta el ancho de tu bulón." : "Muy finito: trabajamos desde M3."; btn.hidden = true; return; }
+    if (abierto > RANGO.max + .5){ dibujarBulon(abierto, ""); $("#lectura").textContent = `Más de ${RANGO.max} mm no trabajamos. Escribinos por WhatsApp y lo conseguimos.`; btn.hidden = true; return; }
+    const n = medidaCercana(abierto), exacto = Math.abs(n.d - abierto) < .35;
+    dibujarBulon(abierto, exacto ? n.clave.replace('"','″') : "");
+    if (exacto){ const hay = enCatalogo(n.clave);
+      $("#lectura").innerHTML = `<b>${esc(n.txt)}</b>Diámetro ${n.d.toFixed(2).replace(".",",")} mm.${hay ? "" : " Esta medida la tenemos en el local."}`;
+      btn.hidden = !hay; btn.textContent = `Abrir los cajones ${n.clave}`; btn.dataset.clave = n.clave; }
+    else { $("#lectura").innerHTML = `Seguí moviendo: lo más cercano es <b style="font-size:22px">${esc(n.txt)}</b>`; btn.hidden = true; }
   }
+  ponerCalibre = (mm, anim=true) => anim ? animar(abierto, mm, 450) : poner(mm);
   const aMm = e => { const r = svg.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 900; return (x - X0 - 4) / PX; };
-  function soltar(){ if (!arrastrando) return; arrastrando = false; if (abierto < D) animar(abierto, D, 260); else if (abierto - D < 1.2) animar(abierto, D, 200); }
+  // al soltar, se acomoda a la medida real más cercana
+  function soltar(){ if (!arrastrando) return; arrastrando = false; if (abierto >= RANGO.min - .3 && abierto <= RANGO.max + .5){ const n = medidaCercana(abierto); if (Math.abs(n.d-abierto) < 1.2) animar(abierto, n.d, 220); } }
   cur.addEventListener("pointerdown", e=>{ arrastrando = true; cur.setPointerCapture(e.pointerId); e.preventDefault(); });
-  cur.addEventListener("pointermove", e=>{ if (arrastrando) poner(Math.max(D, aMm(e))); });
+  cur.addEventListener("pointermove", e=>{ if (arrastrando) poner(aMm(e)); });
   cur.addEventListener("pointerup", soltar); cur.addEventListener("pointercancel", soltar);
-  svg.addEventListener("pointerdown", e=>{ if (e.target.closest("#cursor")) return; const mm = aMm(e); if (mm > 0) animar(abierto, Math.max(D, mm), 260); });
-  cur.addEventListener("keydown", e=>{ const paso = e.shiftKey ? 1 : .1; if (e.key==="ArrowRight"){ e.preventDefault(); poner(abierto+paso); } if (e.key==="ArrowLeft"){ e.preventDefault(); poner(Math.max(D, abierto-paso)); } });
+  svg.addEventListener("pointerdown", e=>{ if (e.target.closest("#cursor")) return; const mm = aMm(e); if (mm >= 0){ const n = medidaCercana(Math.max(RANGO.min, mm)); animar(abierto, Math.abs(n.d-mm)<1.2 ? n.d : mm, 300); } });
+  cur.addEventListener("keydown", e=>{ const paso = e.shiftKey ? 1 : .1; if (e.key==="ArrowRight"){ e.preventDefault(); poner(abierto+paso); } if (e.key==="ArrowLeft"){ e.preventDefault(); poner(abierto-paso); } });
   let raf = 0;
   function animar(desde, hasta, ms, luego){
     cancelAnimationFrame(raf); if (reducir){ poner(hasta); if (luego) luego(); return; }
     const t0 = performance.now(); const paso = now => { const t = Math.min(1,(now-t0)/ms), k = 1 - Math.pow(1-t,3); poner(desde + (hasta-desde)*k); if (t<1) raf = requestAnimationFrame(paso); else if (luego) luego(); }; raf = requestAnimationFrame(paso);
   }
-  function medirDeNuevo(){ dibujarBulon(); animar(0, Math.max(D+14, 22), 700, ()=>setTimeout(()=>animar(Math.max(D+14,22), D, 650), 180)); }
-  $("#otro-bulon").addEventListener("click", ()=>{ iPrueba = (iPrueba+1) % PRUEBAS.length; D = PRUEBAS[iPrueba]; medirDeNuevo(); });
-  dibujarBulon(); poner(0);
-  // el único movimiento sin que nadie toque: el calibre mide el bulón al aparecer
-  if ("IntersectionObserver" in window){ const io = new IntersectionObserver(([en])=>{ if (en.isIntersecting){ medirDeNuevo(); io.disconnect(); } }, {threshold:.4}); io.observe(svg); } else medirDeNuevo();
+  $("#otro-bulon").addEventListener("click", ()=>{ const D = PRUEBAS[iPrueba]; iPrueba = (iPrueba+1) % PRUEBAS.length; animar(abierto, 0, 380, ()=>setTimeout(()=>animar(0, D, 900), 120)); });
+  poner(0);
+  // al aparecer, el calibre se abre solo una vez para mostrar cómo se usa
+  if ("IntersectionObserver" in window){ const io = new IntersectionObserver(([en])=>{ if (en.isIntersecting){ setTimeout(()=>animar(0, 8, 1100), 400); io.disconnect(); } }, {threshold:.4}); io.observe(svg); }
 })();
 $("#ir-medida").addEventListener("click", e=>{ irAMedida(e.target.dataset.clave); });
-$("#mm").addEventListener("input", e=>{ const v = parseFloat(String(e.target.value).replace(",", ".")); const out = $("#mm-res");
-  if (!v){ out.innerHTML = ""; return; } const n = nombreDiametro(v);
-  out.innerHTML = n ? `es <b>${esc(n.txt)}</b> <button class="boton azul" type="button" data-ir-medida="${esc(n.clave)}" style="min-height:36px;padding:0 12px">Ver cajones</button>` : "esa medida la buscamos en el local: mandanos foto por WhatsApp"; });
+$("#mm").addEventListener("input", e=>{ const raw = String(e.target.value).replace(",", "."), v = parseFloat(raw); const out = $("#mm-res");
+  if (!raw || isNaN(v)){ out.innerHTML = ""; return; }
+  if (v < RANGO.min || v > RANGO.max){ out.innerHTML = `<span class="mm-aviso">Trabajamos de ${RANGO.min} a ${RANGO.max} mm.</span>`; return; }
+  const n = medidaCercana(v), exacto = Math.abs(n.d - v) < .35, hay = enCatalogo(n.clave);
+  if (ponerCalibre) ponerCalibre(n.d);
+  out.innerHTML = (exacto ? `es <b>${esc(n.txt)}</b>` : `<span class="mm-aviso">No existe un bulón de ${esc(String(v).replace(".",","))} mm.</span> Lo más cercano: <b>${esc(n.txt)}</b>`)
+    + (hay ? ` <button class="boton azul" type="button" data-ir-medida="${esc(n.clave)}" style="min-height:36px;padding:0 12px">Ver cajones</button>` : ` <span>· la tenemos en el local, consultá por WhatsApp</span>`); });
 document.addEventListener("click", e=>{ const b = e.target.closest("[data-ir-medida]"); if (b) irAMedida(b.dataset.irMedida); });
 
 /* ---------- Cajonera ---------- */
@@ -792,36 +836,42 @@ function actualizarSub(){ const p = prod(abiertoId); if (!p) return; const c = M
 ["#q","#q2"].forEach(s=>$(s).addEventListener("keydown", e=>{ if (e.key==="Enter"){ e.preventDefault(); bajarA($("#mostrador")); } }));
 
 /* ---------- Pedido por lista ---------- */
-const TIPO_PALABRA = [[/bul[oó]n|bulones|tornillo de cabeza hex/i,"Bulones"],[/tuerca/i,"Tuercas"],[/arandela|grower/i,"Arandelas"],[/tornillo|autoperf|durlock|yeso|madera|deck/i,"Tornillos"],[/varilla/i,"Varillas"],[/taco|anclaje|tarugo/i,"Tacos y anclajes"]];
-let resultadoLista = [];
+// Cada renglón muestra TODAS las opciones que coinciden, con su "+", para que el cliente elija.
+const TIPO_PALABRA = [[/bul[oó]n|bulones/i,"Bulones"],[/tuerca/i,"Tuercas"],[/arandela|grower/i,"Arandelas"],[/tornillo|autoperf|durlock|yeso|madera|deck/i,"Tornillos"],[/varilla/i,"Varillas"],[/taco|anclaje|tarugo/i,"Tacos y anclajes"]];
 function normMedida(s){ return s.toLowerCase().replace(/×/g,"x").replace(/\s+/g,"").replace(/["”]/g,'"'); }
-function leerLinea(linea){
+function opcionesLinea(linea){
   const t = linea.trim(); if (!t) return null;
   const mCant = t.match(/^(\d+)\s*/); const cant = mCant ? parseInt(mCant[1]) : 1;
   const caja = /\bcajas?\b/i.test(t);
   const tipo = (TIPO_PALABRA.find(([re])=>re.test(t))||[])[1];
-  const met = t.match(/m\s?(\d+)(?:\s*[x×]\s*(\d+))?/i), pul = t.match(/(\d+\/\d+)\s*"?(?:\s*[x×]\s*(\d+(?:\/\d+)?)\s*"?)?/), num = t.match(/(?:n[º°.]?\s*|del\s+)(\d+)\b/i);
-  let cands = PRODUCTOS.filter(p=>!tipo || p.tipo===tipo);
-  if (met){ cands = cands.filter(p=>p.medida.startsWith("M"+met[1]+" ") || p.medida==="M"+met[1]); if (met[2]) cands = cands.filter(p=>normMedida(p.medida).includes("x"+met[2])); }
-  else if (pul){ cands = cands.filter(p=>p.medida.startsWith(pul[1]+'"')); if (pul[2]) cands = cands.filter(p=>normMedida(p.medida).includes('x'+pul[2])); }
-  else if (num){ cands = cands.filter(p=>p.medida.includes(num[1])); }
-  else if (!tipo) cands = [];
-  if (/inox/i.test(t)) cands = cands.filter(p=>p.inox); else if (cands.some(p=>!p.inox)) cands = cands.filter(p=>!p.inox);
-  return { linea:t, cant, modo: caja ? "caja" : "unidad", prod: cands.length ? cands[0] : null };
+  const met = t.match(/\bm\s?(\d+)(?:\s*[x×]\s*(\d+))?/i), pul = t.match(/(\d+\/\d+)\s*"?(?:\s*[x×]\s*(\d+(?:\/\d+)?)\s*"?)?/), num = t.match(/(?:n[º°.]?\s*|del\s+)(\d+)\b/i);
+  let cands = PRODUCTOS.filter(p=>!tipo || p.tipo===tipo), exacto = true;
+  if (met){ const f = cands.filter(p=>p.medida.startsWith("M"+met[1]+" ") || p.medida==="M"+met[1]); const f2 = met[2] ? f.filter(p=>normMedida(p.medida).includes("x"+met[2])) : f; if (f2.length) cands = f2; else if (f.length){ cands = f; exacto = false; } else { exacto = false; } }
+  else if (pul){ const f = cands.filter(p=>p.medida.startsWith(pul[1]+'"')); if (f.length) cands = f; else exacto = false; }
+  else if (num){ const f = cands.filter(p=>p.medida.includes(num[1])); if (f.length) cands = f; else exacto = false; }
+  else if (!tipo){ const b = buscar(t.replace(/^\d+\s*/,"")); cands = b.length < PRODUCTOS.length ? b : []; exacto = false; }
+  if (/inox/i.test(t)){ const f = cands.filter(p=>p.inox); if (f.length) cands = f; }
+  return { linea:t, cant, modo: caja ? "caja" : "unidad", cands: cands.slice(0, 12), exacto };
 }
 function leerLista(){
-  resultadoLista = $("#txt-lista").value.split(/\n|,|;/).map(leerLinea).filter(Boolean);
+  const lineas = $("#txt-lista").value.split(/\n|,|;/).map(opcionesLinea).filter(Boolean);
   const caja = $("#lista-res");
-  if (!resultadoLista.length){ caja.innerHTML = `<p class="vacio">Escribí al menos un renglón, por ejemplo “20 bulones M8x40”.</p>`; return; }
-  const ok = resultadoLista.filter(r=>r.prod), tot = ok.reduce((a,r)=>a + (r.modo==="caja" ? r.prod.precioCaja : r.prod.precio)*r.cant, 0);
-  caja.innerHTML = resultadoLista.map(r=> r.prod
-    ? `<div class="res-fila ok">${IC.ok}<div>${r.cant} ${r.modo==="caja" ? (r.cant===1?"caja":"cajas")+" de" : "×"} ${esc(r.prod.nombre)} ${esc(r.prod.medida)}<small>Leímos: “${esc(r.linea)}”</small></div><span class="imp">${pesos((r.modo==="caja"?r.prod.precioCaja:r.prod.precio)*r.cant)}</span></div>`
-    : `<div class="res-fila no">${IC.no}<div>${esc(r.linea)}<small>No lo encontramos en la web: va en la nota para que te lo coticen.</small></div><span class="imp">—</span></div>`).join("")
-    + `<div class="acciones"><button class="boton amarillo" type="button" id="pasar-lista">Pasar ${ok.length} ${ok.length===1?"artículo":"artículos"} a la nota · ${pesos(tot)}</button></div>`;
-  $("#pasar-lista").onclick = ()=>{ ok.forEach(r=>agregar(r.prod.id, r.modo, r.cant)); consultas = [...new Set([...consultas, ...resultadoLista.filter(r=>!r.prod).map(r=>r.linea)])]; guardar("bb-consultas", consultas); abrirNota(); };
+  if (!lineas.length){ caja.innerHTML = `<p class="vacio">Escribí lo que buscás, por ejemplo “tornillos” o “20 bulones M8x40”, y acá te mostramos las opciones para sumar.</p>`; return; }
+  caja.innerHTML = lineas.map((r,k)=>`<div class="grupo-op">
+      <div class="grupo-cab"><b>“${esc(r.linea)}”</b><span>${r.cands.length ? `${r.cands.length} ${r.cands.length===1?"opción":"opciones"}${r.exacto?"":" parecidas"}` : "sin resultados"}</span></div>
+      ${r.cands.length ? r.cands.map(p=>{ const precio = r.modo==="caja" ? p.precioCaja : p.precio; const ya = cantEnPedido(p.id);
+        return `<div class="op"><div><b>${esc(p.nombre)} ${esc(p.medida)}</b><small>${r.modo==="caja" ? `Caja × ${p.caja}` : "Por unidad"} · ${pesos(precio)}${r.cant>1?` · ${r.cant} = ${pesos(precio*r.cant)}`:""}${ya?` · <em>${ya} en la nota</em>`:""}</small></div>
+          <button class="mas-op" type="button" data-op-sumar="${p.id}" data-op-modo="${r.modo}" data-op-cant="${r.cant}" aria-label="Sumar ${esc(p.nombre)} ${esc(p.medida)} a la nota">+</button></div>`; }).join("")
+      : `<div class="op no"><div><b>No lo tenemos en la web</b><small>Sumalo como consulta y te lo cotizan por WhatsApp.</small></div><button class="mas-op" type="button" data-op-consulta="${esc(r.linea)}" aria-label="Sumar como consulta">+</button></div>`}
+    </div>`).join("");
 }
-$("#leer-lista").addEventListener("click", leerLista);
-$("#ejemplo-lista").addEventListener("click", ()=>{ $("#txt-lista").value = "20 bulones M8x40\n1 caja tuercas M8\n40 arandelas M8\n10 tacos del 8\n2 varillas 3/8\n6 bulones M16x120"; leerLista(); });
+let tLista = 0;
+$("#txt-lista").addEventListener("input", ()=>{ clearTimeout(tLista); tLista = setTimeout(leerLista, 250); });
+document.addEventListener("click", e=>{
+  const b = e.target.closest("[data-op-sumar]"); if (b){ agregar(b.dataset.opSumar, b.dataset.opModo, parseInt(b.dataset.opCant)||1); b.classList.add("ok"); b.textContent = "✓"; setTimeout(leerLista, 700); return; }
+  const c = e.target.closest("[data-op-consulta]"); if (c){ consultas = [...new Set([...consultas, c.dataset.opConsulta])]; guardar("bb-consultas", consultas); avisar("Sumado a la nota como consulta"); c.classList.add("ok"); c.textContent = "✓"; actualizarBarra(); }
+});
+$("#ejemplo-lista").addEventListener("click", ()=>{ $("#txt-lista").value = "tornillos\n20 bulones M8x40\n1 caja tuercas M8\n10 tacos del 8\n2 bulones M21"; leerLista(); });
 
 /* ---------- Bolsitas ---------- */
 function pintarBolsitas(){
