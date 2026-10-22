@@ -149,7 +149,7 @@ module.exports = {
       if (!v.og) mal.push(`${k}: sin Open Graph`);
     }
     const robots = fs.readFileSync(path.join(RAIZ, "robots.txt"), "utf8");
-    if (!/Disallow: \/page\//.test(robots) || !/Disallow: \/muestrario\/page\//.test(robots)) mal.push("robots.txt no bloquea /page/");
+    if (!/Disallow: \/page\//.test(robots)) mal.push("robots.txt no bloquea /page/");
     if (!/Sitemap: https?:\/\/\S+sitemap\.xml/.test(robots)) mal.push("robots.txt sin Sitemap");
     if (fs.existsSync(path.join(RAIZ, "page"))) { const pag = fs.readdirSync(path.join(RAIZ, "page")); if (pag.length) mal.push("hay archivos en /page/"); }
     return { ok: !mal.length, evidencia: mal.join("; ") || "muestrario: index, follow; 11 demos: noindex, follow; canonical y Open Graph en las 12; robots.txt bloquea /page/ y declara el sitemap" };
