@@ -1,6 +1,6 @@
-# robots.txt de Lazervi
+# robots.txt de Vincer
 # Ojo: Google solo lee el robots.txt de la raíz del dominio. Mientras el sitio viva en /muestrario/,
-# este archivo sirve de referencia y se activa al pasar a un dominio propio (ej. lazervi.com.ar).
+# este archivo sirve de referencia y se activa al pasar a un dominio propio (ej. vincer.com.ar).
 User-agent: *
 Allow: /
 Disallow: /page/

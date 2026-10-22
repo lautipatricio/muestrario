@@ -124,7 +124,7 @@ module.exports = {
       if (fs.statSync(full).isDirectory()) rec(full); else if (/\.(jpg|webp|png)$/.test(f) && /\d/.test(f.replace(/-h\.jpg$/, ""))) fotos.push(path.relative(RAIZ, full)); } })(RAIZ);
     return { ok: !sinAlt.length && !nombres.length && !fotos.length, evidencia: `${total} imágenes renderizadas; sin alt: ${sinAlt.slice(0, 6).join(", ") || "ninguna"}; nombres no descriptivos: ${nombres.slice(0, 6).join(", ") || "ninguno"}; archivos con números: ${fotos.slice(0, 6).join(", ") || "ninguno"}` };
   },
-  "Schema de negocio local válido (Lazervi y demos)": async a => {
+  "Schema de negocio local válido (Vincer y demos)": async a => {
     const d = await datos(a); const mal = [];
     const TIPOS = ["ProfessionalService", "Restaurant", "Bakery", "JapaneseRestaurant", "SteakHouse", "LiquorStore", "CafeOrCoffeeShop", "HealthAndBeautyBusiness"];
     for (const [k, v] of Object.entries(d)) {
@@ -137,7 +137,7 @@ module.exports = {
       if (!v.ld.some(x => x["@type"] === "BreadcrumbList") && k !== "muestrario") mal.push(`${k}: sin migas de pan`);
     }
     const laz = d.muestrario.ld.find(x => x["@type"] === "ProfessionalService");
-    return { ok: !mal.length, evidencia: mal.join("; ") || `Lazervi: ${laz.name}, ${laz.telephone}, ${laz.areaServed.name}; 8 demos con su tipo de negocio y migas; las 3 propuestas reales sin schema de ese negocio` };
+    return { ok: !mal.length, evidencia: mal.join("; ") || `Vincer: ${laz.name}, ${laz.telephone}, ${laz.areaServed.name}; 8 demos con su tipo de negocio y migas; las 3 propuestas reales sin schema de ese negocio` };
   },
   "Indexación: muestrario indexable, demos noindex, canonical y /page/ bloqueado": async a => {
     const d = await datos(a); const mal = [];

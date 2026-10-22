@@ -1,13 +1,13 @@
 # Reporte de pruebas
 
-Fecha: 2026-10-22T17:44:31.025Z
+Fecha: 2026-10-22T22:10:02.407Z
 
 Resultado: 28 de 28 pruebas pasan.
 
 - ✔ **[seguridad] Permisos: no hay backend ni datos de otros usuarios**  
   archivos de servidor: 0; pedido del visitante A en su navegador: {"sake-0":1}; el visitante B ve: nada; el panel de recepción de B muestra datos de A: no
 - ✔ **[seguridad] Credenciales: sin claves ni tokens en archivos ni en el historial de git**  
-  167 archivos y 11 commits revisados con 9 patrones; gitleaks: sin hallazgos; hallazgos: ninguno
+  167 archivos y 12 commits revisados con 9 patrones; gitleaks: no instalado; hallazgos: ninguno
 - ✔ **[seguridad] Dependencias: sin librerías de terceros publicadas ni vulnerabilidades conocidas**  
   package.json publicados: 0; scripts externos: ninguno (solo GA4 cuando se configure); npm audit de las pruebas: {"info":0,"low":0,"moderate":0,"high":0,"critical":0,"total":0}
 - ✔ **[seguridad] Datos de entrada: XSS en todos los campos, en datos guardados y en la URL**  
@@ -44,8 +44,8 @@ Resultado: 28 de 28 pruebas pasan.
   muestrario: 6, almendra-cafe: 3, aluvidrio: 3, bruma-cosmetica: 5, bulonera-beccar: 3, fierro-parrilla: 3, kumo-sushi: 3, lacre-vinoteca: 7, mesa-larga: 5, salome-blanes: 5, shio-sushi: 3, tita: 3 preguntas, todas en el schema
 - ✔ **[seo] Imágenes: texto alternativo en todas y nombres de archivo descriptivos (sin números)**  
   193 imágenes renderizadas; sin alt: ninguna; nombres no descriptivos: ninguno; archivos con números: ninguno
-- ✔ **[seo] Schema de negocio local válido (Lazervi y demos)**  
-  Lazervi: Lazervi, +54 9 11 7817-5738, Buenos Aires; 8 demos con su tipo de negocio y migas; las 3 propuestas reales sin schema de ese negocio
+- ✔ **[seo] Schema de negocio local válido (Vincer y demos)**  
+  Vincer: Vincer, +54 9 11 7817-5738, Buenos Aires; 8 demos con su tipo de negocio y migas; las 3 propuestas reales sin schema de ese negocio
 - ✔ **[seo] Indexación: muestrario indexable, demos noindex, canonical y /page/ bloqueado**  
   muestrario: index, follow; 11 demos: noindex, follow; canonical y Open Graph en las 12; robots.txt bloquea /page/ y declara el sitemap
 - ✔ **[seo] URLs sin números ni conectores, y la vieja redirige**  

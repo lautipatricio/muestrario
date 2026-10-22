@@ -1,4 +1,4 @@
-# Lazervi
+# Vincer
 
 > Diseño de páginas web, tiendas online, reservas y turnos para negocios de Buenos Aires. Pedidos y reservas que llegan a WhatsApp, sin comisión.
 
@@ -27,13 +27,13 @@ Sitio: https://lautipatricio.github.io/muestrario/
 ### Comercios
 
 - [Lacre](https://lautipatricio.github.io/muestrario/demos/lacre-vinoteca/): Demo de página web para vinoteca: recomendador de vinos según la comida, fichas técnicas, tienda con caja, club mensual, catas y pedidos por WhatsApp.
-- [Aluvidrio](https://lautipatricio.github.io/muestrario/demos/aluvidrio/): Propuesta de diseño de Lazervi para una vidriería: trabajos por categoría, fichas de cada trabajo y pedido de presupuesto con medidas.
-- [Bulonera Beccar](https://lautipatricio.github.io/muestrario/demos/bulonera-beccar/): Propuesta de diseño de Lazervi para una bulonera: calibre para medir el bulón, cajonera de medidas, pedido por lista y nota de pedido.
+- [Aluvidrio](https://lautipatricio.github.io/muestrario/demos/aluvidrio/): Propuesta de diseño de Vincer para una vidriería: trabajos por categoría, fichas de cada trabajo y pedido de presupuesto con medidas.
+- [Bulonera Beccar](https://lautipatricio.github.io/muestrario/demos/bulonera-beccar/): Propuesta de diseño de Vincer para una bulonera: calibre para medir el bulón, cajonera de medidas, pedido por lista y nota de pedido.
 
 ### Salud y belleza
 
 - [Bruma](https://lautipatricio.github.io/muestrario/demos/bruma-cosmetica/): Demo de tienda online de cosmética: buscador, compra por objetivo, rutina completa en un toque, carrito con Mercado Pago, preguntas frecuentes y mapa.
-- [Salomé Blanes](https://lautipatricio.github.io/muestrario/demos/salome-blanes/): Propuesta de diseño de Lazervi para un centro de estética: tratamientos con precio, turnos online con seña y panel para la recepción.
+- [Salomé Blanes](https://lautipatricio.github.io/muestrario/demos/salome-blanes/): Propuesta de diseño de Vincer para un centro de estética: tratamientos con precio, turnos online con seña y panel para la recepción.
 
 ## Notas
 
