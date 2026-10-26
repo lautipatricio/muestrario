@@ -3,7 +3,7 @@ const http = require("http"), fs = require("fs"), path = require("path");
 const { chromium } = require("playwright-core");
 
 const RAIZ = path.resolve(__dirname, "..");
-const BASE_PUBLICA = "https://vincer.com.ar/";
+const BASE_PUBLICA = "https://vinceragency.com/";
 
 // Todas las páginas del sitio (se arma leyendo las carpetas, así una demo nueva entra sola).
 function paginas() {

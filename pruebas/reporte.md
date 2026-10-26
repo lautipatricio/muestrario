@@ -1,13 +1,13 @@
 # Reporte de pruebas
 
-Fecha: 2026-10-22T22:55:37.849Z
+Fecha: 2026-10-26T16:03:18.264Z
 
 Resultado: 28 de 28 pruebas pasan.
 
 - ✔ **[seguridad] Permisos: no hay backend ni datos de otros usuarios**  
   archivos de servidor: 0; pedido del visitante A en su navegador: {"sake-0":1}; el visitante B ve: nada; el panel de recepción de B muestra datos de A: no
 - ✔ **[seguridad] Credenciales: sin claves ni tokens en archivos ni en el historial de git**  
-  168 archivos y 16 commits revisados con 9 patrones; gitleaks: no instalado; hallazgos: ninguno
+  168 archivos y 17 commits revisados con 9 patrones; gitleaks: no instalado; hallazgos: ninguno
 - ✔ **[seguridad] Dependencias: sin librerías de terceros publicadas ni vulnerabilidades conocidas**  
   package.json publicados: 0; scripts externos: ninguno (solo GA4 cuando se configure); npm audit de las pruebas: {"info":0,"low":0,"moderate":0,"high":0,"critical":0,"total":0}
 - ✔ **[seguridad] Datos de entrada: XSS en todos los campos, en datos guardados y en la URL**  

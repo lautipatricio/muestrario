@@ -4,4 +4,4 @@ Allow: /
 Disallow: /page/
 Disallow: /pruebas/
 
-Sitemap: https://vincer.com.ar/sitemap.xml
+Sitemap: https://vinceragency.com/sitemap.xml
