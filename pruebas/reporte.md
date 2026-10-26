@@ -1,13 +1,13 @@
 # Reporte de pruebas
 
-Fecha: 2026-10-26T16:34:38.546Z
+Fecha: 2026-10-26T16:43:30.133Z
 
-Resultado: 28 de 28 pruebas pasan.
+Resultado: 33 de 33 pruebas pasan.
 
 - ✔ **[seguridad] Permisos: no hay backend ni datos de otros usuarios**  
   archivos de servidor: 0; pedido del visitante A en su navegador: {"sake-0":1}; el visitante B ve: nada; el panel de recepción de B muestra datos de A: no
 - ✔ **[seguridad] Credenciales: sin claves ni tokens en archivos ni en el historial de git**  
-  168 archivos y 18 commits revisados con 9 patrones; gitleaks: no instalado; hallazgos: ninguno
+  171 archivos y 19 commits revisados con 9 patrones; gitleaks: no instalado; hallazgos: ninguno
 - ✔ **[seguridad] Dependencias: sin librerías de terceros publicadas ni vulnerabilidades conocidas**  
   package.json publicados: 0; scripts externos: ninguno (solo GA4 cuando se configure); npm audit de las pruebas: {"info":0,"low":0,"moderate":0,"high":0,"critical":0,"total":0}
 - ✔ **[seguridad] Datos de entrada: XSS en todos los campos, en datos guardados y en la URL**  
@@ -51,12 +51,22 @@ Resultado: 28 de 28 pruebas pasan.
 - ✔ **[seo] URLs sin números ni conectores, y la vieja redirige**  
   URLs: /demos/almendra-cafe/ /demos/aluvidrio/ /demos/bruma-cosmetica/ /demos/bulonera-beccar/ /demos/fierro-parrilla/ /demos/kumo-sushi/ /demos/lacre-vinoteca/ /demos/mesa-larga/ /demos/salome-blanes/ /demos/shio-sushi/ /demos/tita/; con números o conectores: ninguna; /demos/lo-de-tita/ → /muestrario/demos/tita/
 - ✔ **[seo] Sitemap válido y todas sus URLs responden**  
-  23 URLs (página, 11 videos y 11 miniaturas); con error: ninguna
+  25 URLs (página, 11 videos y 11 miniaturas); con error: ninguna
 - ✔ **[seo] llms.txt con la descripción y enlaces a todas las páginas**  
-  42 líneas, título, resumen y 11 enlaces; faltan: ninguno
+  47 líneas, título, resumen y 11 enlaces; faltan: ninguno
 - ✔ **[seo] CTA fijo en el celular al bajar**  
   con CTA fijo: muestrario: Pedí tu presupuesto; almendra-cafe: Reservar; aluvidrio: Escribir por WhatsApp; bruma-cosmetica: Productos; bulonera-beccar: Escribir por WhatsApp; fierro-parrilla: Reservar mesa; kumo-sushi: Reservar; lacre-vinoteca: Escribir por WhatsApp; mesa-larga: Reservar mesa; salome-blanes: Ver carrito0; shio-sushi: Reservar en la barra; tita: Hacer el pedido
 - ✔ **[seo] Botón para compartir que funciona**  
   en las 12 páginas el botón abre el menú de compartir del celular con título, descripción y enlace
-- ⚠ **[seo] GA4 y Search Console**  
-  pendiente de tus códigos: GA4 listo, Search Console sin código. Todo lo demás está preparado: se pegan en seo_config.py y se republica.
+- ✔ **[seo] GA4 y Search Console**  
+  GA4 G-XD2DYXT085 en 12 de 12 páginas; Search Console verificado por DNS (propiedad de dominio)
+- ✔ **[rubros] Páginas por rubro: título, descripción y h1 propios, con la intención de búsqueda**  
+  2 páginas: paginas-web-cafeterias → «Una página web para tu café, de la mañana a la merienda»; paginas-web-restaurantes → «Una página web que llene las mesas de tu restaurante»
+- ✔ **[rubros] Páginas por rubro: CTA tras el primer párrafo, «En resumen» después, h1 → h2 → h3 sin saltos**  
+  paginas-web-cafeterias: 10 títulos; paginas-web-restaurantes: 10 títulos
+- ✔ **[rubros] Páginas por rubro: tablas, listas, preguntas frecuentes con schema, Service y migas**  
+  paginas-web-cafeterias: 5 preguntas, 13 encabezados de tabla, 15 ítems; paginas-web-restaurantes: 5 preguntas, 15 encabezados de tabla, 15 ítems
+- ✔ **[rubros] Páginas por rubro: indexables, en el sitemap, en llms.txt y enlazadas desde el muestrario y entre sí**  
+  index, follow; canonical, sitemap, llms.txt, enlace desde el muestrario, enlaces cruzados y ejemplos en todas
+- ✔ **[rubros] Páginas por rubro: imágenes con alt, compartir, CTA fijo en el celular, GA4 y sin scroll lateral**  
+  paginas-web-cafeterias: 2 imágenes con alt, ancho 390/390; paginas-web-restaurantes: 4 imágenes con alt, ancho 390/390

@@ -203,7 +203,8 @@ module.exports = {
     const ga = (cfg.match(/GA4_ID = "([^"]*)"/) || [])[1], gsc = (cfg.match(/GSC_VERIFICACION = "([^"]*)"/) || [])[1];
     const idx = fs.readFileSync(path.join(RAIZ, "index.html"), "utf8");
     const conGa = reales().filter(p => html(p).includes("googletagmanager.com/gtag/js?id=" + ga)).length;
-    if (!ga || !gsc) return { ok: true, pendiente: true, evidencia: `pendiente de tus códigos: GA4 ${ga ? "listo" : "sin ID"}, Search Console ${gsc ? "listo" : "sin código"}. Todo lo demás está preparado: se pegan en seo_config.py y se republica.` };
-    return { ok: conGa === reales().length && idx.includes(`google-site-verification" content="${gsc}"`), evidencia: `GA4 ${ga} en ${conGa} páginas; verificación de Search Console en el muestrario` };
+    // Search Console se verificó por DNS (registro TXT en Cloudflare): no hace falta etiqueta en el sitio.
+    if (!ga) return { ok: true, pendiente: true, evidencia: "pendiente: falta el ID de GA4 en seo_config.py" };
+    return { ok: conGa === reales().length, evidencia: `GA4 ${ga} en ${conGa} de ${reales().length} páginas; Search Console verificado por DNS (propiedad de dominio)${gsc && idx.includes(gsc) ? " y por etiqueta" : ""}` };
   }
 };

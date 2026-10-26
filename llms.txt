@@ -13,6 +13,11 @@ Sitio: https://vinceragency.com/
 - Pedidos por WhatsApp sin comisión
 - Google, redes, videos de presentación, dominio, hosting y mantenimiento
 
+## Páginas por rubro
+
+- [Páginas web para restaurantes](https://vinceragency.com/paginas-web-restaurantes/): carta que edita el dueño, reservas, pedidos por WhatsApp sin comisión, QR en las mesas y ficha de Google.
+- [Páginas web para cafeterías](https://vinceragency.com/paginas-web-cafeterias/): carta por momento del día, pedidos para llevar con hora de retiro, tortas por encargo y QR en las mesas.
+
 ## Trabajos
 
 ### Gastronomía

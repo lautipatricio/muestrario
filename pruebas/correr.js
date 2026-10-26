@@ -6,7 +6,7 @@ const { servir, navegador } = require("./lib");
 
 (async () => {
   const filtro = process.argv[2];
-  const grupos = { seguridad: require("./seguridad"), seo: require("./seo") };
+  const grupos = { seguridad: require("./seguridad"), seo: require("./seo"), rubros: require("./rubros") };
   const { srv, base } = await servir(); const b = await navegador();
   const filas = []; let fallas = 0;
   for (const [g, pruebas] of Object.entries(grupos)) {

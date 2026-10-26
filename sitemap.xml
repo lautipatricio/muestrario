@@ -13,4 +13,6 @@
     <video:video><video:thumbnail_loc>https://vinceragency.com/posters/aluvidrio-h.jpg</video:thumbnail_loc><video:title>Página web de Aluvidrio</video:title><video:description>Propuesta de diseño de Vincer para una vidriería: trabajos por categoría, fichas de cada trabajo y pedido de presupuesto con medidas.</video:description><video:content_loc>https://vinceragency.com/videos/aluvidrio-h.mp4</video:content_loc></video:video>
     <video:video><video:thumbnail_loc>https://vinceragency.com/posters/bulonera-beccar-h.jpg</video:thumbnail_loc><video:title>Página web de Bulonera Beccar</video:title><video:description>Propuesta de diseño de Vincer para una bulonera: calibre para medir el bulón, cajonera de medidas, pedido por lista y nota de pedido.</video:description><video:content_loc>https://vinceragency.com/videos/bulonera-beccar-h.mp4</video:content_loc></video:video>
   </url>
+  <url><loc>https://vinceragency.com/paginas-web-restaurantes/</loc><lastmod>2026-10-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vinceragency.com/paginas-web-cafeterias/</loc><lastmod>2026-10-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
